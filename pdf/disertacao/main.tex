@@ -1,0 +1,132 @@
+\documentclass[11pt,fleqn, twoside, final, openany,usenames,dvipsnames]{book}%\documentclass[12pt, openany]{book} %
+
+%=============================== Preâmbulo ============================================
+\usepackage{amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage[table]{xcolor}% http://ctan.org/pkg/xcolor
+\usepackage{indentfirst}
+\usepackage{subfigure}
+\usepackage{natbib} %usepackage{harvard}
+\usepackage{amssymb,fancyhdr,fancybox,epsfig,psfrag,tabularx}
+\usepackage{comment}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{footnote}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{pslatex}
+\usepackage{algpseudocode}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{colortbl}
+\usepackage{enumitem}
+\definecolor{firebrick}{rgb}{.7, .13, .13}
+\definecolor{lightcopper}{rgb}{.93, .76, .58}
+\definecolor{blueice}{rgb}{.85, .96, .94}
+\usepackage{pdfpages}
+
+
+\hypersetup{
+    colorlinks=true,
+    citecolor=blue,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{setspace}
+\usepackage{tikz}
+\usepackage{soul}
+\usepackage{rotating}
+\usetikzlibrary{patterns}
+\usetikzlibrary{plotmarks}
+
+
+\urlstyle{same}
+\renewcommand\qedsymbol{$\blacksquare$}
+\usepackage[a4paper,hmargin={25mm,20mm},vmargin={20mm,20mm}]{geometry} %Papel A4
+\usepackage{setspace}
+\usepackage{caption}
+
+\usepackage[Sonny]{fncychap} %Options: Sonny, Lenny, Glenn, Conny, Rejne, Bjarne, Bjornstrup
+
+\setlength{\headheight}{15pt}
+\usepackage[title,titletoc,toc]{appendix}
+
+
+\usepackage{fancyhdr}
+\fancyhf{}%limpa todos os campos
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headheight}{15.0pt}
+\fancypagestyle{plain}{%
+    \fancyhf{}
+    \fancyhead[R]{\thepage}
+}
+
+\begin{document}
+
+
+\pagestyle{plain}
+
+
+%=============================== Capa, Resumo e Sumário ==============================
+
+% \input{Capa2}
+% \newpage
+\input{sections/capa}
+\newpage
+% \includepdf[pages=-]{Ficha-Catalografica-Protocolo-975642308}
+% \newpage
+% \input{Folha-aprovacao}
+% \newpage
+% \input{Agradecimentos} \thispagestyle{empty}
+\input{sections/resumo}\thispagestyle{empty}
+% \input{abstract}\thispagestyle{empty}
+
+
+% %=============================== Lista de Tabelas e Figuras ==========================
+% \listoffigures
+% \addtocontents{lof}{\protect\thispagestyle{plain}}\thispagestyle{empty}
+
+% \listoftables
+% \addtocontents{lot}{\protect\thispagestyle{plain}}\thispagestyle{empty}
+% \baselineskip 1.1 \baselineskip
+
+
+% %=============================== Sumário =============================================
+% \tableofcontents 
+% \addtocontents{toc} {\protect\thispagestyle{empty} } \thispagestyle{empty} 
+
+
+% %=============================== Capítulos ===========================================%
+\doublespacing %Para um espaçamento duplo
+
+% \input{Introducao} 
+% \input{Fundamentacao-teorica}
+% \input{Revisao-da-literatura}
+\input{sections/modelo_matematico}
+% \input{Contribuicoes}
+% %\input{Metodos-de-resolucao-propostos}
+% \input{Resultados-computacionais}
+% \input{Conclusoes}
+
+
+
+% %=============================== Referências Bibliográficas===========================
+% \addcontentsline{toc}{chapter}{Bibliografia}\label{referencias}
+% \bibliographystyle{agsm}
+% \bibliography{referencias}
+
+
+
+
+% %=============================== Anexos ==========================
+% \appendix
+% \renewcommand{\appendixname}{Appendix} %trocar Apendice por Anexo
+% \include{G-Appendix}
+
+\end{document}

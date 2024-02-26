@@ -1,0 +1,103 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[brazilian]{babel}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[left=2cm, right=3cm, top=2cm, bottom=2cm]{geometry}
+
+% Configuración de colores
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{myblue}{rgb}{0,0,0.8}
+\definecolor{myorange}{rgb}{1,0.1,0}
+\definecolor{bg}{rgb}{0.99, 0.99, 0.99}
+\definecolor{myred}{rgb}{0.8,0,0}
+\definecolor{mygreen1}{rgb}{0,0.5,0}
+\definecolor{mypurple}{rgb}{0.5,0,0.5}
+
+% Configuración de lstlisting
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    commentstyle=\color{mygray},
+	commentstyle=\color{mygreen1}\itshape,
+    keywordstyle=\color{myblue},
+    numberstyle=\tiny\color{mygray},
+    stringstyle=\color{myorange},
+    frame=trbl,%single,
+	framesep=0.5mm,
+    frameround=tttt,  % Bordes redondeados
+	rulecolor=\color{mygray},
+    showstringspaces=false,
+    numbers=left,
+    numbersep=5pt,
+    xleftmargin=15pt,
+    framexleftmargin=15pt,
+    framexrightmargin=5pt,
+    aboveskip=15pt,
+    belowskip=5pt,
+    escapeinside={*@}{@*},  % Permite usar LaTeX dentro del código
+    captionpos=b,
+    extendedchars=true,
+    inputencoding=utf8,
+    language=Python,
+	backgroundcolor=\color{bg},  % Fondo de color gris suave
+	prebreak=\mbox{\textcolor{myred}{\scriptsize $\sqcup  $}\space }, % Símbolo tipo "u" al finalizar la línea que no cabe
+	postbreak=\mbox{\textcolor{myred}{$\hookrightarrow$}\space}  % Línea roja de unión en las rupturas de línea
+}
+
+\begin{document}
+
+\section{MODELAGEM MATEMÁTICA}
+
+\begin{table}[H]
+	\centering
+	\small
+	\begin{tabular}{@{}lll@{}}
+		\toprule
+		\textbf{Definição} & \textbf{Notação}                                                                     & \textbf{Domínio}                     \\ \midrule
+		\multicolumn{3}{l}{\textbf{Conjuntos}}                                                                                                           \\ \midrule
+		I                  & Conjunto de estações de Inicio                                                       &                                      \\
+		J                  & Conjunto de estações de Destino                                                      &                                      \\
+		K                  & Conjunto de Classes de Control                                                       &                                      \\
+		T                  & Conjunto de Check-Points (Períodos)                                                  &                                      \\ \midrule
+		\multicolumn{3}{l}{\textbf{Parâmetros}}                                                                                                          \\ \midrule
+		n                  & Quantidade de estações                                                               &                                      \\
+		Q                  & Capacidade do trem                                                                   &                                      \\
+		P$_{ijk}$          & Preços  dos passagem com origem i, destino j e classe de control k                   & $i \in I, j \in J, k \in K$          \\
+		D$_{ijkt}$         & Demanda  de passagem com origem i, destino j e classe de control k                   & $i \in I, j \in J, k \in K, t \in T$ \\ \midrule
+		\multicolumn{3}{l}{\textbf{Variáveis de decisão}}                                                                                                \\ \midrule
+		X$_{ijkt}$         & Quantidade de passagem atribuídos no tramo i,j com classe de control k no período t  & $i \in I, j \in J, k \in K, t \in T$ \\
+		Y$_{ijkt}$         & Quantidade de passagem autorizados no tramo i,j com classe de control k no período t & $i \in I, j \in J, k \in K, t \in T$ \\ \bottomrule
+	\end{tabular}
+	\caption{Notação matemática}
+	\label{Notacao}
+\end{table}
+
+\begin{align}
+	 & Max \quad Z = \sum_{i\in I} \sum_{j\in J} \sum_{k\in K} \sum_{t\in T} P_{ijk} X_{ijkt}                                             \label{ecu1}  & \\
+	 & \text{s.a.}  \notag                                                                                                                              & \\
+	 & \sum_{i\in I}\sum_{k\in K}\sum_{t\in T}X_{ijkt} \leq Q , \quad \forall j / j>1, i<j                                                \label{ecu2}  & \\
+	 & \sum_{j\in J}\sum_{k\in K}\sum_{t\in T}X_{ijkt} \leq Q , \quad \forall i / i<n, j>i                                                \label{ecu3}  & \\
+	 & Y_{ijkt} \geq X_{ijkt},  \quad \forall i,j,k,t/ i < j                                                                              \label{ecu4}  & \\
+	 & Y_{ijkt} \leq Y_{i,j,k+1,t},  \quad \forall i,j,k,t / i < j, k < \lVert K \rVert,  P_{ijk} \leq P_{i,j,k+1}                        \label{ecu5}  & \\
+	 & X_{ijkt} \leq D_{ijkt},  \quad \forall i,j,k,t/ i < j                                                                              \label{ecu6}  & \\[15pt]
+	 & X_{ijkt} \in \mathbb{Z}^+                                                                                                           \label{ecu10} & \\
+	 & Y_{ijkt} \in \mathbb{Z}^+                                                                                                           \label{ecu11}
+\end{align}
+
+Onde a restrição \ref{ecu1} representa a função objetivo, a restrição \ref{ecu2} guarda a capacidade do trem depois
+de ter atribuído y autorizado os assentos das estações anteriores, a restrição \ref{ecu3} restringe que as passagem disponíveis para
+saída seja menores que a capacidade disponível ate a estação i, a restrição \ref{ecu4} garanta que a quantidade de assentos atribuídos
+seja menores ou iguais que os assentos autorizados, a restrição \ref{ecu6} garanta que as quantidades de assentos atribuídos seja menores
+ou iguais que a demanda para cada origem i, destino j de cada classe de control k. as restrições de \ref{ecu7} até \ref{ecu9} representa
+as iniciações das variáveis X, Y e cap respetivamente e pelo ultimo as restrições de \ref{ecu10} até \ref{ecu12} são o domínio das variáveis de decisão.
+\\ \\
+
+
+\end{document}
