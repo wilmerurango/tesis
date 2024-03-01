@@ -1,0 +1,193 @@
+tempo real: 0 min 48,1 seg
+
+Welcome to IBM(R) ILOG(R) CPLEX(R) Interactive Optimizer 22.1.1.0
+  with Simplex, Mixed Integer & Barrier Optimizers
+5725-A06 5725-A29 5724-Y48 5724-Y49 5724-Y54 5724-Y55 5655-Y21
+Copyright IBM Corp. 1988, 2022.  All Rights Reserved.
+
+Type 'help' for a list of available commands.
+Type 'help' followed by a command name for more
+information on commands.
+
+CPLEX> Logfile 'cplex.log' closed.
+Logfile 'C:\Users\LAB_C\AppData\Local\Temp\tmp0s4inid7.cplex.log' open.
+CPLEX> Problem 'C:\Users\LAB_C\AppData\Local\Temp\tmpi300rpmv.pyomo.lp' read.
+Read time = 1.33 sec. (153.80 ticks)
+CPLEX> Problem name         : C:\Users\LAB_C\AppData\Local\Temp\tmpi300rpmv.pyomo.lp
+Objective sense      : Maximize
+Variables            : 1008008  [General Integer: 1008008]
+Objective nonzeros   :  378000
+Linear constraints   : 1383494  [Less: 1131486,  Equal: 252008]
+  Nonzeros           : 3180981
+  RHS nonzeros       :  378001
+
+Variables            : Min LB: 0.000000         Max UB: all infinite   
+Objective nonzeros   : Min   : 50.00000         Max   : 2000.000       
+Linear constraints   :
+  Nonzeros           : Min   : 1.000000         Max   : 1.000000       
+  RHS nonzeros       : Min   : 1.000000         Max   : 700.0000       
+CPLEX> Version identifier: 22.1.1.0 | 2022-11-27 | 9160aff4d
+Found incumbent of value 0.000000 after 0.08 sec. (91.34 ticks)
+Tried aggregator 8 times.
+MIP Presolve eliminated 1033202 rows and 657701 columns.
+Aggregator did 350286 substitutions.
+Reduced MIP has 6 rows, 21 columns, and 46 nonzeros.
+Reduced MIP has 0 binaries, 21 generals, 0 SOSs, and 0 indicators.
+Presolve time = 5.78 sec. (6225.44 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 6 rows, 21 columns, and 46 nonzeros.
+Reduced MIP has 0 binaries, 21 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.02 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 24 threads.
+Root relaxation solution time = 0.02 sec. (0.02 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                            0.0000   3.61648e+07              --- 
+*     0     0      integral     0  8337000.0000  8337000.0000        9    0.00%
+Elapsed time = 5.95 sec. (6397.07 ticks, tree = 0.00 MB, solutions = 1)
+
+Root node processing (before b&c):
+  Real time             =    6.00 sec. (6430.72 ticks)
+Parallel b&c, 24 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =    6.00 sec. (6430.72 ticks)
+
+Solution pool: 2 solutions saved.
+
+MIP - Integer optimal solution:  Objective =  8.3370000000e+06
+Solution time =    6.02 sec.  Iterations = 9  Nodes = 0
+Deterministic time = 6433.60 ticks  (1069.42 ticks/sec)
+
+CPLEX> Incumbent solution written to file 'C:\Users\LAB_C\AppData\Local\Temp\tmp_dj2se0y.cplex.sol'.
+CPLEX> 
+Problem: 
+- Name: tmpi300rpmv
+  Lower bound: 8337000.0
+  Upper bound: 8337000.0
+  Number of objectives: 1
+  Number of constraints: 1383494
+  Number of variables: 1008008
+  Number of nonzeros: 3180981
+  Sense: maximize
+Solver: 
+- Status: ok
+  User time: 6.02
+  Termination condition: optimal
+  Termination message: MIP - Integer optimal solution\x3a Objective = 8.3370000000e+06
+  Statistics: 
+    Branch and bound: 
+      Number of bounded subproblems: 0
+      Number of created subproblems: 0
+  Error rc: 0
+  Time: 9.36426568031311
+Solution: 
+- number of solutions: 0
+  number of solutions displayed: 0
+
+
+
+Valor da função objetivo:  [1m[32m8337000.0[0m
+
+    o-d  classe  Periodo  preco  demanda  Assignments  Authorizations
+0   1-2     150        1   1978       23         23.0            23.0
+1   1-2     150        2   1978       33         33.0            33.0
+2   1-2     150        3   1978       16         16.0            16.0
+3   1-2     150        4   1978        9          9.0             9.0
+4   1-2     150        5   1978       94         94.0            94.0
+5   1-2     150        6   1978       19         19.0            19.0
+6   1-2     150        7   1978       44         44.0            44.0
+7   1-2     150        8   1978       68         68.0            68.0
+8   1-2     150        9   1978       55         55.0            55.0
+9   1-2     150       10   1978       59         59.0            59.0
+10  1-2     150       11   1978       46         46.0            46.0
+11  1-2     150       12   1978       26         26.0            26.0
+12  1-2     150       13   1978       10         10.0            10.0
+13  1-2     150       14   1978       55         55.0            55.0
+14  1-2     150       15   1978       63         63.0            63.0
+15  1-2     150       16   1978       68         68.0            68.0
+16  1-2     150       17   1978       11         11.0            11.0
+17  1-2     150       18   1978        5          1.0             1.0
+18  2-3     150        1   1998       46         46.0            46.0
+19  2-3     150        2   1998       87         87.0            87.0
+20  2-3     150        3   1998       50         50.0            50.0
+21  2-3     150        4   1998       95         95.0            95.0
+22  2-3     150        5   1998       74         74.0            74.0
+23  2-3     150        6   1998       90         90.0            90.0
+24  2-3     150        7   1998       32         32.0            32.0
+25  2-3     150        8   1998       74         74.0            74.0
+26  2-3     150        9   1998       30         30.0            30.0
+27  2-3     150       10   1998       36         36.0            36.0
+28  2-3     150       11   1998       24         24.0            24.0
+29  2-3     150       12   1998       76         62.0            62.0
+30  3-4     150        1   1961        2          2.0             2.0
+31  3-4     150        2   1961        3          3.0             3.0
+32  3-4     150        3   1961       16         16.0            16.0
+33  3-4     150        4   1961       61         61.0            61.0
+34  3-4     150        5   1961       28         28.0            28.0
+35  3-4     150        6   1961       61         61.0            61.0
+36  3-4     150        7   1961       63         63.0            63.0
+37  3-4     150        8   1961       26         26.0            26.0
+38  3-4     150        9   1961       66         66.0            66.0
+39  3-4     150       10   1961       29         29.0            29.0
+40  3-4     150       11   1961       99         99.0            99.0
+41  3-4     150       12   1961       54         54.0            54.0
+42  3-4     150       13   1961       51         51.0            51.0
+43  3-4     150       14   1961       99         99.0            99.0
+44  3-4     150       15   1961       35         35.0            35.0
+45  3-4     150       16   1961       93          7.0             7.0
+46  4-5     150        1   2000       33         33.0            33.0
+47  4-5     150        2   2000       78         78.0            78.0
+48  4-5     150        3   2000       33         33.0            33.0
+49  4-5     150        4   2000       49         49.0            49.0
+50  4-5     150        5   2000       38         38.0            38.0
+51  4-5     150        6   2000        2          2.0             2.0
+52  4-5     150        7   2000       35         35.0            35.0
+53  4-5     150        8   2000       13         13.0            13.0
+54  4-5     150        9   2000       79         79.0            79.0
+55  4-5     150       10   2000       53         53.0            53.0
+56  4-5     150       11   2000       69         69.0            69.0
+57  4-5     150       12   2000       37         37.0            37.0
+58  4-5     150       13   2000        1          1.0             1.0
+59  4-5     150       14   2000       44         44.0            44.0
+60  4-5     150       15   2000       92         92.0            92.0
+61  4-5     150       16   2000       68         44.0            44.0
+62  5-6     150        1   1986       71         71.0            71.0
+63  5-6     150        2   1986       96         96.0            96.0
+64  5-6     150        3   1986       33         33.0            33.0
+65  5-6     150        4   1986       30         30.0            30.0
+66  5-6     150        5   1986       58         58.0            58.0
+67  5-6     150        6   1986       47         47.0            47.0
+68  5-6     150        7   1986       26         26.0            26.0
+69  5-6     150        8   1986       95         95.0            95.0
+70  5-6     150        9   1986       99         99.0            99.0
+71  5-6     150       10   1986       40         40.0            40.0
+72  5-6     150       11   1986       97         97.0            97.0
+73  5-6     150       12   1986       54          8.0             8.0
+74  6-7     150        1   1987        6          6.0             6.0
+75  6-7     150        2   1987       31         31.0            31.0
+76  6-7     150        3   1987       31         31.0            31.0
+77  6-7     150        4   1987        8          8.0             8.0
+78  6-7     150        5   1987       69         69.0            69.0
+79  6-7     150        6   1987       21         21.0            21.0
+80  6-7     150        7   1987        3          3.0             3.0
+81  6-7     150        8   1987       93         93.0            93.0
+82  6-7     150        9   1987       10         10.0            10.0
+83  6-7     150       10   1987       39         39.0            39.0
+84  6-7     150       11   1987       85         85.0            85.0
+85  6-7     150       12   1987       43         43.0            43.0
+86  6-7     150       13   1987       32         32.0            32.0
+87  6-7     150       14   1987       76         76.0            76.0
+88  6-7     150       15   1987       10         10.0            10.0
+89  6-7     150       16   1987       15         15.0            15.0
+90  6-7     150       17   1987       10         10.0            10.0
+91  6-7     150       18   1987       49         49.0            49.0
+92  6-7     150       19   1987        4          4.0             4.0
+93  6-7     150       20   1987       79         65.0            65.0
