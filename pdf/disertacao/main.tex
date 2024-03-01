@@ -1,10 +1,11 @@
-\documentclass[11pt,fleqn, twoside, final, openany,usenames,dvipsnames]{book}%\documentclass[12pt, openany]{book} %
+\documentclass[11pt,fleqn, twoside, final]{book}%\documentclass[12pt, openany]{book} % --- , openany,usenames,dvipsnames
 
 %=============================== Preâmbulo ============================================
 \usepackage{amsfonts}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[portuguese]{babel}
+% \usepackage[latin1]{inputenc}		% Inclusão de gráficos
 \usepackage[table]{xcolor}% http://ctan.org/pkg/xcolor
 \usepackage{indentfirst}
 \usepackage{subfigure}
@@ -21,7 +22,6 @@
 \usepackage{algpseudocode}
 \usepackage[ruled,vlined]{algorithm2e}
 \usepackage{colortbl}
-\usepackage{enumitem}
 \definecolor{firebrick}{rgb}{.7, .13, .13}
 \definecolor{lightcopper}{rgb}{.93, .76, .58}
 \definecolor{blueice}{rgb}{.85, .96, .94}
@@ -47,15 +47,33 @@
 
 \urlstyle{same}
 \renewcommand\qedsymbol{$\blacksquare$}
+%\usepackage[paperwidth=8.5in,paperheight=11in,hmargin={25mm,20mm},vmargin={20mm,20mm}]{geometry} %Papel Carta
+%\usepackage[ruled]{algpseudocode,algorithm2e}
 \usepackage[a4paper,hmargin={25mm,20mm},vmargin={20mm,20mm}]{geometry} %Papel A4
 \usepackage{setspace}
 \usepackage{caption}
 
 \usepackage[Sonny]{fncychap} %Options: Sonny, Lenny, Glenn, Conny, Rejne, Bjarne, Bjornstrup
+%\ChNameVar{\large\sf} \ChNumVar{\Large} \ChTitleVar{\Large\sf\raggedleft}
+%\ChRuleWidth{0.24pt} \ChNameUpperCase
 
 \setlength{\headheight}{15pt}
 \usepackage[title,titletoc,toc]{appendix}
 
+%\usepackage{proof}
+%\newtheorem{lemma}{Lemma}
+%\newtheorem{theorem}{Theorem}
+%\newtheorem{proposition}{Proposition}
+% O comando For, a seguir, retorna 'para #1 -- #2 até #3 faça'
+%\algrenewtext{For}[3]%
+%{\algorithmicfor\ #1 $\gets$ #2 \algorithmicto\ #3 \algorithmicdo}
+%=============================== Cabeçalho e Rodapé ===================================
+%\fancyhead{}
+%\fancyfoot{}
+%\fancyhead[RO]{\thepage}
+%\fancyhead[RE]{\sectionmark}
+%\fancyhead[LO]{\nouppercase{\rightmark}}
+%\fancyhead[LE]{\thepage}
 
 \usepackage{fancyhdr}
 \fancyhf{}%limpa todos os campos
@@ -69,22 +87,21 @@
 
 \begin{document}
 
-
 \pagestyle{plain}
-
 
 %=============================== Capa, Resumo e Sumário ==============================
 
 % \input{Capa2}
 % \newpage
 \input{sections/capa}
-\newpage
+% \newpage
 % \includepdf[pages=-]{Ficha-Catalografica-Protocolo-975642308}
 % \newpage
 % \input{Folha-aprovacao}
 % \newpage
+
 % \input{Agradecimentos} \thispagestyle{empty}
-\input{sections/resumo}\thispagestyle{empty}
+% \input{sections/resumo}\thispagestyle{empty}
 % \input{abstract}\thispagestyle{empty}
 
 
