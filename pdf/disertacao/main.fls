@@ -11,6 +11,8 @@ INPUT C:\Program Files\MiKTeX\tex\latex\base\bk11.clo
 INPUT C:\Program Files\MiKTeX\tex\latex\base\bk11.clo
 INPUT C:\Program Files\MiKTeX\tex\latex\base\bk11.clo
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmr10.tfm
+INPUT C:\Program Files\MiKTeX\tex\latex\changepage\changepage.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\changepage\changepage.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\base\inputenc.sty
@@ -512,6 +514,10 @@ INPUT .\img\fig3.png
 INPUT .\img\fig3.png
 INPUT .\img\fig3.png
 INPUT C:\Program Files\MiKTeX\fonts\vf\adobe\times\ptmri8t.vf
+INPUT C:\Program Files\MiKTeX\fonts\vf\adobe\times\zptmcmrm.vf
+INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\symbol\psyr.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\adobe\times\ptmri8r.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmmi10.tfm
 INPUT main.aux
 INPUT .\main.out
 INPUT .\main.out

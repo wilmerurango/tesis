@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1709068205 "c:/Jupyter/TESIS/pdf/disertacao/main.tex" "main.pdf" "main" 1709068208 0
+["pdflatex"] 1711733158 "c:/Jupyter/TESIS/pdf/disertacao/main.tex" "main.pdf" "main" 1711733161 0
   "C:/Program Files/MiKTeX/fonts/enc/dvips/base/8r.enc" 1458473887 4993 80dc9bab7f31fb78a000ccfed0e27cab ""
   "C:/Program Files/MiKTeX/fonts/tfm/adobe/helvetic/phvr8r.tfm" 1136783054 4712 9ef4d7d106579d4b136e1529e1a4533c ""
   "C:/Program Files/MiKTeX/fonts/tfm/adobe/helvetic/phvr8t.tfm" 1136783054 7040 b2bd27e2bfe6f6948cbc3239cae7444f ""
@@ -156,6 +156,7 @@
   "C:/Program Files/MiKTeX/tex/latex/booktabs/booktabs.sty" 1579093635 6253 f1cb470c9199e7110a27851508ed7a5c ""
   "C:/Program Files/MiKTeX/tex/latex/caption/caption.sty" 1696169587 56128 c2ccf1a29d78c33bc553880402e4fb9a ""
   "C:/Program Files/MiKTeX/tex/latex/caption/caption3.sty" 1696169587 72619 ee90b6612147680fd73c3b1406a74245 ""
+  "C:/Program Files/MiKTeX/tex/latex/changepage/changepage.sty" 1256021817 4523 a9044e2dc40e764dac60d2acda7ae919 ""
   "C:/Program Files/MiKTeX/tex/latex/colortbl/colortbl.sty" 1660209207 12441 3b2a708337608012a865c7d9b7f05d28 ""
   "C:/Program Files/MiKTeX/tex/latex/comment/comment.sty" 1468691282 10197 204f75d5d8d88aa345a8c402e879e63b ""
   "C:/Program Files/MiKTeX/tex/latex/epstopdf-pkg/epstopdf-base.sty" 1623003186 13886 d1306dcf79a944f6988e688c1785f9ce ""
@@ -230,16 +231,16 @@
   "C:/Program Files/MiKTeX/tex/latex/xcolor/xcolor.sty" 1656236890 56148 51a9a8571c07b9921892ae11063ae853 ""
   "C:/Users/Wilmer/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1700683177 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/Wilmer/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1700683213 24132097 06b34489f335e77134d708b8cb47b336 ""
-  "c:/Jupyter/TESIS/pdf/disertacao/main.tex" 1709058517 4515 e93552df5b665001a35ce7913e151f08 ""
+  "c:/Jupyter/TESIS/pdf/disertacao/main.tex" 1711477517 4578 f4ea06b2a5efcc741416572d0068fcde ""
   "img/fig1.png" 1707338557 20708 fc353c7b1d3293a6ffa0df647b5f44d0 ""
   "img/fig2.png" 1709054089 38792 a1cedcf1226a00817720adf3c2f08b24 ""
   "img/fig3.png" 1709063894 33769 7792fc9ff7bc31b00e96f567fd18966c ""
   "img/unicamp.pdf" 1706841646 4078 6b392d4bdde6603f81be8df8b3f96044 ""
-  "main.aux" 1709068207 4305 30b2adfc9c91944a4d9b2bb024bff3be "pdflatex"
-  "main.out" 1709068207 720 93e823f052689e041ebfbb123288c05c "pdflatex"
-  "main.tex" 1709058517 4515 e93552df5b665001a35ce7913e151f08 ""
+  "main.aux" 1711733161 4492 de2673456e09e3fda33a6c7ecaa5e257 "pdflatex"
+  "main.out" 1711733161 720 93e823f052689e041ebfbb123288c05c "pdflatex"
+  "main.tex" 1711477517 4578 f4ea06b2a5efcc741416572d0068fcde ""
   "sections/capa.tex" 1709057700 3497 59a8ff74e614bb679675bb3ee9c512d9 ""
-  "sections/modelo_matematico.tex" 1709068203 17198 4793cd99e069700c5b13f608c4455b09 ""
+  "sections/modelo_matematico.tex" 1711733153 19414 d4ebb646412deaaada22cea8b2093942 ""
   (generated)
   "main.aux"
   "main.log"
