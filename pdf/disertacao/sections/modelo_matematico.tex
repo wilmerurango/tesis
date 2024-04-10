@@ -68,48 +68,51 @@ Dada a lógica anterior, vejamos agora o modelo proposto completo:
 	\small
 	\begin{tabular}{p{2cm} p{9.5cm} p{3.2cm}}
 		\toprule
-		\textbf{Definição} & \textbf{Notação}                                                                     & \textbf{Domínio}                     \\ \midrule
-		\multicolumn{3}{l}{\textbf{Conjuntos}}                                                                                                           \\ \midrule
-		I                  & Conjunto de estações de Inicio                                                       &                                      \\
-		J                  & Conjunto de estações de Destino                                                      &                                      \\
-		K                  & Conjunto de Classes de Control                                                       &                                      \\
-		T                  & Conjunto de Check-Points (Períodos)                                                  &                                      \\ \midrule
-		\multicolumn{3}{l}{\textbf{Parâmetros}}                                                                                                          \\ \midrule
-		n                  & Quantidade de estações                                                               &                                      \\
-		Q                  & Capacidade do trem                                                                   &                                      \\
-		P$_{ijk}$          & Preços  dos passagem com origem i, destino j e classe de control k                   & $i \in I, j \in J, k \in K$          \\
-		D$_{ijkt}$         & Demanda  de passagem com origem i, destino j e classe de control k                   & $i \in I, j \in J, k \in K, t \in T$ \\ \midrule
-		\multicolumn{3}{l}{\textbf{Variáveis de decisão}}                                                                                                \\ \midrule
-		A$_{i}$            & Disponibilidade de passagens para vendas na estação i                                & $i \in I$                            \\
-		X$_{ijkt}$         & Quantidade de passagem atribuídos no tramo i,j com classe de control k no período t  & $i \in I, j \in J, k \in K, t \in T$ \\
-		Y$_{ijkt}$         & Quantidade de passagem autorizados no tramo i,j com classe de control k no período t & $i \in I, j \in J, k \in K, t \in T$ \\ \bottomrule
+		\textbf{Definição} & \textbf{Notação}                                                                                            & \textbf{Domínio}                            \\ \midrule
+		\multicolumn{3}{l}{\textbf{Conjuntos}}                                                                                                                                         \\ \midrule
+		$OD$               & Conjunto de Trechos com itinerario                                                                          &                                             \\
+		$V$                & Conjunto de Cabines do trem                                                                                 &                                             \\
+		$K_v$              & Conjunto de Classes de Control de cada cabine em $V$                                                        &                                             \\
+		$T$                & Conjunto de Check-Points (Períodos)                                                                         &                                             \\ \midrule
+		\multicolumn{3}{l}{\textbf{Parâmetros}}                                                                                                                                        \\ \midrule
+		$n$                & Quantidade de Estações                                                                                      &                                             \\
+		$Q$                & Capacidade do trem                                                                                          &                                             \\
+		$P_{ijvk}$         & Preços  das passagem no Trecho $(i,j)$, Cabine $v$ e Classe de Control $k$                                  & $(i,j) \in OD,v \in V, k \in K_v$           \\
+		$D_{ijvkt}$        & Demanda  das passagem no Trecho $(i,j)$, Cabine $v$ e Classe de Control $k$                                 & $(i,j) \in OD,v \in V, k \in K_v, t \in T$  \\ \midrule
+		\multicolumn{3}{l}{\textbf{Variáveis de decisão}}                                                                                                                              \\ \midrule
+		$A_{i}$            & Disponibilidade de passagens para vendas na estação i                                                       & $i \in I$                                   \\
+		$X_{ijvkt}$        & Quantidade de passagem atribuídos no trecho $(i,j)$, cabine $v$ e com classe de control $k$ no período $t$  & $(i,j) \in OD, v \in V, k \in K_v, t \in T$ \\
+		$Y_{ijvkt}$        & Quantidade de passagem autorizados no trecho $(i,j)$, cabine $v$ e com classe de control $k$ no período $t$ & $(i,j) \in OD, v \in V, k \in K_v, t \in T$ \\ \bottomrule
 	\end{tabular}
 	\caption{Notação matemática}
-	\label{Notacao}
+	\label{tab: m1_definicao}
 \end{table}
 
 \begin{eqnarray}
-	&& Max \quad Z = \sum_{i\in I} \sum_{j\in J} \sum_{k\in K} \sum_{t\in T} P_{ijk} X_{ijkt} \label{eq: m1_ecu1}                                                                    \\
+	&& Max \quad Z = \sum_{(i,j)\in OD} \sum_{v\in V} \sum_{k\in K_v} \sum_{t\in T} P_{ijvk} X_{ijvkt}                                                        \label{eq: m1_fo}                                                                                            \\
 	&& \text{s.a.}  \notag                                                                                                                                                    \\
-	&& A_{i} = A_{i-1} - \sum_{j\in J/j \geq i}\sum_{k\in K}\sum_{t\in T}X_{i-1,j,k,t} + \sum_{j\in J /j<i}\sum_{k\in K}\sum_{t\in T}X_{jikt}, \quad \forall i  \label{eq: m1_ecu2}  \\
-	&& \sum_{j \in J}\sum_{k\in K}\sum_{t\in T} X_{ijkt} \leq A_{i} , \quad \forall i/i<j, i < n                                                \label{eq: m1_ecu3}
+	&& A_{i} = A_{i-1} - \sum_{(i,j) \in OD/j \geq i} \sum_{v\in V} \sum_{k\in K_v}\sum_{t\in T}X_{i-1,j,v,k,t} + \sum_{(i,j) \in OD/j<i}\sum_{v\in V} \sum_{k\in K_v}\sum_{t\in T}X_{jivkt}, \quad \forall i \in OD  \label{eq: m1_disponi}
 \end{eqnarray}
-\begin{eqnarray}
-	&& Y_{ijkt} \geq X_{ijkt},  \quad \forall i,j,k,t/ i < j                                                                          \label{eq: m1_ecu4}                            \\
-	&& Y_{ijkt} \leq Y_{i,j,k+1,t},  \quad \forall i,j,k,t / i < j, k < \lVert K \rVert,  P_{ijk} \leq P_{i,j,k+1}                      \label{eq: m1_ecu5}                          \\
-	&& X_{ijkt} \leq D_{ijkt},  \quad \forall i,j,k,t/ i < j                                                                           \label{eq: m1_ecu6}                           \\[15pt]
-	&& X_{0,j,k,t} = 0,     \quad \forall j,k,t                                                                                        \label{eq: m1_ecu7}                           \\
-	&& A_{0} = Q                                                                                                                      \label{eq: m1_ecu8}                            \\
-	&& X_{ijkt} \in \mathbb{Z}^+                                                                                                   \label{eq: m1_ecu9}                               \\
-	&& Y_{ijkt} \in \mathbb{Z}^+                                                                                                   \label{eq: m1_ecu10}                              \\
-	&& A_{jk} \in \mathbb{Z}^+                                                                                                   \label{eq: m1_ecu11}
-\end{eqnarray}
+\begin{align}
+	 & \sum_{(i,j) \in OD}\sum_{v\in V} \sum_{k\in K_v}\sum_{t\in T} X_{ijvkt} \leq A_{i} , \quad \forall i \in OD /i<j, i < n                                \label{eq: m1_cap_assig}                                                                                                         \\
+	 & \sum_{(i,j) \in OD}\sum_{v\in V}\sum_{t\in T} Y_{i,j,v,1,t} \leq Q                                                                                     \label{eq: m1_cap_autho_1er_class}                                                                                               \\
+	 & \sum_{t\in T} Y_{i,j,v,k,t} \geq  \sum_{t\in T} X_{i,j,v,k,t},  \quad k = \lVert K_v \rVert, \forall(i,j),v                                            \label{eq: m1_autho_mayor_assig_1er_class}                                                                                       \\
+	 & \sum_{t\in T} Y_{i,j,v,\lVert K_v \rVert - k,t} \geq  \sum_{t\in T} X_{i,j,v,\lVert K_v \rVert - k,t} + \sum_{t\in T} Y_{i,j,v,\lVert K_v \rVert k + 1,t} , \forall(i,j)\in OD,v \in V, k \in K_v / k \leq \lVert K_v\rVert - 1            \label{eq: m1_autho_mayor_assig_mas_autho-1} \\
+	 & Y_{ijvkt} \geq Y_{i,j,v,k+1,t},  \quad \forall (i,j),v,k,t / i < j, k < \lVert K \rVert,  P_{ijvk} \geq P_{i,j,v,k+1}                                  \label{eq: m1_jerar_class}                                                                                                       \\
+	 & X_{ijvkt} \leq D_{ijvkt},  \quad \forall (i,j),v,k,t/ i < j                                                                                            \label{eq: m1_assig_menor_dem}                                                                                                   \\[15pt]
+	 & X_{0,j,v,k,t} = 0,     \quad \forall j,k,t                                                                                                             \label{eq: m1_ini_assig}                                                                                                         \\
+	 & A_{0} = Q                                                                                                                                              \label{eq: m1_ini_disponi}                                                                                                       \\
+	 & X_{ijvkt} \in \mathbb{Z}^+                                                                                                                             \label{eq: m1_dom_assig}                                                                                                         \\
+	 & Y_{ijvkt} \in \mathbb{Z}^+                                                                                                                             \label{eq: m1_dom_autho}                                                                                                         \\
+	 & A_{jk} \in \mathbb{Z}^+                                                                                                                                \label{eq: m1_dom_disponi}
+\end{align}
 
-Na restrição \ref{eq: m1_ecu1}, a qual representa a função objetivo, temos a soma do produto entre a quantidade de assentos atribuídos a cada trajeto de origem e destino para a classe comercial em cada período, multiplicada pelo preço correspondente para cada trajeto e classe. A restrição \ref{eq: m1_ecu2} é análoga ao exemplo simplificado e calcula a disponibilidade de assentos em cada uma das estações. A restrição \ref{eq: m1_ecu3} também é análoga ao exemplo simplificado e restringe a quantidade de atribuições que podem ser feitas usando a disponibilidade calculada na restrição \ref{eq: m1_ecu2}.
 
-A restrição \ref{eq: m1_ecu4} garante que a quantidade de assentos autorizados seja sempre maior ou igual ao número de assentos autorizados para cada origem, destino, classe e período. A restrição \ref{eq: m1_ecu5} é uma restrição de hierarquia e garante que as quantidades de autorizações para as classes de maior preço sejam sempre maiores do que as quantidades de autorizações de menor preço em cada período do horizonte de reserva. A restrição \ref{eq: m1_ecu6} garante que a quantidade de atribuições não ultrapasse a demanda para cada trajeto de cada classe e em cada período no horizonte de reserva.
-
-As restrições de \ref{eq: m1_ecu7} e \ref{eq: m1_ecu8} são usadas para inicializar a restrição \ref{eq: m1_ecu2} quando \(i = 1\). E as restrições de \ref{eq: m1_ecu9} a \ref{eq: m1_ecu11} representam o domínio das variáveis.
+Na equação \ref{eq: m1_fo}, a qual representa a função objetivo, temos a soma do produto entre a quantidade de assentos atribuídos a cada trajeto de origem e destino para a classe comercial em cada período e cada vagone, multiplicada pelo preço correspondente para cada trajeto e classe. A restrição \ref{eq: m1_disponi} é análoga ao exemplo simplificado e calcula a disponibilidade de assentos em cada uma das estações. A restrição \ref{eq: m1_cap_assig} também é análoga ao exemplo simplificado e restringe a quantidade de atribuições que podem ser feitas para cada estação usando a disponibilidade calculada na restrição \ref{eq: m1_disponi}.
+A restrição \ref{eq: m2_cap_autho_1er_class} garanta que a soma das classes mais costosas de cada vagone, de tudos os periodos e de tudos os trechos não ultrapase a capacidade do trem, note que apenas estamos considerando a restrição mais cara devido à natureza cumulativa das variáveis de autorização, por exemplo, suponha que exista uma classe 2 e uma classe 3, e digamos que a classe 2 seja mais cara que a classe 3, então, o valor da classe 2 precisa ser maior ou igual ao valor da classe 3 já que ela precisa conter pelo menos o valor da classe 3; a restrição \ref{eq: m2_autho_mayor_assig_1er_class} garanta que para cada trecho e para cada vagone a quantidades de assentos autorizados da ultima classe mais barata seja maior que a quantidade de assentos asegurados, note que esta restrição é um caso particular da restrição \ref{eq: m2_autho_mayor_assig_mas_autho-1}; a restrição \ref{eq: m2_autho_mayor_assig_mas_autho-1}garante que a soma de todos os valores das autorizações de cada classe (exceto a mais barata) seja maior ou igual à soma dos tempos de todas as autorizações da classe imediatamente anterior mais a soma dos tempos das quantidades de assentos assegurados na mesma classe, para cada segmento, cada vagão e cada classe, com a exceção mencionada, note que as restriciones \ref{eq: m2_autho_mayor_assig_1er_class} e \ref{eq: m2_autho_mayor_assig_mas_autho-1} formam uma única restrição, além disso, para essas duas restrições, leve em consideração que as classes estão ordenadas do maior para o menor preço e que a acumulação das variáveis de autorização é feita com base nos preços, do menor para o maior. Essa é a razão da notação do subíndice correspondente às classes
+A restrição \ref{eq: m1_jerar_class} é uma restrição de hierarquia e garante que as quantidades de autorizações para as classes de maior preço sejam sempre maiores do que as quantidades de autorizações de menor preço em cada vagone, em cada trecho para tudos os período do horizonte de reserva. 
+A restrição \ref{eq: m1_assig_menor_dem} garante que a quantidade de atribuições não ultrapasse a demanda para cada trecho de cada classe em cada vagoen e em cada período no horizonte de reserva.
+As restrições de \ref{eq: m1_ini_assig} e \ref{eq: m1_ini_disponi} são usadas para inicializar a restrição \ref{eq: m1_disponi} quando \(i = 1\). E as restrições de \ref{eq: m1_dom_assig} a \ref{eq: m1_dom_disponi} representam o domínio das variáveis.
 
 \section{Segunda modelagem matemática}\label{sec:modelo2}
 
@@ -157,40 +160,43 @@ Observe que os valores das variáveis são os mesmos que foram mostrados na figu
 	\small
 	\begin{tabular}{p{2cm} p{9.5cm} p{3.2cm}}
 		\toprule
-		\textbf{Definição} & \textbf{Notação}                                                                                   & \textbf{Domínio}                                \\ \midrule
-		\multicolumn{3}{l}{\textbf{Conjuntos}}                                                                                                                                    \\ \midrule
-		I                  & Conjunto de estações de Inicio                                                                     &                                                 \\
-		J                  & Conjunto de estações de Destino                                                                    &                                                 \\
-		V                  & Conjunto de cabines                                                                                &                                                 \\
-		T                  & Conjunto de Check-Points (Períodos)                                                                &                                                 \\ \midrule
-		\multicolumn{3}{l}{\textbf{Parâmetros}}                                                                                                                                   \\ \midrule
-		n                  & Quantidade de estações                                                                             &                                                 \\
-		Q                  & Capacidade do trem                                                                                 &                                                 \\
-		K$_{v}$            & Conjunto de Classes Comerciais para cada cabine $v$                                                & $v \in V$                                       \\
-		P$_{ijvk}$         & Preços  dos passagem com origem i, destino j, cabine $v$ e classe de control k                     & $i \in I, j \in J, v \in V, k \in K_v$          \\
-		D$_{ijvkt}$        & Demanda  de passagem com origem i, destino j, cabine $v$ e classe de control k                     & $i \in I, j \in J, v \in V, k \in K_v, t \in T$ \\ \midrule
-		\multicolumn{3}{l}{\textbf{Variáveis de decisão}}                                                                                                                         \\ \midrule
-		X$_{ijvkt}$        & Quantidade de passagem atribuídos no tramo i,j, cabine $v$ e com classe de control k no período t  & $i \in I, j \in J, v \in V, k \in K_v, t \in T$ \\
-		Y$_{ijvkt}$        & Quantidade de passagem autorizados no tramo i,j, cabine $v$ e com classe de control k no período t & $i \in I, j \in J, v \in V, k \in K_v, t \in T$ \\ \bottomrule
+		\textbf{Definição} & \textbf{Notação}                                                                                            & \textbf{Domínio}                            \\ \midrule
+		\multicolumn{3}{l}{\textbf{Conjuntos}}                                                                                                                                         \\ \midrule
+		$OD$               & Conjunto de Trechos com itinerario                                                                          &                                             \\
+		$V$                & Conjunto de Cabines do trem                                                                                 &                                             \\
+		$K_v$              & Conjunto de Classes de Control de cada cabine em $V$                                                        &                                             \\
+		$T$                & Conjunto de Check-Points (Períodos)                                                                         &                                             \\ \midrule
+		\multicolumn{3}{l}{\textbf{Parâmetros}}                                                                                                                                        \\ \midrule
+		$n$                & Quantidade de Estações                                                                                      &                                             \\
+		$Q$                & Capacidade do trem                                                                                          &                                             \\
+		$P_{ijvk}$         & Preços  das passagem no Trecho $(i,j)$, Cabine $v$ e Classe de Control $k$                                  & $(i,j) \in OD,v \in V, k \in K_v$           \\
+		$D_{ijvkt}$        & Demanda  das passagem no Trecho $(i,j)$, Cabine $v$ e Classe de Control $k$                                 & $(i,j) \in OD,v \in V, k \in K_v, t \in T$  \\ \midrule
+		\multicolumn{3}{l}{\textbf{Variáveis de decisão}}                                                                                                                              \\ \midrule
+		$X_{ijvkt}$        & Quantidade de passagem atribuídos no trecho $(i,j)$, cabine $v$ e com classe de control $k$ no período $t$  & $(i,j) \in OD, v \in V, k \in K_v, t \in T$ \\
+		$Y_{ijvkt}$        & Quantidade de passagem autorizados no trecho $(i,j)$, cabine $v$ e com classe de control $k$ no período $t$ & $(i,j) \in OD, v \in V, k \in K_v, t \in T$ \\ \bottomrule
 	\end{tabular}
 	\caption{Notação matemática}
-	\label{Notacao}
+	\label{tab: m2_definicao}
 \end{table}
 
-% \renewcommand{\baselinestretch}{0.5}
+% \renewcommand{\baselinestretch}{0.5}  
 % \begin{adjustwidth}{0.5cm}{0.5cm} % Ajusta los márgenes locales
 \begin{align}
-	 & Max \quad Z = \sum_{(i,j)\in OD} \sum_{v\in V} \sum_{k\in VK_v} \sum_{t\in T} P_{ijvk} X_{ijvkt}                                                        \label{eq: m2_ecu1}                                                                                                              \\
-	 & \text{s.a.}  \notag                                                                                                                                                                                                                                                                      \\
-	 & \sum_{(i,j)\in OD}\sum_{v\in V}\sum_{k\in VK_v}\sum_{t\in T}X_{ijvkt} \leq Q , \quad \forall j / j>1, i<j                                               \label{eq: m2_ecu2}                                                                                                              \\
-	 & \sum_{(i,j)\in OD}\sum_{v\in V}\sum_{k\in K_v}\sum_{t\in T}X_{ijvkt} \leq Q , \quad \forall i / i<n, j>i                                                \label{eq: m2_ecu3}                                                                                                              \\
-	 & \sum_{(i,j) \in OD}\sum_{v\in VK}\sum_{t\in T} Y_{i,j,v,1,t} \leq Q                                                                                     \label{eq: m2_autho_cap}                                                                                                         \\
-	 & \sum_{t\in T} Y_{i,j,v,k,t} \geq  \sum_{t\in T} X_{i,j,v,k,t},  \quad k = \lVert VK_v \rVert, \forall(i,j),v                                            \label{eq: m2_autho_jerar}                                                                                                       \\
-	 & \sum_{t\in T} Y_{i,j,v,\lVert VK_v \rVert - k,t} \geq  \sum_{t\in T} X_{i,j,v,\lVert VK_v \rVert - k,t} + \sum_{t\in T} Y_{i,j,v,\lVert VK_v \rVert k + 1,t} , \forall(i,j)\in OD,v \in V, k \in VK_v / k \leq \lVert VK_v\rVert - 1            \label{eq: m2_autho_jerar}               \\
-	 & Y_{ijvkt} \geq Y_{i,j,v,k+1,t},  \quad \forall (i,j),v,k,t / i < j, k < \lVert K \rVert,  P_{ijvk} \geq P_{i,j,v,k+1}                                   \label{eq: m2_ecu5}                                                                                                              \\
-	 & X_{ijvkt} \leq D_{ijvkt},  \quad \forall (i,j),v,k,t/ i < j                                                                                             \label{eq: m2_ecu6}                                                                                                              \\[15pt]
-	 & X_{ijvkt} \in \mathbb{Z}^+                                                                                                                              \label{eq: m2_ecu7}                                                                                                              \\
-	 & Y_{ijvkt} \in \mathbb{Z}^+                                                                                                                              \label{eq: m2_ecu8}
+	 & Max \quad Z = \sum_{(i,j)\in OD} \sum_{v\in V} \sum_{k\in K_v} \sum_{t\in T} P_{ijvk} X_{ijvkt}                                                        \label{eq: m2_fo}                                                                                                                \\
+	 & \text{s.a.}  \notag                                                                                                                                                                                                                                                                     \\
+	 & \sum_{(i,j)\in OD}\sum_{v\in V}\sum_{k\in K_v}\sum_{t\in T}X_{ijvkt} \leq Q , \quad \forall j / j>1, i<j                                               \label{eq: m2_cap_assig_destino}                                                                                                 \\
+	 & \sum_{(i,j)\in OD}\sum_{v\in V}\sum_{k\in K_v}\sum_{t\in T}X_{ijvkt} \leq Q , \quad \forall i / i<n, j>i                                                \label{eq: m2_cap_assig_origem}                                                                                                 \\
+	 & \sum_{(i,j) \in OD}\sum_{v\in V}\sum_{t\in T} Y_{i,j,v,1,t} \leq Q                                                                                     \label{eq: m2_cap_autho_1er_class}                                                                                               \\
+	 & \sum_{t\in T} Y_{i,j,v,k,t} \geq  \sum_{t\in T} X_{i,j,v,k,t},  \quad k = \lVert K_v \rVert, \forall(i,j),v                                            \label{eq: m2_autho_mayor_assig_1er_class}                                                                                       \\
+	 & \sum_{t\in T} Y_{i,j,v,\lVert K_v \rVert - k,t} \geq  \sum_{t\in T} X_{i,j,v,\lVert K_v \rVert - k,t} + \sum_{t\in T} Y_{i,j,v,\lVert K_v \rVert k + 1,t} , \forall(i,j)\in OD,v \in V, k \in K_v / k \leq \lVert K_v\rVert - 1            \label{eq: m2_autho_mayor_assig_mas_autho-1} \\
+	 & Y_{ijvkt} \geq Y_{i,j,v,k+1,t},  \quad \forall (i,j),v,k,t / i < j, k < \lVert K \rVert,  P_{ijvk} \geq P_{i,j,v,k+1}                                   \label{eq: m2_jerar_class}                                                                                                      \\
+	 & X_{ijvkt} \leq D_{ijvkt},  \quad \forall (i,j),v,k,t/ i < j                                                                                             \label{eq: m2_assig_menor_dem}                                                                                                  \\[15pt]
+	 & X_{ijvkt} \in \mathbb{Z}^+                                                                                                                              \label{eq: m2_dom_assig}                                                                                                        \\
+	 & Y_{ijvkt} \in \mathbb{Z}^+                                                                                                                              \label{eq: m2_dom_autho}
 \end{align}
 % \end{adjustwidth}
-Note que, na definição, não temos mais a variável de decisão de disponibilidade \(A_i\). Neste caso, a equação \ref{eq: m2_ecu1} representa a função objetivo, a restrição \ref{eq: m2_ecu2} garante que a quantidade total de assentos autorizados para cada destino seja a quantidade máxima de assentos do trem para todas as classes e todos os períodos. A restrição \ref{eq: m2_ecu3} garante que a quantidade de assentos autorizados para cada origem seja no máximo a capacidade do trem para todas as classes e todos os períodos. As restrições de \ref{eq: m2_ecu4} a \ref{eq: m2_ecu8} representam o mesmo que o primeiro modelo já exposto.
+Note que, na definição, não temos mais a variável de decisão de disponibilidade \(A_i\). Neste caso, a equação \ref{eq: m2_fo} representa a função objetivo que esta tentando maximizar a soma do produto entre as quantidades seguradas e os preços das mesmas, ou seja, estamos maximizando a receita em função das quantidades dos assentos que estão assegurados. 
+A restrição \ref{eq: m2_cap_assig_destino} garante que a quantidade total de assentos autorizados para cada destino seja a quantidade máxima de assentos do trem para todas as classes e todos os períodos.
+A restrição \ref{eq: m2_cap_assig_origem} garante que a quantidade de assentos autorizados para cada origem seja no máximo a capacidade do trem para todas as classes e todos os períodos.
+As restrições de \ref{eq: m2_cap_autho_1er_class} a \ref{eq: m2_dom_autho} representam o mesmo que o primeiro modelo já exposto.\\
+Note que a diferenca dos dois modelos fica nas restrições de capacidade do problema.

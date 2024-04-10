@@ -39,7 +39,7 @@ def fill_data(oridest, wagons, classes, records_to_correct, periodo=0): #preench
 
 def clean_data(route, start_estation, commer_class_hierar):
     # read data
-    data = pd.read_csv(route, delimiter=';')
+    data = pd.read_csv(route, delimiter=',')
     data.drop(columns=['Unnamed: 0'], inplace=True)
     # data = data[data['DBD']==0]
 
