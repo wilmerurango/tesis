@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1716910791 "/home/wilmer/Documentos/Codes/tesis/pdf/disertacao/main.tex" "main.pdf" "main" 1716910793
+["pdflatex"] 1717429981 "/home/wilmer/Documentos/Codes/tesis/pdf/disertacao/main.tex" "main.pdf" "main" 1717429982
   "/etc/texmf/web2c/texmf.cnf" 1711987957 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/wilmer/Documentos/Codes/tesis/pdf/disertacao/main.tex" 1715276742 4455 27a5dac7a48e2215b962463f518a925f ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -236,11 +236,11 @@
   "img/fig2.png" 1711937936 38792 0b8840ed990317874891cae24a63784d ""
   "img/fig3.png" 1711937936 33769 fe0f1f979577f97cd98df8182ac7477c ""
   "img/unicamp.pdf" 1711937936 4078 6b392d4bdde6603f81be8df8b3f96044 ""
-  "main.aux" 1716910793 7335 f80439028ab9536b258174ae07bef627 "pdflatex"
-  "main.out" 1716910793 720 93e823f052689e041ebfbb123288c05c "pdflatex"
+  "main.aux" 1717429982 6944 8adad81a208d4c720443a80493fe6bd3 "pdflatex"
+  "main.out" 1717429982 720 93e823f052689e041ebfbb123288c05c "pdflatex"
   "main.tex" 1715276742 4455 27a5dac7a48e2215b962463f518a925f ""
   "sections/capa2.tex" 1712082020 3465 cda148a89a951b4a36f601035ada5df3 ""
-  "sections/modelo_matematico.tex" 1716910791 32560 ac5e67facfb70314df3d8ce86d08ca51 ""
+  "sections/modelo_matematico.tex" 1717429980 32848 e97d78927efba9f75fe0542dc328e775 ""
   (generated)
   "main.aux"
   "main.log"

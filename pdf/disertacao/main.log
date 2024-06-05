@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.4.1)  28 MAY 2024 12:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.4.1)  3 JUN 2024 12:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -961,33 +961,30 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [6]
-<img/autorization.png, id=100, 317.68687pt x 231.11343pt>
+<img/autorization.png, id=96, 317.68687pt x 231.11343pt>
 File: img/autorization.png Graphic file (type png)
 <use img/autorization.png>
-Package pdftex.def Info: img/autorization.png  used on input line 147.
+Package pdftex.def Info: img/autorization.png  used on input line 148.
 (pdftex.def)             Requested size: 222.37927pt x 161.77829pt.
-
-Underfull \vbox (badness 4217) has occurred while \output is active []
-
  [7 <./img/autorization.png>]
-<img/auto_sf.png, id=114, 317.68687pt x 199.49532pt>
+<img/auto_sf.png, id=110, 317.68687pt x 199.49532pt>
 File: img/auto_sf.png Graphic file (type png)
 <use img/auto_sf.png>
-Package pdftex.def Info: img/auto_sf.png  used on input line 163.
+Package pdftex.def Info: img/auto_sf.png  used on input line 164.
 (pdftex.def)             Requested size: 211.26028pt x 132.6688pt.
-<img/assig_sf.png, id=115, 305.64188pt x 199.49532pt>
+<img/assig_sf.png, id=111, 305.64188pt x 199.49532pt>
 File: img/assig_sf.png Graphic file (type png)
 <use img/assig_sf.png>
-Package pdftex.def Info: img/assig_sf.png  used on input line 168.
+Package pdftex.def Info: img/assig_sf.png  used on input line 169.
 (pdftex.def)             Requested size: 203.75288pt x 132.99146pt.
 
-Underfull \vbox (badness 2990) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [8 <./img/auto_sf.png> <./img/assig_sf.png>]
-<img/fig3.png, id=129, 727.21687pt x 402.45357pt>
+<img/fig3.png, id=125, 727.21687pt x 402.45357pt>
 File: img/fig3.png Graphic file (type png)
 <use img/fig3.png>
-Package pdftex.def Info: img/fig3.png  used on input line 213.
+Package pdftex.def Info: img/fig3.png  used on input line 214.
 (pdftex.def)             Requested size: 290.88159pt x 160.97856pt.
 
 
@@ -997,7 +994,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \vbox (badness 4048) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [9]
 Overfull \vbox (229.09148pt too high) has occurred while \output is active []
@@ -1010,18 +1007,18 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 93E823F052689E041EBFBB123288C05C;720.
  ) 
 Here is how much of TeX's memory you used:
- 27803 strings out of 478287
- 507567 string characters out of 5849290
- 816872 words of memory out of 5000000
- 45368 multiletter control sequences out of 15000+600000
+ 27795 strings out of 478287
+ 507404 string characters out of 5849290
+ 814624 words of memory out of 5000000
+ 45364 multiletter control sequences out of 15000+600000
  542569 words of font info for 125 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,13n,80p,1333b,529s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (11 pages, 250350 bytes).
+Output written on main.pdf (11 pages, 250006 bytes).
 PDF statistics:
- 220 PDF objects out of 1000 (max. 8388607)
- 174 compressed objects within 2 object streams
- 58 named destinations out of 1000 (max. 500000)
+ 215 PDF objects out of 1000 (max. 8388607)
+ 169 compressed objects within 2 object streams
+ 54 named destinations out of 1000 (max. 500000)
  80 words of extra memory for PDF output out of 10000 (max. 10000000)
 
