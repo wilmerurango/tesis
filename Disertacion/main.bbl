@@ -1,0 +1,81 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{article_base}{article}{}
+      \name{author}{4}{}{%
+        {{hash=dc17e11972df8b60f2996162604f37ac}{%
+           family={Glover},
+           familyi={G\bibinitperiod},
+           given={Fred},
+           giveni={F\bibinitperiod}}}%
+        {{hash=66f87dcc6bd383ea4c598ed1b9bb9b6c}{%
+           family={Glover},
+           familyi={G\bibinitperiod},
+           given={Randy},
+           giveni={R\bibinitperiod}}}%
+        {{hash=ccb95a6d83194841c648e900374e890c}{%
+           family={Lorenzo},
+           familyi={L\bibinitperiod},
+           given={Joe},
+           giveni={J\bibinitperiod}}}%
+        {{hash=d0f589d43719c079dbd9cd7daa85d362}{%
+           family={McMillan},
+           familyi={M\bibinitperiod},
+           given={Claude},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {INFORMS}%
+      }
+      \strng{namehash}{f4808e0de995258a401c1ed9f7e8e209}
+      \strng{fullhash}{5c0e4a815b77a16a93ff6aca2894a2ca}
+      \strng{bibnamehash}{f4808e0de995258a401c1ed9f7e8e209}
+      \strng{authorbibnamehash}{f4808e0de995258a401c1ed9f7e8e209}
+      \strng{authornamehash}{f4808e0de995258a401c1ed9f7e8e209}
+      \strng{authorfullhash}{5c0e4a815b77a16a93ff6aca2894a2ca}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Deregulation has opened up many opportunities and challenges in the transportation industry - opportunities to increase profits and challenges to keep from being outflanked by competition. A goal of particular interest to the scheduled airlines is to set prices more adaptively and to change them more rapidly. A difficult problem arises when many passengers with different itineraries compete for a limited number of seats on a single-flight segment. The problem is complicated by the existence of different fare classes, many flight segments, and different demands across time. For any given set of prices, flight-segment capacities, and passenger-carrying demand, there is some number of passengers at each fare class on each flight segment that will optimize revenue. Knowledge of such an optimum can be used not only in pricing analysis but also in setting policies to influence the passenger fare-class mix so that the optimum will be more nearly achieved in actual practice. We describe a method for identifying the optimum fare-class mix and the design of a system for that purpose which we built and implemented for Frontier Airlines. The recognition and formulation of the problem has become even more important as the number of aircraft in the sky has been reduced and the competition for a limited number of seats has become more intense.}
+      \field{issn}{00922102, 1526551X}
+      \field{journaltitle}{Interfaces}
+      \field{number}{3}
+      \field{title}{The Passenger-Mix Problem in the Scheduled Airlines}
+      \field{urlday}{7}
+      \field{urlmonth}{8}
+      \field{urlyear}{2024}
+      \field{volume}{12}
+      \field{year}{1982}
+      \field{urldateera}{ce}
+      \field{pages}{73\bibrangedash 80}
+      \range{pages}{8}
+      \verb{urlraw}
+      \verb http://www.jstor.org/stable/25060268
+      \endverb
+      \verb{url}
+      \verb http://www.jstor.org/stable/25060268
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

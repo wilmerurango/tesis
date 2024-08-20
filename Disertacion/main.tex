@@ -1,5 +1,9 @@
-\documentclass[11pt,fleqn, twoside, final]{book}%\documentclass[12pt, openany]{book} % --- , openany,usenames,dvipsnames
+\documentclass[12pt, openany]{book} % \documentclass[11pt,fleqn, twoside, final, openany,usenames,dvipsnames]{book}%
 \usepackage{changepage} % Para ajustar los márgenes localmente
+\usepackage[autostyle,german=guillemets,norwegian=quotes]{csquotes}
+
+\usepackage[style = numeric]{biblatex} %Imports biblatex package
+\addbibresource{sections/referencias.bib} %Import the bibliography file
 %=============================== Preâmbulo ============================================
 \usepackage{amsfonts}
 \usepackage[utf8]{inputenc}
@@ -9,7 +13,7 @@
 \usepackage[table]{xcolor}% http://ctan.org/pkg/xcolor
 \usepackage{indentfirst}
 % \usepackage{subfigure}
-\usepackage{natbib} %usepackage{harvard}
+% \usepackage{natbib} %usepackage{harvard}
 \usepackage{amssymb,fancyhdr,fancybox,epsfig,psfrag,tabularx}
 \usepackage{comment}
 \usepackage{amsthm}
@@ -20,13 +24,14 @@
 \usepackage{amsmath}
 \usepackage{pslatex}
 \usepackage{algpseudocode}
-\usepackage[ruled,vlined]{algorithm2e}
+% \usepackage[ruled,vlined]{algorithm2e}
 \usepackage{colortbl}
 \definecolor{firebrick}{rgb}{.7, .13, .13}
 \definecolor{lightcopper}{rgb}{.93, .76, .58}
 \definecolor{blueice}{rgb}{.85, .96, .94}
-\usepackage{pdfpages}
+% \usepackage{pdfpages}
 \usepackage{subcaption}
+\usepackage{caption}
 
 \hypersetup{
     colorlinks=true,
@@ -48,10 +53,7 @@
 \urlstyle{same}
 \renewcommand\qedsymbol{$\blacksquare$}
 %\usepackage[paperwidth=8.5in,paperheight=11in,hmargin={25mm,20mm},vmargin={20mm,20mm}]{geometry} %Papel Carta
-%\usepackage[ruled]{algpseudocode,algorithm2e}
 \usepackage[a4paper,hmargin={25mm,20mm},vmargin={20mm,20mm}]{geometry} %Papel A4
-\usepackage{setspace}
-\usepackage{caption}
 
 
 \usepackage[Sonny]{fncychap} %Options: Sonny, Lenny, Glenn, Conny, Rejne, Bjarne, Bjornstrup
@@ -101,7 +103,7 @@
 % \newpage
 
 % \input{Agradecimentos} \thispagestyle{empty}
-% \input{sections/resumo}\thispagestyle{empty}
+% \input{resumo}\thispagestyle{empty}
 % \input{abstract}\thispagestyle{empty}
 
 
@@ -124,7 +126,7 @@
 
 % \input{Introducao} 
 % \input{Fundamentacao-teorica}
-% \input{Revisao-da-literatura}
+\input{sections/revisao_literatura}
 \input{sections/modelo_matematico}
 % \input{Contribuicoes}
 % %\input{Metodos-de-resolucao-propostos}
@@ -135,12 +137,12 @@
 
 % %=============================== Referências Bibliográficas===========================
 % \addcontentsline{toc}{chapter}{Bibliografia}\label{referencias}
+%\begin{spacing}{0.1}
+% \bibliographystyle{agsm,dcu,kluwer, abbrvnat, unsrtnat} choose one
 % \bibliographystyle{agsm}
 % \bibliography{referencias}
-
-
-
-
+%\end{spacing}
+\printbibliography %Prints bibliography
 % %=============================== Anexos ==========================
 % \appendix
 % \renewcommand{\appendixname}{Appendix} %trocar Apendice por Anexo
