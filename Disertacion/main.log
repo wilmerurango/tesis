@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.7.22)  8 AUG 2024 18:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.7.22)  21 AUG 2024 14:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1188,47 +1188,56 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [6 <./img/fig2.png>]
-Overfull \vbox (231.51474pt too high) has occurred while \output is active []
+Overfull \vbox (42.53236pt too high) has occurred while \output is active []
 
  [7]
-<img/autorization.png, id=105, 317.68687pt x 231.11343pt>
+<img/autorization.png, id=97, 317.68687pt x 231.11343pt>
 File: img/autorization.png Graphic file (type png)
 <use img/autorization.png>
-Package pdftex.def Info: img/autorization.png  used on input line 143.
+Package pdftex.def Info: img/autorization.png  used on input line 142.
 (pdftex.def)             Requested size: 222.37927pt x 161.77829pt.
-
-Underfull \vbox (badness 3679) has occurred while \output is active []
-
  [8]
-<img/auto_sf.png, id=117, 317.68687pt x 199.49532pt>
+<img/auto_sf.png, id=116, 317.68687pt x 199.49532pt>
 File: img/auto_sf.png Graphic file (type png)
 <use img/auto_sf.png>
-Package pdftex.def Info: img/auto_sf.png  used on input line 159.
+Package pdftex.def Info: img/auto_sf.png  used on input line 158.
 (pdftex.def)             Requested size: 211.26028pt x 132.6688pt.
-<img/assig_sf.png, id=118, 305.64188pt x 199.49532pt>
+<img/assig_sf.png, id=117, 305.64188pt x 199.49532pt>
 File: img/assig_sf.png Graphic file (type png)
 <use img/assig_sf.png>
-Package pdftex.def Info: img/assig_sf.png  used on input line 164.
+Package pdftex.def Info: img/assig_sf.png  used on input line 163.
 (pdftex.def)             Requested size: 203.75288pt x 132.99146pt.
- [9 <./img/autorization.png> <./img/auto_sf.png> <./img/assig_sf.png>]
-<img/tab_trechos_maiores.png, id=139, 166.37157pt x 121.95563pt>
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[9 <./img/autorization.png>]
+<img/tab_trechos_maiores.png, id=137, 166.37157pt x 121.95563pt>
 File: img/tab_trechos_maiores.png Graphic file (type png)
 <use img/tab_trechos_maiores.png>
-Package pdftex.def Info: img/tab_trechos_maiores.png  used on input line 182.
+Package pdftex.def Info: img/tab_trechos_maiores.png  used on input line 181.
 (pdftex.def)             Requested size: 133.09741pt x 97.5646pt.
- [10 <./img/tab_trechos_maiores.png>] [11]
+
+Underfull \vbox (badness 4805) has occurred while \output is active []
+
+ [10 <./img/auto_sf.png> <./img/assig_sf.png>] [11 <./img/tab_trechos_maiores.png>]
 <img/fig3.png, id=159, 727.21687pt x 402.45357pt>
 File: img/fig3.png Graphic file (type png)
 <use img/fig3.png>
-Package pdftex.def Info: img/fig3.png  used on input line 225.
+Package pdftex.def Info: img/fig3.png  used on input line 224.
 (pdftex.def)             Requested size: 290.88159pt x 160.97856pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 249--250
+Underfull \hbox (badness 10000) in paragraph at lines 248--249
 []|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 OD; v \OMS/pzccm/m/n/10.95 2
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 250--250
+Underfull \hbox (badness 10000) in paragraph at lines 249--249
+[]|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 OD; v \OMS/pzccm/m/n/10.95 2
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 251--252
 []|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 OD; v \OMS/pzccm/m/n/10.95 2
  []
 
@@ -1239,11 +1248,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 252--253
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 253--254
-[]|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 OD; v \OMS/pzccm/m/n/10.95 2
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 254--255
 []|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 NAD; v \OMS/pzccm/m/n/10.95 2
  []
 
@@ -1254,7 +1258,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [12 <./img/fig3.png>]
-Overfull \vbox (82.92734pt too high) has occurred while \output is active []
+Overfull \vbox (1.93489pt too high) has occurred while \output is active []
 
  [13]) [14] [15
 
@@ -1272,13 +1276,13 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 Here is how much of TeX's memory you used:
  33837 strings out of 474222
  630024 string characters out of 5748733
- 1956975 words of memory out of 5000000
+ 1951975 words of memory out of 5000000
  55443 multiletter control sequences out of 15000+600000
  635380 words of font info for 143 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,13n,87p,1500b,1626s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (15 pages, 265222 bytes).
+Output written on main.pdf (15 pages, 265799 bytes).
 PDF statistics:
  254 PDF objects out of 1000 (max. 8388607)
  201 compressed objects within 3 object streams
