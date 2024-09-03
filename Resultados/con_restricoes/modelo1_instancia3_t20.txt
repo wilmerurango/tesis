@@ -1,0 +1,64 @@
+Gurobi Optimizer version 10.0.3 build v10.0.3rc0 (win64)
+
+CPU model: 13th Gen Intel(R) Core(TM) i7-13700T, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 24 logical processors, using up to 24 threads
+
+Optimize a model with 1990245 rows, 342749 columns and 4094965 nonzeros
+Model fingerprint: 0x3024729f
+Variable types: 0 continuous, 342749 integer (46400 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+02]
+  Objective range  [6e+00, 3e+02]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 6e+02]
+Presolve removed 113555 rows and 259458 columns (presolve time = 5s) ...
+Presolve removed 566167 rows and 271461 columns (presolve time = 10s) ...
+Presolve removed 1035916 rows and 291882 columns (presolve time = 15s) ...
+Presolve removed 1410896 rows and 317303 columns (presolve time = 20s) ...
+Presolve removed 1876142 rows and 340072 columns (presolve time = 25s) ...
+Presolve removed 1989244 rows and 342165 columns
+Presolve time: 26.31s
+Presolved: 1001 rows, 584 columns, 2352 nonzeros
+Variable types: 0 continuous, 584 integer (201 binary)
+Found heuristic solution: objective 53613.940000
+Found heuristic solution: objective 56228.940000
+Found heuristic solution: objective 64625.600000
+
+Root simplex log...
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    9.7318450e+04   5.095000e+02   0.000000e+00     27s
+     447    8.8170537e+04   0.000000e+00   0.000000e+00     27s
+
+Root relaxation: objective 8.817054e+04, 447 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 88170.5370    0   19 64625.6000 88170.5370  36.4%     -   26s
+H    0     0                    87030.550000 88170.5370  1.31%     -   26s
+     0     0 87938.8250    0   10 87030.5500 87938.8250  1.04%     -   26s
+     0     0 87938.8250    0   10 87030.5500 87938.8250  1.04%     -   26s
+H    0     0                    87783.450000 87938.8250  0.18%     -   26s
+*    0     0               0    87890.450000 87890.4500  0.00%     -   26s
+
+Cutting planes:
+  Gomory: 1
+  Cover: 5
+  Implied bound: 9
+  Clique: 1
+  Flow cover: 1
+  Zero half: 1
+  RLT: 1
+  Relax-and-lift: 1
+
+Explored 1 nodes (630 simplex iterations) in 26.77 seconds (25.94 work units)
+Thread count was 24 (of 24 available processors)
+
+Solution count 7: 87890.4 87783.4 87783.4 ... 53613.9
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 8.789045000000e+04, best bound 8.789045000000e+04, gap 0.0000%
+Valor da função objetivo:  87890.45
+
+Tempo para criar o modelo:  18.757750511169434

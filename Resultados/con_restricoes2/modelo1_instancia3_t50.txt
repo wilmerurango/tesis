@@ -1,0 +1,71 @@
+Gurobi Optimizer version 10.0.3 build v10.0.3rc0 (win64)
+
+CPU model: 13th Gen Intel(R) Core(TM) i7-13700T, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 24 logical processors, using up to 24 threads
+
+Optimize a model with 4953085 rows, 834429 columns and 10214885 nonzeros
+Model fingerprint: 0x897e4a7c
+Variable types: 0 continuous, 834429 integer (116000 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+02]
+  Objective range  [6e+00, 3e+02]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 6e+02]
+Presolve removed 262063 rows and 598055 columns (presolve time = 5s) ...
+Presolve removed 262063 rows and 626848 columns (presolve time = 10s) ...
+Presolve removed 834773 rows and 627535 columns (presolve time = 15s) ...
+Presolve removed 1387047 rows and 656837 columns (presolve time = 20s) ...
+Presolve removed 1681084 rows and 685711 columns (presolve time = 25s) ...
+Presolve removed 2563233 rows and 706761 columns (presolve time = 30s) ...
+Presolve removed 3184123 rows and 744294 columns (presolve time = 35s) ...
+Presolve removed 3510722 rows and 772304 columns (presolve time = 40s) ...
+Presolve removed 4061262 rows and 774153 columns (presolve time = 45s) ...
+Presolve removed 4230903 rows and 802457 columns (presolve time = 50s) ...
+Presolve removed 4850148 rows and 830236 columns (presolve time = 55s) ...
+Presolve removed 4950736 rows and 833150 columns
+Presolve time: 56.91s
+Presolved: 2349 rows, 1279 columns, 5597 nonzeros
+Variable types: 0 continuous, 1279 integer (437 binary)
+Found heuristic solution: objective 45748.600000
+Found heuristic solution: objective 53203.000000
+
+Root simplex log...
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    1.1841268e+05   8.576250e+02   0.000000e+00     58s
+    1094    8.8563571e+04   0.000000e+00   0.000000e+00     58s
+
+Root relaxation: objective 8.856357e+04, 1094 iterations, 0.01 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 88563.5712    0   24 53203.0000 88563.5712  66.5%     -   57s
+H    0     0                    83366.450000 88563.5712  6.23%     -   57s
+H    0     0                    83822.450000 88563.5712  5.66%     -   57s
+H    0     0                    84725.450000 88563.5712  4.53%     -   57s
+H    0     0                    87612.450000 88563.5712  1.09%     -   57s
+H    0     0                    87862.450000 88247.8009  0.44%     -   57s
+     0     0 88247.8009    0   27 87862.4500 88247.8009  0.44%     -   57s
+H    0     0                    87951.450000 88247.8009  0.34%     -   57s
+H    0     0                    88123.450000 88247.8009  0.14%     -   57s
+
+Cutting planes:
+  Gomory: 5
+  Cover: 10
+  Implied bound: 12
+  Clique: 2
+  MIR: 1
+  Flow cover: 2
+  Zero half: 10
+
+Explored 1 nodes (1430 simplex iterations) in 57.89 seconds (68.70 work units)
+Thread count was 24 (of 24 available processors)
+
+Solution count 9: 88123.5 87951.5 87862.4 ... 45748.6
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 8.812345000000e+04, best bound 8.813180964912e+04, gap 0.0095%
+Valor da função objetivo:  88123.45
+
+Tempo para criar o modelo:  41.029460191726685

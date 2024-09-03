@@ -1,0 +1,55 @@
+Gurobi Optimizer version 10.0.3 build v10.0.3rc0 (win64)
+
+CPU model: 13th Gen Intel(R) Core(TM) i7-13700T, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 24 logical processors, using up to 24 threads
+
+Optimize a model with 1981285 rows, 333789 columns and 4086005 nonzeros
+Model fingerprint: 0x78abeb55
+Variable types: 0 continuous, 333789 integer (46400 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+02]
+  Objective range  [6e+00, 3e+02]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 6e+02]
+Presolve removed 333899 rows and 250741 columns (presolve time = 5s) ...
+Presolve removed 804153 rows and 274288 columns (presolve time = 10s) ...
+Presolve removed 1402031 rows and 308343 columns (presolve time = 15s) ...
+Presolve removed 1980284 rows and 333205 columns
+Presolve time: 19.53s
+Presolved: 1001 rows, 584 columns, 2352 nonzeros
+Variable types: 0 continuous, 584 integer (201 binary)
+Found heuristic solution: objective 53608.940000
+Found heuristic solution: objective 56399.940000
+Found heuristic solution: objective 64625.600000
+
+Root simplex log...
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    9.7318450e+04   5.095000e+02   0.000000e+00     20s
+     446    8.8170537e+04   0.000000e+00   0.000000e+00     20s
+
+Root relaxation: objective 8.817054e+04, 446 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 88170.5370    0   19 64625.6000 88170.5370  36.4%     -   19s
+H    0     0                    86048.450000 88170.5370  2.47%     -   19s
+H    0     0                    86057.450000 88170.5370  2.46%     -   19s
+H    0     0                    87783.450000 88170.5370  0.44%     -   19s
+     0     0 87938.8250    0   10 87783.4500 87938.8250  0.18%     -   19s
+     0     0 87938.8250    0    8 87783.4500 87938.8250  0.18%     -   19s
+     0     0 87938.8250    0    8 87783.4500 87938.8250  0.18%     -   19s
+H    0     0                    87890.450000 87938.8250  0.06%     -   19s
+     0     0 87938.8250    0    8 87890.4500 87938.8250  0.06%     -   19s
+
+Explored 1 nodes (658 simplex iterations) in 19.88 seconds (25.89 work units)
+Thread count was 24 (of 24 available processors)
+
+Solution count 8: 87890.4 87783.5 87783.5 ... 53608.9
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 8.789045000000e+04, best bound 8.789045000000e+04, gap 0.0000%
+Valor da função objetivo:  87890.45
+
+Tempo para criar o modelo:  16.27950382232666

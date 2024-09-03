@@ -1,0 +1,71 @@
+Gurobi Optimizer version 10.0.3 build v10.0.3rc0 (win64)
+
+CPU model: 13th Gen Intel(R) Core(TM) i7-13700T, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 24 logical processors, using up to 24 threads
+
+Optimize a model with 3962485 rows, 667549 columns and 8171925 nonzeros
+Model fingerprint: 0x1e6fa0de
+Variable types: 0 continuous, 667549 integer (92800 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+02]
+  Objective range  [6e+00, 3e+02]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 6e+02]
+Presolve removed 209568 rows and 478360 columns (presolve time = 5s) ...
+Presolve removed 648837 rows and 501393 columns (presolve time = 10s) ...
+Presolve removed 1101735 rows and 516127 columns (presolve time = 15s) ...
+Presolve removed 1111224 rows and 525389 columns (presolve time = 20s) ...
+Presolve removed 2050316 rows and 565293 columns (presolve time = 25s) ...
+Presolve removed 2548100 rows and 595805 columns (presolve time = 30s) ...
+Presolve removed 2925645 rows and 617662 columns (presolve time = 35s) ...
+Presolve removed 3396371 rows and 641736 columns (presolve time = 40s) ...
+Presolve removed 3960362 rows and 666401 columns (presolve time = 45s) ...
+Presolve removed 3960362 rows and 666401 columns
+Presolve time: 45.05s
+Presolved: 2123 rows, 1148 columns, 4981 nonzeros
+Variable types: 0 continuous, 1148 integer (377 binary)
+Found heuristic solution: objective 46673.600000
+Found heuristic solution: objective 53579.600000
+
+Root simplex log...
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    1.1171248e+05   7.960000e+02   0.000000e+00     46s
+     997    8.8568977e+04   0.000000e+00   0.000000e+00     46s
+
+Root relaxation: objective 8.856898e+04, 997 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 88568.9765    0   54 53579.6000 88568.9765  65.3%     -   45s
+H    0     0                    83682.450000 88568.9765  5.84%     -   45s
+H    0     0                    83701.450000 88568.9765  5.82%     -   45s
+H    0     0                    85983.450000 88568.9765  3.01%     -   45s
+H    0     0                    86402.450000 88568.9765  2.51%     -   45s
+H    0     0                    86780.450000 88246.0258  1.69%     -   45s
+     0     0 88246.0258    0   28 86780.4500 88246.0258  1.69%     -   45s
+H    0     0                    86986.450000 88246.0258  1.45%     -   45s
+H    0     0                    87536.450000 88246.0258  0.81%     -   45s
+H    0     0                    87740.450000 88246.0258  0.58%     -   45s
+H    0     0                    88123.450000 88246.0258  0.14%     -   45s
+
+Cutting planes:
+  Gomory: 6
+  Cover: 17
+  Implied bound: 18
+  Clique: 16
+  MIR: 2
+  Flow cover: 2
+  Zero half: 7
+
+Explored 1 nodes (1337 simplex iterations) in 45.85 seconds (54.07 work units)
+Thread count was 24 (of 24 available processors)
+
+Solution count 10: 88123.4 87740.4 87740.4 ... 83682.4
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 8.812345000000e+04, best bound 8.812345000000e+04, gap 0.0000%
+Valor da função objetivo:  88123.45
+
+Tempo para criar o modelo:  32.62558341026306

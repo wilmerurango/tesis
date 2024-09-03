@@ -1,0 +1,77 @@
+Gurobi Optimizer version 10.0.3 build v10.0.3rc0 (win64)
+
+CPU model: 13th Gen Intel(R) Core(TM) i7-13700T, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 24 logical processors, using up to 24 threads
+
+Optimize a model with 5943685 rows, 1001309 columns and 12257845 nonzeros
+Model fingerprint: 0x96a270b7
+Variable types: 0 continuous, 1001309 integer (139200 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+02]
+  Objective range  [6e+00, 3e+02]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 6e+02]
+Presolve removed 314551 rows and 717743 columns (presolve time = 5s) ...
+Presolve removed 314551 rows and 717743 columns (presolve time = 10s) ...
+Presolve removed 890695 rows and 752289 columns (presolve time = 15s) ...
+Presolve removed 1001705 rows and 753110 columns (presolve time = 20s) ...
+Presolve removed 1651440 rows and 774107 columns (presolve time = 25s) ...
+Presolve removed 1665920 rows and 788268 columns (presolve time = 30s) ...
+Presolve removed 2411733 rows and 822920 columns (presolve time = 35s) ...
+Presolve removed 2412846 rows and 823737 columns (presolve time = 40s) ...
+Presolve removed 3086945 rows and 858819 columns (presolve time = 45s) ...
+Presolve removed 3822796 rows and 894059 columns (presolve time = 50s) ...
+Presolve removed 4213556 rows and 926899 columns (presolve time = 55s) ...
+Presolve removed 4411996 rows and 926899 columns (presolve time = 60s) ...
+Presolve removed 4917811 rows and 963113 columns (presolve time = 65s) ...
+Presolve removed 5233786 rows and 965339 columns (presolve time = 70s) ...
+Presolve removed 5743965 rows and 996528 columns (presolve time = 75s) ...
+Presolve removed 5940406 rows and 999588 columns
+Presolve time: 77.93s
+Presolved: 3279 rows, 1721 columns, 7820 nonzeros
+Variable types: 0 continuous, 1721 integer (571 binary)
+Found heuristic solution: objective 44839.600000
+Found heuristic solution: objective 53202.800000
+
+Root simplex log...
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    1.2476868e+05   9.873750e+02   0.000000e+00     79s
+    1481    8.8654283e+04   0.000000e+00   0.000000e+00     79s
+
+Root relaxation: objective 8.865428e+04, 1481 iterations, 0.01 seconds (0.01 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 88654.2833    0   56 53202.8000 88654.2833  66.6%     -   78s
+H    0     0                    82897.450000 88654.2833  6.94%     -   78s
+H    0     0                    83139.450000 88654.2833  6.63%     -   78s
+H    0     0                    84292.450000 88654.2833  5.17%     -   78s
+H    0     0                    87438.450000 88654.2833  1.39%     -   78s
+     0     0 88247.8009    0   27 87438.4500 88247.8009  0.93%     -   78s
+H    0     0                    87536.450000 88247.8009  0.81%     -   78s
+H    0     0                    87740.450000 88247.8009  0.58%     -   78s
+H    0     0                    87896.450000 88247.8009  0.40%     -   78s
+     0     0 88131.8096    0   38 87896.4500 88131.8096  0.27%     -   78s
+     0     0 88131.8096    0   21 87896.4500 88131.8096  0.27%     -   79s
+H    0     0                    87931.450000 88131.8096  0.23%     -   79s
+H    0     0                    87933.450000 88131.8096  0.23%     -   79s
+H    0     0                    88011.450000 88131.8096  0.14%     -   79s
+     0     0 88131.8096    0   19 88011.4500 88131.8096  0.14%     -   79s
+H    0     0                    88074.450000 88131.8096  0.07%     -   79s
+     0     0 88131.8096    0    6 88074.4500 88131.8096  0.07%     -   79s
+     0     0 88131.8096    0    6 88074.4500 88131.8096  0.07%     -   79s
+     0     0 88131.8096    0    8 88074.4500 88131.8096  0.07%     -   79s
+H    0     0                    88123.450000 88131.8096  0.01%     -   79s
+
+Explored 1 nodes (2424 simplex iterations) in 79.30 seconds (83.09 work units)
+Thread count was 24 (of 24 available processors)
+
+Solution count 10: 88123.4 88074.4 88011.4 ... 84292.4
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 8.812345000000e+04, best bound 8.813180964912e+04, gap 0.0095%
+Valor da função objetivo:  88123.45
+
+Tempo para criar o modelo:  49.33758282661438

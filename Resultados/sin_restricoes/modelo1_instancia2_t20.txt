@@ -1,0 +1,27 @@
+Gurobi Optimizer version 10.0.3 build v10.0.3rc0 (win64)
+
+CPU model: 13th Gen Intel(R) Core(TM) i7-13700T, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 24 logical processors, using up to 24 threads
+
+Optimize a model with 220645 rows, 392729 columns and 626845 nonzeros
+Model fingerprint: 0xefb2ccd9
+Variable types: 0 continuous, 392729 integer (69360 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [7e+00, 3e+02]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 6e+02]
+Presolve removed 220645 rows and 392729 columns
+Presolve time: 0.14s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 0.20 seconds (0.38 work units)
+Thread count was 1 (of 24 available processors)
+
+Solution count 1: 84832.3 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 8.483228000000e+04, best bound 8.483228000000e+04, gap 0.0000%
+Valor da função objetivo:  84832.28
+
+Tempo para criar o modelo:  5.195192575454712

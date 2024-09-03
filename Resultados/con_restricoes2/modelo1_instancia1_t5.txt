@@ -1,0 +1,38 @@
+Gurobi Optimizer version 10.0.3 build v10.0.3rc0 (win64)
+
+CPU model: 13th Gen Intel(R) Core(TM) i7-13700T, instruction set [SSE2|AVX|AVX2]
+Thread count: 16 physical cores, 24 logical processors, using up to 24 threads
+
+Optimize a model with 1691100 rows, 85154 columns and 3433490 nonzeros
+Model fingerprint: 0x0120abc9
+Variable types: 0 continuous, 85154 integer (18450 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+02]
+  Objective range  [6e+00, 3e+02]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 6e+02]
+Presolve removed 40278 rows and 47304 columns (presolve time = 5s) ...
+Presolve removed 258210 rows and 52332 columns (presolve time = 10s) ...
+Presolve removed 474048 rows and 57345 columns (presolve time = 15s) ...
+Presolve removed 594851 rows and 62116 columns (presolve time = 20s) ...
+Presolve removed 695874 rows and 62116 columns (presolve time = 25s) ...
+Presolve removed 856610 rows and 67094 columns (presolve time = 31s) ...
+Presolve removed 908049 rows and 67094 columns (presolve time = 36s) ...
+Presolve removed 1093067 rows and 72007 columns (presolve time = 40s) ...
+Presolve removed 1318531 rows and 76912 columns (presolve time = 45s) ...
+Presolve removed 1518113 rows and 81765 columns (presolve time = 50s) ...
+Presolve removed 1653580 rows and 84210 columns (presolve time = 55s) ...
+Presolve removed 1691100 rows and 85154 columns
+Presolve time: 57.37s
+Presolve: All rows and columns removed
+
+Explored 0 nodes (0 simplex iterations) in 57.62 seconds (29.96 work units)
+Thread count was 1 (of 24 available processors)
+
+Solution count 1: 28634 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.863395000000e+04, best bound 2.863395000000e+04, gap 0.0000%
+Valor da função objetivo:  28633.95
+
+Tempo para criar o modelo:  13.694878339767456
