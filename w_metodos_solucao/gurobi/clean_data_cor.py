@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np
-from itertools import product
+from gurobipy import *
+from itertools import product, combinations
+
 
 def fill_data(oridest, wagons, classes, records_to_correct, periodo=0): #preencha os dados
      
@@ -37,6 +39,19 @@ def fill_data(oridest, wagons, classes, records_to_correct, periodo=0): #preench
     return records_to_correct
 
 
+def behav_demand(fila, df):
+    
+    filtro = (df["Origin"] == fila["Origin"]) &  (df["Destination"] == fila["Destination"]) &  (df["Vagon"] == fila["Vagon"]) &  (df["DBD"] == fila["DBD"])
+    preferenceList = sorted(df[filtro]["Class"].unique().tolist())
+    currentClass = fila["Class"]
+    posCurrentClass = preferenceList.index(currentClass)
+    sumClass = preferenceList[0:posCurrentClass+1]
+    potentialDemand =  df[filtro]
+    potentialDemand = potentialDemand[potentialDemand["Class"].isin(sumClass)]
+
+    return  potentialDemand["Bookings"].sum()
+
+
 def clean_data(demanda, preco):
     # find parameters
     origin_cor = preco['Origin'].unique().tolist()
@@ -54,7 +69,13 @@ def clean_data(demanda, preco):
 
     # fill instance records
     preco = fill_data(oridest,vagones,clases, preco,)         
-    demanda = fill_data(oridest,vagones,clases, demanda, periodo)            
+    demanda = fill_data(oridest,vagones,clases, demanda, periodo)       
+
+    # [start]converting demand into behavioural
+    demanda["DemandaComport"] = demanda.apply(lambda fila: clases[fila["Vagon"]][clases[fila["Vagon"]].index(fila["Class"]):][::-1] , axis=1)
+    demanda["DemPotencialTot"] = demanda.apply(behav_demand, axis=1, df=demanda)
+    demanda.columns = ['Origin', 'Destination', 'Vagon', 'Class', 'DBD', "Bookings1", 'PL', 'Bookings']
+    # [end]converting demand into behavioural
 
     # sort data revenue
     preco = preco.sort_values(by=['Origin', 'Destination', 'Vagon', 'Revenue'], ascending=[True, True, True, False])
