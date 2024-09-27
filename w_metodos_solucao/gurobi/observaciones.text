@@ -1,0 +1,17 @@
+[DEMANDA COMPORTAMNETAL]
+El codigo donde se esta tratando la demanda comportamental es en el archivo clean_data_cor.py en la funcion clean_data (el inicio y el fin del codigo esta legendado)
+
+
+[FUNCIONES]
+
+- fill_data: fill_data funciona cuando en la instancia, ya sea de demanda o de precios, no se encuentran todas las combinicaiones posibles entre sus componentes (origen, destino, vagon, clase, periodo, revenue o booking). cuando eso ocurre lo que se hace es crear esas combinaciones y colocarles el valor de cero. Recuerda que se unen dos df, el primero tendra los valores existentes de la instancia y el segundo (que se pega debajo) tiene todas las combianciones con valor de cero que no existen en la instancia.
+
+- behav_demand: Es una funcion que es aplicada a cada fila del df de la demanda, y lo que hace es transformar la demanda convensional (independiente) en una demanda comportamental (lista de preferencia).
+
+- clean_data: como su nombre lo indica limpia los datos de la instancia, esta se ayuda de la funcion fill_data y behav_demand, y lo que hace es tomar la instancia y retornar la mayoria de los parametros necesarios para ejecutar el modelo por ejemplo (conjunto de: origenes, destinos, origenes-destinos, estaciones, vagones, periodos, clases, diccionario de precios, dicionario de demanda)
+
+- read_data: solo toma la ruta de cada instancia y lee cada una de ellas.
+
+- create_sets: Esta funcion crea el modelo matematico en gurobi
+
+- save_solution: Esta funcion almacena en un excel los valores de las variables halladas por el modelo.
