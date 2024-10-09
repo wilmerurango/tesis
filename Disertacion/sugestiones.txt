@@ -1,0 +1,18 @@
+
+
+ademas de la logica anterior, se asume que se tiene un tren, con varios vagones, que va a viajar de una estacion E1 hasta una estacion En (donde n es la ultima estacion donde llegará el tren), dicho tren tendra un itinerario el cual contendra, el nombre del tren, la estacion de origen, la estacion de destino, la fecha y hora de partida y de llegada. Ademas se tendrá una lista de precios (para el mismo tipo de asientos) para disponibilizar para venta. A cada uno de los precios de la lista la llameros clase comercial o control class. los boletos seran disponibilizados para ventas antes de la salida del tren, y el tiempo entre la disponibilizacion y dicha salida sera llamado horizonte de reserva. Dicho horizonte estara divido en multiples periodos que pueden ser de diferente temporalidad, por exemplo, se pueden tener periodos en dias, semanas, meses, etc, y combinaciones de ellos. Cada uno de esos periodos sera llamado check point. 
+
+cada relacion posible entre una estacion y otra sera denominda origen-destino o trecho. se dira que un origen-destino es adjacentes, si y solo si, no existan estaciones intermedias entre los mismos, caso contrario seran no adjacentes. Por ejemplo, en la figura xxx, los trechos adjacentes serian: E1-E2, E2-E3, E3-E4 y los trechos no adjacentes serian: E1-E3, E1-E4 y E2-E4.
+ademas note que los trechos no adjcentes pueden contener otros trechos, tanto adjacentes como no adajacentes, por ejemplo, el trecho E1-E4 contine los trechos adjacentes E1-E2, E2-E3, y contiene los trechos no adjacentes E1-E3 y E2-E4
+
+K_v
+es el conjunto de clases de control para cada vagon. por ejemplo, suponga que se tienen dos cavinas "z" y "p", y cada cavina contiene tres clases de control c1, c2, c3, entonces la representacion seria K_z : {c1, c2, c3} y K_p:{c1,c2,c3}, ademas tenga en cuenta que los elementos para cada K_v son ordenados, donde siempre se cumple que c1>c2>c3.
+
+A_i
+almacena la cantidad de asientos vacios disponibles para ventas en cada estacion de origen en todo el horizonte de reserva. cabe aclarar que no es una variable de desicion pues esta variable solo almacena un calculo en funcion de la capacidad fisica del tren y las variables de desicion de assigments y atribucoes.
+
+suponga que tiene un trecho nao adjancente E1-E3, y que ese trecho contiene otros trechos E1-E2 y E2-E3, para esta situacion, la clases mas barata activada en el trecho E1-E3 debera ser la clase mas barata activada en los trechos E1-E2 y E2-E3
+
+una vez calculados los valores para BNA de los trechos no adjacentes, la restriccion xxx hara que las clases de control de todos  los trechos contenidos en cada trecho no adjacente sea cero o minimo 1. asi, donde la clase de control del trecho no adjacente tome un valor de BNA = 0 entonces dicha clase sera cero para los trechos contenidos, por otro lado si la clase de control del trecho nao adjacente toma el valor de BNA = 1, entonces dicha clase tomara minimo el valor de 1 para todos los trechos contenidos. 
+
+ejemplo simplificado  del funcionamiento de la restriccion xx

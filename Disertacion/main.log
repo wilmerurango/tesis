@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.7.22)  21 AUG 2024 14:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.7.22)  9 OCT 2024 17:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1130,137 +1130,120 @@ Underfull \vbox (badness 2435) has occurred while \output is active []
 
  [2
 
-]) (./sections/modelo_matematico.tex [3]
+]) (./sections/modelo_matematico.tex
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3] [4]
 Cap\'{\i }tulo 2.
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 10.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-<img/fig1.png, id=49, 373.99725pt x 146.34676pt>
-File: img/fig1.png Graphic file (type png)
-<use img/fig1.png>
-Package pdftex.def Info: img/fig1.png  used on input line 20.
-(pdftex.def)             Requested size: 261.79628pt x 102.44202pt.
- [4
+<img/repre_ini1.png, id=61, 1658.195pt x 520.94624pt>
+File: img/repre_ini1.png Graphic file (type png)
+<use img/repre_ini1.png>
+Package pdftex.def Info: img/repre_ini1.png  used on input line 20.
+(pdftex.def)             Requested size: 298.46222pt x 93.76627pt.
+ [5
 
 ]
-<img/fig2.png, id=57, 909.24693pt x 325.215pt>
+<img/fig2.png, id=69, 909.24693pt x 325.215pt>
 File: img/fig2.png Graphic file (type png)
 <use img/fig2.png>
 Package pdftex.def Info: img/fig2.png  used on input line 53.
 (pdftex.def)             Requested size: 363.69234pt x 130.0837pt.
- [5 <./img/fig1.png>]
+ [6 <./img/repre_ini1.png>] [7 <./img/fig2.png>]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 69.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 73.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 69.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 73.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 69.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 73.
 
-Underfull \hbox (badness 10000) in paragraph at lines 82--83
+Underfull \hbox (badness 10000) in paragraph at lines 88--89
 []|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 OD; v \OMS/pzccm/m/n/10.95 2
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 83--83
+Underfull \hbox (badness 10000) in paragraph at lines 89--89
 []|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 OD; v \OMS/pzccm/m/n/10.95 2
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 86--87
+Underfull \hbox (badness 10000) in paragraph at lines 91--92
 []|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 OD; v \OMS/pzccm/m/n/10.95 2
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 87--89
+Underfull \hbox (badness 10000) in paragraph at lines 92--93
 []|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 OD; v \OMS/pzccm/m/n/10.95 2
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 89--91
+Underfull \hbox (badness 10000) in paragraph at lines 93--93
 []|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 NAD; v \OMS/pzccm/m/n/10.95 2
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
+[8]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [6 <./img/fig2.png>]
-Overfull \vbox (42.53236pt too high) has occurred while \output is active []
-
- [7]
-<img/autorization.png, id=97, 317.68687pt x 231.11343pt>
-File: img/autorization.png Graphic file (type png)
-<use img/autorization.png>
-Package pdftex.def Info: img/autorization.png  used on input line 142.
-(pdftex.def)             Requested size: 222.37927pt x 161.77829pt.
- [8]
-<img/auto_sf.png, id=116, 317.68687pt x 199.49532pt>
-File: img/auto_sf.png Graphic file (type png)
-<use img/auto_sf.png>
-Package pdftex.def Info: img/auto_sf.png  used on input line 158.
-(pdftex.def)             Requested size: 211.26028pt x 132.6688pt.
-<img/assig_sf.png, id=117, 305.64188pt x 199.49532pt>
-File: img/assig_sf.png Graphic file (type png)
-<use img/assig_sf.png>
-Package pdftex.def Info: img/assig_sf.png  used on input line 163.
-(pdftex.def)             Requested size: 203.75288pt x 132.99146pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[9 <./img/autorization.png>]
-<img/tab_trechos_maiores.png, id=137, 166.37157pt x 121.95563pt>
+ [9]
+<img/exemplo1.png, id=123, 389.455pt x 423.5825pt>
+File: img/exemplo1.png Graphic file (type png)
+<use img/exemplo1.png>
+Package pdftex.def Info: img/exemplo1.png  used on input line 149.
+(pdftex.def)             Requested size: 155.77924pt x 169.43pt.
+ [10 <./img/exemplo1.png>]
+File: img/exemplo1.png Graphic file (type png)
+<use img/exemplo1.png>
+Package pdftex.def Info: img/exemplo1.png  used on input line 165.
+(pdftex.def)             Requested size: 164.31754pt x 178.71135pt.
+<img/exemplo2.png, id=136, 389.455pt x 423.5825pt>
+File: img/exemplo2.png Graphic file (type png)
+<use img/exemplo2.png>
+Package pdftex.def Info: img/exemplo2.png  used on input line 170.
+(pdftex.def)             Requested size: 164.31754pt x 178.71135pt.
+ [11 <./img/exemplo2.png>]
+<img/tab_trechos_maiores.png, id=156, 166.37157pt x 121.95563pt>
 File: img/tab_trechos_maiores.png Graphic file (type png)
 <use img/tab_trechos_maiores.png>
-Package pdftex.def Info: img/tab_trechos_maiores.png  used on input line 181.
+Package pdftex.def Info: img/tab_trechos_maiores.png  used on input line 188.
 (pdftex.def)             Requested size: 133.09741pt x 97.5646pt.
-
-Underfull \vbox (badness 4805) has occurred while \output is active []
-
- [10 <./img/auto_sf.png> <./img/assig_sf.png>] [11 <./img/tab_trechos_maiores.png>]
-<img/fig3.png, id=159, 727.21687pt x 402.45357pt>
+ [12 <./img/tab_trechos_maiores.png>] [13]
+<img/fig3.png, id=178, 727.21687pt x 402.45357pt>
 File: img/fig3.png Graphic file (type png)
 <use img/fig3.png>
-Package pdftex.def Info: img/fig3.png  used on input line 224.
+Package pdftex.def Info: img/fig3.png  used on input line 231.
 (pdftex.def)             Requested size: 290.88159pt x 160.97856pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 248--249
+Underfull \hbox (badness 10000) in paragraph at lines 255--256
 []|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 OD; v \OMS/pzccm/m/n/10.95 2
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 249--249
+Underfull \hbox (badness 10000) in paragraph at lines 256--256
 []|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 OD; v \OMS/pzccm/m/n/10.95 2
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 251--252
+Underfull \hbox (badness 10000) in paragraph at lines 258--259
 []|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 OD; v \OMS/pzccm/m/n/10.95 2
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 252--253
+Underfull \hbox (badness 10000) in paragraph at lines 259--260
 []|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 OD; v \OMS/pzccm/m/n/10.95 2
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 253--254
+Underfull \hbox (badness 10000) in paragraph at lines 260--261
 []|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 NAD; v \OMS/pzccm/m/n/10.95 2
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [12 <./img/fig3.png>]
-Overfull \vbox (1.93489pt too high) has occurred while \output is active []
-
- [13]) [14] [15
+[14 <./img/fig3.png>]) [15] [16] [17
 
 ] (./main.aux)
  ***********
@@ -1274,18 +1257,18 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 33837 strings out of 474222
- 630024 string characters out of 5748733
- 1951975 words of memory out of 5000000
- 55443 multiletter control sequences out of 15000+600000
+ 33849 strings out of 474222
+ 630684 string characters out of 5748733
+ 1953975 words of memory out of 5000000
+ 55449 multiletter control sequences out of 15000+600000
  635380 words of font info for 143 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,13n,87p,1500b,1626s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (15 pages, 265799 bytes).
+Output written on main.pdf (17 pages, 341964 bytes).
 PDF statistics:
- 254 PDF objects out of 1000 (max. 8388607)
- 201 compressed objects within 3 object streams
- 59 named destinations out of 1000 (max. 500000)
- 93 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 282 PDF objects out of 1000 (max. 8388607)
+ 228 compressed objects within 3 object streams
+ 65 named destinations out of 1000 (max. 500000)
+ 88 words of extra memory for PDF output out of 10000 (max. 10000000)
 
