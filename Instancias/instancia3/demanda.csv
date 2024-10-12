@@ -1,4 +1,4 @@
-Origin,Destination,Vagon,Class,DBD,Bookings
+﻿Origin,Destination,Vagon,Class,DBD,Bookings
 S1,S2,Z,4,3,1
 S1,S41,P,2,2,1
 S1,S41,Z,4,9,1
@@ -665,3 +665,4 @@ S9,S33,Z,1,1,2
 S9,S33,Z,1,4,1
 S9,S37,Z,1,7,1
 S9,S50,Z,1,2,2
+

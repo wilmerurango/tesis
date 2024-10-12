@@ -52,6 +52,47 @@ def behav_demand(fila, df):
     return  potentialDemand["Bookings"].sum()
 
 
+def clean_data2(demanda, preco):
+
+    demInde = demanda.copy()
+
+    # find parameters
+    origin_cor = preco['Origin'].unique().tolist()
+    destin_cor = preco['Destination'].unique().tolist()
+
+    oridest = preco[['Origin','Destination']].apply(lambda x: (x['Origin'],x['Destination']), axis=1)
+    oridest = oridest.unique().tolist()
+
+    stations = origin_cor + [i for i in destin_cor if i not in origin_cor]
+
+    vagones = preco['Vagon'].unique().tolist()
+    clases = {v: sorted(preco[preco['Vagon']==v]['Class'].unique().tolist()) for v in vagones}
+
+    periodo = sorted(demanda['DBD'].unique().tolist(), reverse=True)    
+
+    # [start] converting demand into behavioural
+    demanda["DemandaComport"] = demanda.apply(lambda fila: clases[fila["Vagon"]][clases[fila["Vagon"]].index(fila["Class"]):][::-1] , axis=1)
+    demanda["DemPotencialTot"] = demanda.apply(behav_demand, axis=1, df=demanda)
+    demanda.columns = ['Origin', 'Destination', 'Vagon', 'Class', 'DBD', "Bookings1", 'PL', 'Bookings']
+    # [end] converting demand into behavioural
+
+    # sort data revenue
+    preco = preco.sort_values(by=['Origin', 'Destination', 'Vagon', 'Revenue'], ascending=[True, True, True, False])
+    preco
+    # Transform to dictionary
+    dem_cor = demanda.set_index(['Origin', 'Destination', 'Vagon', 'Class', 'DBD'])['Bookings'].to_dict()
+    demInde = demanda.set_index(['Origin', 'Destination', 'Vagon', 'Class', 'DBD'])['Bookings'].to_dict()
+    preco_cor = preco.set_index(['Origin', 'Destination', 'Vagon', 'Class'])['Revenue'].to_dict()
+
+    #todas las combinaciones de los indices
+    # indexCombiPre = [tuple(x) for x in preco[['Origin','Destination','Vagon','Class']].to_numpy()] #para el precio
+    indexCombiDem = [tuple(x) for x in demanda[['Origin','Destination','Vagon','Class','DBD']].to_numpy()] #para l ademanda
+    index_Cero = [(0, i, v, c, t) for i, v, t in product(stations, vagones, periodo) for c in clases[v]]
+    indexCombiDem0 = indexCombiDem + index_Cero
+
+    return origin_cor, destin_cor, oridest, vagones, periodo, stations, clases, preco_cor, dem_cor, demInde,indexCombiDem, indexCombiDem0
+
+
 def clean_data(demanda, preco):
     # find parameters
     origin_cor = preco['Origin'].unique().tolist()

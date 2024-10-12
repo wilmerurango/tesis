@@ -4,7 +4,7 @@ El codigo donde se esta tratando la demanda comportamental es en el archivo clea
 
 [FUNCIONES]
 
-- fill_data: fill_data funciona cuando en la instancia, ya sea de demanda o de precios, no se encuentran todas las combinicaiones posibles entre sus componentes (origen, destino, vagon, clase, periodo, revenue o booking). cuando eso ocurre lo que se hace es crear esas combinaciones y colocarles el valor de cero. Recuerda que se unen dos df, el primero tendra los valores existentes de la instancia y el segundo (que se pega debajo) tiene todas las combianciones con valor de cero que no existen en la instancia.
+- fill_data: fill_data funciona cuando en la instancia, ya sea de demanda o de precios, no se encuentran todas las combinicaiones posibles entre sus componentes (origen, destino, vagon, clase, periodo, revenue o booking). cuando eso ocurre lo que se hace es crear esas combinaciones faltantes y colocarles el valor de cero. Recuerda que se unen dos df, el primero tendra los valores existentes de la instancia y el segundo (que se pega debajo) tiene todas las combianciones faltantes con valor de cero.
 
 - behav_demand: Es una funcion que es aplicada a cada fila del df de la demanda, y lo que hace es transformar la demanda convensional (independiente) en una demanda comportamental (lista de preferencia).
 
