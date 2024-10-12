@@ -70,15 +70,15 @@ def clean_data2(demanda, preco):
 
     periodo = sorted(demanda['DBD'].unique().tolist(), reverse=True)    
 
-    # [start] converting demand into behavioural
-    demanda["DemandaComport"] = demanda.apply(lambda fila: clases[fila["Vagon"]][clases[fila["Vagon"]].index(fila["Class"]):][::-1] , axis=1)
-    demanda["DemPotencialTot"] = demanda.apply(behav_demand, axis=1, df=demanda)
-    demanda.columns = ['Origin', 'Destination', 'Vagon', 'Class', 'DBD', "Bookings1", 'PL', 'Bookings']
-    # [end] converting demand into behavioural
+    # # [start] converting demand into behavioural
+    # demanda["DemandaComport"] = demanda.apply(lambda fila: clases[fila["Vagon"]][clases[fila["Vagon"]].index(fila["Class"]):][::-1] , axis=1)
+    # demanda["DemPotencialTot"] = demanda.apply(behav_demand, axis=1, df=demanda)
+    # demanda.columns = ['Origin', 'Destination', 'Vagon', 'Class', 'DBD', "Bookings1", 'PL', 'Bookings']
+    # # [end] converting demand into behavioural
 
     # sort data revenue
     preco = preco.sort_values(by=['Origin', 'Destination', 'Vagon', 'Revenue'], ascending=[True, True, True, False])
-    preco
+
     # Transform to dictionary
     dem_cor = demanda.set_index(['Origin', 'Destination', 'Vagon', 'Class', 'DBD'])['Bookings'].to_dict()
     demInde = demanda.set_index(['Origin', 'Destination', 'Vagon', 'Class', 'DBD'])['Bookings'].to_dict()
