@@ -90,7 +90,7 @@ def clean_data2(demanda, preco):
     index_Cero = [(0, i, v, c, t) for i, v, t in product(stations, vagones, periodo) for c in clases[v]]
     indexCombiDem0 = indexCombiDem + index_Cero
 
-    return origin_cor, destin_cor, oridest, vagones, periodo, stations, clases, preco_cor, dem_cor, demInde,indexCombiDem, indexCombiDem0
+    return origin_cor, destin_cor, oridest, vagones, periodo, stations, clases, preco_cor, dem_cor, demInde, indexCombiDem, indexCombiDem0
 
 
 def clean_data(demanda, preco):
