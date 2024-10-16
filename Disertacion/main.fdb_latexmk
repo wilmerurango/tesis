@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber main"] 1728504137.9726 "main.bcf" "main.bbl" "main" 1728506502.43502 0
-  "main.bcf" 1728506502.26279 108091 e8ead7350bf07e11b5ca1dda93e13250 "pdflatex"
+["biber main"] 1728504137.9726 "main.bcf" "main.bbl" "main" 1729090525.31062 0
+  "main.bcf" 1729090525.12458 108091 e8ead7350bf07e11b5ca1dda93e13250 "pdflatex"
   "sections/referencias.bib" 1728504120.05549 3688 c34835b29b0831e4afa87bb3d346a70b ""
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1728506500.07039 "/home/wilmer/Documentos/Codes/tesis/Disertacion/main.tex" "main.pdf" "main" 1728506502.43539 0
+["pdflatex"] 1729090522.89302 "/home/wilmer/Documentos/Codes/tesis/Disertacion/main.tex" "main.pdf" "main" 1729090525.31104 0
   "/etc/texmf/web2c/texmf.cnf" 1721694887.05848 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/wilmer/Documentos/Codes/tesis/Disertacion/main.tex" 1723152765.51926 4731 2845b81466f657c7fca0f31b06fece16 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -251,14 +251,14 @@
   "img/repre_ini1.png" 1727711611.36234 59951 f0f55e09941a00e36e250a867737717f ""
   "img/tab_trechos_maiores.png" 1718474986 5851 6e28fbd25853e8e1ae8fe73399deff39 ""
   "img/unicamp.pdf" 1711937936.12523 4078 6b392d4bdde6603f81be8df8b3f96044 ""
-  "main.aux" 1728506502.25779 7516 cb8ad728f529e5399ce1d6a872614598 "pdflatex"
+  "main.aux" 1729090525.11958 7516 cb8ad728f529e5399ce1d6a872614598 "pdflatex"
   "main.bbl" 1728504139.07621 9912 a81e988190130072723ee20fe365d6cc "biber main"
-  "main.out" 1728506502.26079 885 438d2975a1ffc2e1f7b452fc41578386 "pdflatex"
-  "main.run.xml" 1728506502.26379 2318 7ad0f85467fb23aeeae030eef5075fc4 "pdflatex"
+  "main.out" 1729090525.12358 885 438d2975a1ffc2e1f7b452fc41578386 "pdflatex"
+  "main.run.xml" 1729090525.12558 2318 7ad0f85467fb23aeeae030eef5075fc4 "pdflatex"
   "main.tex" 1723152765.51926 4731 2845b81466f657c7fca0f31b06fece16 ""
   "sections/capa2.tex" 1712082020.75775 3465 cda148a89a951b4a36f601035ada5df3 ""
-  "sections/modelo_matematico.tex" 1727831697.67607 38947 5e8c3fb7fae3c00556f0a6fdd6bbef6a ""
-  "sections/revisao_literatura.tex" 1728506499.77879 4898 10ded4b9cd9b849ed570d6707d8e5532 ""
+  "sections/modelo_matematico.tex" 1729090522.56058 38948 4b138e5795834fcf8eca1ea073ba99fa ""
+  "sections/revisao_literatura.tex" 1728506881.43513 4898 10ded4b9cd9b849ed570d6707d8e5532 ""
   (generated)
   "main.aux"
   "main.bcf"
