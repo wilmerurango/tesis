@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.7.22)  16 OCT 2024 11:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.7.22)  23 OCT 2024 11:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1204,12 +1204,15 @@ File: img/exemplo2.png Graphic file (type png)
 Package pdftex.def Info: img/exemplo2.png  used on input line 170.
 (pdftex.def)             Requested size: 164.31754pt x 178.71135pt.
  [11 <./img/exemplo2.png>]
-<img/tab_trechos_maiores.png, id=156, 166.37157pt x 121.95563pt>
-File: img/tab_trechos_maiores.png Graphic file (type png)
-<use img/tab_trechos_maiores.png>
-Package pdftex.def Info: img/tab_trechos_maiores.png  used on input line 188.
-(pdftex.def)             Requested size: 133.09741pt x 97.5646pt.
- [12 <./img/tab_trechos_maiores.png>] [13]
+<img/tab_trecho_grande.png, id=156, 1613.02625pt x 924.45375pt>
+File: img/tab_trecho_grande.png Graphic file (type png)
+<use img/tab_trecho_grande.png>
+Package pdftex.def Info: img/tab_trecho_grande.png  used on input line 188.
+(pdftex.def)             Requested size: 241.9435pt x 138.66208pt.
+
+Underfull \vbox (badness 3323) has occurred while \output is active []
+
+ [12 <./img/tab_trecho_grande.png>] [13]
 <img/fig3.png, id=178, 727.21687pt x 402.45357pt>
 File: img/fig3.png Graphic file (type png)
 <use img/fig3.png>
@@ -1243,7 +1246,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 260--261
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[14 <./img/fig3.png>]) [15] [16] [17
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [14 <./img/fig3.png>]
+Overfull \vbox (1.93489pt too high) has occurred while \output is active []
+
+ [15]) [16] [17
 
 ] (./main.aux)
  ***********
@@ -1258,14 +1267,14 @@ Package logreq Info: Writing requests to 'main.run.xml'.
  ) 
 Here is how much of TeX's memory you used:
  33849 strings out of 474222
- 630684 string characters out of 5748733
+ 630670 string characters out of 5748733
  1953975 words of memory out of 5000000
  55449 multiletter control sequences out of 15000+600000
  635380 words of font info for 143 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,13n,87p,1500b,1626s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (17 pages, 342041 bytes).
+Output written on main.pdf (17 pages, 386857 bytes).
 PDF statistics:
  282 PDF objects out of 1000 (max. 8388607)
  228 compressed objects within 3 object streams

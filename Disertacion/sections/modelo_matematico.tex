@@ -181,18 +181,18 @@ Suponha que você tem um trecho não adjacente E1-E3, e que esse trecho contém 
 
 Uma vez calculados os valores para $BNA$ dos trechos não adjacentes, a restrição \ref{eq: m1_autho_igualar_trecho_maior} fará com que as classes de controle de todos os trechos contidos em cada trecho não adjacente sejam $0$ ou, no mínimo $1$. Assim, quando a classe de controle do trecho não adjacente assumir um valor de $BNA = 0$, essa classe será $0$ para os trechos contidos. Por outro lado, se a classe de controle do trecho não adjacente assumir o valor de $BNA = 1$, então essa classe tomará, no mínimo, o valor de $1$ para todos os trechos contidos.
 
-Para um melhor entendimento, suponha um trem com 1 vagão que passa por 3 estações, $E_1$, $E_2$ e $E_3$, e tem um horizonte de reserva de um único período. Sob esta situação, o trecho não adjacente seria $"E_1-E_3"$ e os trechos contidos seriam $"E_1-E_2"$ e $"E_2-E_3"$. Agora imagine que cada trecho tem 6 classes diferentes ($c_1, c_2, c_3, c_4, c_5, c_6$), onde o preço  de  $c_1 \geq c_2 \geq c_3 \geq c_4 \geq c_5 \geq c_6$, e que as autorizações (variavel $Y$) tomam os valores mostrados na tabela \ref{fig: exemplo_sip}:
+Para um melhor entendimento, suponha um trem com 1 vagão que passa por 3 estações, $E_1$, $E_2$ e $E_3$, e tem um horizonte de reserva de um único período. Sob esta situação, o trecho não adjacente seria $"E_1-E_3"$ e os trechos contidos seriam $"E_1-E_2"$ e $"E_2-E_3"$. Agora imagine que cada trecho tem 6 classes diferentes ($c_1, c_2, c_3, c_4, c_5, c_6$), onde o preço  de  $c_1 \geq c_2 \geq c_3 \geq c_4 \geq c_5 \geq c_6$, e que as autorizações para o trecho não adjacente (variavel $Y$) tomam os valores mostrados na tabela \ref{fig: exemplo_sip}:
 
 \begin{figure}[!ht]
 	\begin{center}
-		\includegraphics[scale=0.8]{img/tab_trechos_maiores.png}
+		\includegraphics[scale=0.15]{img/tab_trecho_grande.png}
 		\caption{Exemplo simplificado do funcionamento da restrição \ref{eq: m1_autho_igualar_trecho_maior}}
 		% Fonte:~\cite{khaksar2013genetic}}
 		\label{fig: exemplo_sip}
 	\end{center}
 \end{figure}
 
-Para o trecho $"E_1-E_3"$, note que quando $Y \neq 0$, $BNA = 1$ e quando $Y = 0$, $BNA = 0$ (controlado pela restrição \ref{eq: m1_activ_bin_autho}). Agora observe que, quando $ BNA = 1$ para uma certa classe, os trechos $E_1-E_2$ e $E_2-E_3$ assumem valores entre 1 e um número suficientemente grande ($1 \le Y \leq M$), o que indica que os assentos a serem disponibilizados para essa classe nesses trechos não podem ser zero. Por outro lado, quando $BNA = 0$, os trechos menores devem zerar a classe correspondente com ($0 \leq Y \leq 0$), ou seja, não se deve disponibilizar assentos com essa classe (controlado pela restrição \ref{eq: m1_autho_igualar_trecho_maior}). Deve-se esclarecer que as classe de controle dos trechos contidos, apenas imitam o comportamento da classe não adjacente correspondente, e não os valores que esta assume.
+Para o trecho $"E_1-E_3"$, note que quando $Y \neq 0$, $BNA = 1$ e quando $Y = 0$, $BNA = 0$ (controlado pela restrição \ref{eq: m1_activ_bin_autho}). Agora observe que, quando $ BNA = 1$ para uma certa classe, os trechos $E_1-E_2$ e $E_2-E_3$ assumem valores entre 1 e um número suficientemente grande ($1 \le Y \leq Q$) neste caso a capacidade do trem, o que indica que os assentos a serem disponibilizados para essa classe nesses trechos não podem ser zero. Por outro lado, quando $BNA = 0$, os trechos menores devem zerar a classe correspondente com ($0 \leq Y \leq 0$), ou seja, não se deve disponibilizar assentos com essa classe (controlado pela restrição \ref{eq: m1_autho_igualar_trecho_maior}). Deve-se esclarecer que as classe de controle dos trechos contidos, apenas imitam o comportamento da classe não adjacente correspondente, e não os valores que esta assume.
 
 As restrições de \ref{eq: m1_ini_assig} e \ref{eq: m1_ini_disponi} são usadas para inicializar a restrição \ref{eq: m1_disponi} quando \(i = 1\). E as restrições de \ref{eq: m1_dom_assig} a \ref{eq: m1_dom_bin_nadja} representam o domínio das variáveis.
 

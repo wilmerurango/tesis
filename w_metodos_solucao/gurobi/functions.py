@@ -1,13 +1,15 @@
 # import sys
 # import io
-# import time
+import time
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import networkx as nx
 
 from gurobipy import *
 from itertools import product, combinations
 from matplotlib.colors import LinearSegmentedColormap
+# from collections import defaultdict
 
 
 def behav_demand(fila, df):
@@ -41,11 +43,11 @@ def clean_data(demanda, preco):
 
     periodo = sorted(demanda['DBD'].unique().tolist(), reverse=True)    
 
-    # # [start] converting demand into behavioural
-    # demanda["DemandaComport"] = demanda.apply(lambda fila: clases[fila["Vagon"]][clases[fila["Vagon"]].index(fila["Class"]):][::-1] , axis=1)
-    # demanda["DemPotencialTot"] = demanda.apply(behav_demand, axis=1, df=demanda)
-    # demanda.columns = ['Origin', 'Destination', 'Vagon', 'Class', 'DBD', "Bookings1", 'PL', 'Bookings']
-    # # [end] converting demand into behavioural
+    # [start] converting demand into behavioural
+    demanda["DemandaComport"] = demanda.apply(lambda fila: clases[fila["Vagon"]][clases[fila["Vagon"]].index(fila["Class"]):][::-1] , axis=1)
+    demanda["DemPotencialTot"] = demanda.apply(behav_demand, axis=1, df=demanda)
+    demanda.columns = ['Origin', 'Destination', 'Vagon', 'Class', 'DBD', "Bookings1", 'PL', 'Bookings']
+    # [end] converting demand into behavioural
 
     # sort data revenue
     preco = preco.sort_values(by=['Origin', 'Destination', 'Vagon', 'Revenue'], ascending=[True, True, True, False])
@@ -74,6 +76,74 @@ def read_data(path_dem:str, path_preco:str, path_rota:str):
     return demanda, preco, rota1
 
 
+# def generar_rutas(origen, destino, nodos):
+#     rutas = []
+#     idx_origen = nodos.index(origen)
+#     idx_destino = nodos.index(destino)
+
+#     # Iniciar la búsqueda de rutas desde el nodo origen
+#     def buscar_rutas(ruta_actual, nodo_actual):
+#         if nodo_actual == destino:
+#             rutas.append(ruta_actual.copy())
+#             return
+
+#         # Filtrar nodos válidos que son mayores y están en el rango
+#         for siguiente in nodos[idx_origen:idx_destino + 1]:
+#             if nodos.index(siguiente) > nodos.index(nodo_actual):  # Solo considerar nodos mayores
+#                 ruta_actual.append((nodo_actual, siguiente))
+#                 buscar_rutas(ruta_actual, siguiente)
+#                 ruta_actual.pop()  # Retroceder para probar otras combinaciones
+
+#     # Comenzar la búsqueda
+#     buscar_rutas([], origen)
+
+#     return rutas
+
+
+# def rotasCombi(BR,stations, OD):
+#     CR = {}
+#     for o,d in BR.keys():
+#         rotas_ = generar_rutas(o,d, stations)
+
+#         pos = []
+#         for i in range(len(rotas_)):
+
+#             numOD = len(rotas_[i])
+#             cont = 0
+#             for ii,jj in rotas_[i]:
+#                 if (ii,jj) in OD:
+#                     cont += 1
+
+#             if cont != numOD or numOD == 1:
+#                 pos.append(rotas_[i])
+
+#         for w in pos:
+#             rotas_.remove(w)
+
+#         CR[(o,d)] = rotas_
+
+#     return CR
+
+
+
+def find_all_paths_with_tuples(graph_edges, start, end):
+
+    # Crear el grafo a partir de las aristas
+    G = nx.DiGraph()
+    G.add_edges_from(graph_edges)
+    
+    # Encontrar todas las rutas posibles
+    all_paths = list(nx.all_simple_paths(G, source=start, target=end))
+    
+    # Convertir cada ruta en una lista de tuplas (origen, destino)
+    all_paths_with_tuples = []
+    for path in all_paths:
+        path_tuples = [(path[i], path[i+1]) for i in range(len(path) - 1)]
+        all_paths_with_tuples.append(path_tuples)
+    
+    return all_paths_with_tuples
+
+
 def create_sets(demanda, preco_, rota1, perio=0):
 
     if perio != 0:
@@ -90,6 +160,7 @@ def create_sets(demanda, preco_, rota1, perio=0):
     I = [i for i in rota if i in I]
     I2 = [0] + I# tambem se toma para el para tudo da restriccion de fluxo
     J = [i for i in rota if i in J]
+    stations = [i for i in rota if i in stations]
     n = len(rota)-1
 
     # listas de trechos contenidos dentro de otros trechos
@@ -97,15 +168,26 @@ def create_sets(demanda, preco_, rota1, perio=0):
     for i,j in NAD:
         listTemp = list(combinations(rota1[rota1.index(i):rota1.index(j)+1], 2))
         listTemp =  {(ii,jj) for ii,jj in listTemp if (ii,jj) in OD and (ii, jj) != (i,j)} #rota1.index(jj) == rota1.index(ii)+1 and 
-        BR[(i,j)] = listTemp
+        if len(listTemp) != 0:
+            BR[(i,j)] = listTemp
+
+    start_time = time.time()
+    
+    CR = {}
+    # for l,m in BR.keys():
+    #     route_ = find_all_paths_with_tuples(BR[l,m], l, m)
+    #     CR[(l,m)] = route_
+    end_time = time.time()
+    tempo = end_time - start_time
+    print("demoro: ",tempo)
 
     #indices
     index = [(i,j,v,k,t) for i,j,v,k,t in  indexCombiDem if (i,j) in BR.keys()]
     
-    return I, I2, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, index, indexCombiDem, indexCombiDem0, demanda
+    return I, I2, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda
 
 
-def create_model(I, rota, VK, NAD, BR, P, Q, d, index, indexCombiDem, indexCombiDem0, demanda, dd):
+def create_model(I, J, rota, VK, NAD, BR, CR, P, Q, d, index, indexCombiDem, indexCombiDem0, demanda, dd):
 
     model = Model("Modelo 1.1.1")
 
@@ -113,7 +195,9 @@ def create_model(I, rota, VK, NAD, BR, P, Q, d, index, indexCombiDem, indexCombi
     X = model.addVars(indexCombiDem0, vtype=GRB.INTEGER , name="X")
     Y = model.addVars(indexCombiDem, vtype=GRB.INTEGER , name="Y")
     A = model.addVars(rota, vtype=GRB.INTEGER , name="A")
-    BNA = model.addVars(index, vtype=GRB.BINARY , name="BNA")
+    BNA = model.addVars(indexCombiDem, vtype=GRB.BINARY , name="BNA")
+    BX = model.addVars(indexCombiDem, vtype=GRB.BINARY , name="BX")
+    BY = model.addVars(indexCombiDem, vtype=GRB.BINARY , name="BY")
 
 
     # funcion objetivo
@@ -146,34 +230,86 @@ def create_model(I, rota, VK, NAD, BR, P, Q, d, index, indexCombiDem, indexCombi
         )
 
 
+    # [start] restricciones Skiplagging
+    df = demanda.copy()
+    newIndex = df[['Origin', 'Destination', 'Vagon', 'DBD']]
+    newIndex = newIndex.drop_duplicates()
+    newIndex = [tuple(x) for x in newIndex[['Origin','Destination','Vagon','DBD']].to_numpy()]
+    subrota = rota + [w for w in J if w not in rota]
+
+    for i,j,v,t in newIndex:
+        VK_ = demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v) & (demanda["DBD"]==t)]["Class"].to_list()
+
+        for ii,jj,vv,tt in newIndex:
+            if i == ii and v == vv and t == tt and (subrota.index(jj) > subrota.index(j)): 
+                VK2_ = demanda.loc[(demanda["Origin"]==ii) & (demanda["Destination"]==jj) & (demanda["Vagon"]==vv) & (demanda["DBD"]==tt)]["Class"].to_list()
+
+                model.addConstr(
+                    quicksum(BY[i,j,v,k_,t]*P[i,j,v,k_] for k_ in VK_) <= quicksum(BY[ii,jj,vv,k_,t]*P[ii,jj,vv,k_] for k_ in VK2_),
+                    name = f"Skiplagging3_({i},{j},{v},{t})"
+                )
+
+        # if (i,j) in NAD:
+        #     for route in CR[i,j]:
+        #         model.addConstr(
+        #             quicksum(BY[i,j,v,k_,t]*P[i,j,v,k_] for k_ in VK_) <= quicksum(BY[ii,jj,v,k_,t]*P[ii,jj,v,k_] for ii, jj in route for k_ in VK_ if (ii,jj,v,k_,t) in indexCombiDem),
+        #             name = f"Capital_({i},{j},{v},{t})"
+        #         )
+                
+    # [end] restricciones Skiplagging
+
     for i,j,v,k,t in indexCombiDem:
 
         VK_ = demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v) & (demanda["DBD"]==t)]["Class"].to_list()
-    
+        T_ = demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v) & (demanda["Class"]==k)]["DBD"].to_list()
+        T_ = sorted(T_, reverse=True)
+      
+
+        pos_t = T_.index(t)
         pos_k = VK_.index(k)
         last_k = VK_[-1]
 
-        # restricao .5
+
+        # # restricao .5
+        # model.addConstr(
+        #     X[i,j,v,k,t] <= d[i,j,v,k,t],
+        #     name = f"Assig_({i},{j},{v},{k},{t})"
+        # )
+
+        # restricao .demanda comportamental
+        if pos_k >= 1:
+            model.addConstr(
+                quicksum(X[i,j,v,kk,t] for kk in VK_[0:pos_k+1]) <= d[i,j,v,k,t],
+                name = f"DemComp({i},{j},{v},{k},{t})"
+            )
+
+        # [start] restriccion  fullfillments over periods
         model.addConstr(
-            X[i,j,v,k,t] <= d[i,j,v,k,t],
-            name = f"Assig_({i},{j},{v},{k},{t})"
+            X[i,j,v,k,t] <= BX[i,j,v,k,t]*d[i,j,v,k,t],
+            name = f"FullPeriod_({i},{j},{v},{k},{t})"
         )
 
-        # # restricao .demanda comportamental
-        # if pos_k >= 1:
-        #     model.addConstr(
-        #         quicksum(X[i,j,v,kk,t] for kk in VK_[0:pos_k+1]) <= d[i,j,v,k,t],
-        #         name = f"DemComp({i},{j},{v},{k},{t})"
-        #     )
+        model.addConstr(
+            BX[i,j,v,k,t] <= X[i,j,v,k,t],
+            name = f"FullPeriod2_({i},{j},{v},{k},{t})"
+        )
+
+        if t != T_[0]:
+            model.addConstr(
+                # BX[i,j,v,k,t] <= quicksum(BX[i,j,v,k,t_] for t_ in T_[0:pos_t]),
+                BX[i,j,v,k,t] <= BX[i,j,v,k,T_[pos_t-1]],
+                name = f"BinX({i},{j},{v},{k},{t})"
+            )
+        # [end] restriccion  fullfillments over periods
 
 
         if k != last_k:
 
-            # # restricao .5 [1ra parte] modifcacion de la demanda con el porcentaje
-            # model.addConstr(
-            #     X[i,j,v,k,t] <= d[i,j,v,k,t]*(dd[i,j,v,k,t] / d[i,j,v,last_k,t]),
-            #     name = f"Assig1_({i},{j},{v},{k},{t})"
-            # )
+            # restricao .5 [1ra parte] modifcacion de la demanda con el porcentaje
+            model.addConstr(
+                X[i,j,v,k,t] <= d[i,j,v,k,t]*(dd[i,j,v,k,t] / d[i,j,v,last_k,t]),
+                name = f"Assig1_({i},{j},{v},{k},{t})"
+            )
 
             # restricao .4
             model.addConstr(
@@ -192,6 +328,18 @@ def create_model(I, rota, VK, NAD, BR, P, Q, d, index, indexCombiDem, indexCombi
                 Y[i,j,v,k,t] >=  X[i,j,v,k,t] + Y[i,j,v,VK_[pos_k+1],t],
                 name=f"Autho_({i},{j},{v},{k},{t})"
             )
+
+            # [start] restricciones Skiplagging
+            model.addConstr(
+                BY[i,j,v,k,t] >= BNA[i,j,v,k,t] - BNA[i,j,v,VK_[pos_k+1],t],
+                name=f"Skiplagging_({i},{j},{v},{k},{t})"
+            )
+
+            model.addConstr(
+                BY[i,j,v,k,t] <= BNA[i,j,v,k,t] - BNA[i,j,v,VK_[pos_k+1],t],
+                name=f"Skiplagging2_({i},{j},{v},{k},{t})"
+            )
+            # [end] restricciones Skiplagging
         else:
 
             # restricao .7
@@ -200,42 +348,53 @@ def create_model(I, rota, VK, NAD, BR, P, Q, d, index, indexCombiDem, indexCombi
                 name=f"Autho_({i},{j},{v},{k},{t})"
             )
 
-            # # restricao .5 [2da parte] modifcacion de la demanda con el porcentaje
-            # model.addConstr(
-            #     X[i,j,v,k,t] <= dd[i,j,v,k,t] + (d[i,j,v,last_k,t] - quicksum( d[i,j,v,kk,t]*(dd[i,j,v,kk,t] / d[i,j,v,last_k,t]) for kk in VK_)),
-            #     name = f"Assig2_({i},{j},{v},{k},{t})"
-            # )
-
-        #[start]Restricciones de capitalismo
-        if (i,j) in NAD:
-            # aqui el (i,j)=(o,d)
-
-            # restricao .9.1
+            # restricao .5 [2da parte] modifcacion de la demanda con el porcentaje
             model.addConstr(
-                BNA[i,j,v,k,t] <= Y[i,j,v,k,t],
-                # name = f"activ_bin_autho_low_({o},{d_},{v},{k},{t})"
-            )
-            
-            # restricao .9.2
-            model.addConstr(
-                Y[i,j,v,k,t] <= Q*BNA[i,j,v,k,t],
-                # name = f"activ_bin_autho_top_({o},{d_},{v},{k},{t})"
+                X[i,j,v,k,t] <= dd[i,j,v,k,t] + (d[i,j,v,last_k,t] - quicksum( d[i,j,v,kk,t]*(dd[i,j,v,kk,t] / d[i,j,v,last_k,t]) for kk in VK_)),
+                name = f"Assig2_({i},{j},{v},{k},{t})"
             )
 
-            for ii,jj,vv,kk,tt in indexCombiDem:
-                if (ii,jj) in BR[(i,j)] and v == vv and k == kk and t == tt:
-                    # restricao .10.1
-                    model.addConstr(
-                        Y[ii,jj,vv,kk,tt] <= Q*BNA[i,j,vv,kk,tt],
-                        # name = f"pru1({o},{d_},{i},{j},{v},{k},{t})"
-                    )
+            # [start] restricciones Skiplagging
+            model.addConstr(
+                BY[i,j,v,k,t] == BNA[i,j,v,k,t]
+            )
+            # [end] restricciones Skiplagging
 
-                    # restricao .10.2
-                    model.addConstr(
-                        BNA[i,j,vv,kk,tt] <= Y[ii,jj,vv,kk,tt],
-                        # name = f"pru2({o},{d_},{i},{j},{v},{k},{t})"
-                    )
+
+        #[start] Restricciones de capitalismo 
+
+        # las restricciones 9.1 y 9.2 antes se hacian solo para los trechos no adjacentes, mas ahora se haran para
+        # todos los trechos, esto para agregar las restricciones de Skiplagging.
+
+        # restricao .9.1
+        model.addConstr(
+            BNA[i,j,v,k,t] <= Y[i,j,v,k,t],
+            # name = f"activ_bin_autho_low_({o},{d_},{v},{k},{t})"
+        )
+        
+        # restricao .9.2
+        model.addConstr(
+            Y[i,j,v,k,t] <= Q*BNA[i,j,v,k,t],
+            # name = f"activ_bin_autho_top_({o},{d_},{v},{k},{t})"
+            )
+
+        # if (i,j) in NAD:
+        #     # aqui el (i,j)=(o,d)
+        #     for ii,jj,vv,kk,tt in indexCombiDem:
+        #         if (ii,jj) in BR[(i,j)] and v == vv and k == kk and t == tt:
+        #             # restricao .10.1
+        #             model.addConstr(
+        #                 Y[ii,jj,vv,kk,tt] <= Q*BNA[i,j,vv,kk,tt],
+        #                 # name = f"pru1({o},{d_},{i},{j},{v},{k},{t})"
+        #             )
+
+        #             # restricao .10.2
+        #             model.addConstr(
+        #                 BNA[i,j,vv,kk,tt] <= Y[ii,jj,vv,kk,tt],
+        #                 # name = f"pru2({o},{d_},{i},{j},{v},{k},{t})"
+        #             )
         #[end]Restricciones de capitalismo
+
 
     for i,j,v,k,t in indexCombiDem0:
         # restricao .11
@@ -250,25 +409,22 @@ def create_model(I, rota, VK, NAD, BR, P, Q, d, index, indexCombiDem, indexCombi
         A[0] == Q,
         name = f"Cap_0")
 
-    # Optimizar o modelo
-    model.optimize()
-
-    return model, A, X, Y, BNA
+    return model, A, X, Y, BNA, BX, BY
 
 
-def save_solution(model, BR, P, d, X, Y, BNA, perio, instance, indexCombiDem):
+def save_solution(model, BR, BX, BY, P, d, X, Y, BNA, perio, instance, indexCombiDem):
     print('Valor da função objetivo: ', str(model.ObjVal) )
     print('')
     lista = []
     for i,j, v, k, t in indexCombiDem:
-        if (i,j) in BR.keys():
-            lista.append([i+'-'+j,i,j,v, k, t, P[i,j,v,k], d[i,j,v,k,t], X[i,j,v,k,t].X, Y[i,j,v,k,t].X , BNA[i,j,v,k,t].X ])
-        else:
-            lista.append([i+'-'+j,i,j,v, k, t, P[i,j,v,k], d[i,j,v,k,t], X[i,j,v,k,t].X, Y[i,j,v,k,t].X , -1 ])
+        # if (i,j) in BR.keys():
+        lista.append([i+'-'+j,i,j,v, k, t, P[i,j,v,k], d[i,j,v,k,t], X[i,j,v,k,t].X, Y[i,j,v,k,t].X , BNA[i,j,v,k,t].X, BX[i,j,v,k,t].X, BY[i,j,v,k,t].X])
+        # else:
+        #     lista.append([i+'-'+j,i,j,v, k, t, P[i,j,v,k], d[i,j,v,k,t], X[i,j,v,k,t].X, Y[i,j,v,k,t].X , -1, BX[i,j,v,k,t].X ])
 
-    a = pd.DataFrame(lista, columns=['o-d',"Origen","Destino",'Vagon','classe','Periodo','Preco','Demanda','Assignments','Authorizations','Binaria'])
+    a = pd.DataFrame(lista, columns=['o-d',"Origen","Destino",'Vagon','classe','Periodo','Preco','Demanda','Assignments','Authorizations','BNA', 'BX', 'BY'])
     
-    # a.to_excel('C:/Users/LAB_C/Documents/wilmer/tesis/ResultadosNew/RestrSemDemanComp/modelo_'+instance+'_t'+str(perio)+'.xlsx', index=False)
+    a.to_excel('/home/wilmer/Documentos/Codes/tesis/w_metodos_solucao/gurobi/modelo_'+instance+'_t'+str(perio)+'.xlsx', index=False)
 
     return a
 
