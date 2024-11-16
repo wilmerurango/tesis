@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.7.22)  23 OCT 2024 11:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.7.22)  16 NOV 2024 16:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1146,34 +1146,19 @@ Package pdftex.def Info: img/repre_ini1.png  used on input line 20.
 (pdftex.def)             Requested size: 298.46222pt x 93.76627pt.
  [5
 
-]
-<img/fig2.png, id=69, 909.24693pt x 325.215pt>
+] [6 <./img/repre_ini1.png>]
+<img/fig2.png, id=78, 909.24693pt x 325.215pt>
 File: img/fig2.png Graphic file (type png)
 <use img/fig2.png>
-Package pdftex.def Info: img/fig2.png  used on input line 53.
+Package pdftex.def Info: img/fig2.png  used on input line 55.
 (pdftex.def)             Requested size: 363.69234pt x 130.0837pt.
- [6 <./img/repre_ini1.png>] [7 <./img/fig2.png>]
+ [7 <./img/fig2.png>]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 73.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 75.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 73.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 75.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 73.
-
-Underfull \hbox (badness 10000) in paragraph at lines 88--89
-[]|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 OD; v \OMS/pzccm/m/n/10.95 2
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 89--89
-[]|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 OD; v \OMS/pzccm/m/n/10.95 2
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 91--92
-[]|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 OD; v \OMS/pzccm/m/n/10.95 2
- []
-
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 75.
 
 Underfull \hbox (badness 10000) in paragraph at lines 92--93
 []|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 OD; v \OMS/pzccm/m/n/10.95 2
@@ -1181,78 +1166,135 @@ Underfull \hbox (badness 10000) in paragraph at lines 92--93
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 93--93
-[]|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 NAD; v \OMS/pzccm/m/n/10.95 2
+[]|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 OD; v \OMS/pzccm/m/n/10.95 2
  []
 
-[8]
+
+Underfull \hbox (badness 10000) in paragraph at lines 134--135
+[]|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 OD; v \OMS/pzccm/m/n/10.95 2
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 135--136
+[]|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 OD; v \OMS/pzccm/m/n/10.95 2
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 136--137
+[]|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 OD; v \OMS/pzccm/m/n/10.95 2
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 137--138
+[]|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 OD; v \OMS/pzccm/m/n/10.95 2
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 138--139
+[]|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 OD; v \OMS/pzccm/m/n/10.95 2
+ []
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [9]
-<img/exemplo1.png, id=123, 389.455pt x 423.5825pt>
+ [8]
+Underfull \vbox (badness 1616) has occurred while \output is active []
+
+ [9] [10]
+<img/exemplo1.png, id=134, 389.455pt x 423.5825pt>
 File: img/exemplo1.png Graphic file (type png)
 <use img/exemplo1.png>
-Package pdftex.def Info: img/exemplo1.png  used on input line 149.
+Package pdftex.def Info: img/exemplo1.png  used on input line 202.
 (pdftex.def)             Requested size: 155.77924pt x 169.43pt.
- [10 <./img/exemplo1.png>]
+ [11 <./img/exemplo1.png>]
 File: img/exemplo1.png Graphic file (type png)
 <use img/exemplo1.png>
-Package pdftex.def Info: img/exemplo1.png  used on input line 165.
+Package pdftex.def Info: img/exemplo1.png  used on input line 218.
 (pdftex.def)             Requested size: 164.31754pt x 178.71135pt.
-<img/exemplo2.png, id=136, 389.455pt x 423.5825pt>
+<img/exemplo2.png, id=147, 389.455pt x 423.5825pt>
 File: img/exemplo2.png Graphic file (type png)
 <use img/exemplo2.png>
-Package pdftex.def Info: img/exemplo2.png  used on input line 170.
+Package pdftex.def Info: img/exemplo2.png  used on input line 223.
 (pdftex.def)             Requested size: 164.31754pt x 178.71135pt.
- [11 <./img/exemplo2.png>]
-<img/tab_trecho_grande.png, id=156, 1613.02625pt x 924.45375pt>
+ [12 <./img/exemplo2.png>]
+<img/tab_trecho_grande.png, id=167, 1686.3pt x 1014.79124pt>
 File: img/tab_trecho_grande.png Graphic file (type png)
 <use img/tab_trecho_grande.png>
-Package pdftex.def Info: img/tab_trecho_grande.png  used on input line 188.
-(pdftex.def)             Requested size: 241.9435pt x 138.66208pt.
+Package pdftex.def Info: img/tab_trecho_grande.png  used on input line 241.
+(pdftex.def)             Requested size: 252.93408pt x 152.21211pt.
+ [13 <./img/tab_trecho_grande.png>]
+<img/assig_t1.png, id=184, 414.54875pt x 220.825pt>
+File: img/assig_t1.png Graphic file (type png)
+<use img/assig_t1.png>
+Package pdftex.def Info: img/assig_t1.png  used on input line 259.
+(pdftex.def)             Requested size: 187.78532pt x 100.03075pt.
+<img/bx_t1.png, id=185, 414.54875pt x 220.825pt>
+File: img/bx_t1.png Graphic file (type png)
+<use img/bx_t1.png>
+Package pdftex.def Info: img/bx_t1.png  used on input line 264.
+(pdftex.def)             Requested size: 187.78532pt x 100.03075pt.
+<img/assig_t0.png, id=186, 414.54875pt x 220.825pt>
+File: img/assig_t0.png Graphic file (type png)
+<use img/assig_t0.png>
+Package pdftex.def Info: img/assig_t0.png  used on input line 269.
+(pdftex.def)             Requested size: 187.78532pt x 100.03075pt.
+<img/bx_to.png, id=187, 414.54875pt x 220.825pt>
+File: img/bx_to.png Graphic file (type png)
+<use img/bx_to.png>
+Package pdftex.def Info: img/bx_to.png  used on input line 274.
+(pdftex.def)             Requested size: 187.78532pt x 100.03075pt.
+ [14 <./img/assig_t1.png> <./img/bx_t1.png> <./img/assig_t0.png> <./img/bx_to.png>]
+<img/BL_1.png, id=218, 1223.57124pt x 1016.79875pt>
+File: img/BL_1.png Graphic file (type png)
+<use img/BL_1.png>
+Package pdftex.def Info: img/BL_1.png  used on input line 295.
+(pdftex.def)             Requested size: 164.31754pt x 136.54822pt.
+<img/BL_2.png, id=219, 1223.57124pt x 1021.8175pt>
+File: img/BL_2.png Graphic file (type png)
+<use img/BL_2.png>
+Package pdftex.def Info: img/BL_2.png  used on input line 300.
+(pdftex.def)             Requested size: 164.31754pt x 137.22218pt.
+<img/fulfill.png, id=226, 1978.39125pt x 1053.9375pt>
+File: img/fulfill.png Graphic file (type png)
+<use img/fulfill.png>
+Package pdftex.def Info: img/fulfill.png  used on input line 313.
+(pdftex.def)             Requested size: 395.67125pt x 210.78377pt.
+ [15 <./img/BL_1.png> <./img/BL_2.png>]
+Underfull \vbox (badness 1997) has occurred while \output is active []
 
-Underfull \vbox (badness 3323) has occurred while \output is active []
-
- [12 <./img/tab_trecho_grande.png>] [13]
-<img/fig3.png, id=178, 727.21687pt x 402.45357pt>
-File: img/fig3.png Graphic file (type png)
-<use img/fig3.png>
-Package pdftex.def Info: img/fig3.png  used on input line 231.
-(pdftex.def)             Requested size: 290.88159pt x 160.97856pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 255--256
-[]|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 OD; v \OMS/pzccm/m/n/10.95 2
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 256--256
-[]|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 OD; v \OMS/pzccm/m/n/10.95 2
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 258--259
-[]|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 OD; v \OMS/pzccm/m/n/10.95 2
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 259--260
-[]|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 OD; v \OMS/pzccm/m/n/10.95 2
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 260--261
-[]|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 NAD; v \OMS/pzccm/m/n/10.95 2
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [14 <./img/fig3.png>]
-Overfull \vbox (1.93489pt too high) has occurred while \output is active []
-
- [15]) [16] [17
+ [16 <./img/fulfill.png>]
+<img/dem_indepen.png, id=254, 775.89874pt x 301.125pt>
+File: img/dem_indepen.png Graphic file (type png)
+<use img/dem_indepen.png>
+Package pdftex.def Info: img/dem_indepen.png  used on input line 344.
+(pdftex.def)             Requested size: 187.78532pt x 72.87798pt.
+<img/dem_compo.png, id=255, 775.89874pt x 301.125pt>
+File: img/dem_compo.png Graphic file (type png)
+<use img/dem_compo.png>
+Package pdftex.def Info: img/dem_compo.png  used on input line 349.
+(pdftex.def)             Requested size: 187.78532pt x 72.87798pt.
+ [17 <./img/dem_indepen.png> <./img/dem_compo.png>]
+<img/dem_compo_c1.png, id=265, 775.89874pt x 359.3425pt>
+File: img/dem_compo_c1.png Graphic file (type png)
+<use img/dem_compo_c1.png>
+Package pdftex.def Info: img/dem_compo_c1.png  used on input line 369.
+(pdftex.def)             Requested size: 186.2195pt x 86.24396pt.
+<img/dem_compo_c2.png, id=267, 771.88374pt x 344.28625pt>
+File: img/dem_compo_c2.png Graphic file (type png)
+<use img/dem_compo_c2.png>
+Package pdftex.def Info: img/dem_compo_c2.png  used on input line 381.
+(pdftex.def)             Requested size: 185.25587pt x 82.63039pt.
+<img/dem_compo_c3.png, id=269, 775.89874pt x 325.215pt>
+File: img/dem_compo_c3.png Graphic file (type png)
+<use img/dem_compo_c3.png>
+Package pdftex.def Info: img/dem_compo_c3.png  used on input line 393.
+(pdftex.def)             Requested size: 186.2195pt x 78.05319pt.
+<img/dem_compo_poten.png, id=271, 776.9025pt x 301.125pt>
+File: img/dem_compo_poten.png Graphic file (type png)
+<use img/dem_compo_poten.png>
+Package pdftex.def Info: img/dem_compo_poten.png  used on input line 404.
+(pdftex.def)             Requested size: 186.4604pt x 72.27147pt.
+ [18 <./img/dem_compo_c1.png> <./img/dem_compo_c2.png>]) [19 <./img/dem_compo_c3.png> <./img/dem_compo_poten.png>] [20
 
 ] (./main.aux)
  ***********
@@ -1260,24 +1302,24 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 438D2975A1FFC2E1F7B452FC41578386;885.
+(rerunfilecheck)             Checksum: 329F74531F71953AFD9D4F29C7747D7A;1013.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 33849 strings out of 474222
- 630670 string characters out of 5748733
- 1953975 words of memory out of 5000000
- 55449 multiletter control sequences out of 15000+600000
- 635380 words of font info for 143 fonts, out of 8000000 for 9000
+ 33988 strings out of 474222
+ 633414 string characters out of 5748733
+ 1956975 words of memory out of 5000000
+ 55569 multiletter control sequences out of 15000+600000
+ 647208 words of font info for 162 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,13n,87p,1500b,1626s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,14n,87p,1500b,1626s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (17 pages, 386857 bytes).
+Output written on main.pdf (20 pages, 731657 bytes).
 PDF statistics:
- 282 PDF objects out of 1000 (max. 8388607)
- 228 compressed objects within 3 object streams
- 65 named destinations out of 1000 (max. 500000)
- 88 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 374 PDF objects out of 1000 (max. 8388607)
+ 289 compressed objects within 3 object streams
+ 73 named destinations out of 1000 (max. 500000)
+ 148 words of extra memory for PDF output out of 10000 (max. 10000000)
 

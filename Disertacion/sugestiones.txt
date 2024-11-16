@@ -15,4 +15,66 @@ suponga que tiene un trecho nao adjancente E1-E3, y que ese trecho contiene otro
 
 una vez calculados los valores para BNA de los trechos no adjacentes, la restriccion xxx hara que las clases de control de todos  los trechos contenidos en cada trecho no adjacente sea cero o minimo 1. asi, donde la clase de control del trecho no adjacente tome un valor de BNA = 0 entonces dicha clase sera cero para los trechos contenidos, por otro lado si la clase de control del trecho nao adjacente toma el valor de BNA = 1, entonces dicha clase tomara minimo el valor de 1 para todos los trechos contenidos. 
 
-ejemplo simplificado  del funcionamiento de la restriccion xx
+
+
+
+hasta ahora se hablo de una demanda independiente para el modelo, pero ahora se trabajará con una demanda comportamenetal. La demanda comportamental esta más cerca de la realidad que la demanda independiente, vease el siguiente ejemplo:
+
+supongamos para este caso que se tiene un trecho E1-E2 y tres clases (c1, c2, c3), onde o preco de c1>c2>c3. Cada clase tendrá una demanda de 10, 20 y 30 respectivamente. 
+
+para interpretar la demanda independinete podemos decir (segun la figura a) que: se tienen 10 posibles personas dispuestas a comprar boletos a un precio c1, 20 personas a comprar a un precio c2 y 30 perosnas a comprar a un precio de c3. Sin embargo, si las 10 personas dispuestas a pagar c1 hallan un mejor mejor valor al momento de hacer la compra (por ejemplo c3), estas personas preferirian no comprar aun cuando encuentren un precio mas barato. situacion que en la realidad no tendria sentido.
+
+por otro lado, tenemos la demanda comportamental, que es representada con una lista de preferencia tal como se ve en la figura, esta lista significa que, por ejemplo, 10 persona estan dispuesta a comprar hasta un precio con valor c1, 20 personas estan dispuestas a comprar hasta un valor de c2 y 30 perosnas estan dispuestas a comprar hasta un valor de c3.
+el funcionanmiento seria el sigueinte, imagine que las 10 perosnas dispuestas a comprar con valor de c1 van a intentar comprar primero a un valor mas barato, en este caso c3, si c3 no estubiera disponible, buscarian asientos con valor c2, si c2 no estuviera disponible, subirian en la lista y bucarian boletos con valor de c1, si estos no estubieran disponible entonces no compraran. Note que ese compartamiento es el que comunmente se usa en la realidad.
+
+ahora veamos como el modelo leeria ese nuevo comportamento. Para eso calculemos la nueva demanda potencial:
+para c1 veamos la lista y notemos quien esta dispuesto a pagar por ese valor:
+segun la figura solo 10 posibles pasajeros estan dspuestos a pgar ese valor
+
+ahora veamos quien esta dispuesto a pagar a un valor por un boleto de la clase c2:
+en este caso 30 posibles personas estarian dispuestas a pagar a este valor. Note que de esta nueva demanda, 10 personas correspondinetes a la demanda de c1, tambien estarian dispuestas a comprar al valor de la clase c2.
+
+por tultimo para la clase mas barata c3, se tiene lo siguiente:
+Note que en este caso 60 personas estarian dispuestas a pagar un boleto de clase c3, osea toda la demanda de ruta 1-2 compraria al valor mas barato si este estuvuera disponible
+
+es asi que la demanda potencial comportamental para el modelo seria:
+
+sin embargo hay que recordar que la demanda potenial inicial era de 60 personas, mas hasta este punto, la demanda podria ser mayor, puesto que, la demanda de cada clase comercial ahora es el acumulo de las demandas de las clases mas caras. Esta situacion es necesario controlarla para no crear una demanda inexistente, para eso se tendran en cuenta las sigueintes restricciones realcionando en este caso las variables de desicion de aseguraminetos
+
+
+note que las restricciones de xx hasta xxx son restricciones conocidas que limitan los valores que puede tomar los aseguramientos, mientras que las restricciones y y yy son las que nos ayudaran a controlar que no sobrepasemos la demanda potencial total inicial, que para el ejemplo de la figura 2.6 era de 60.
+
+
+el problema de trasnporte ferroviario tiene una restriccion importante que dice que una clase puede ser asegurada siempre y cuando esa misma clase ya fue asegurada en periodos anteriores. Para eso se definen las restricciones 2.11 y 2.12 , en donde la primera busca asignar un valor de 1 a la variable BX cuando X toma un valor distinto de cero , y asigna 0 en caso contrario; esta restriccion tiene la misma estructura y raciocinio que la restriccion 2.8.
+ahora, la restriccion 2.12 garantiza que, cierta varible binaria BX tomará el valor de 1 si y solo si en el periodo anterior tomo el valor de 1 tambien, en caso contrario queda libre para tomar qualquier valor, 0 o 1. Esto significa que solo se puede asegurar cierta clase si esa misma clase se aseguró en el periodo anterior, veamos u ejemplo:
+
+suponga, que t = 0, es la fecha de partida del tren , osea entre mayor sea el valor de t mas lejos estara de la fecha de partida, por lo que t = 1 sera el periodo exactamente anterior a t=0.
+
+para cada trecho, vagon, y clases dados en la figura, suponga que:
+la figura "a" es una solucion factible que representa la cantidad de asientos asegurados para el periodo t=1; la figura "b", es la variable binaria BX, que muestra 1 siempre y cuando la cantidad de asientos asegurados sea distista de cero en t = 1, y muestra cero en caso contrario (controlado por la restriccion xx). las figuras c y d representan lo mismo que las figuras a y b solo que para el periodo t = 0.
+
+observe que las posiciones en la figura d tomarán el valor de cero siempre que en la figura b esa posicion sea cero tambien, esto significa que, si la clase del periodo anterior es cero entonces la del periodo actual tambien lo será. Note tambien, que cuando en la figura b el valor es 1, en la figura d el valor podrá ser 0 o 1, por ejemplo, para el techo 1-3 del vagon v1 y clase 2, note que en la figura b es 1 y en la figura d es cero, lo que significa que la clase 2 fue asegurada en el periodo anterior pero en el periodo actual no lo fue.
+
+
+
+DEMANDA INDEPENDIENTE
+para este modelo asumiremos una demanda independiente, lo que significa que cada cliente puede comprar un producto especifico independientemente de la oferta disponible a la hora de la compra. en otras palabras se podria decir que si un clinete esta dispuesto a pagar un valor, por ejemplo de 10 reales, por un asiento, este solo comprará el boleto por exactamente ese valor, aun si estubiera un precio mas bajo disponible. ahora si el no encuntre ese valor exacto preferira no comprar
+
+
+es un conjunto que contiene otros conjuntos, donde cada subconjunto es una posible ruta para ir desde el origen o hasta el destino d, donde o,d es no adyacente. Por ejemplo para la ruta E1-E4 de la figura xx. CR[E1,E4] = {{()}}
+
+
+
+la restriccion 2.13 y 2.14 cumplen la misma funcion de encontrar la ultima clase que fue disponibilizada para venta para cierto trecho, periodo y vagon. solo que la restricicon 2.14 es aplicada siempre que se analisa la clase mas barata, y en otro caso, se usa la restricion 2.13. Entonces estas dos ecuaciones asignan el valor de 1 a la variable BL_{ijvkt} siempre que la clase actual k sea la clase mas barata disponibilizada para la venta, en el trecho i,j vagon v y periodo t, en otro caso, asigna el valor de cero. Esta restriccion es necesaria para aplicar la restriccion 2.15 y 2.16.
+
+los periodos dentro del horizonte de reserva estan ordenados de forma descendente donde el menor valor es cero y representa la fecha de salida del tren.
+
+usemos el mismo ejemplo de la figura 25 usando solo el trecho e1-e3 y adicionamos la varible binaria BL. En la figura 2.7a  vemos como para la clase mas barata C6, BL = BY = 0 , ahora, para el resto de las clases se reliza un calculo en funcion de los valores de BY, por ejemplo, para la clase c1 sera el calculo es BY de c1 menos BY de la siguiente clase, osea BY de c2, esto seria igual a 1 - 1, note ademas que para la clase c4, haciendo el mismo calculo, este resulta en 1 tal como se ve en la figura 2.7b, y note que esa clase es la ultima clase que tiene asignado un valor diferente de cero en BY.
+
+dentro del problema se debe garantizar que para todos los trechos con igual estacion de origen, los trechos mas cortos disponibilizados para la venta, sean mas economicos que los trechos mas largos, esto con el fin de que los posibles pasajeros no compren un boleto en un trecho mayor y desiendan en estaciones anteriores. por ejemplo, si una persona quisiera ir de la estacion E1 a la estacion E2, pero nota que el precio de ir de la estacion E1 a la estacion E3 es mas barato, entonces, esa persona comprara ese boleto de E1 a E3 y desendera en la estacion E2. Esta situacion es controlada por la restriccion 2.15. 
+
+veamos un ejemplo mas claro, en la figura 2.8 se tienen tres estaciones, se asume un solo periodo y un solo vagon, ademasse tienen tres clases para cada trecho. note que BY y BL son las variables binarias explicadas anteriormente y P es precio de cada clase de control. para este caso la rstriccion 15 se puede aplicar para los trechos e1-e2 y e1-e3, entonces veamos como la suma producto del precio y la variable bl activan el precio de la clase mas barata (c3 con valor de 7) en e1-e2 y la suma producto de e1-e3 activan el precio de la clase c2 (con valor de 8), al finan se tendria que 7 tiene que ser menor o igual que 8, condicion que se cumple. note la importancia del valor de la variable BL que es la encargada de "habilitar solo los precios" de las clases mas baratas disponibilizadas para la venta.
+
+ademas de lo anterior tambien se debe garantizar que todas las posibles combinaciones de los precios mas baratos de los trechos contenidos dentro de los trechos no adyacentes, sean mayores o iguales que el precio de ese trecho no adyacente. esta situacion es controlada por la restriccion 2.16. 
+
+para dar un ejemplo analicemos de nuevo la figura 2.8 e identifiquenos los trechos no adyacentes y los trechos que estos contengan, entonces notemos que el trecho e1-e3 seria el unico trecho no adyacente y contiene a los trechos e1-e2 y e2-e3, por lo que debemos garantizar que la suma de las clases mas baratas disponibilizadas en e1-e2 y e2-e3 sean mayores o iguales que la clase mas barata disponibilizada en e1-e3. en terminos numericos tendriamos que $5 + $3 >= $8. por lo cual este ejemplo satisface nuestra restriccion.
