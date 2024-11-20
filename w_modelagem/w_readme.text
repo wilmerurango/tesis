@@ -1,0 +1,89 @@
+[DEMANDA COMPORTAMNETAL]
+El codigo donde se esta tratando la demanda comportamental es en el archivo clean_data_cor.py en la funcion clean_data (el inicio y el fin del codigo esta legendado)
+
+
+[FUNCIONES]
+
+- fill_data: fill_data funciona cuando en la instancia, ya sea de demanda o de precios, no se encuentran todas las combinicaiones posibles entre sus componentes (origen, destino, vagon, clase, periodo, revenue o booking). cuando eso ocurre lo que se hace es crear esas combinaciones faltantes y colocarles el valor de cero. Recuerda que se unen dos df, el primero tendra los valores existentes de la instancia y el segundo (que se pega debajo) tiene todas las combianciones faltantes con valor de cero.
+
+- behav_demand: Es una funcion que es aplicada a cada fila del df de la demanda, y lo que hace es transformar la demanda convensional (independiente) en una demanda comportamental (lista de preferencia).
+
+- clean_data: como su nombre lo indica limpia los datos de la instancia, esta se ayuda de la funcion fill_data y behav_demand, y lo que hace es tomar la instancia y retornar la mayoria de los parametros necesarios para ejecutar el modelo por ejemplo (conjunto de: origenes, destinos, origenes-destinos, estaciones, vagones, periodos, clases, diccionario de precios, dicionario de demanda)
+
+- read_data: solo toma la ruta de cada instancia y lee cada una de ellas.
+
+- create_sets: Esta funcion crea el modelo matematico en gurobi
+
+- save_solution: Esta funcion almacena en un excel los valores de las variables halladas por el modelo.
+
+
+
+
+
+
+
+
+# def generar_rutas(origen, destino, nodos):
+#     rutas = []
+#     idx_origen = nodos.index(origen)
+#     idx_destino = nodos.index(destino)
+
+#     # Iniciar la búsqueda de rutas desde el nodo origen
+#     def buscar_rutas(ruta_actual, nodo_actual):
+#         if nodo_actual == destino:
+#             rutas.append(ruta_actual.copy())
+#             return
+
+#         # Filtrar nodos válidos que son mayores y están en el rango
+#         for siguiente in nodos[idx_origen:idx_destino + 1]:
+#             if nodos.index(siguiente) > nodos.index(nodo_actual):  # Solo considerar nodos mayores
+#                 ruta_actual.append((nodo_actual, siguiente))
+#                 buscar_rutas(ruta_actual, siguiente)
+#                 ruta_actual.pop()  # Retroceder para probar otras combinaciones
+
+#     # Comenzar la búsqueda
+#     buscar_rutas([], origen)
+
+#     return rutas
+
+
+# def rotasCombi(BR,stations, OD):
+#     CR = {}
+#     for o,d in BR.keys():
+#         rotas_ = generar_rutas(o,d, stations)
+
+#         pos = []
+#         for i in range(len(rotas_)):
+
+#             numOD = len(rotas_[i])
+#             cont = 0
+#             for ii,jj in rotas_[i]:
+#                 if (ii,jj) in OD:
+#                     cont += 1
+
+#             if cont != numOD or numOD == 1:
+#                 pos.append(rotas_[i])
+
+#         for w in pos:
+#             rotas_.remove(w)
+
+#         CR[(o,d)] = rotas_
+
+#     return CR
+
+
+def find_all_paths_with_tuples(graph_edges, start, end):
+    # Criar o grafo a partir das arestas
+    G = nx.DiGraph()
+    G.add_edges_from(graph_edges)
+    
+    # Encontrar todas as rotas possíveis
+    all_paths = list(nx.all_simple_paths(G, source=start, target=end))
+    
+    # Converter cada rota numa lista de tuplas (origem, destino)
+    all_paths_with_tuples = []
+    for path in all_paths:
+        path_tuples = [(path[i], path[i+1]) for i in range(len(path) - 1)]
+        all_paths_with_tuples.append(path_tuples)
+    
+    return all_paths_with_tuples
