@@ -2298,8 +2298,7 @@ class PercentBehavioralModel_Fulfillments_Skiplagging(PercentBehavioralModel):
 
 # FUNÇÕES ADICIONAIS
 def save_solution(model, BX, BL, P, d, X, Y, A, BY, perio, nameModel, indexCombiDem, path):
-    print('Valor da função objetivo: ', str(model.ObjVal) )
-    print('')
+
     lista = []
     for i, j, v, k, t in indexCombiDem:
         # if (i,j) in BR.keys():
