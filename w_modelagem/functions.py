@@ -79,14 +79,18 @@ class BaseModel:
         #indices
         index = [(i,j,v,k,t) for i,j,v,k,t in  indexCombiDem if (i,j) in BR.keys()]
 
+        # Agrupar pelas primeiras 4 colunas e coletar os valores da coluna 5 nas listas
+        findClass = self.demanda.groupby(['Origin', 'Destination', 'Vagon', 'DBD'])['Class'].agg(list).reset_index()
+        findClass = findClass.set_index(['Origin', 'Destination', 'Vagon', 'DBD'])['Class'].to_dict()
+        
         #Todas as possíveis combinações para chegar do origem i até o destino j (Combinated of Routes)
         CR = {}
         
-        return I, I2, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, self.demanda
+        return I, I2, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, self.demanda, findClass
 
     def create_model(self): #I, J, rota, VK, NAD, BR, CR, P, Q, d, index, indexCombiDem, indexCombiDem0, demanda, dd
         
-        I, rota, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda = self.create_sets()
+        I, rota, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass = self.create_sets()
 
         model = Model("Modelo 1.1.1")
 
@@ -247,7 +251,7 @@ class HierarBehavioralModel(BaseModel):
 
     def create_model(self): #I, J, rota, VK, NAD, BR, CR, P, Q, d, index, indexCombiDem, indexCombiDem0, demanda, dd
         
-        I, rota, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda = self.create_sets()
+        I, rota, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass = self.create_sets()
 
         model = Model("Modelo 1.1.1")
 
@@ -418,7 +422,7 @@ class PercentBehavioralModel(BaseModel):
 
     def create_model(self): #I, J, rota, VK, NAD, BR, CR, P, Q, d, index, indexCombiDem, indexCombiDem0, demanda, dd
         
-        I, rota, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda = self.create_sets()
+        I, rota, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass = self.create_sets()
 
         model = Model("Modelo 1.1.1")
 
@@ -542,7 +546,7 @@ class PercentBehavioralModel(BaseModel):
 class BaseModel_Fulfillments(BaseModel):
     def create_model(self): #I, J, rota, VK, NAD, BR, CR, P, Q, d, index, indexCombiDem, indexCombiDem0, demanda, dd
         
-        I, rota, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda = self.create_sets()
+        I, rota, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass = self.create_sets()
 
         model = Model("Modelo 1.1.1")
 
@@ -561,7 +565,7 @@ class BaseModel_Fulfillments(BaseModel):
             sense = GRB.MAXIMIZE
         )
 
-        # restrições
+        # restrições de origem
         for i in I:
 
             # restrição .2
@@ -583,6 +587,27 @@ class BaseModel_Fulfillments(BaseModel):
                 quicksum(Y[i,j,v,k,t] for i_,j,v,k,t in indexCombiDem if (i == i_) and  (k == demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v) & (demanda["DBD"]==t)]["Class"].to_list()[0]) ) <= self.Q, 
                 name=f"AuthoCap_{i}"
             )
+
+
+        # [start] restrições Fulfillments
+        df = demanda.copy()
+        newIndex = df[['Origin', 'Destination', 'Vagon', 'DBD']]
+        newIndex = newIndex.drop_duplicates()
+        newIndex = [tuple(x) for x in newIndex[['Origin','Destination','Vagon','DBD']].to_numpy()]
+
+        for i,j,v,t in newIndex:
+
+            VK_ = demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v) & (demanda["DBD"]==t)]["Class"].to_list()
+            TC = list(demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v)]["DBD"].unique())
+            TC = sorted(TC, reverse=True) # todos os períodos de o origem i, destino j, e Vagon v
+
+            if t != TC[0]:
+                pos_tc = TC.index(t)
+                model.addConstr(
+                        quicksum(BL[i,j,v,k_,t]*P[i,j,v,k_] for k_ in VK_) >= quicksum(BL[i,j,v,kk,TC[pos_tc-1]]*P[i,j,v,kk] for kk in demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v) & (demanda["DBD"]==TC[pos_tc-1])]["Class"].to_list() if (i,j,v,kk,TC[pos_tc-1]) in indexCombiDem),
+                        name = f"PrecoTemAs_({i},{j},{v},{t})"
+                    )
+        # [end] restrições Fulfillments
 
 
         for i,j,v,k,t in indexCombiDem:
@@ -708,17 +733,17 @@ class BaseModel_Skiplagging(BaseModel):
     
     def create_sets(self):
 
-        I, I2, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, self.demanda = super().create_sets()
+        I, I2, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass = super().create_sets()
 
         for l,m in BR.keys():
             route_ = self.find_all_paths_with_tuples(BR[l,m], l, m)
             CR[(l,m)] = route_
         
-        return I, I2, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, self.demanda
+        return I, I2, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass
 
     def create_model(self): #I, J, rota, VK, NAD, BR, CR, P, Q, d, index, indexCombiDem, indexCombiDem0, demanda, dd
         
-        I, rota, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda = self.create_sets()
+        I, rota, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass = self.create_sets()
 
         model = Model("Modelo 1.1.1")
 
@@ -737,7 +762,7 @@ class BaseModel_Skiplagging(BaseModel):
             sense = GRB.MAXIMIZE
         )
 
-        # restrições
+        # restrições de origem
         for i in I:
 
             # restrição .2
@@ -769,8 +794,11 @@ class BaseModel_Skiplagging(BaseModel):
         subrota = rota + [w for w in J if w not in rota]
 
         for i,j,v,t in newIndex:
+
             VK_ = demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v) & (demanda["DBD"]==t)]["Class"].to_list()
-            
+            TC = list(demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v)]["DBD"].unique())
+            TC = sorted(TC, reverse=True) # todos os períodos de o origem i, destino j, e Vagon v
+          
             # os preços das rotas curtas tem que ser menores que os preços das rotas maiores com mesmo origem
             for ii,jj,vv,tt in newIndex:
                 if i == ii and v == vv and t == tt and (subrota.index(jj) > subrota.index(j)):
@@ -783,12 +811,25 @@ class BaseModel_Skiplagging(BaseModel):
             
 
             # a suma dos preços das combinações de todas as rotas contidas, tem que ser maiores ou iguais que o preco da rota maior
-            if (i,j) in BR.keys():
+            if (i,j) in BR.keys(): # if (i,j) in NAD:
+
                 for route in CR[i,j]:
-                    model.addConstr(
-                        quicksum(BL[i,j,v,k_,t]*P[i,j,v,k_] for k_ in VK_) <= quicksum(BL[ii,jj,v,k_,t]*P[ii,jj,v,k_] for ii, jj in route for k_ in VK_ if (ii,jj,v,k_,t) in indexCombiDem),
-                        name = f"Capital_({i},{j},{v},{t})"
-                    )
+
+                    listIndex = []
+                    cont = 0
+                    for ii, jj in route:
+                        if (ii, jj, v, t) in findClass:
+                            cont += 1
+                            listatemp = findClass[ii, jj, v, t]
+                            for k_ in listatemp:
+                                listIndex.append((ii,jj,v,k_,t))
+
+ 
+                    if len(route) == cont:
+                        model.addConstr(
+                            quicksum(BL[i,j,v,k_,t]*P[i,j,v,k_] for k_ in VK_) <= quicksum(BL[ii,jj,v,k_,t]*P[ii,jj,v,k_] for ii, jj, v, k_, t in listIndex),
+                            name = f"Capital_({i},{j},{v},{t})"
+                        )
         # [end] restrições Skiplagging
 
 
@@ -820,13 +861,8 @@ class BaseModel_Skiplagging(BaseModel):
 
                 # [start] restrições Skiplagging
                 model.addConstr(
-                    BL[i,j,v,k,t] >= BY[i,j,v,k,t] - BY[i,j,v,VK_[pos_k+1],t],
+                    BL[i,j,v,k,t] == BY[i,j,v,k,t] - BY[i,j,v,VK_[pos_k+1],t],
                     name=f"Skiplagging_({i},{j},{v},{k},{t})"
-                )
-
-                model.addConstr(
-                    BL[i,j,v,k,t] <= BY[i,j,v,k,t] - BY[i,j,v,VK_[pos_k+1],t],
-                    name=f"Skiplagging2_({i},{j},{v},{k},{t})"
                 )
                 # [end] restrição Skiplagging
 
@@ -913,19 +949,20 @@ class BaseModel_Fulfillments_Skiplagging(BaseModel):
     
     def create_sets(self):
 
-        I, I2, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda = super().create_sets()
+        I, I2, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass = super().create_sets()
 
         for l,m in BR.keys():
             route_ = self.find_all_paths_with_tuples(BR[(l,m)], l, m)
             CR[(l,m)] = route_
-        
-        return I, I2, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda
+
+        return I, I2, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass
 
     def create_model(self): #I, J, rota, VK, NAD, BR, CR, P, Q, d, index, indexCombiDem, indexCombiDem0, demanda, dd
         
-        I, rota, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda = self.create_sets()
-        model = Model("Modelo 1.1.1")
+        I, rota, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass = self.create_sets()
 
+        model = Model("Modelo 1.1.1")
+ 
         # variables de decision
         X = model.addVars(indexCombiDem0, vtype=GRB.INTEGER , name="X")
         Y = model.addVars(indexCombiDem, vtype=GRB.INTEGER , name="Y")
@@ -937,11 +974,12 @@ class BaseModel_Fulfillments_Skiplagging(BaseModel):
 
         # função objetivo
         model.setObjective(
-            quicksum(P[(i,j,v,k)]*X[(i,j,v,k,t)] for i,j,v,k,t in indexCombiDem),
+            quicksum(P[(i,j,v,k)]*X[(i,j,v,k,t)] for i,j,v,k,t in indexCombiDem),# + 
+            # quicksum(P[(i,j,v,k)]*Y[(i,j,v,k,t)] for i,j,v,k,t in indexCombiDem),
             sense = GRB.MAXIMIZE
         )
 
-        # restrições
+        # restrições de origem
         for i in I:
 
             # restrição .2
@@ -973,8 +1011,11 @@ class BaseModel_Fulfillments_Skiplagging(BaseModel):
         subrota = rota + [w for w in J if w not in rota]
 
         for i,j,v,t in newIndex:
+
             VK_ = demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v) & (demanda["DBD"]==t)]["Class"].to_list()
-            
+            TC = list(demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v)]["DBD"].unique())
+            TC = sorted(TC, reverse=True) # todos os períodos de o origem i, destino j, e Vagon v
+          
             # os preços das rotas curtas tem que ser menores que os preços das rotas maiores com mesmo origem
             for ii,jj,vv,tt in newIndex:
                 if i == ii and v == vv and t == tt and (subrota.index(jj) > subrota.index(j)):
@@ -988,10 +1029,31 @@ class BaseModel_Fulfillments_Skiplagging(BaseModel):
 
             # a suma dos preços das combinações de todas as rotas contidas, tem que ser maiores ou iguais que o preco da rota maior
             if (i,j) in BR.keys(): # if (i,j) in NAD:
+
                 for route in CR[i,j]:
-                    model.addConstr(
-                        quicksum(BL[i,j,v,k_,t]*P[i,j,v,k_] for k_ in VK_) <= quicksum(BL[ii,jj,v,k_,t]*P[ii,jj,v,k_] for ii, jj in route for k_ in VK_ if (ii,jj,v,k_,t) in indexCombiDem),
-                        name = f"Capital_({i},{j},{v},{t})"
+
+                    listIndex = []
+                    cont = 0
+                    for ii, jj in route:
+                        if (ii, jj, v, t) in findClass:
+                            cont += 1
+                            listatemp = findClass[ii, jj, v, t]
+                            for k_ in listatemp:
+                                listIndex.append((ii,jj,v,k_,t))
+
+ 
+                    if len(route) == cont:
+                        model.addConstr(
+                            quicksum(BL[i,j,v,k_,t]*P[i,j,v,k_] for k_ in VK_) <= quicksum(BL[ii,jj,v,k_,t]*P[ii,jj,v,k_] for ii, jj, v, k_, t in listIndex),
+                            name = f"Capital_({i},{j},{v},{t})"
+                        )
+
+            # restrição Fulfillment
+            if t != TC[0]:
+                pos_tc = TC.index(t)
+                model.addConstr(
+                        quicksum(BL[i,j,v,k_,t]*P[i,j,v,k_] for k_ in VK_) >= quicksum(BL[i,j,v,kk,TC[pos_tc-1]]*P[i,j,v,kk] for kk in demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v) & (demanda["DBD"]==TC[pos_tc-1])]["Class"].to_list() if (i,j,v,kk,TC[pos_tc-1]) in indexCombiDem),
+                        name = f"PrecoTemAs_({i},{j},{v},{t})"
                     )
         # [end] restrições Skiplagging
 
@@ -1000,9 +1062,8 @@ class BaseModel_Fulfillments_Skiplagging(BaseModel):
 
             VK_ = demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v) & (demanda["DBD"]==t)]["Class"].to_list()
             T_ = demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v) & (demanda["Class"]==k)]["DBD"].to_list()
-            T_ = sorted(T_, reverse=True)
+            T_ = sorted(T_, reverse=True) # todos os períodos de o origem i, destino j, Vagon v e classe k
 
-            
             pos_t = T_.index(t)
             pos_k = VK_.index(k)
             last_k = VK_[-1]
@@ -1032,7 +1093,9 @@ class BaseModel_Fulfillments_Skiplagging(BaseModel):
                     name = f"BinX({i},{j},{v},{k},{t})"
                 )
             # [end] restrição  fulfillments over periods
-
+            
+            
+                
 
             if k != last_k:
 
@@ -1044,14 +1107,14 @@ class BaseModel_Fulfillments_Skiplagging(BaseModel):
 
                 # [start] restrições Skiplagging
                 model.addConstr(
-                    BL[i,j,v,k,t] >= BY[i,j,v,k,t] - BY[i,j,v,VK_[pos_k+1],t],
+                    BL[i,j,v,k,t] == BY[i,j,v,k,t] - BY[i,j,v,VK_[pos_k+1],t],
                     name=f"Skiplagging_({i},{j},{v},{k},{t})"
                 )
 
-                model.addConstr(
-                    BL[i,j,v,k,t] <= BY[i,j,v,k,t] - BY[i,j,v,VK_[pos_k+1],t],
-                    name=f"Skiplagging2_({i},{j},{v},{k},{t})"
-                )
+                # model.addConstr(
+                #     BL[i,j,v,k,t] <= BY[i,j,v,k,t] - BY[i,j,v,VK_[pos_k+1],t],
+                #     name=f"Skiplagging2_({i},{j},{v},{k},{t})"
+                # )
                 # [end] restrição Skiplagging
 
             else:
@@ -1108,7 +1171,7 @@ class BaseModel_Fulfillments_Skiplagging(BaseModel):
 class HierarBehavioralModel_Fulfillments(HierarBehavioralModel):
     def create_model(self): #I, J, rota, VK, NAD, BR, CR, P, Q, d, index, indexCombiDem, indexCombiDem0, demanda, dd
         
-        I, rota, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda = self.create_sets()
+        I, rota, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass = self.create_sets()
 
         model = Model("Modelo 1.1.1")
 
@@ -1127,7 +1190,7 @@ class HierarBehavioralModel_Fulfillments(HierarBehavioralModel):
             sense = GRB.MAXIMIZE
         )
 
-        # restrições
+        # restrições de origem
         for i in I:
 
             # restrição .2
@@ -1149,6 +1212,29 @@ class HierarBehavioralModel_Fulfillments(HierarBehavioralModel):
                 quicksum(Y[i,j,v,k,t] for i_,j,v,k,t in indexCombiDem if (i == i_) and  (k == demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v) & (demanda["DBD"]==t)]["Class"].to_list()[0]) ) <= self.Q, 
                 name=f"AuthoCap_{i}"
             )
+
+
+        # [start] restrições Fulfillment
+        df = demanda.copy()
+        newIndex = df[['Origin', 'Destination', 'Vagon', 'DBD']]
+        newIndex = newIndex.drop_duplicates()
+        newIndex = [tuple(x) for x in newIndex[['Origin','Destination','Vagon','DBD']].to_numpy()]
+        subrota = rota + [w for w in J if w not in rota]
+
+        for i,j,v,t in newIndex:
+
+            VK_ = demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v) & (demanda["DBD"]==t)]["Class"].to_list()
+            TC = list(demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v)]["DBD"].unique())
+            TC = sorted(TC, reverse=True) # todos os períodos de o origem i, destino j, e Vagon v
+          
+           
+            if t != TC[0]:
+                pos_tc = TC.index(t)
+                model.addConstr(
+                        quicksum(BL[i,j,v,k_,t]*P[i,j,v,k_] for k_ in VK_) >= quicksum(BL[i,j,v,kk,TC[pos_tc-1]]*P[i,j,v,kk] for kk in demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v) & (demanda["DBD"]==TC[pos_tc-1])]["Class"].to_list() if (i,j,v,kk,TC[pos_tc-1]) in indexCombiDem),
+                        name = f"PrecoTemAs_({i},{j},{v},{t})"
+                    )
+        # [end] restrições Fulfillment
 
 
         for i,j,v,k,t in indexCombiDem:
@@ -1284,17 +1370,17 @@ class HierarBehavioralModel_Skiplagging(HierarBehavioralModel):
     
     def create_sets(self):
 
-        I, I2, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, self.demanda = super().create_sets()
+        I, I2, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass = super().create_sets()
 
         for l,m in BR.keys():
             route_ = self.find_all_paths_with_tuples(BR[l,m], l, m)
             CR[(l,m)] = route_
         
-        return I, I2, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, self.demanda
+        return I, I2, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass
 
     def create_model(self): #I, J, rota, VK, NAD, BR, CR, P, Q, d, index, indexCombiDem, indexCombiDem0, demanda, dd
         
-        I, rota, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda = self.create_sets()
+        I, rota, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass = self.create_sets()
 
         model = Model("Modelo 1.1.1")
 
@@ -1313,7 +1399,7 @@ class HierarBehavioralModel_Skiplagging(HierarBehavioralModel):
             sense = GRB.MAXIMIZE
         )
 
-        # restrições
+        # restrições de origem
         for i in I:
 
             # restrição .2
@@ -1344,8 +1430,11 @@ class HierarBehavioralModel_Skiplagging(HierarBehavioralModel):
         subrota = rota + [w for w in J if w not in rota]
 
         for i,j,v,t in newIndex:
+
             VK_ = demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v) & (demanda["DBD"]==t)]["Class"].to_list()
-            
+            TC = list(demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v)]["DBD"].unique())
+            TC = sorted(TC, reverse=True) # todos os períodos de o origem i, destino j, e Vagon v
+          
             # os preços das rotas curtas tem que ser menores que os preços das rotas maiores com mesmo origem
             for ii,jj,vv,tt in newIndex:
                 if i == ii and v == vv and t == tt and (subrota.index(jj) > subrota.index(j)):
@@ -1358,12 +1447,25 @@ class HierarBehavioralModel_Skiplagging(HierarBehavioralModel):
             
 
             # a suma dos preços das combinações de todas as rotas contidas, tem que ser maiores ou iguais que o preco da rota maior
-            if (i,j) in BR.keys():
+            if (i,j) in BR.keys(): # if (i,j) in NAD:
+
                 for route in CR[i,j]:
-                    model.addConstr(
-                        quicksum(BL[i,j,v,k_,t]*P[i,j,v,k_] for k_ in VK_) <= quicksum(BL[ii,jj,v,k_,t]*P[ii,jj,v,k_] for ii, jj in route for k_ in VK_ if (ii,jj,v,k_,t) in indexCombiDem),
-                        name = f"Capital_({i},{j},{v},{t})"
-                    )
+
+                    listIndex = []
+                    cont = 0
+                    for ii, jj in route:
+                        if (ii, jj, v, t) in findClass:
+                            cont += 1
+                            listatemp = findClass[ii, jj, v, t]
+                            for k_ in listatemp:
+                                listIndex.append((ii,jj,v,k_,t))
+
+ 
+                    if len(route) == cont:
+                        model.addConstr(
+                            quicksum(BL[i,j,v,k_,t]*P[i,j,v,k_] for k_ in VK_) <= quicksum(BL[ii,jj,v,k_,t]*P[ii,jj,v,k_] for ii, jj, v, k_, t in listIndex),
+                            name = f"Capital_({i},{j},{v},{t})"
+                        )
         # [end] restrições Skiplagging
 
 
@@ -1407,13 +1509,8 @@ class HierarBehavioralModel_Skiplagging(HierarBehavioralModel):
 
                 # [start] restrições Skiplagging
                 model.addConstr(
-                    BL[i,j,v,k,t] >= BY[i,j,v,k,t] - BY[i,j,v,VK_[pos_k+1],t],
+                    BL[i,j,v,k,t] == BY[i,j,v,k,t] - BY[i,j,v,VK_[pos_k+1],t],
                     name=f"Skiplagging_({i},{j},{v},{k},{t})"
-                )
-
-                model.addConstr(
-                    BL[i,j,v,k,t] <= BY[i,j,v,k,t] - BY[i,j,v,VK_[pos_k+1],t],
-                    name=f"Skiplagging2_({i},{j},{v},{k},{t})"
                 )
                 # [end] restrição Skiplagging
             else:
@@ -1499,17 +1596,17 @@ class HierarBehavioralModel_Fulfillments_Skiplagging(HierarBehavioralModel):
     
     def create_sets(self):
 
-        I, I2, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, self.demanda = super().create_sets()
+        I, I2, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass = super().create_sets()
 
         for l,m in BR.keys():
             route_ = self.find_all_paths_with_tuples(BR[l,m], l, m)
             CR[(l,m)] = route_
         
-        return I, I2, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, self.demanda
+        return I, I2, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass
 
     def create_model(self): #I, J, rota, VK, NAD, BR, CR, P, Q, d, index, indexCombiDem, indexCombiDem0, demanda, dd
         
-        I, rota, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda = self.create_sets()
+        I, rota, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass = self.create_sets()
 
         model = Model("Modelo 1.1.1")
 
@@ -1528,7 +1625,7 @@ class HierarBehavioralModel_Fulfillments_Skiplagging(HierarBehavioralModel):
             sense = GRB.MAXIMIZE
         )
 
-        # restrições
+        # restrições de origem
         for i in I:
 
             # restrição .2
@@ -1559,8 +1656,11 @@ class HierarBehavioralModel_Fulfillments_Skiplagging(HierarBehavioralModel):
         subrota = rota + [w for w in J if w not in rota]
 
         for i,j,v,t in newIndex:
+
             VK_ = demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v) & (demanda["DBD"]==t)]["Class"].to_list()
-            
+            TC = list(demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v)]["DBD"].unique())
+            TC = sorted(TC, reverse=True) # todos os períodos de o origem i, destino j, e Vagon v
+          
             # os preços das rotas curtas tem que ser menores que os preços das rotas maiores com mesmo origem
             for ii,jj,vv,tt in newIndex:
                 if i == ii and v == vv and t == tt and (subrota.index(jj) > subrota.index(j)):
@@ -1573,11 +1673,32 @@ class HierarBehavioralModel_Fulfillments_Skiplagging(HierarBehavioralModel):
             
 
             # a suma dos preços das combinações de todas as rotas contidas, tem que ser maiores ou iguais que o preco da rota maior
-            if (i,j) in BR.keys():
+            if (i,j) in BR.keys(): # if (i,j) in NAD:
+
                 for route in CR[i,j]:
-                    model.addConstr(
-                        quicksum(BL[i,j,v,k_,t]*P[i,j,v,k_] for k_ in VK_) <= quicksum(BL[ii,jj,v,k_,t]*P[ii,jj,v,k_] for ii, jj in route for k_ in VK_ if (ii,jj,v,k_,t) in indexCombiDem),
-                        name = f"Capital_({i},{j},{v},{t})"
+
+                    listIndex = []
+                    cont = 0
+                    for ii, jj in route:
+                        if (ii, jj, v, t) in findClass:
+                            cont += 1
+                            listatemp = findClass[ii, jj, v, t]
+                            for k_ in listatemp:
+                                listIndex.append((ii,jj,v,k_,t))
+
+ 
+                    if len(route) == cont:
+                        model.addConstr(
+                            quicksum(BL[i,j,v,k_,t]*P[i,j,v,k_] for k_ in VK_) <= quicksum(BL[ii,jj,v,k_,t]*P[ii,jj,v,k_] for ii, jj, v, k_, t in listIndex),
+                            name = f"Capital_({i},{j},{v},{t})"
+                        )
+
+            # restrição Fulfillment
+            if t != TC[0]:
+                pos_tc = TC.index(t)
+                model.addConstr(
+                        quicksum(BL[i,j,v,k_,t]*P[i,j,v,k_] for k_ in VK_) >= quicksum(BL[i,j,v,kk,TC[pos_tc-1]]*P[i,j,v,kk] for kk in demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v) & (demanda["DBD"]==TC[pos_tc-1])]["Class"].to_list() if (i,j,v,kk,TC[pos_tc-1]) in indexCombiDem),
+                        name = f"PrecoTemAs_({i},{j},{v},{t})"
                     )
         # [end] restrições Skiplagging
 
@@ -1641,13 +1762,8 @@ class HierarBehavioralModel_Fulfillments_Skiplagging(HierarBehavioralModel):
 
                 # [start] restrições Skiplagging
                 model.addConstr(
-                    BL[i,j,v,k,t] >= BY[i,j,v,k,t] - BY[i,j,v,VK_[pos_k+1],t],
+                    BL[i,j,v,k,t] == BY[i,j,v,k,t] - BY[i,j,v,VK_[pos_k+1],t],
                     name=f"Skiplagging_({i},{j},{v},{k},{t})"
-                )
-
-                model.addConstr(
-                    BL[i,j,v,k,t] <= BY[i,j,v,k,t] - BY[i,j,v,VK_[pos_k+1],t],
-                    name=f"Skiplagging2_({i},{j},{v},{k},{t})"
                 )
                 # [end] restrição Skiplagging
             else:
@@ -1704,7 +1820,7 @@ class HierarBehavioralModel_Fulfillments_Skiplagging(HierarBehavioralModel):
 class PercentBehavioralModel_Fulfillments(PercentBehavioralModel):
     def create_model(self): #I, J, rota, VK, NAD, BR, CR, P, Q, d, index, indexCombiDem, indexCombiDem0, demanda, dd
         
-        I, rota, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda = self.create_sets()
+        I, rota, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass = self.create_sets()
 
         model = Model("Modelo 1.1.1")
 
@@ -1723,7 +1839,8 @@ class PercentBehavioralModel_Fulfillments(PercentBehavioralModel):
             sense = GRB.MAXIMIZE
         )
 
-        # restrições
+
+        # restrições de origem
         for i in I:
 
             # restrição .2
@@ -1745,6 +1862,27 @@ class PercentBehavioralModel_Fulfillments(PercentBehavioralModel):
                 quicksum(Y[i,j,v,k,t] for i_,j,v,k,t in indexCombiDem if (i == i_) and  (k == demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v) & (demanda["DBD"]==t)]["Class"].to_list()[0]) ) <= self.Q, 
                 name=f"AuthoCap_{i}"
             )
+
+
+        # [start] restrições Fulfillment
+        df = demanda.copy()
+        newIndex = df[['Origin', 'Destination', 'Vagon', 'DBD']]
+        newIndex = newIndex.drop_duplicates()
+        newIndex = [tuple(x) for x in newIndex[['Origin','Destination','Vagon','DBD']].to_numpy()]
+
+        for i,j,v,t in newIndex:
+
+            VK_ = demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v) & (demanda["DBD"]==t)]["Class"].to_list()
+            TC = list(demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v)]["DBD"].unique())
+            TC = sorted(TC, reverse=True) # todos os períodos de o origem i, destino j, e Vagon v
+          
+            if t != TC[0]:
+                pos_tc = TC.index(t)
+                model.addConstr(
+                        quicksum(BL[i,j,v,k_,t]*P[i,j,v,k_] for k_ in VK_) >= quicksum(BL[i,j,v,kk,TC[pos_tc-1]]*P[i,j,v,kk] for kk in demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v) & (demanda["DBD"]==TC[pos_tc-1])]["Class"].to_list() if (i,j,v,kk,TC[pos_tc-1]) in indexCombiDem),
+                        name = f"PrecoTemAs_({i},{j},{v},{t})"
+                    )
+        # [end] restrições Fulfillment
 
 
         for i,j,v,k,t in indexCombiDem:
@@ -1880,17 +2018,17 @@ class PercentBehavioralModel_Skiplagging(PercentBehavioralModel):
     
     def create_sets(self):
 
-        I, I2, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, self.demanda = super().create_sets()
+        I, I2, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass = super().create_sets()
 
         for l,m in BR.keys():
             route_ = self.find_all_paths_with_tuples(BR[l,m], l, m)
             CR[(l,m)] = route_
         
-        return I, I2, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, self.demanda
+        return I, I2, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass
 
     def create_model(self): #I, J, rota, VK, NAD, BR, CR, P, Q, d, index, indexCombiDem, indexCombiDem0, demanda, dd
         
-        I, rota, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda = self.create_sets()
+        I, rota, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass = self.create_sets()
 
         model = Model("Modelo 1.1.1")
 
@@ -1909,7 +2047,7 @@ class PercentBehavioralModel_Skiplagging(PercentBehavioralModel):
             sense = GRB.MAXIMIZE
         )
 
-        # restrições
+        # restrições de origem
         for i in I:
 
             # restrição .2
@@ -1940,8 +2078,11 @@ class PercentBehavioralModel_Skiplagging(PercentBehavioralModel):
         subrota = rota + [w for w in J if w not in rota]
 
         for i,j,v,t in newIndex:
+
             VK_ = demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v) & (demanda["DBD"]==t)]["Class"].to_list()
-            
+            TC = list(demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v)]["DBD"].unique())
+            TC = sorted(TC, reverse=True) # todos os períodos de o origem i, destino j, e Vagon v
+          
             # os preços das rotas curtas tem que ser menores que os preços das rotas maiores com mesmo origem
             for ii,jj,vv,tt in newIndex:
                 if i == ii and v == vv and t == tt and (subrota.index(jj) > subrota.index(j)):
@@ -1954,12 +2095,25 @@ class PercentBehavioralModel_Skiplagging(PercentBehavioralModel):
             
 
             # a suma dos preços das combinações de todas as rotas contidas, tem que ser maiores ou iguais que o preco da rota maior
-            if (i,j) in BR.keys():
+            if (i,j) in BR.keys(): # if (i,j) in NAD:
+
                 for route in CR[i,j]:
-                    model.addConstr(
-                        quicksum(BL[i,j,v,k_,t]*P[i,j,v,k_] for k_ in VK_) <= quicksum(BL[ii,jj,v,k_,t]*P[ii,jj,v,k_] for ii, jj in route for k_ in VK_ if (ii,jj,v,k_,t) in indexCombiDem),
-                        name = f"Capital_({i},{j},{v},{t})"
-                    )
+
+                    listIndex = []
+                    cont = 0
+                    for ii, jj in route:
+                        if (ii, jj, v, t) in findClass:
+                            cont += 1
+                            listatemp = findClass[ii, jj, v, t]
+                            for k_ in listatemp:
+                                listIndex.append((ii,jj,v,k_,t))
+
+ 
+                    if len(route) == cont:
+                        model.addConstr(
+                            quicksum(BL[i,j,v,k_,t]*P[i,j,v,k_] for k_ in VK_) <= quicksum(BL[ii,jj,v,k_,t]*P[ii,jj,v,k_] for ii, jj, v, k_, t in listIndex),
+                            name = f"Capital_({i},{j},{v},{t})"
+                        )
         # [end] restrições Skiplagging
 
 
@@ -2003,13 +2157,8 @@ class PercentBehavioralModel_Skiplagging(PercentBehavioralModel):
 
                 # [start] restrições Skiplagging
                 model.addConstr(
-                    BL[i,j,v,k,t] >= BY[i,j,v,k,t] - BY[i,j,v,VK_[pos_k+1],t],
+                    BL[i,j,v,k,t] == BY[i,j,v,k,t] - BY[i,j,v,VK_[pos_k+1],t],
                     name=f"Skiplagging_({i},{j},{v},{k},{t})"
-                )
-
-                model.addConstr(
-                    BL[i,j,v,k,t] <= BY[i,j,v,k,t] - BY[i,j,v,VK_[pos_k+1],t],
-                    name=f"Skiplagging2_({i},{j},{v},{k},{t})"
                 )
                 # [end] restrição Skiplagging
             else:
@@ -2095,17 +2244,17 @@ class PercentBehavioralModel_Fulfillments_Skiplagging(PercentBehavioralModel):
     
     def create_sets(self):
 
-        I, I2, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, self.demanda = super().create_sets()
+        I, I2, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass = super().create_sets()
 
         for l,m in BR.keys():
             route_ = self.find_all_paths_with_tuples(BR[l,m], l, m)
             CR[(l,m)] = route_
         
-        return I, I2, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, self.demanda
+        return I, I2, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass
 
     def create_model(self): #I, J, rota, VK, NAD, BR, CR, P, Q, d, index, indexCombiDem, indexCombiDem0, demanda, dd
         
-        I, rota, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda = self.create_sets()
+        I, rota, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass = self.create_sets()
 
         model = Model("Modelo 1.1.1")
 
@@ -2124,7 +2273,7 @@ class PercentBehavioralModel_Fulfillments_Skiplagging(PercentBehavioralModel):
             sense = GRB.MAXIMIZE
         )
 
-        # restrições
+        # restrições de origem
         for i in I:
 
             # restrição .2
@@ -2155,8 +2304,11 @@ class PercentBehavioralModel_Fulfillments_Skiplagging(PercentBehavioralModel):
         subrota = rota + [w for w in J if w not in rota]
 
         for i,j,v,t in newIndex:
+
             VK_ = demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v) & (demanda["DBD"]==t)]["Class"].to_list()
-            
+            TC = list(demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v)]["DBD"].unique())
+            TC = sorted(TC, reverse=True) # todos os períodos de o origem i, destino j, e Vagon v
+          
             # os preços das rotas curtas tem que ser menores que os preços das rotas maiores com mesmo origem
             for ii,jj,vv,tt in newIndex:
                 if i == ii and v == vv and t == tt and (subrota.index(jj) > subrota.index(j)):
@@ -2169,11 +2321,32 @@ class PercentBehavioralModel_Fulfillments_Skiplagging(PercentBehavioralModel):
             
 
             # a suma dos preços das combinações de todas as rotas contidas, tem que ser maiores ou iguais que o preco da rota maior
-            if (i,j) in BR.keys():
+            if (i,j) in BR.keys(): # if (i,j) in NAD:
+
                 for route in CR[i,j]:
-                    model.addConstr(
-                        quicksum(BL[i,j,v,k_,t]*P[i,j,v,k_] for k_ in VK_) <= quicksum(BL[ii,jj,v,k_,t]*P[ii,jj,v,k_] for ii, jj in route for k_ in VK_ if (ii,jj,v,k_,t) in indexCombiDem),
-                        name = f"Capital_({i},{j},{v},{t})"
+
+                    listIndex = []
+                    cont = 0
+                    for ii, jj in route:
+                        if (ii, jj, v, t) in findClass:
+                            cont += 1
+                            listatemp = findClass[ii, jj, v, t]
+                            for k_ in listatemp:
+                                listIndex.append((ii,jj,v,k_,t))
+
+ 
+                    if len(route) == cont:
+                        model.addConstr(
+                            quicksum(BL[i,j,v,k_,t]*P[i,j,v,k_] for k_ in VK_) <= quicksum(BL[ii,jj,v,k_,t]*P[ii,jj,v,k_] for ii, jj, v, k_, t in listIndex),
+                            name = f"Capital_({i},{j},{v},{t})"
+                        )
+
+            # restrição Fulfillment
+            if t != TC[0]:
+                pos_tc = TC.index(t)
+                model.addConstr(
+                        quicksum(BL[i,j,v,k_,t]*P[i,j,v,k_] for k_ in VK_) >= quicksum(BL[i,j,v,kk,TC[pos_tc-1]]*P[i,j,v,kk] for kk in demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v) & (demanda["DBD"]==TC[pos_tc-1])]["Class"].to_list() if (i,j,v,kk,TC[pos_tc-1]) in indexCombiDem),
+                        name = f"PrecoTemAs_({i},{j},{v},{t})"
                     )
         # [end] restrições Skiplagging
 
@@ -2237,13 +2410,8 @@ class PercentBehavioralModel_Fulfillments_Skiplagging(PercentBehavioralModel):
 
                 # [start] restrições Skiplagging
                 model.addConstr(
-                    BL[i,j,v,k,t] >= BY[i,j,v,k,t] - BY[i,j,v,VK_[pos_k+1],t],
+                    BL[i,j,v,k,t] == BY[i,j,v,k,t] - BY[i,j,v,VK_[pos_k+1],t],
                     name=f"Skiplagging_({i},{j},{v},{k},{t})"
-                )
-
-                model.addConstr(
-                    BL[i,j,v,k,t] <= BY[i,j,v,k,t] - BY[i,j,v,VK_[pos_k+1],t],
-                    name=f"Skiplagging2_({i},{j},{v},{k},{t})"
                 )
                 # [end] restrição Skiplagging
             else:
@@ -2319,9 +2487,9 @@ def grafica(a, attrs, h, l, ng, p=-1):
     dfs = []
     for attr in attrs:
         if attr != 'Preco':
-            df = pd.pivot_table(a, values=attr, index='o-d', columns=['Vagon','classe'], aggfunc={attr:'sum'})
+            df = pd.pivot_table(a, values=attr, index='o-d', columns=['Vagon','Classe'], aggfunc={attr:'sum'})
         else:
-            df = pd.pivot_table(a, values=attr, index='o-d', columns=['Vagon','classe'], aggfunc={attr:'max'})
+            df = pd.pivot_table(a, values=attr, index='o-d', columns=['Vagon','Classe'], aggfunc={attr:'max'})
 
         # df.fillna(0, inplace=True)
         dfs.append(df)

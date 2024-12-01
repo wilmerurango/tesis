@@ -1,7 +1,6 @@
 \documentclass[12pt, openany]{book} % \documentclass[11pt,fleqn, twoside, final, openany,usenames,dvipsnames]{book}%
 \usepackage{changepage} % Para ajustar los márgenes localmente
 \usepackage[autostyle,german=guillemets,norwegian=quotes]{csquotes}
-
 \usepackage[style = numeric]{biblatex} %Imports biblatex package
 \addbibresource{sections/referencias.bib} %Import the bibliography file
 %=============================== Preâmbulo ============================================
@@ -10,7 +9,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[portuguese]{babel}
 % \usepackage[latin1]{inputenc}		% Inclusão de gráficos
-\usepackage[table]{xcolor}% http://ctan.org/pkg/xcolor
+\usepackage[table, xcdraw]{xcolor}% http://ctan.org/pkg/xcolor
 \usepackage{indentfirst}
 % \usepackage{subfigure}
 % \usepackage{natbib} %usepackage{harvard}
@@ -40,7 +39,9 @@
     filecolor=magenta,      
     urlcolor=cyan,
 }
+
 \usepackage{booktabs}
+\usepackage{longtable}
 \usepackage{multirow}
 \usepackage{setspace}
 \usepackage{tikz}
@@ -130,7 +131,7 @@
 \input{sections/modelo_matematico}
 % \input{Contribuicoes}
 % %\input{Metodos-de-resolucao-propostos}
-% \input{Resultados-computacionais}
+\input{sections/resultados_camputacionais}
 % \input{Conclusoes}
 
 

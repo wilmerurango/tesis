@@ -78,3 +78,53 @@ veamos un ejemplo mas claro, en la figura 2.8 se tienen tres estaciones, se asum
 ademas de lo anterior tambien se debe garantizar que todas las posibles combinaciones de los precios mas baratos de los trechos contenidos dentro de los trechos no adyacentes, sean mayores o iguales que el precio de ese trecho no adyacente. esta situacion es controlada por la restriccion 2.16. 
 
 para dar un ejemplo analicemos de nuevo la figura 2.8 e identifiquenos los trechos no adyacentes y los trechos que estos contengan, entonces notemos que el trecho e1-e3 seria el unico trecho no adyacente y contiene a los trechos e1-e2 y e2-e3, por lo que debemos garantizar que la suma de las clases mas baratas disponibilizadas en e1-e2 y e2-e3 sean mayores o iguales que la clase mas barata disponibilizada en e1-e3. en terminos numericos tendriamos que $5 + $3 >= $8. por lo cual este ejemplo satisface nuestra restriccion.
+
+por jemplo, si x12c2 toma el valor de 30 (restriccion 2.23) a restriccion 2.25 garantiza que x12c1 sea 0 pueste la demanda de 10 perosnas correspondiente prefirio comprar a precio c2. misma situacion pasaria si x12c3 toma el valor de 60 (retsrccion 2.24) , entonces la restricion 2.26 garantizaria que la demanda de x12c1 y x12c2 fuese cero pues estas decidieron comprar al valor de la clase c3. de esta manera este conjunto de restricciones funcionaria para cada combinacion posible de las variables descritas.
+
+ahora, para escribir el modelo completo usando la demanda comportamental basada en rangos, basta con modificar solo las restricciones que controlan la demanda en el modelo independiente y adicionar las restricciones descritas del modelo comportamental:
+
+
+las restricciones xx y oo son la generalizacion de las restricciones de 2.22 a 2.26 y solo adicionando estas dos ultimas restricciones y eliminando la restriccion xx del modelo independiente tendriamos un modelo con demanda comportamental, sin embargo, esa afirmacion no es del todo cierta, pues si bien estamos restringiendo la demanda del modelo para que se puedan usar las listas de preferencia, el modelo se seguira comportando como un modelo independiente. Esto ocurre porque, la demanda independinete es un caso particular de todas las posibles combinaciones que se podrian generar al usar las listas de preferencia, ademas, es el caso que mayor lucro generaria, recordemos que las listas de preferencia dan la flexibilidad de que un cliente que este dispuesto a pagar caro pueda comprar mas barato si existe la posibilidad, cosa que la demanda independiente no permite. Note que con esto, sabemos de antemano, que la solucion buscada sera menor que la solucion ofrecida por el modelo independiente.
+
+Ademas de lo anterior, sabemos tambien, que el modelo tiene um comportamiento optimista pues asume que aquellas personas que estan dispuestas a pagar mas caro siempre llegaran primero que aquellas personas que estan dispuestas a pagar mas barato (esto debido a la formulacion de la funcion objetivo). 
+
+Es asi que no basta con solo la restricciones xx y oo para afirmar que tenemos un modelo con demanda comportamental, por lo que de alguna manera hay que decirle al modelo que use otras posibilidades "mas realistas" durante la resolucion del problema. Es aqui donde adicionamos las sigueintes restricciones que ayudaran a nermar un poco esta situacion:
+
+
+para estas nuevas restricciones, ademas de la demanda comportamental tambien usaremos la demanda independiente. Entoces para la restriccion 2.29 lo que hacemos es calcular las proporciones de la demanda independinete de las clases de cada trecho, vagon y periodo y luego dichas proporciones las multiplicamos por la demanda comportamental, esto hara que las demandas comportamentales portenciales para cdad clase disminuyan a la proporcion de la demanda independiente. Asi garantizamos que la solucion no sea la misma que la ofrecida por el modelo independiente. Note que al calcular dicha proporcion se dismuye la demanda comportamental y existe una "perdida de demanda", ese complemento es sumado a la clase mas barata del trecho, vagon y periodo analizado tal como lo muestra la restriccion 2.30. de esta forma estimulamos al modelo para que use las clases mas baratas. veamos un ejemplo:
+
+asuma que tiene un trecho con tres clases para un vagon y un periodo, diclas clases tienes parametros de demanda independiente d tal como se muestra en la tabla 2.3.
+
+note que la columna % muestra las proporciones calculas en funcion de la demanda independinte d, la columna d' muestra la demanda comportamental potencial y la columna %*d' muestra el producto entre % y d', ademas observe que que esta ultima columna para la clase mas barata c3, es 10 (que es el resultado del producto ya mencionado) mas 29.12 (que es el complemento de la demanda, osea 104 - (12.46+52.42+10))
+
+
+el grafico xx nos ayuda a tener una mejor vision del problema, vea como en la parte a tenemos la demanda independiente vs la demanda comportamental, note que siempre d' >= d. y que independientemente de los valores que tome d' el modelo seleccionara los valores de d pues son los que generaran el mayor lucro. Ahora, despues de la aplicacion de nuestro ajuste, note como le "quitamos demanda" tanto a la clase de c1 o c2 para asignarsela a c3, ya d' no siemore es mayor igual que d y el modelo se me forzado a tener el cuenta el limite mas bajo, por lo que ahora se tendra en cuenta la demanda comportamental ajustada. En otras palabras, estamos diciendo que parte de las personas que estaban dispuestas a pagar mas caro, llegaron primero y encontraron opciones mas baratas y aprobecharon esa situacion para hacer la compra.
+
+para verificar las caracteristicas de los modelos propuestos, se usaron 10 instancias reales proporcionadas por la empresa Canadiense Expetrio. las caracteristicas de cada una de ellas son mostradas en la tabla xx.
+
+la columna # trechos representa la cantidad de trechos que tiene el viaje del tren de cada instancia; la columna # periodos representa la cantidad de periodos de la planeacion de ese viaje en su horizonte de reserva. por ultimo, la columna # classes representa hasta cuantas clases puede tener disponible cada viaje de cada tren.
+
+note que para cada trecho puede estar disponible todas las clases mostradas en la columna o menos. 
+
+por otro lado afiramos que las instancis comprendidas entre la instacnia 1 y la estancia 4 son instacnias grandes, las instancias entre la instancia 5 y la instancia 7 son medianas y el resto son pequeñas
+
+para resolver las instancias usando lo modelos matematicos propuesto se uso, un computador de la marca Dell modelo, Precision 3660 con Windows 11 Pro de de 64 bits, Processador 13th Gen Intel(R) Core(TM) i7-13700 2.10 GHz basado en x64 y con memoria ram de 16GB. ademas se uso python como lenguaje de programacion en su version 3.10.14 y el solver Gurobi en su version 11.0.3.
+
+
+si bien se propon dos modelos matematicos, el modelo independiente y el modelo comportamental, a la hora de resolver las instancias de desidió probar los modelos inicialmente sin las restricciones de fulfiiltime ni las restricciones de skip. Luego se probo cada modelo con cada grupo de restricciones por separado y por ultimo se probo cada modelo con los dos conjunto de restricciones. Esto se realizo de esa manera para observar como evolucionaba o se comportaba la solucion al contemplar cada tipo de restricciones.
+
+en primer lugar se realizo un analisis por instancia, en donde cada una de ella es resuelta por cada modelo de la tabla xx. la idea es evidenciar de forma clara y comparativa las semejansas y diferencias en las soluciones obtenidas.
+
+a continuacion se presentan los resultados para cada instancia depues de ser resuelta por cada uno de los modelos.
+
+otro enfoque que se propuso, alternativo a las restricciones 29 y 30, fue controlar la demanda, esta vez, creando una jerarquia descendente para las clases de la variable de desicion X de cierto vagon, cierto trecho y cierto periodo. Lo que en teoria, homogeniza los valores que podria tomar X, asignando valores muy parecidos a todas las clases en las condiciones mencionadas. veamos un ejemplo:
+
+
+otro enfoque que se propuso, alternativo a las restricciones 29 y 30, fue controlar la demanda, esta vez, creando una jerarquia descendente para las clases de cierto vagon, cierto trecho y cierto periodo. Lo que en teroria, esto homogeniza la demanda inicial de las clases asignando valores muy parecidos a todas ellas en las condiciones mencionadas. veamos un ejemplo:
+
+retomemos de nuevo el ejemplo de la tabla 2.3. si nosotros aplicamos esta nueva logica, al final el resultado esperado seria que c1<c2<c3. ahora, como en este punto (antes de adicionar las restricciones que complementan la demanda comportamental), el modelo continua comportandose como independiente, situacion que ya se explico, entonces el modelo tomaria como base la demanda independiente para crear la jerarquia descendiente. 
+hay que tener en cuenta algo muy importante, se acabo de decir que el modelo toma en cuenta la demanda independiente para hacer el ajuste en la jerarquia, sin embargo, al momento de escribir la restriccion se uso la variable X, esto no es una contradiccion y fue hecho agrede. De hecho, esto se hizo para explicar de forma practica como funciona el modelo internamente. dicho eso, una solucion para nuestro ejemplo seria:
+
+en este caso la columna X representa a solucion mas golosa que podria tomar X, note como los valores son muy parecidos para cada clase y se respeta el orden decreciente. 
+
+Este ultimo enfoque no necesita intervencion directa en la demanda comporamnetal ya calculada (asi como el primer enfoque), solo adicionamos una condicion para la variable X que logra activar la caracteristica de la lista preferncia del modelo.
