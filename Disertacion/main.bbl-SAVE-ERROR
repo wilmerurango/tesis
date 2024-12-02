@@ -1,0 +1,229 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{article_base}{article}{}
+      \name{author}{4}{}{%
+        {{hash=dc17e11972df8b60f2996162604f37ac}{%
+           family={Glover},
+           familyi={G\bibinitperiod},
+           given={Fred},
+           giveni={F\bibinitperiod}}}%
+        {{hash=66f87dcc6bd383ea4c598ed1b9bb9b6c}{%
+           family={Glover},
+           familyi={G\bibinitperiod},
+           given={Randy},
+           giveni={R\bibinitperiod}}}%
+        {{hash=ccb95a6d83194841c648e900374e890c}{%
+           family={Lorenzo},
+           familyi={L\bibinitperiod},
+           given={Joe},
+           giveni={J\bibinitperiod}}}%
+        {{hash=d0f589d43719c079dbd9cd7daa85d362}{%
+           family={McMillan},
+           familyi={M\bibinitperiod},
+           given={Claude},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {INFORMS}%
+      }
+      \strng{namehash}{f4808e0de995258a401c1ed9f7e8e209}
+      \strng{fullhash}{5c0e4a815b77a16a93ff6aca2894a2ca}
+      \strng{bibnamehash}{f4808e0de995258a401c1ed9f7e8e209}
+      \strng{authorbibnamehash}{f4808e0de995258a401c1ed9f7e8e209}
+      \strng{authornamehash}{f4808e0de995258a401c1ed9f7e8e209}
+      \strng{authorfullhash}{5c0e4a815b77a16a93ff6aca2894a2ca}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Deregulation has opened up many opportunities and challenges in the transportation industry - opportunities to increase profits and challenges to keep from being outflanked by competition. A goal of particular interest to the scheduled airlines is to set prices more adaptively and to change them more rapidly. A difficult problem arises when many passengers with different itineraries compete for a limited number of seats on a single-flight segment. The problem is complicated by the existence of different fare classes, many flight segments, and different demands across time. For any given set of prices, flight-segment capacities, and passenger-carrying demand, there is some number of passengers at each fare class on each flight segment that will optimize revenue. Knowledge of such an optimum can be used not only in pricing analysis but also in setting policies to influence the passenger fare-class mix so that the optimum will be more nearly achieved in actual practice. We describe a method for identifying the optimum fare-class mix and the design of a system for that purpose which we built and implemented for Frontier Airlines. The recognition and formulation of the problem has become even more important as the number of aircraft in the sky has been reduced and the competition for a limited number of seats has become more intense.}
+      \field{issn}{00922102, 1526551X}
+      \field{journaltitle}{Interfaces}
+      \field{number}{3}
+      \field{title}{The Passenger-Mix Problem in the Scheduled Airlines}
+      \field{urlday}{7}
+      \field{urlmonth}{8}
+      \field{urlyear}{2024}
+      \field{volume}{12}
+      \field{year}{1982}
+      \field{urldateera}{ce}
+      \field{pages}{73\bibrangedash 80}
+      \range{pages}{8}
+      \verb{urlraw}
+      \verb http://www.jstor.org/stable/25060268
+      \endverb
+      \verb{url}
+      \verb http://www.jstor.org/stable/25060268
+      \endverb
+    \endentry
+    \entry{doi:10.1080/02642069.2010.491543}{article}{}
+      \name{author}{2}{}{%
+        {{hash=2940e646322aa496be79aeafc889d7f8}{%
+           family={José\bibnamedelima Guadix},
+           familyi={J\bibinitperiod\bibinitdelim G\bibinitperiod},
+           given={Jesús\bibnamedelima Muñuzuri},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+           suffix={Luis\bibnamedelima Onieva},
+           suffixi={L\bibinitperiod\bibinitdelim O\bibinitperiod}}}%
+        {{hash=25b42bdd9558b48bf04e6b6b18358ece}{%
+           family={Cortés},
+           familyi={C\bibinitperiod},
+           given={Pablo},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Routledge}%
+      }
+      \strng{namehash}{0e6d72647444c00b436ed63c6d5aa126}
+      \strng{fullhash}{0e6d72647444c00b436ed63c6d5aa126}
+      \strng{bibnamehash}{0e6d72647444c00b436ed63c6d5aa126}
+      \strng{authorbibnamehash}{0e6d72647444c00b436ed63c6d5aa126}
+      \strng{authornamehash}{0e6d72647444c00b436ed63c6d5aa126}
+      \strng{authorfullhash}{0e6d72647444c00b436ed63c6d5aa126}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Service Industries Journal}
+      \field{number}{1}
+      \field{title}{An overview of revenue management in service industries: an application to car parks}
+      \field{volume}{31}
+      \field{year}{2011}
+      \field{pages}{91\bibrangedash 105}
+      \range{pages}{15}
+      \verb{doi}
+      \verb 10.1080/02642069.2010.491543
+      \endverb
+    \endentry
+    \entry{article_YM_to_RM}{article}{}
+      \name{author}{1}{}{%
+        {{hash=910afcd3a1fc2a134457dad0ebb2f554}{%
+           family={Littlewood},
+           familyi={L\bibinitperiod},
+           given={Ken},
+           giveni={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{910afcd3a1fc2a134457dad0ebb2f554}
+      \strng{fullhash}{910afcd3a1fc2a134457dad0ebb2f554}
+      \strng{bibnamehash}{910afcd3a1fc2a134457dad0ebb2f554}
+      \strng{authorbibnamehash}{910afcd3a1fc2a134457dad0ebb2f554}
+      \strng{authornamehash}{910afcd3a1fc2a134457dad0ebb2f554}
+      \strng{authorfullhash}{910afcd3a1fc2a134457dad0ebb2f554}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Revenue and Pricing Management}
+      \field{month}{04}
+      \field{title}{Special Issue Papers: Forecasting and control of passenger bookings}
+      \field{volume}{4}
+      \field{year}{2005}
+      \field{pages}{111\bibrangedash 123}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.1057/palgrave.rpm.5170134
+      \endverb
+    \endentry
+    \entry{doi:10.1287/trsc.33.2.233}{article}{}
+      \name{author}{2}{}{%
+        {{hash=8c3200f173b0fb913d813418ad90cdaa}{%
+           family={McGill},
+           familyi={M\bibinitperiod},
+           given={Jeffrey\bibnamedelima I.},
+           giveni={J\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
+        {{hash=9b0d200c4f8a63eccc76a7b694a8eacc}{%
+           family={Ryzin},
+           familyi={R\bibinitperiod},
+           given={Garrett\bibnamedelima J.},
+           giveni={G\bibinitperiod\bibinitdelim J\bibinitperiod},
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+      }
+      \strng{namehash}{ca1640a51fe7cf41dfbd65c519641e03}
+      \strng{fullhash}{ca1640a51fe7cf41dfbd65c519641e03}
+      \strng{bibnamehash}{ca1640a51fe7cf41dfbd65c519641e03}
+      \strng{authorbibnamehash}{ca1640a51fe7cf41dfbd65c519641e03}
+      \strng{authornamehash}{ca1640a51fe7cf41dfbd65c519641e03}
+      \strng{authorfullhash}{ca1640a51fe7cf41dfbd65c519641e03}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Transportation Science}
+      \field{number}{2}
+      \field{title}{Revenue Management: Research Overview and Prospects}
+      \field{volume}{33}
+      \field{year}{1999}
+      \field{pages}{233\bibrangedash 256}
+      \range{pages}{24}
+      \verb{doi}
+      \verb 10.1287/trsc.33.2.233
+      \endverb
+      \verb{eprint}
+      \verb https://doi.org/10.1287/trsc.33.2.233
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1287/trsc.33.2.233
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1287/trsc.33.2.233
+      \endverb
+    \endentry
+    \entry{article_Ryzin2014}{article}{}
+      \name{author}{2}{}{%
+        {{hash=9b0d200c4f8a63eccc76a7b694a8eacc}{%
+           family={Ryzin},
+           familyi={R\bibinitperiod},
+           given={Garrett\bibnamedelima J.},
+           giveni={G\bibinitperiod\bibinitdelim J\bibinitperiod},
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+        {{hash=4f7d6c83f885ff5badf6810cb9ed5f9f}{%
+           family={Talluri},
+           familyi={T\bibinitperiod},
+           given={Kalyan\bibnamedelima T.},
+           giveni={K\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+      }
+      \strng{namehash}{187e6fcf22079c6ccb9d88f5ed8b34d4}
+      \strng{fullhash}{187e6fcf22079c6ccb9d88f5ed8b34d4}
+      \strng{bibnamehash}{187e6fcf22079c6ccb9d88f5ed8b34d4}
+      \strng{authorbibnamehash}{187e6fcf22079c6ccb9d88f5ed8b34d4}
+      \strng{authornamehash}{187e6fcf22079c6ccb9d88f5ed8b34d4}
+      \strng{authorfullhash}{187e6fcf22079c6ccb9d88f5ed8b34d4}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{INFORMS Tutorials in Operations Research}
+      \field{month}{10}
+      \field{title}{An Introduction to Revenue Management}
+      \field{year}{2014}
+      \field{pages}{142\bibrangedash 194}
+      \range{pages}{53}
+      \verb{doi}
+      \verb https://doi.org/10.1287/educ.1053.0019
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

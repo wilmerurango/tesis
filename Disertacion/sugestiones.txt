@@ -128,3 +128,12 @@ hay que tener en cuenta algo muy importante, se acabo de decir que el modelo tom
 en este caso la columna X representa a solucion mas golosa que podria tomar X, note como los valores son muy parecidos para cada clase y se respeta el orden decreciente. 
 
 Este ultimo enfoque no necesita intervencion directa en la demanda comporamnetal ya calculada (asi como el primer enfoque), solo adicionamos una condicion para la variable X que logra activar la caracteristica de la lista preferncia del modelo.
+
+la restricccion 2.8 es usada para saber cuando, la variable de desicion Y, toma valores diferentes de cero y cuando no. Entonces ella toma el valor de 1 en el primer caso y 0 en caso contrario.
+
+
+otra condicion especial deste problema es cuando se trata de disponibilizar los precios de los boletos en el tiempo, y se refiere a que estos deben tener un sentido logico que no permita intermitencias en funcion del tiempo, en otras palabras, los precios de los boletos siempre aumentaran conforme se este mas cerca de la fecha de partida del tren, la restriccion 5 se encarga de cumplir dicha condicion.
+
+la restriccion 2.2 es la encargada de almacenar la cantidad de asientos vacios disponibles en cada estacion de origen de cada tipo de asiento en todo el horizonte de reserva. y es la generalizacion del ejemplo simplificado para calcular ai
+
+la restriccion 2.3 garantiza que los assientos reservados en todo el horizonte de reserva, para cada trecho, no excedan la capacidade dispuesta para cada tipo de asiento en cada estacion de origen. 

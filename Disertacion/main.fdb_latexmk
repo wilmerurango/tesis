@@ -1,14 +1,14 @@
 # Fdb version 4
-["biber main"] 0 "main.bcf" "main.bbl" "main" 1733011616.2172 -1
-  "main.bcf" 1733011615.98794 108091 e8ead7350bf07e11b5ca1dda93e13250 "pdflatex"
+["biber main"] 1733078104.96328 "main.bcf" "main.bbl" "main" 1733078813.93145 0
+  "main.bcf" 1733078813.7336 108091 e8ead7350bf07e11b5ca1dda93e13250 "pdflatex"
   "sections/referencias.bib" 1728504120.05549 3688 c34835b29b0831e4afa87bb3d346a70b ""
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1733011611.83184 "/home/wilmer/Documentos/Codes/tesis/Disertacion/main.tex" "main.pdf" "main" 1733011616.21765 0
+["pdflatex"] 1733078810.21169 "/home/wilmer/Documentos/Codes/tesis/Disertacion/main.tex" "main.pdf" "main" 1733078813.93182 0
   "/etc/texmf/web2c/texmf.cnf" 1721694887.05848 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/wilmer/Documentos/Codes/tesis/Disertacion/main.tex" 1732990101.81887 4769 cc190a94ba6e8fbcf96dfadb100622a7 ""
+  "/home/wilmer/Documentos/Codes/tesis/Disertacion/main.tex" 1733021977.36392 4755 e44ea930fad6b51131bf2f032fe19f38 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/helvetic/phvr8r.tfm" 1136768653 4712 9ef4d7d106579d4b136e1529e1a4533c ""
@@ -272,20 +272,26 @@
   "img/fulfill.png" 1732999028.48523 112109 519d0ea6c6227ad7c80fea055afea2d2 ""
   "img/repre_ini1.png" 1727711611.36234 59951 f0f55e09941a00e36e250a867737717f ""
   "img/unicamp.pdf" 1711937936.12523 4078 6b392d4bdde6603f81be8df8b3f96044 ""
-  "main.aux" 1733011615.98094 17256 b5e0d4af37a0bf5a1dfa39fc3b6cb079 "pdflatex"
-  "main.bbl" 1732985496.15622 9912 a81e988190130072723ee20fe365d6cc "biber main"
-  "main.out" 1733011615.98494 1638 574f33af6077eefd88aefd6d439b8c66 "pdflatex"
-  "main.run.xml" 1733011615.98994 2318 7ad0f85467fb23aeeae030eef5075fc4 "pdflatex"
-  "main.tex" 1732990101.81887 4769 cc190a94ba6e8fbcf96dfadb100622a7 ""
+  "main.aux" 1733078813.7266 17054 f9717ecd74c9d30fe8ee515201affa8d "pdflatex"
+  "main.bbl" 1733078106.26307 9912 a81e988190130072723ee20fe365d6cc "biber main"
+  "main.lof" 1733078813.7346 2087 1f8f253fc58b42c92043384f80cb3db2 "pdflatex"
+  "main.lot" 1733078813.7346 1818 00b86a1b5888d01b45092f86a898a823 "pdflatex"
+  "main.out" 1733078813.7316 1868 9e9fb08bc918f20472d4ce6e73cb0c7e "pdflatex"
+  "main.run.xml" 1733078813.7346 2318 7ad0f85467fb23aeeae030eef5075fc4 "pdflatex"
+  "main.tex" 1733021977.36392 4755 e44ea930fad6b51131bf2f032fe19f38 ""
+  "main.toc" 1733078813.7346 912 172024604e8a8a16893f2a213c4eaba7 "pdflatex"
   "sections/capa2.tex" 1712082020.75775 3465 cda148a89a951b4a36f601035ada5df3 ""
-  "sections/modelo_matematico.tex" 1733011596.454 95004 1421180b20ff9574f320ccced423e8ab ""
-  "sections/resultados_camputacionais.tex" 1732289043.72686 31832 dde22603ea52b6c5cf65cf025d6a499f ""
-  "sections/revisao_literatura.tex" 1728506881.43513 4898 10ded4b9cd9b849ed570d6707d8e5532 ""
+  "sections/modelo_matematico.tex" 1733078660.95669 94992 85e762b90c2d6f15bb3a3e2e4b0c808c ""
+  "sections/resultados_camputacionais.tex" 1733078809.56072 31855 7fba12f5648b372e35500719f83391b4 ""
+  "sections/revisao_literatura.tex" 1733022260.86599 4942 99fc508ad77614aa554240a933a5c964 ""
   (generated)
   "main.aux"
   "main.bcf"
+  "main.lof"
   "main.log"
+  "main.lot"
   "main.out"
   "main.pdf"
   "main.run.xml"
+  "main.toc"
   (rewritten before read)

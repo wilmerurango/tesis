@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.7.22)  30 NOV 2024 21:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.7.22)  1 DEC 2024 15:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1103,7 +1103,7 @@ Package caption Info: End \AtBeginDocument code.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 (./sections/capa2.tex
-<img/unicamp.pdf, id=43, 166.6225pt x 175.65625pt>
+<img/unicamp.pdf, id=47, 166.6225pt x 175.65625pt>
 File: img/unicamp.pdf Graphic file (type pdf)
 <use img/unicamp.pdf>
 Package pdftex.def Info: img/unicamp.pdf  used on input line 33.
@@ -1144,44 +1144,60 @@ Underfull \hbox (badness 1097) in paragraph at lines 72--75
 \T1/ptm/m/n/12 Este exem-plar cor-res-ponde à ver-são fi-nal da
  []
 
-) (./sections/revisao_literatura.tex [1
+) [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc} <./img/unicamp.pdf>]
-Cap\'{\i }tulo 1.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 15.55188pt on input line 1.
-LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 22.39185pt on input line 1.
-
-Underfull \vbox (badness 2435) has occurred while \output is active []
+(Font)              scaled to size 15.55188pt on input line 112.
+ (./main.lof)
+\tf@lof=\write9
+\openout9 = `main.lof'.
 
  [2
 
-]) (./sections/modelo_matematico.tex
-Underfull \vbox (badness 10000) has occurred while \output is active []
+] (./main.lot)
+\tf@lot=\write10
+\openout10 = `main.lot'.
 
- [3] [4]
+ [3
+
+] (./main.toc)
+\tf@toc=\write11
+\openout11 = `main.toc'.
+
+ (./sections/revisao_literatura.tex [4
+
+]
+Cap\'{\i }tulo 1.
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 22.39185pt on input line 1.
+[5
+
+]
+Underfull \vbox (badness 5847) has occurred while \output is active []
+
+ [6]) (./sections/modelo_matematico.tex [7]
 Cap\'{\i }tulo 2.
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 10.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-<img/repre_ini1.png, id=77, 1658.195pt x 520.94624pt>
+<img/repre_ini1.png, id=171, 1658.195pt x 520.94624pt>
 File: img/repre_ini1.png Graphic file (type png)
 <use img/repre_ini1.png>
 Package pdftex.def Info: img/repre_ini1.png  used on input line 20.
 (pdftex.def)             Requested size: 298.46222pt x 93.76627pt.
- [5
+ [8
 
-] [6 <./img/repre_ini1.png>]
-<img/fig2.png, id=94, 909.24693pt x 325.215pt>
+] [9 <./img/repre_ini1.png>]
+<img/fig2.png, id=187, 909.24693pt x 325.215pt>
 File: img/fig2.png Graphic file (type png)
 <use img/fig2.png>
 Package pdftex.def Info: img/fig2.png  used on input line 55.
 (pdftex.def)             Requested size: 363.69234pt x 130.0837pt.
- [7 <./img/fig2.png>]
+ [10 <./img/fig2.png>]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 75.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
@@ -1226,124 +1242,125 @@ Underfull \hbox (badness 10000) in paragraph at lines 138--139
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [8]
-Underfull \vbox (badness 1616) has occurred while \output is active []
-
- [9]
+ [11] [12]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [10]
-<img/exemplo1.png, id=149, 389.455pt x 423.5825pt>
+ [13]
+<img/exemplo1.png, id=233, 389.455pt x 423.5825pt>
 File: img/exemplo1.png Graphic file (type png)
 <use img/exemplo1.png>
-Package pdftex.def Info: img/exemplo1.png  used on input line 201.
+Package pdftex.def Info: img/exemplo1.png  used on input line 198.
 (pdftex.def)             Requested size: 155.77924pt x 169.43pt.
- [11 <./img/exemplo1.png>]
+ [14 <./img/exemplo1.png>]
 File: img/exemplo1.png Graphic file (type png)
 <use img/exemplo1.png>
-Package pdftex.def Info: img/exemplo1.png  used on input line 217.
+Package pdftex.def Info: img/exemplo1.png  used on input line 214.
 (pdftex.def)             Requested size: 164.31754pt x 178.71135pt.
-<img/exemplo2.png, id=163, 389.455pt x 423.5825pt>
+<img/exemplo2.png, id=245, 389.455pt x 423.5825pt>
 File: img/exemplo2.png Graphic file (type png)
 <use img/exemplo2.png>
-Package pdftex.def Info: img/exemplo2.png  used on input line 222.
+Package pdftex.def Info: img/exemplo2.png  used on input line 219.
 (pdftex.def)             Requested size: 164.31754pt x 178.71135pt.
- [12 <./img/exemplo2.png>]
-
-LaTeX Warning: Reference `fig: exemplo_sip' on page 13 undefined on input line 236.
-
-[13]
-<img/assig_t1.png, id=196, 414.54875pt x 220.825pt>
+ [15 <./img/exemplo2.png>]
+<img/assig_t1.png, id=266, 414.54875pt x 220.825pt>
 File: img/assig_t1.png Graphic file (type png)
 <use img/assig_t1.png>
-Package pdftex.def Info: img/assig_t1.png  used on input line 273.
+Package pdftex.def Info: img/assig_t1.png  used on input line 272.
 (pdftex.def)             Requested size: 187.78532pt x 100.03075pt.
-<img/bx_t1.png, id=197, 414.54875pt x 220.825pt>
+<img/bx_t1.png, id=267, 414.54875pt x 220.825pt>
 File: img/bx_t1.png Graphic file (type png)
 <use img/bx_t1.png>
-Package pdftex.def Info: img/bx_t1.png  used on input line 281.
+Package pdftex.def Info: img/bx_t1.png  used on input line 280.
 (pdftex.def)             Requested size: 187.78532pt x 100.03075pt.
-<img/assig_t0.png, id=198, 414.54875pt x 220.825pt>
+<img/assig_t0.png, id=268, 414.54875pt x 220.825pt>
 File: img/assig_t0.png Graphic file (type png)
 <use img/assig_t0.png>
-Package pdftex.def Info: img/assig_t0.png  used on input line 290.
+Package pdftex.def Info: img/assig_t0.png  used on input line 289.
 (pdftex.def)             Requested size: 187.78532pt x 100.03075pt.
-<img/bx_to.png, id=199, 414.54875pt x 220.825pt>
+<img/bx_to.png, id=269, 414.54875pt x 220.825pt>
 File: img/bx_to.png Graphic file (type png)
 <use img/bx_to.png>
-Package pdftex.def Info: img/bx_to.png  used on input line 298.
+Package pdftex.def Info: img/bx_to.png  used on input line 297.
 (pdftex.def)             Requested size: 187.78532pt x 100.03075pt.
- [14 <./img/assig_t1.png> <./img/bx_t1.png> <./img/assig_t0.png> <./img/bx_to.png>]
+ [16 <./img/assig_t1.png> <./img/bx_t1.png> <./img/assig_t0.png> <./img/bx_to.png>]
 
-LaTeX Warning: Reference `fig: exemplo_sip' on page 15 undefined on input line 320.
+LaTeX Warning: Reference `fig: exemplo_sip' on page 17 undefined on input line 319.
 
-<img/BL_1.png, id=230, 1234.6125pt x 991.705pt>
+<img/BL_1.png, id=299, 1234.6125pt x 991.705pt>
 File: img/BL_1.png Graphic file (type png)
 <use img/BL_1.png>
-Package pdftex.def Info: img/BL_1.png  used on input line 325.
+Package pdftex.def Info: img/BL_1.png  used on input line 324.
 (pdftex.def)             Requested size: 164.31754pt x 131.98286pt.
-<img/BL_2.png, id=231, 1234.6125pt x 991.705pt>
+<img/BL_2.png, id=300, 1234.6125pt x 991.705pt>
 File: img/BL_2.png Graphic file (type png)
 <use img/BL_2.png>
-Package pdftex.def Info: img/BL_2.png  used on input line 330.
+Package pdftex.def Info: img/BL_2.png  used on input line 329.
 (pdftex.def)             Requested size: 164.31754pt x 131.98286pt.
-[15 <./img/BL_1.png> <./img/BL_2.png>]
-<img/fulfill.png, id=245, 2008.50375pt x 1053.9375pt>
+<img/fulfill.png, id=307, 2008.50375pt x 1053.9375pt>
 File: img/fulfill.png Graphic file (type png)
 <use img/fulfill.png>
-Package pdftex.def Info: img/fulfill.png  used on input line 343.
+Package pdftex.def Info: img/fulfill.png  used on input line 342.
 (pdftex.def)             Requested size: 401.69363pt x 210.78377pt.
- [16 <./img/fulfill.png>]
-<img/dem_indepen.png, id=266, 775.89874pt x 301.125pt>
+[17 <./img/BL_1.png> <./img/BL_2.png>]
+Underfull \vbox (badness 1997) has occurred while \output is active []
+
+ [18 <./img/fulfill.png>]
+<img/dem_indepen.png, id=334, 775.89874pt x 301.125pt>
 File: img/dem_indepen.png Graphic file (type png)
 <use img/dem_indepen.png>
-Package pdftex.def Info: img/dem_indepen.png  used on input line 374.
+Package pdftex.def Info: img/dem_indepen.png  used on input line 373.
 (pdftex.def)             Requested size: 187.78532pt x 72.87798pt.
-<img/dem_compo.png, id=267, 775.89874pt x 301.125pt>
+<img/dem_compo.png, id=335, 775.89874pt x 301.125pt>
 File: img/dem_compo.png Graphic file (type png)
 <use img/dem_compo.png>
-Package pdftex.def Info: img/dem_compo.png  used on input line 379.
+Package pdftex.def Info: img/dem_compo.png  used on input line 378.
 (pdftex.def)             Requested size: 187.78532pt x 72.87798pt.
- [17 <./img/dem_indepen.png> <./img/dem_compo.png>]
-<img/dem_compo_c1.png, id=277, 775.89874pt x 359.3425pt>
+ [19 <./img/dem_indepen.png> <./img/dem_compo.png>]
+<img/dem_compo_c1.png, id=345, 775.89874pt x 359.3425pt>
 File: img/dem_compo_c1.png Graphic file (type png)
 <use img/dem_compo_c1.png>
-Package pdftex.def Info: img/dem_compo_c1.png  used on input line 399.
+Package pdftex.def Info: img/dem_compo_c1.png  used on input line 398.
 (pdftex.def)             Requested size: 186.2195pt x 86.24396pt.
-<img/dem_compo_c2.png, id=279, 771.88374pt x 344.28625pt>
+<img/dem_compo_c2.png, id=347, 771.88374pt x 344.28625pt>
 File: img/dem_compo_c2.png Graphic file (type png)
 <use img/dem_compo_c2.png>
-Package pdftex.def Info: img/dem_compo_c2.png  used on input line 411.
+Package pdftex.def Info: img/dem_compo_c2.png  used on input line 410.
 (pdftex.def)             Requested size: 185.25587pt x 82.63039pt.
-<img/dem_compo_c3.png, id=281, 775.89874pt x 325.215pt>
+<img/dem_compo_c3.png, id=349, 775.89874pt x 325.215pt>
 File: img/dem_compo_c3.png Graphic file (type png)
 <use img/dem_compo_c3.png>
-Package pdftex.def Info: img/dem_compo_c3.png  used on input line 423.
+Package pdftex.def Info: img/dem_compo_c3.png  used on input line 422.
 (pdftex.def)             Requested size: 186.2195pt x 78.05319pt.
- [18 <./img/dem_compo_c1.png> <./img/dem_compo_c2.png>]
-<img/dem_compo_poten.png, id=291, 776.9025pt x 301.125pt>
+ [20 <./img/dem_compo_c1.png> <./img/dem_compo_c2.png> <./img/dem_compo_c3.png>]
+<img/dem_compo_poten.png, id=358, 776.9025pt x 301.125pt>
 File: img/dem_compo_poten.png Graphic file (type png)
 <use img/dem_compo_poten.png>
-Package pdftex.def Info: img/dem_compo_poten.png  used on input line 434.
+Package pdftex.def Info: img/dem_compo_poten.png  used on input line 433.
 (pdftex.def)             Requested size: 186.4604pt x 72.27147pt.
- [19 <./img/dem_compo_c3.png> <./img/dem_compo_poten.png>] [20] [21]
-<img/dem_classes.png, id=343, 724.50674pt x 498.663pt>
+ [21 <./img/dem_compo_poten.png>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [22] [23]
+<img/dem_classes.png, id=400, 724.50674pt x 498.663pt>
 File: img/dem_classes.png Graphic file (type png)
 <use img/dem_classes.png>
-Package pdftex.def Info: img/dem_classes.png  used on input line 508.
+Package pdftex.def Info: img/dem_classes.png  used on input line 507.
 (pdftex.def)             Requested size: 211.26028pt x 145.39989pt.
-<img/dem_redistri.png, id=344, 724.50674pt x 498.663pt>
+<img/dem_redistri.png, id=401, 724.50674pt x 498.663pt>
 File: img/dem_redistri.png Graphic file (type png)
 <use img/dem_redistri.png>
-Package pdftex.def Info: img/dem_redistri.png  used on input line 513.
+Package pdftex.def Info: img/dem_redistri.png  used on input line 512.
 (pdftex.def)             Requested size: 211.26028pt x 145.39989pt.
- [22 <./img/dem_classes.png> <./img/dem_redistri.png>]
-<img/dem_hierar.png, id=361, 722.7pt x 433.62pt>
+
+Underfull \vbox (badness 4341) has occurred while \output is active []
+
+ [24 <./img/dem_classes.png> <./img/dem_redistri.png>]
+<img/dem_hierar.png, id=416, 722.7pt x 433.62pt>
 File: img/dem_hierar.png Graphic file (type png)
 <use img/dem_hierar.png>
-Package pdftex.def Info: img/dem_hierar.png  used on input line 556.
+Package pdftex.def Info: img/dem_hierar.png  used on input line 555.
 (pdftex.def)             Requested size: 211.26028pt x 126.75229pt.
-) (./sections/resultados_camputacionais.tex [23 <./img/dem_hierar.png>]
+) (./sections/resultados_camputacionais.tex [25 <./img/dem_hierar.png>]
 Cap\'{\i }tulo 3.
 
 Overfull \hbox (3.6827pt too wide) in paragraph at lines 18--18
@@ -1370,13 +1387,13 @@ Overfull \hbox (4.08269pt too wide) in alignment at lines 10--27
  [] [] 
  []
 
-[24
+[26
 
 ]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[25]
+[27]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -1407,11 +1424,11 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-) [26]
+) [28]
 
-LaTeX Warning: Text page 27 contains only floats.
+LaTeX Warning: Text page 29 contains only floats.
 
-[27] [28] [29] [30
+[29] [30] [31] [32
 
 ] (./main.aux)
  ***********
@@ -1426,24 +1443,24 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 574F33AF6077EEFD88AEFD6D439B8C66;1638.
+(rerunfilecheck)             Checksum: 9E9FB08BC918F20472D4CE6E73CB0C7E;1868.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 34303 strings out of 474222
- 639315 string characters out of 5748733
+ 34320 strings out of 474222
+ 639454 string characters out of 5748733
  2038975 words of memory out of 5000000
- 55841 multiletter control sequences out of 15000+600000
+ 55848 multiletter control sequences out of 15000+600000
  647519 words of font info for 163 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,18n,87p,1500b,1628s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,18n,87p,1500b,1697s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (30 pages, 907924 bytes).
+Output written on main.pdf (32 pages, 908680 bytes).
 PDF statistics:
- 492 PDF objects out of 1000 (max. 8388607)
- 386 compressed objects within 4 object streams
- 107 named destinations out of 1000 (max. 500000)
- 190 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 537 PDF objects out of 1000 (max. 8388607)
+ 431 compressed objects within 5 object streams
+ 108 named destinations out of 1000 (max. 500000)
+ 198 words of extra memory for PDF output out of 10000 (max. 10000000)
 
