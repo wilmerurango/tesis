@@ -1,0 +1,23 @@
+\chapter*{Introdução}\label{cap:introduction}
+\addcontentsline{toc}{chapter}{Introdução}
+
+A otimização de receitas no transporte ferroviário de passageiros tornou-se uma área de pesquisa essencial para aumentar a sustentabilidade e a competitividade do setor. Esse tipo de transporte enfrenta desafios específicos na gestão de sua capacidade devido à variabilidade da demanda, à rigidez tarifária e à necessidade crescente de adaptar suas estratégias às dinâmicas de mercado \cite{Guerriero2021}. Nesse contexto, o Revenue Management (RM) oferece uma estrutura robusta para abordar a alocação ideal de recursos, utilizando técnicas avançadas de modelagem matemática e análise de dados \cite{Ammirato}.
+
+O principal objetivo do RM no transporte ferroviário de passageiros pode ser exemplificado da seguinte forma: um operador de transporte define o itinerário de um trem específico, detalhando a origem, o destino e o horário de partida. Os clientes, ou seja, os potenciais passageiros, podem adquirir bilhetes antecipadamente para viajar nesse trem. Chamamos de classes tarifárias ou produtos tarifários os bilhetes disponíveis para venda. O horizonte de reserva é o período de tempo entre a disponibilização inicial dos bilhetes para compra e a partida do trem. Esse horizonte geralmente é dividido em dias, de forma que cada período representa um dia (ou conjunto de dias) antes da partida.
+
+A função do RM, nesse contexto, é controlar a disponibilidade dos produtos tarifários ao longo do horizonte de reserva para maximizar a receita total. Mais especificamente, o processo de otimização busca determinar a quantidade de bilhetes de cada produto que deve estar disponível para venda em cada período, com o objetivo de maximizar os lucros associados a cada partida de trem.
+
+Um elemento fundamental para maximizar as receitas é um modelo preciso da demanda. Alinhar oferta e demanda para otimizar os lucros requer uma compreensão aprofundada do comportamento dos clientes e uma previsão confiável de suas decisões diante de diferentes ofertas de produtos \cite{ZHAO2019776}.
+
+Uma simplificação comum na modelagem da demanda para gestão de receitas é assumir que os clientes têm um comportamento de compra independente. Isso significa que cada cliente compra um produto específico, desconsiderando a oferta disponível no momento. Na prática, por exemplo, um cliente que desejasse comprar um bilhete de trem por R\$10 não pagaria R\$10,50 se essa fosse a única oferta disponível. Em vez disso, ele optaria por não viajar. Da mesma forma, em um modelo de demanda independente, assumimos que um cliente disposto a pagar R\$100 por um bilhete nunca compraria um bilhete mais barato (por exemplo, R\$50), mesmo que estivesse disponível.
+
+Por outro lado, uma abordagem mais robusta considera o comportamento de compra baseado em faixas ou listas de preferência. Esse modelo assume que os clientes escolhem entre um conjunto de ofertas com base em suas preferências. Se a opção mais desejada não estiver disponível, eles passam para a próxima opção viável, desde que esta seja mais atrativa do que não realizar a compra.
+
+Para abordar essa problemática, foram desenvolvidos três modelos de Programação Inteira Mista (MIP): O primeiro baseado em demanda independente. O segundo em demandas comportamentais ajustadas por proporções. Y o terceiro em demandas comportamentais ajustadas por hierarquia.
+
+Esses modelos respeitam as restrições operacionais do sistema ferroviário, como capacidade dos trens, estrutura hierárquica dos produtos tarifários, reservas de bilhetes, disponibilidade de vendas dentro do horizonte de reserva e coerência dos preços dos bilhetes ao longo do tempo, entre outras.
+
+O uso de instâncias reais fornecidas por uma empresa especializada permitiu validar a aplicabilidade dos modelos desenvolvidos, destacando tanto sua capacidade de capturar a complexidade do mercado quanto sua eficiência computacional. Os resultados preliminares indicam que os modelos baseados em demandas comportamentais geraram soluções de melhor qualidade em comparação com o modelo de demanda independente. No entanto, em termos do valor da função objetivo, os modelos comportamentais apresentaram os mesmos resultados entre si, que foram ligeiramente diferentes dos obtidos pelo modelo independente.
+
+Essa pesquisa contribui para o corpo de conhecimento em Revenue Management ao combinar técnicas de modelagem baseadas em demandas comportamentais, utilizando listas de preferência, e programação matemática para resolver problemas complexos de alocação de assentos no transporte ferroviário de passageiros.
+% \end{quotation}

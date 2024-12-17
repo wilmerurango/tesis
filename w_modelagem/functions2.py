@@ -1762,7 +1762,7 @@ class HierarBehavioralModel_Fulfillments_Skiplagging(HierarBehavioralModel):
 
                 # restrição .4.2 [jerarquia para los assignments] =========================================
                 model.addConstr(
-                    X[i,j,v,k,t] <= X[i,j,v,VK_[pos_k+1],t], 
+                    X[i,j,v,k,t] <= X[i,j,v,VK_[pos_k+1],t],
                     name=f"JerarAssig_({i},{j},{v},{k},{t})"
                 )
 
@@ -1909,12 +1909,6 @@ class PercentBehavioralModel_Fulfillments(PercentBehavioralModel):
             pos_k = VK_.index(k)
             last_k = VK_[-1]
 
-            # restrição .5
-            model.addConstr(
-                X[i,j,v,k,t] <= d[i,j,v,k,t],
-                name = f"Assig_({i},{j},{v},{k},{t})"
-            )
-
             # restrição .demanda comportamental
             if pos_k >= 1:
                 model.addConstr(
@@ -1943,10 +1937,10 @@ class PercentBehavioralModel_Fulfillments(PercentBehavioralModel):
 
             if k != last_k:
 
-                # restrição .4.2 [jerarquia para los assignments] =========================================
+                # restrição .5 [1ra parte] modificação de la demanda con el porcentagem
                 model.addConstr(
-                    X[i,j,v,k,t] <= X[i,j,v,VK_[pos_k+1],t], 
-                    name=f"JerarAssig_({i},{j},{v},{k},{t})"
+                    X[i,j,v,k,t] <= d[i,j,v,k,t]*(dd[i,j,v,k,t] / d[i,j,v,last_k,t]),
+                    name = f"Assig1_({i},{j},{v},{k},{t})"
                 )
 
                 # restrição .8
@@ -1960,6 +1954,12 @@ class PercentBehavioralModel_Fulfillments(PercentBehavioralModel):
                 model.addConstr(
                     Y[i,j,v,k,t] >=  X[i,j,v,k,t],
                     name=f"Autho_({i},{j},{v},{k},{t})"
+                )
+
+                # restricao .5 [2da parte] modificação da demanda con a porcentagem
+                model.addConstr(
+                    X[i,j,v,k,t] <= dd[i,j,v,k,t] + (d[i,j,v,last_k,t] - quicksum( d[i,j,v,kk,t]*(dd[i,j,v,kk,t] / d[i,j,v,last_k,t]) for kk in VK_)),
+                    name = f"Assig2_({i},{j},{v},{k},{t})"
                 )
 
 
@@ -2144,11 +2144,6 @@ class PercentBehavioralModel_Skiplagging(PercentBehavioralModel):
             pos_k = VK_.index(k)
             last_k = VK_[-1]
 
-            # restrição .5
-            model.addConstr(
-                X[i,j,v,k,t] <= d[i,j,v,k,t],
-                name = f"Assig_({i},{j},{v},{k},{t})"
-            )
 
             # restrição .demanda comportamental
             if pos_k >= 1:
@@ -2159,10 +2154,10 @@ class PercentBehavioralModel_Skiplagging(PercentBehavioralModel):
 
             if k != last_k:
 
-                # restrição .4.2 [jerarquia para los assignments] =========================================
+                # restrição .5 [1ra parte] modificação de la demanda con el porcentagem
                 model.addConstr(
-                    X[i,j,v,k,t] <= X[i,j,v,VK_[pos_k+1],t], 
-                    name=f"JerarAssig_({i},{j},{v},{k},{t})"
+                    X[i,j,v,k,t] <= d[i,j,v,k,t]*(dd[i,j,v,k,t] / d[i,j,v,last_k,t]),
+                    name = f"Assig1_({i},{j},{v},{k},{t})"
                 )
 
                 # restrição .8
@@ -2183,6 +2178,12 @@ class PercentBehavioralModel_Skiplagging(PercentBehavioralModel):
                 model.addConstr(
                     Y[i,j,v,k,t] >=  X[i,j,v,k,t],
                     name=f"Autho_({i},{j},{v},{k},{t})"
+                )
+
+                # restricao .5 [2da parte] modificação da demanda con a porcentagem
+                model.addConstr(
+                    X[i,j,v,k,t] <= dd[i,j,v,k,t] + (d[i,j,v,last_k,t] - quicksum( d[i,j,v,kk,t]*(dd[i,j,v,kk,t] / d[i,j,v,last_k,t]) for kk in VK_)),
+                    name = f"Assig2_({i},{j},{v},{k},{t})"
                 )
 
                 # [start] restrições Skiplagging
@@ -2380,12 +2381,6 @@ class PercentBehavioralModel_Fulfillments_Skiplagging(PercentBehavioralModel):
             pos_k = VK_.index(k)
             last_k = VK_[-1]
 
-            # restrição .5
-            model.addConstr(
-                X[i,j,v,k,t] <= d[i,j,v,k,t],
-                name = f"Assig_({i},{j},{v},{k},{t})"
-            )
-
             # restrição .demanda comportamental
             if pos_k >= 1:
                 model.addConstr(
@@ -2414,10 +2409,10 @@ class PercentBehavioralModel_Fulfillments_Skiplagging(PercentBehavioralModel):
 
             if k != last_k:
 
-                # restrição .4.2 [jerarquia para los assignments] =========================================
+                # restrição .5 [1ra parte] modificação de la demanda con el porcentagem
                 model.addConstr(
-                    X[i,j,v,k,t] <= X[i,j,v,VK_[pos_k+1],t], 
-                    name=f"JerarAssig_({i},{j},{v},{k},{t})"
+                    X[i,j,v,k,t] <= d[i,j,v,k,t]*(dd[i,j,v,k,t] / d[i,j,v,last_k,t]),
+                    name = f"Assig1_({i},{j},{v},{k},{t})"
                 )
 
                 # restrição .8
@@ -2438,6 +2433,12 @@ class PercentBehavioralModel_Fulfillments_Skiplagging(PercentBehavioralModel):
                 model.addConstr(
                     Y[i,j,v,k,t] >=  X[i,j,v,k,t],
                     name=f"Autho_({i},{j},{v},{k},{t})"
+                )
+
+                # restricao .5 [2da parte] modificação da demanda con a porcentagem
+                model.addConstr(
+                    X[i,j,v,k,t] <= dd[i,j,v,k,t] + (d[i,j,v,last_k,t] - quicksum( d[i,j,v,kk,t]*(dd[i,j,v,kk,t] / d[i,j,v,last_k,t]) for kk in VK_)),
+                    name = f"Assig2_({i},{j},{v},{k},{t})"
                 )
 
                 # [start] restrições Skiplagging

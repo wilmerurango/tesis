@@ -137,3 +137,131 @@ otra condicion especial deste problema es cuando se trata de disponibilizar los 
 la restriccion 2.2 es la encargada de almacenar la cantidad de asientos vacios disponibles en cada estacion de origen de cada tipo de asiento en todo el horizonte de reserva. y es la generalizacion del ejemplo simplificado para calcular ai
 
 la restriccion 2.3 garantiza que los assientos reservados en todo el horizonte de reserva, para cada trecho, no excedan la capacidade dispuesta para cada tipo de asiento en cada estacion de origen. 
+
+Resumen
+la gestion de ingresos o RM por sus siglas en ingles (Revenue Management) se encarga de optimizar los ingresos al comercializar un producto o servicio, al mismo tiempo que responde a preguntas como: ¿que productos deben venderse?, a quein deben benderse esos productos escogidos?, ¿cual es mejor tiempo o mejor momento para vender los productos? y ¿cual es el mejor precio de venta?. El RM nacio en la industria aerea y tuvo tanto exito que fue aplicado en industrias con caracteristicas semejantes como la hoteleria, disponibilidad de camas en hospitales, ventas al por menor, comercio electronico y el transporte en general. El presente trabajo hace parte del sector trasnporte, mas especificamente, al trasnporte ferroviario de pasajeros donde se desea saber que cantidad de asietnos deben reservarse y disponibilizarse a la venta en cierto period de tiempo comprendido entre la disponibilidad de ventas de boletos al publico y la salida del tren. 
+El objetivo principal de este trabajo fue diseñar dos modelos matematicos enteros mixtos, el primero basados en demandas independientes y el segundo basado en demandas comportamentales usando listas de preferencia. La eficiencia de los modelos fue testeada usando 10 instancias reales, categorizadas como grandes, medianas y pequeñas, proveidas por la empresa candience Expretio. Entre los pricipales hallasgos se resalta que ambos modelos consiguen los resultados optimos en tiempos competitivos, en terminos de segundos, ademas de que en todas las instancias se halla la solucion optima explorando como maximo un nodo.
+
+
+Note que la primera columna indica el nombre del modelo usado, la segunda "T. Criacao Modelo (Seg)" muestra el tiempo en segundos que demoro el solver en construir el modelo, la tercera columna "T. Solucao (seg.)" Indica el tiempo que le tomó al solver resolver el modelo, la columna 7 "Z relaxado" muestra la relajacion lineal del problema en el nodo raiz, la columna 8 "Z*" muestra el valor óptimo de la funcion objetivo (lucro maximo encontrado), y por ultimo, la columna 9 "delta Z (%)" muestra la diferencia porcentual entre la solucion relajada y la solucion optima.
+
+
+
+
+
+
+dentro de los resultados se obsevaron varios comportamientos interesantes: 
+
+el primero, el tiempo de solucion de cada modelo para todas las instancias es relativamente bajo, por ejemplo, para las instancias grandes los tiempos varian entre 0.04 y 0.12 segundos, para las instancais medianas entre 0.02 y 0.08 segundos y para las instancias pequñas entre 0.00 y 0.07 segundos.
+
+segundo, los modelos consiguen hallar la solucion o soluciones optimas explorando maximo un nodo, mostrando que la solucion optima de nuestro modelo casi siempre es la  relajacion lineal mismo, y cuando no lo es, queda muy cerca de esta, con una diferencia maxima  relativa de 0.01%.
+
+para los modelos basados en demanda independiente se noto que: los modelos BaseModel y BaseModelFulfillments obtienen exactamente los mismos resultados en todas las instancias analizadas, el modelo BaseModelSkiplagging en comparacion con el modelo BaseModelFulfillments representa una disminucion relativa entre el 21.25% y 56.90% para todas las instancias excepto para la instancia2 que la disminucion fue de solo 3.57%. el modelo BaseModelFull representa una disminucion relativa entre 21.25% y un 72.24% en comparacion con el modelo BaseModelSkiplagging, para todas las instancias excepto, de nuevo, para la instancia 2 que la disminucion fue del 3.57%.
+
+para los modelos en funcion de una demanda comportamental con ajuste de demanda basada en proporciones se noto que: no hay diferencia entre los modelos BaseModel y BaseModelFulfillments. por el contrario del modelo independiente el modelo PercentBehavioralModelFulfillments siempre genera un aumento entre el 0.33% y el 8.6% en las soluciones obtenidas, en compararacion con el modelo HierarBehavioralModel, excepto para las instancia 7, 8 y 10, en donde el modelo HierarBehavioralModel fue infactible. aun no se sabe con certeza la razon de la infactibilidad, pero nosotros creemos que se debe a que en algun momento del ajuste de la demanda se crear una situacion inviable. por otro lado, el modelo PercentBehavioralModelFull decrece desde un 33% hasta un 70% en comparacion con el modelo PercentBehavioralModelSkiplagging.
+
+
+para los modelos en funcion de una demanda comportamental con ajuste de demanda basada en jerarquia se noto que: los modelos HierarBehavioralModel y HierarBehavioralModelFulfillments obtuvieron los mismos resultados para todas las inaancias excepto par la instancia 3 y 3 donde se tubo una disminucion del 0.06% y 0.01% respectivamente. el modelo HierarBehavioralModelSkiplagging tuvo una disminucion de entre el 21.8% hasta un 56.9% excepto en la instancia 1 donde la disminucion fue de tan solo el 3.57%. por ultimo, el modelo HierarBehavioralModelFull tuvo una disminucion bastante considerable comparado con el modelo HierarBehavioralModelSkiplagging marcando una disminucion entre 33% y 74%.
+
+analizando solo los modelos Full, osea los modelos en donde se tuvieron en cuenta todos los conjunto de restricciones, se observo que los modelos comportamentales obtuvieron exactamnete los mismos resultados para la funcion objetivo de cada instancia, hay que aclarar que como existen instancias con multiples soluciones, tal ves los valores de las variables de desicion no sean la mismas, aun cuando los valores de funcion objetivo si lo sean. por otro lado, la diferencia entre los modelos comportamentales y el modelo independiente varia en maximo 2% excepto para las instancias 7 y 8 donde la variacion fue de 7.7% y 16.1% respectivamente.
+
+
+INTRODUCCION
+La optimización de ingresos en el transporte ferroviario de pasajeros se ha convertido en un área de investigación crucial para aumentar la sostenibilidad y la competitividad del sector. El transporte ferroviario enfrenta retos específicos en la gestión de su capacidad debido a la variabilidad en la demanda, la rigidez en las tarifas y la creciente necesidad de adaptar sus estrategias a las dinámicas del mercado. En este contexto, el Revenue Management (RM) ofrece un marco de referencia sólido para abordar la asignación óptima de recursos mediante técnicas avanzadas de modelado matemático y análisis de datos.
+
+En particular, el principal objetivo del RM en el transporte ferroviario de pasajeros puede ilustrarse con el siguiente ejemplo. Un operador de transporte define un itinerario para un tren específico, en el cual se especifican el origen, el destino y el horario de salida. Los clientes, es decir, los posibles pasajeros, pueden comprar boletos con anticipación para viajar en dicho tren. Nos referimos a las clases comerciales o productos tarifarios como los boletos disponibles para la venta; y al horizonte de reserva como el período de tiempo transcurrido entre el momento en que los boletos están disponibles por primera vez para su compra y la salida del tren. El horizonte de reserva generalmente se divide en días, de modo que cada período representa un día (o conjunto de días) antes de la salida.
+
+La funcion del RM en este contexto es controlar la disponibilidad de los productos tarifarios a lo largo del horizonte de reserva para maximizar el ingreso total. Más específicamente, el proceso de optimización busca determinar la cantidad de boletos de cada producto que debe estar disponible para la venta en cada período del horizonte de reserva, con el fin de maximizar los ingresos asociados a cada partida de tren.
+
+Uno de los elementos clave para maximizar los ingresos totales es un modelo preciso de la demanda. Coincidir la oferta y la demanda para optimizar los ingresos implica comprender cómo piensan los clientes y requiere una predicción precisa de las acciones de los clientes cuando se enfrentan a una oferta de productos determinada.
+
+Una simplificación común para modelar la demanda en la gestión de ingresos es asumir que los clientes tienen un comportamiento de compra independiente, lo que significa que cada cliente compra un producto específico independientemente de la oferta disponible en el momento de la compra. En la práctica, esto significa, por ejemplo, que un cliente que quisiera comprar un boleto de tren por $10, si se le presenta una oferta que solo incluye boletos con un precio de $10.5, nunca pagaría $0.50 adicionales para viajar en ese tren, en lugar de eso, preferiría no viajar en absoluto. Del mismo modo, al asumir un modelo de demanda independiente, suponemos que, en la práctica, un cliente dispuesto a pagar $100 por un boleto de tren nunca compraría un boleto más barato (por ejemplo, a $50) si estuviera disponible.
+
+Por otro lado, un enfoque mas robusto toma en cuenta un comportamiento de compra basado en rangos o listas de preferencia, el cual asume que los clientes eligen entre un conjunto de ofertas de acuerdo con una lista de preferencias, de modo que, si la opción más preferida no está disponible, pasan a la siguiente opción disponible, siempre y cuando sea preferible en comparación con la opción de no comprar.
+
+Para abordar esta problemática, se han desarrollado 3 modelos de programación entera mixta (MIP) el primero basado en demanda independiente, el segundo basado en demandas comportamentales ajustado con proporciones, y el tercero basado en demandas comportamentales ajustado con jerarquia. Dichos modelos respetan restricciones operativas del sistema ferroviario, como son, la capacidad de los trenes, la estructura jerárquica de los productos tarifarios, las reservas de boletos y la disponibilidad de ventas al publico dentro del horizonte de reserva, la coherencia de los precios de los boletos en funcion del tiempo, entre otras.
+
+El uso de instancias reales proporcionadas por una empresa especialista en el tema, permitió validar la aplicabilidad de los modelos desarrollados, destacando tanto su capacidad para capturar la complejidad del mercado como su eficiencia computacional. Los resultados preliminares indican que los modelos basados en demanda comportamental tuvieron soluciones de mejor calidad en comparacion con el modelo basado en demanda independiente, sin emabargo, en terminos de valor de la funcion objetico, los modelos comportamentales obtuvieron los mismos resultados y a su ves estos resultados fueron ligeramente diferente a los obtenidos por el modelo independiente.
+
+Esta investigación contribuye al cuerpo de conocimiento en Revenue Management al combinar técnicas de modelado basadas en demanda comportamental usando listas de preferencia y programación matemática, para resolver problemas complejos de disponibilizacion de asientos en el transporte ferroviario de pasajeros.
+
+
+
+conclusion
+El presente estudio abordó la problemática de optimizar el transporte ferroviario de pasajeros mediante el desarrollo de modelos matemáticos de programación entera mixta, explorando dos enfoques principales: demanda independiente y demanda comportamental. La implementación de estos modelos en escenarios reales permitió una evaluación comparativa detallada, destacando las diferencias y los beneficios inherentes de cada abordaje.
+
+En primer lugar, desde un punto de vista computacional, todos los modelos demostraron ser robustos y capaces de alcanzar soluciones óptimas dentro de tiempos razonables, lo que valida su viabilidad para aplicaciones prácticas en la industria ferroviaria.
+
+En segundo lugar, se tiene que los modelos son eficientes en cuento se trata de encontrar la solucion o soluciones optimas dentro del espacion de busqueda, pues explora maximo un nodo. Hasta este momento, aun no conseguimos explicar con precision este comportamiento, mas se puede afirmar que no se debe a instancias faciles de resolver, pues se usaron instancias consideradas de grande porte en la insdustria, con hasta 30 estaciones representadas con hasta 74.788 variables de desicion enteras.
+
+En tercer lugar se observo que los modelos comportamentales aun cuando tienen un valor de funcion objetivo un poco menor cuando se comparan con el modelo independiente, la calidad de la solucion en mejor, aclarando que en este tipo de problemas, si bien se busca maximizar el lucro, tambien buscamos que sea basado en las caracteristicas mas cercanas a la realidad. Cabe destacar que fue un dato imprevisto, que los valores de la funcion objetivo para los dos enfoques de los modelos fueran tan parecidos.
+
+En cuarto lugar, La infactibilidad del modelo PercentBehavioralModel se dio debido a las caracteristicas particulares de las instancias instancia7, instancia8 y instancia10 ya que al momento de hacer el ajuste de la demanda comportamental en funcion de la demanda independinete se creo una situacion inviable. Esto implica que se debe tener cuidado al momento de aplicar este enfoque para no caer en este tipo de situaciones.
+
+como trabajos futuros para incluir en la version final de esta propuesta se tiene:
+
+profundizar en la revision bibliografica para fortalecer las bases teoricas de la investigacion.
+
+Explicar con mas certeza y claridad el porque los modelos estan hallando la o las soluciones optimas en tan solo un nodo. Ademas de explicar, de forma mas detallada, la infactibilidad del modelo PercentBehavioralModel en cirtas instancias.
+
+Abordar otros enfoques para ajustar la demanda, en este caso se opto por adicionar restricciones que lograran mejorar el comportamiento de la misma, mas tambien se podria manejar alterando la formulacion de la funcion objetivo.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+La integración del enfoque comportamental, mediante el uso de listas de elección, permitió capturar de manera más precisa las preferencias de los pasajeros y las dinámicas del sistema de asignación de asientos. Este modelo, al reflejar las interacciones jerárquicas entre clases y tramos, proporcionó soluciones más alineadas con las restricciones operativas y la realidad del mercado. En contraste, el modelo basado en demandas independientes, aunque computacionalmente eficiente, asumió una homogeneidad en las elecciones de los pasajeros que puede no ser representativa en entornos competitivos y complejos como el transporte ferroviario.
+
+
+
+
+
+
+
+
+
+Esta investigación aporta una contribución valiosa al campo del Revenue Management para sistemas ferroviarios al proporcionar un marco metodológico robusto que combina técnicas avanzadas de optimización y análisis del comportamiento del pasajero. Además, refuerza la importancia de considerar aspectos comportamentales en la toma de decisiones estratégicas, especialmente en sectores donde la demanda y las preferencias de los usuarios desempeñan un papel crítico.
+
+Los hallazgos de este estudio abren la puerta a futuras investigaciones que podrían incluir la incorporación de datos en tiempo real y métodos de aprendizaje automático para mejorar aún más la capacidad predictiva y adaptativa de los modelos desarrollados. Asimismo, se plantea la posibilidad de extender el marco actual a otros modos de transporte, consolidando su aplicabilidad y su impacto en la optimización de ingresos en sistemas de movilidad complejos.
+
+
+En resumen, este trabajo destaca cómo el uso de modelos matemáticos avanzados, junto con la incorporación de enfoques comportamentales, puede transformar la gestión operativa y estratégica del transporte ferroviario de pasajeros, contribuyendo significativamente a la sostenibilidad económica y la satisfacción del cliente en este sector.
+
+
+
+
+
+
+
+
+
+
+En los últimos años, la gestión de reservas de boletos en el transporte ferroviario de pasajeros ha evolucionado significativamente gracias a la aplicación de modelos matemáticos avanzados. Estos modelos tienen como objetivo optimizar la asignación de asientos, la planificación de paradas y las estrategias de precios, buscando maximizar los ingresos y mejorar la satisfacción de los pasajeros. A continuación, se describen algunos de los enfoques más relevantes utilizados en este ámbito, basados en investigaciones recientes.
+
+Uno de los modelos destacados es el desarrollado por Zhou et al. (2023), que integra la teoría de las perspectivas, el modelo logit y un modelo de transferencia de flujo de pasajeros para asignar la demanda de manera efectiva. Este enfoque permite establecer precios diferenciados y asignar asientos de forma que se maximicen los ingresos, teniendo en cuenta las preferencias y comportamientos de diferentes segmentos de pasajeros (Zhou et al., 2023).
+
+Por otra parte, la planificación de paradas de los trenes y la estrategia de precios están interrelacionadas y afectan tanto a los ingresos como a la experiencia del pasajero. Zhou et al. (2022) propusieron un modelo de optimización no lineal entera mixta que aborda conjuntamente la estrategia de precios de boletos y la planificación de paradas. Este modelo tiene como objetivo maximizar los ingresos del transporte ferroviario y minimizar el tiempo de viaje de los pasajeros, logrando un equilibrio eficiente entre la oferta y la demanda (Zhou et al., 2022).
+
+Además, la demanda de pasajeros está sujeta a incertidumbres que complican la planificación operativa. Han y Ren (2020) desarrollaron un modelo que optimiza de manera conjunta la planificación de paradas y la asignación de boletos, utilizando la teoría de la incertidumbre. Este modelo busca maximizar la satisfacción de los pasajeros y la tasa promedio de ocupación de asientos, ofreciendo soluciones robustas ante las fluctuaciones en la demanda (Han & Ren, 2020).
+
+La gestión de ingresos, conocida como yield management, es una práctica común en la industria ferroviaria. Esta técnica ajusta dinámicamente los precios y la disponibilidad de boletos según la demanda esperada. Incluye, entre otras cosas, la predicción a corto plazo del flujo de pasajeros, la asignación de boletos durante el período de preventa y la implementación de mecanismos de ajuste dinámico para maximizar los ingresos (Gestión de ingresos, 2022).
+
+Finalmente, Schöbel y Urban (2021) investigaron cómo la elección de ruta de los pasajeros está influenciada por las estructuras tarifarias y los precios de los boletos. Su investigación abordó el problema de encontrar la tarifa más económica en sistemas de transporte público, evaluando diferentes estructuras tarifarias, como las basadas en distancia o en zonas, y proponiendo algoritmos para resolver estos problemas con alta eficiencia (Schöbel & Urban, 2021).
+
+En conclusión, los modelos matemáticos para la gestión de reservas en el transporte ferroviario han mostrado un gran potencial para mejorar la eficiencia operativa y la experiencia del pasajero. Los estudios recientes ofrecen herramientas sofisticadas y soluciones integradas que continúan evolucionando, adaptándose a las demandas cambiantes de los mercados y a las necesidades de los pasajeros. Estos avances no solo benefician a las empresas ferroviarias, sino que también promueven un transporte más eficiente y accesible.
+
+
+
+
+como ya se mensiono antes, esta pesquisa propone tres modelos matemaicos enteros mixtos, el primero usando un tipo de demanda independinete, el segundo usando un tipo de demanda comportamental con ajuste de proporciones , donde dichas proporciones son calculadas usando la demanda independiente, y el tercero que usa tambien un tipo de demanda comportamental con ajuste de hierarquia, donde dicha jerarquia esta relacionada a la cantidad de asientos reservados para cada clase de control.

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.7.22)  1 DEC 2024 15:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.7.22)  4 DEC 2024 21:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -983,14 +983,7 @@ Package csquotes Info: ... found 'babel' package.
 
 Package biblatex Warning: Load 'inputenc' before biblatex.
 
-(./main.aux
-
-LaTeX Warning: Label `fig:dem_classes' multiply defined.
-
-
-LaTeX Warning: Label `sub@fig:dem_classes' multiply defined.
-
-)
+(./main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 92.
@@ -1103,7 +1096,7 @@ Package caption Info: End \AtBeginDocument code.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 (./sections/capa2.tex
-<img/unicamp.pdf, id=47, 166.6225pt x 175.65625pt>
+<img/unicamp.pdf, id=59, 166.6225pt x 175.65625pt>
 File: img/unicamp.pdf Graphic file (type pdf)
 <use img/unicamp.pdf>
 Package pdftex.def Info: img/unicamp.pdf  used on input line 33.
@@ -1134,83 +1127,85 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 34.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 34.
-
-Underfull \hbox (badness 1331) in paragraph at lines 63--66
-[]\T1/ptm/m/n/12 Dissertação apre-sen-tada à Fa-cul-dade de Ci-ên-cias
- []
-
-
-Underfull \hbox (badness 1097) in paragraph at lines 72--75
-\T1/ptm/m/n/12 Este exem-plar cor-res-ponde à ver-são fi-nal da
- []
-
-) [1
+) (./sections/resumo.tex [1
 Non-PDF special ignored!
 <special> header=psfrag.pro
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc} <./img/unicamp.pdf>]
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 15.55188pt on input line 112.
- (./main.lof)
+(Font)              scaled to size 15.55188pt on input line 2.
+) (./sections/abstrac.tex [2
+
+]) [3
+
+] (./main.lof)
 \tf@lof=\write9
 \openout9 = `main.lof'.
 
- [2
+ [4
 
 ] (./main.lot)
 \tf@lot=\write10
 \openout10 = `main.lot'.
 
- [3
+ [5
 
 ] (./main.toc)
 \tf@toc=\write11
 \openout11 = `main.toc'.
 
- (./sections/revisao_literatura.tex [4
+ (./sections/introducao.tex [6
 
 ]
+Underfull \vbox (badness 3199) has occurred while \output is active []
+
+ [7
+
+]) (./sections/revisao_literatura.tex
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [8] [9]
 Cap\'{\i }tulo 1.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 22.39185pt on input line 1.
-[5
+[10
 
 ]
 Underfull \vbox (badness 5847) has occurred while \output is active []
 
- [6]) (./sections/modelo_matematico.tex [7]
+ [11] [12]) (./sections/modelo_matematico.tex [13]
 Cap\'{\i }tulo 2.
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 10.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-)
-<img/repre_ini1.png, id=171, 1658.195pt x 520.94624pt>
+) [14
+
+]
+<img/repre_ini1.png, id=231, 1658.195pt x 520.94624pt>
 File: img/repre_ini1.png Graphic file (type png)
 <use img/repre_ini1.png>
 Package pdftex.def Info: img/repre_ini1.png  used on input line 20.
 (pdftex.def)             Requested size: 298.46222pt x 93.76627pt.
- [8
-
-] [9 <./img/repre_ini1.png>]
-<img/fig2.png, id=187, 909.24693pt x 325.215pt>
+ [15 <./img/repre_ini1.png>]
+<img/fig2.png, id=241, 909.24693pt x 325.215pt>
 File: img/fig2.png Graphic file (type png)
 <use img/fig2.png>
 Package pdftex.def Info: img/fig2.png  used on input line 55.
 (pdftex.def)             Requested size: 363.69234pt x 130.0837pt.
- [10 <./img/fig2.png>]
+ [16 <./img/fig2.png>]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 75.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 114.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 75.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 114.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 75.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 114.
 
-Underfull \hbox (badness 10000) in paragraph at lines 92--93
+Underfull \hbox (badness 10000) in paragraph at lines 131--132
 []|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 OD; v \OMS/pzccm/m/n/10.95 2
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 93--93
+Underfull \hbox (badness 10000) in paragraph at lines 132--132
 []|$\OT1/ptmcm/m/n/10.95 (\OML/ptmcm/m/it/10.95 i; j\OT1/ptmcm/m/n/10.95 ) \OMS/pzccm/m/n/10.95 2 \OML/ptmcm/m/it/10.95 OD; v \OMS/pzccm/m/n/10.95 2
  []
 
@@ -1242,125 +1237,143 @@ Underfull \hbox (badness 10000) in paragraph at lines 138--139
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [11] [12]
+ [17]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [13]
-<img/exemplo1.png, id=233, 389.455pt x 423.5825pt>
+ [18]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [19]
+<img/exemplo1.png, id=283, 389.455pt x 423.5825pt>
 File: img/exemplo1.png Graphic file (type png)
 <use img/exemplo1.png>
 Package pdftex.def Info: img/exemplo1.png  used on input line 198.
 (pdftex.def)             Requested size: 155.77924pt x 169.43pt.
- [14 <./img/exemplo1.png>]
+
+Underfull \vbox (badness 1173) has occurred while \output is active []
+
+ [20]
 File: img/exemplo1.png Graphic file (type png)
 <use img/exemplo1.png>
 Package pdftex.def Info: img/exemplo1.png  used on input line 214.
 (pdftex.def)             Requested size: 164.31754pt x 178.71135pt.
-<img/exemplo2.png, id=245, 389.455pt x 423.5825pt>
+<img/exemplo2.png, id=299, 389.455pt x 423.5825pt>
 File: img/exemplo2.png Graphic file (type png)
 <use img/exemplo2.png>
 Package pdftex.def Info: img/exemplo2.png  used on input line 219.
 (pdftex.def)             Requested size: 164.31754pt x 178.71135pt.
- [15 <./img/exemplo2.png>]
-<img/assig_t1.png, id=266, 414.54875pt x 220.825pt>
+ [21 <./img/exemplo1.png> <./img/exemplo2.png>]
+<img/assig_t1.png, id=322, 414.54875pt x 220.825pt>
 File: img/assig_t1.png Graphic file (type png)
 <use img/assig_t1.png>
 Package pdftex.def Info: img/assig_t1.png  used on input line 272.
 (pdftex.def)             Requested size: 187.78532pt x 100.03075pt.
-<img/bx_t1.png, id=267, 414.54875pt x 220.825pt>
+<img/bx_t1.png, id=323, 414.54875pt x 220.825pt>
 File: img/bx_t1.png Graphic file (type png)
 <use img/bx_t1.png>
 Package pdftex.def Info: img/bx_t1.png  used on input line 280.
 (pdftex.def)             Requested size: 187.78532pt x 100.03075pt.
-<img/assig_t0.png, id=268, 414.54875pt x 220.825pt>
+<img/assig_t0.png, id=324, 414.54875pt x 220.825pt>
 File: img/assig_t0.png Graphic file (type png)
 <use img/assig_t0.png>
 Package pdftex.def Info: img/assig_t0.png  used on input line 289.
 (pdftex.def)             Requested size: 187.78532pt x 100.03075pt.
-<img/bx_to.png, id=269, 414.54875pt x 220.825pt>
+<img/bx_to.png, id=325, 414.54875pt x 220.825pt>
 File: img/bx_to.png Graphic file (type png)
 <use img/bx_to.png>
 Package pdftex.def Info: img/bx_to.png  used on input line 297.
 (pdftex.def)             Requested size: 187.78532pt x 100.03075pt.
- [16 <./img/assig_t1.png> <./img/bx_t1.png> <./img/assig_t0.png> <./img/bx_to.png>]
 
-LaTeX Warning: Reference `fig: exemplo_sip' on page 17 undefined on input line 319.
 
-<img/BL_1.png, id=299, 1234.6125pt x 991.705pt>
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \vbox (badness 3679) has occurred while \output is active []
+
+ [22]
+
+LaTeX Warning: Reference `fig: exemplo_sip' on page 23 undefined on input line 319.
+
+<img/BL_1.png, id=351, 1234.6125pt x 991.705pt>
 File: img/BL_1.png Graphic file (type png)
 <use img/BL_1.png>
 Package pdftex.def Info: img/BL_1.png  used on input line 324.
 (pdftex.def)             Requested size: 164.31754pt x 131.98286pt.
-<img/BL_2.png, id=300, 1234.6125pt x 991.705pt>
+<img/BL_2.png, id=352, 1234.6125pt x 991.705pt>
 File: img/BL_2.png Graphic file (type png)
 <use img/BL_2.png>
 Package pdftex.def Info: img/BL_2.png  used on input line 329.
 (pdftex.def)             Requested size: 164.31754pt x 131.98286pt.
-<img/fulfill.png, id=307, 2008.50375pt x 1053.9375pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[23 <./img/assig_t1.png> <./img/bx_t1.png> <./img/assig_t0.png> <./img/bx_to.png>]
+<img/fulfill.png, id=367, 2008.50375pt x 1053.9375pt>
 File: img/fulfill.png Graphic file (type png)
 <use img/fulfill.png>
 Package pdftex.def Info: img/fulfill.png  used on input line 342.
 (pdftex.def)             Requested size: 401.69363pt x 210.78377pt.
-[17 <./img/BL_1.png> <./img/BL_2.png>]
-Underfull \vbox (badness 1997) has occurred while \output is active []
-
- [18 <./img/fulfill.png>]
-<img/dem_indepen.png, id=334, 775.89874pt x 301.125pt>
+ [24 <./img/BL_1.png> <./img/BL_2.png> <./img/fulfill.png>]
+<img/dem_indepen.png, id=389, 775.89874pt x 301.125pt>
 File: img/dem_indepen.png Graphic file (type png)
 <use img/dem_indepen.png>
 Package pdftex.def Info: img/dem_indepen.png  used on input line 373.
 (pdftex.def)             Requested size: 187.78532pt x 72.87798pt.
-<img/dem_compo.png, id=335, 775.89874pt x 301.125pt>
+<img/dem_compo.png, id=390, 775.89874pt x 301.125pt>
 File: img/dem_compo.png Graphic file (type png)
 <use img/dem_compo.png>
 Package pdftex.def Info: img/dem_compo.png  used on input line 378.
 (pdftex.def)             Requested size: 187.78532pt x 72.87798pt.
- [19 <./img/dem_indepen.png> <./img/dem_compo.png>]
-<img/dem_compo_c1.png, id=345, 775.89874pt x 359.3425pt>
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[25]
+<img/dem_compo_c1.png, id=398, 775.89874pt x 359.3425pt>
 File: img/dem_compo_c1.png Graphic file (type png)
 <use img/dem_compo_c1.png>
 Package pdftex.def Info: img/dem_compo_c1.png  used on input line 398.
 (pdftex.def)             Requested size: 186.2195pt x 86.24396pt.
-<img/dem_compo_c2.png, id=347, 771.88374pt x 344.28625pt>
+<img/dem_compo_c2.png, id=400, 771.88374pt x 344.28625pt>
 File: img/dem_compo_c2.png Graphic file (type png)
 <use img/dem_compo_c2.png>
 Package pdftex.def Info: img/dem_compo_c2.png  used on input line 410.
 (pdftex.def)             Requested size: 185.25587pt x 82.63039pt.
-<img/dem_compo_c3.png, id=349, 775.89874pt x 325.215pt>
+ [26 <./img/dem_indepen.png> <./img/dem_compo.png> <./img/dem_compo_c1.png>]
+<img/dem_compo_c3.png, id=409, 775.89874pt x 325.215pt>
 File: img/dem_compo_c3.png Graphic file (type png)
 <use img/dem_compo_c3.png>
 Package pdftex.def Info: img/dem_compo_c3.png  used on input line 422.
 (pdftex.def)             Requested size: 186.2195pt x 78.05319pt.
- [20 <./img/dem_compo_c1.png> <./img/dem_compo_c2.png> <./img/dem_compo_c3.png>]
-<img/dem_compo_poten.png, id=358, 776.9025pt x 301.125pt>
+<img/dem_compo_poten.png, id=411, 776.9025pt x 301.125pt>
 File: img/dem_compo_poten.png Graphic file (type png)
 <use img/dem_compo_poten.png>
 Package pdftex.def Info: img/dem_compo_poten.png  used on input line 433.
 (pdftex.def)             Requested size: 186.4604pt x 72.27147pt.
- [21 <./img/dem_compo_poten.png>]
+ [27 <./img/dem_compo_c2.png> <./img/dem_compo_c3.png> <./img/dem_compo_poten.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [22] [23]
-<img/dem_classes.png, id=400, 724.50674pt x 498.663pt>
+ [28] [29]
+<img/dem_classes.png, id=456, 724.50674pt x 498.663pt>
 File: img/dem_classes.png Graphic file (type png)
 <use img/dem_classes.png>
 Package pdftex.def Info: img/dem_classes.png  used on input line 507.
 (pdftex.def)             Requested size: 211.26028pt x 145.39989pt.
-<img/dem_redistri.png, id=401, 724.50674pt x 498.663pt>
+<img/dem_redistri.png, id=457, 724.50674pt x 498.663pt>
 File: img/dem_redistri.png Graphic file (type png)
 <use img/dem_redistri.png>
 Package pdftex.def Info: img/dem_redistri.png  used on input line 512.
 (pdftex.def)             Requested size: 211.26028pt x 145.39989pt.
-
-Underfull \vbox (badness 4341) has occurred while \output is active []
-
- [24 <./img/dem_classes.png> <./img/dem_redistri.png>]
-<img/dem_hierar.png, id=416, 722.7pt x 433.62pt>
+ [30 <./img/dem_classes.png> <./img/dem_redistri.png>]
+<img/dem_hierar.png, id=472, 722.7pt x 433.62pt>
 File: img/dem_hierar.png Graphic file (type png)
 <use img/dem_hierar.png>
 Package pdftex.def Info: img/dem_hierar.png  used on input line 555.
 (pdftex.def)             Requested size: 211.26028pt x 126.75229pt.
-) (./sections/resultados_camputacionais.tex [25 <./img/dem_hierar.png>]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [31]) (./sections/resultados_camputacionais.tex [32 <./img/dem_hierar.png>]
 Cap\'{\i }tulo 3.
 
 Overfull \hbox (3.6827pt too wide) in paragraph at lines 18--18
@@ -1387,50 +1400,42 @@ Overfull \hbox (4.08269pt too wide) in alignment at lines 10--27
  [] [] 
  []
 
-[26
+[33
 
 ]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+ [34] [35] [36] [37]
+<img/compFull1.png, id=508, 1582.35165pt x 1582.713pt>
+File: img/compFull1.png Graphic file (type png)
+<use img/compFull1.png>
+Package pdftex.def Info: img/compFull1.png  used on input line 405.
+(pdftex.def)             Requested size: 443.05545pt x 443.15662pt.
+<img/compFull2.png, id=509, 1582.35165pt x 1004.19165pt>
+File: img/compFull2.png Graphic file (type png)
+<use img/compFull2.png>
+Package pdftex.def Info: img/compFull2.png  used on input line 414.
+(pdftex.def)             Requested size: 443.05545pt x 281.17174pt.
+ [38]
+Overfull \hbox (4.23701pt too wide) in paragraph at lines 439--440
+[]\T1/ptm/m/n/12 O mo-delo Ba-se-Mo-delS-ki-plag-ging, em com-pa-ra-ção com o Ba-se-Mo-del-Ful-fill-ments, apre-
+ []
 
-[27]
+[39 <./img/compFull1.png>] [40 <./img/compFull2.png>]
+Overfull \hbox (9.99788pt too wide) in paragraph at lines 453--454
+[]\T1/ptm/m/n/12 O mo-delo Hi-e-rar-Beha-vi-o-ral-Mo-delS-ki-plag-ging apre-sen-tou re-du-ções en-tre 21,8% e 56,9%,
+ []
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+) (./sections/conclucoes.tex [41]
+Cap\'{\i }tulo 4.
 
+Underfull \vbox (badness 1024) has occurred while \output is active []
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+ [42
 
+]) [43] [44
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-) [28]
-
-LaTeX Warning: Text page 29 contains only floats.
-
-[29] [30] [31] [32
-
-] (./main.aux)
+] [45] (./main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -1439,28 +1444,25 @@ L3 programming layer <2024-01-22>
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 9E9FB08BC918F20472D4CE6E73CB0C7E;1868.
+(rerunfilecheck)             Checksum: 08DC9D9E249E666E92C376D59C9CE2F3;2700.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 34320 strings out of 474222
- 639454 string characters out of 5748733
- 2038975 words of memory out of 5000000
- 55848 multiletter control sequences out of 15000+600000
+ 34431 strings out of 474222
+ 642268 string characters out of 5748733
+ 1999975 words of memory out of 5000000
+ 55918 multiletter control sequences out of 15000+600000
  647519 words of font info for 163 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,18n,87p,1500b,1697s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (32 pages, 908680 bytes).
+Output written on main.pdf (45 pages, 1786151 bytes).
 PDF statistics:
- 537 PDF objects out of 1000 (max. 8388607)
- 431 compressed objects within 5 object streams
- 108 named destinations out of 1000 (max. 500000)
- 198 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 655 PDF objects out of 1000 (max. 8388607)
+ 531 compressed objects within 6 object streams
+ 137 named destinations out of 1000 (max. 500000)
+ 232 words of extra memory for PDF output out of 10000 (max. 10000000)
 

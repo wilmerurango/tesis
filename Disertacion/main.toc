@@ -1,12 +1,15 @@
 \babel@toc {portuguese}{}\relax 
 \thispagestyle {empty} 
-\contentsline {chapter}{\numberline {1}Revisão da literatura}{5}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Origem do Revenue Management (RM)}{5}{section.1.1}%
-\contentsline {chapter}{\numberline {2}Modelagem matemática }{8}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Modelagem matemática}{8}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Primeira modelagem: Demanda Independente}{9}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Segunda modelagem: Demanda Comportamental}{19}{section.2.3}%
-\contentsline {chapter}{\numberline {3}Resultados Computacionais}{26}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Modelos Matemáticos}{26}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Instâncias}{27}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Experimentos Computacionais}{28}{section.3.3}%
+\contentsline {chapter}{Introdução}{7}{Doc-Start}%
+\contentsline {chapter}{\numberline {1}Revisão da literatura}{10}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Origem do Revenue Management (RM)}{10}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Modelagem do Transporte Ferroviário de Passageiros}{12}{section.1.2}%
+\contentsline {chapter}{\numberline {2}Modelagem matemática }{14}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Modelagem matemática}{14}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Primeira abordagem: modelo baseado em demanda independente}{15}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Segunda abordagem: modelos baseados em demanda comportamental}{25}{section.2.3}%
+\contentsline {chapter}{\numberline {3}Resultados Computacionais}{33}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Modelos Matemáticos}{33}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Instâncias}{34}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Experimentos Computacionais}{35}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Conclusões e trabalhos futuro}{42}{chapter.4}%

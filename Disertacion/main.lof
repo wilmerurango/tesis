@@ -2,18 +2,21 @@
 \thispagestyle {plain}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Versão gráfica simples do Problema de Transporte Ferroviário de Passageiros}}{9}{figure.caption.1}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Solução factível para o problema simplificado}}{10}{figure.caption.2}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Solução factível para a variável de decisão Autorização}}{14}{figure.caption.5}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Solução factível para os assentos Autorizados e assentos Reservados}}{15}{figure.caption.6}%
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Exemplo: Restrições Fulfillments over periods}}{16}{figure.caption.7}%
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Exemplo para as restrições \ref {eq: m1_binaria_Beta} e \ref {eq: m1_binaria_Beta_last}}}{17}{figure.caption.8}%
-\contentsline {figure}{\numberline {2.7}{\ignorespaces Exemplo para as restrições \ref {eq: m1_preco_estacao_inicio} e \ref {eq: m1_preco_combinacao_rotas_contidas}}}{18}{figure.caption.9}%
-\contentsline {figure}{\numberline {2.8}{\ignorespaces Exemplo: Tipos de Demanda}}{19}{figure.caption.10}%
-\contentsline {figure}{\numberline {2.9}{\ignorespaces Exemplo: Demanda comportamental para a classe $c_1$}}{20}{figure.caption.11}%
-\contentsline {figure}{\numberline {2.10}{\ignorespaces Exemplo: Demanda comportamental para a classe $c_2$}}{20}{figure.caption.12}%
-\contentsline {figure}{\numberline {2.11}{\ignorespaces Exemplo: Demanda comportamental para a classe $c_3$}}{20}{figure.caption.13}%
-\contentsline {figure}{\numberline {2.12}{\ignorespaces Exemplo: Demanda comportamental total Potencial}}{21}{figure.caption.14}%
-\contentsline {figure}{\numberline {2.13}{\ignorespaces Ajuste da Demanda Comportamental com Proporções}}{24}{figure.caption.16}%
-\contentsline {figure}{\numberline {2.14}{\ignorespaces Ajuste da Demanda Comportamental com Hierarquia}}{25}{figure.caption.17}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Versão gráfica simples do Problema de Transporte Ferroviário de Passageiros}}{15}{figure.caption.1}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Solução factível para o problema simplificado}}{16}{figure.caption.2}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Solução factível para a variável de decisão Autorização}}{21}{figure.caption.4}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Solução factível para os assentos Autorizados e assentos Reservados}}{21}{figure.caption.5}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Exemplo: Restrições Fulfillments over periods}}{23}{figure.caption.6}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Exemplo para as restrições \ref {eq: m1_binaria_Beta} e \ref {eq: m1_binaria_Beta_last}}}{24}{figure.caption.7}%
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Exemplo para as restrições \ref {eq: m1_preco_estacao_inicio} e \ref {eq: m1_preco_combinacao_rotas_contidas}}}{24}{figure.caption.8}%
+\contentsline {figure}{\numberline {2.8}{\ignorespaces Exemplo: Tipos de Demanda}}{26}{figure.caption.9}%
+\contentsline {figure}{\numberline {2.9}{\ignorespaces Exemplo: Demanda comportamental para a classe $c_1$}}{26}{figure.caption.10}%
+\contentsline {figure}{\numberline {2.10}{\ignorespaces Exemplo: Demanda comportamental para a classe $c_2$}}{27}{figure.caption.11}%
+\contentsline {figure}{\numberline {2.11}{\ignorespaces Exemplo: Demanda comportamental para a classe $c_3$}}{27}{figure.caption.12}%
+\contentsline {figure}{\numberline {2.12}{\ignorespaces Exemplo: Demanda comportamental total Potencial}}{27}{figure.caption.13}%
+\contentsline {figure}{\numberline {2.13}{\ignorespaces Ajuste da Demanda Comportamental com Proporções}}{30}{figure.caption.15}%
+\contentsline {figure}{\numberline {2.14}{\ignorespaces Ajuste da Demanda Comportamental com Hierarquia}}{32}{figure.caption.16}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Comparação Modelos Full primeira parte}}{39}{figure.caption.28}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Comparação Modelos Full segunda parte}}{40}{figure.caption.29}%
 \addvspace {10\p@ }

@@ -19,6 +19,60 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global}
+    \entry{Ammirato}{article}{}
+      \name{author}{5}{}{%
+        {{hash=a554cb74bf0ae53ea456244ad88e2360}{%
+           family={Ammirato},
+           familyi={A\bibinitperiod},
+           given={Salvatore},
+           giveni={S\bibinitperiod}}}%
+        {{hash=8e56015686171017135929977e85cf3c}{%
+           family={Felicetti},
+           familyi={F\bibinitperiod},
+           given={Alberto\bibnamedelima Michele},
+           giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=1dfe17173c8a4cff771c6e7086dc7bea}{%
+           family={Linzalone},
+           familyi={L\bibinitperiod},
+           given={Roberto},
+           giveni={R\bibinitperiod}}}%
+        {{hash=1df2c29f5d0f7066cf79d9e08c24b336}{%
+           family={Volpentesta},
+           familyi={V\bibinitperiod},
+           given={Antonio\bibnamedelima Palmiro},
+           giveni={A\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=afb8cc2bd84564e4aad65ff2e64dfc7d}{%
+           family={Schiuma},
+           familyi={S\bibinitperiod},
+           given={Giovanni},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{366f7c422cce73f4ed060b97a1fe19aa}
+      \strng{fullhash}{f80d53d539e20d9867c88f15795739b6}
+      \strng{bibnamehash}{366f7c422cce73f4ed060b97a1fe19aa}
+      \strng{authorbibnamehash}{366f7c422cce73f4ed060b97a1fe19aa}
+      \strng{authornamehash}{366f7c422cce73f4ed060b97a1fe19aa}
+      \strng{authorfullhash}{f80d53d539e20d9867c88f15795739b6}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Emerald Publishing Limited}
+      \field{title}{A systematic literature review of revenue management in passenger transportation}
+      \field{volume}{24}
+      \field{year}{2020}
+      \field{pages}{223\bibrangedash 242}
+      \range{pages}{20}
+      \verb{doi}
+      \verb 10.1108/MBE-09-2019-0096
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1108/MBE-09-2019-0096
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1108/MBE-09-2019-0096
+      \endverb
+    \endentry
     \entry{article_base}{article}{}
       \name{author}{4}{}{%
         {{hash=dc17e11972df8b60f2996162604f37ac}{%
@@ -73,6 +127,93 @@
       \endverb
       \verb{url}
       \verb http://www.jstor.org/stable/25060268
+      \endverb
+    \endentry
+    \entry{Guerriero2021}{inbook}{}
+      \name{author}{3}{}{%
+        {{hash=a3a5e932e11ab3bfe69bdc519e02b61f}{%
+           family={Guerriero},
+           familyi={G\bibinitperiod},
+           given={Francesca},
+           giveni={F\bibinitperiod}}}%
+        {{hash=1e4e8916475b2fa427c3026b42f98c0f}{%
+           family={Luzzi},
+           familyi={L\bibinitperiod},
+           given={Martina},
+           giveni={M\bibinitperiod}}}%
+        {{hash=a1f72ef59a15762b533ba4e361da0631}{%
+           family={Macrina},
+           familyi={M\bibinitperiod},
+           given={Giusy},
+           giveni={G\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Cham}%
+      }
+      \list{publisher}{1}{%
+        {Springer International Publishing}%
+      }
+      \strng{namehash}{52e12401a297dc69c7fbd5becfee3db3}
+      \strng{fullhash}{52e12401a297dc69c7fbd5becfee3db3}
+      \strng{bibnamehash}{52e12401a297dc69c7fbd5becfee3db3}
+      \strng{authorbibnamehash}{52e12401a297dc69c7fbd5becfee3db3}
+      \strng{authornamehash}{52e12401a297dc69c7fbd5becfee3db3}
+      \strng{authorfullhash}{52e12401a297dc69c7fbd5becfee3db3}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Optimization and Decision Science: ODS, Virtual Conference, November 19, 2020}
+      \field{isbn}{978-3-030-86841-3}
+      \field{title}{Revenue Management Approach for Passenger Transport Service: An Italian Case Study}
+      \field{year}{2021}
+      \field{pages}{237\bibrangedash 247}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1007/978-3-030-86841-3_20
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-3-030-86841-3_20
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-3-030-86841-3_20
+      \endverb
+    \endentry
+    \entry{han2020uncertainty}{article}{}
+      \name{author}{2}{}{%
+        {{hash=d5f7ae42a563998bd7eccae3eaed6b75}{%
+           family={Han},
+           familyi={H\bibinitperiod},
+           given={X.},
+           giveni={X\bibinitperiod}}}%
+        {{hash=07d0026ba35104b23c69c71e8289c06b}{%
+           family={Ren},
+           familyi={R\bibinitperiod},
+           given={Z.},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{47b776d155660f1e8d5fe10d5ff0019c}
+      \strng{fullhash}{47b776d155660f1e8d5fe10d5ff0019c}
+      \strng{bibnamehash}{47b776d155660f1e8d5fe10d5ff0019c}
+      \strng{authorbibnamehash}{47b776d155660f1e8d5fe10d5ff0019c}
+      \strng{authornamehash}{47b776d155660f1e8d5fe10d5ff0019c}
+      \strng{authorfullhash}{47b776d155660f1e8d5fe10d5ff0019c}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Soft Computing}
+      \field{number}{9}
+      \field{title}{Joint optimization of stop planning and ticket allocation under uncertainty theory}
+      \field{volume}{24}
+      \field{year}{2020}
+      \field{pages}{7293\bibrangedash 7308}
+      \range{pages}{16}
+      \verb{doi}
+      \verb 10.1007/s00500-019-04617-9
       \endverb
     \endentry
     \entry{doi:10.1080/02642069.2010.491543}{article}{}
@@ -221,6 +362,144 @@
       \range{pages}{53}
       \verb{doi}
       \verb https://doi.org/10.1287/educ.1053.0019
+      \endverb
+    \endentry
+    \entry{schoebel2021tariff}{article}{}
+      \name{author}{2}{}{%
+        {{hash=155454921174d29b0590cbce3be5ead8}{%
+           family={Schöbel},
+           familyi={S\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=2217991ca125c903a2060330053be58d}{%
+           family={Urban},
+           familyi={U\bibinitperiod},
+           given={F.},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{909ad7c9d20ef4f8dbe60dab048d70f0}
+      \strng{fullhash}{909ad7c9d20ef4f8dbe60dab048d70f0}
+      \strng{bibnamehash}{909ad7c9d20ef4f8dbe60dab048d70f0}
+      \strng{authorbibnamehash}{909ad7c9d20ef4f8dbe60dab048d70f0}
+      \strng{authornamehash}{909ad7c9d20ef4f8dbe60dab048d70f0}
+      \strng{authorfullhash}{909ad7c9d20ef4f8dbe60dab048d70f0}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{ArXiv preprint}
+      \field{title}{Optimal fare structures and algorithms for ticket assignment in public transportation systems}
+      \field{volume}{abs/2106.10521}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2106.10521
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2106.10521
+      \endverb
+    \endentry
+    \entry{ZHAO2019776}{article}{}
+      \name{author}{2}{}{%
+        {{hash=eb98b169c11fb26edc7149a20a3137da}{%
+           family={Zhao},
+           familyi={Z\bibinitperiod},
+           given={Xiang},
+           giveni={X\bibinitperiod}}}%
+        {{hash=716dffbb9eca8a6dae446cc50937b54f}{%
+           family={Zhao},
+           familyi={Z\bibinitperiod},
+           given={Peng},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{762e3823d153cec47363655f65a68d30}
+      \strng{fullhash}{762e3823d153cec47363655f65a68d30}
+      \strng{bibnamehash}{762e3823d153cec47363655f65a68d30}
+      \strng{authorbibnamehash}{762e3823d153cec47363655f65a68d30}
+      \strng{authornamehash}{762e3823d153cec47363655f65a68d30}
+      \strng{authorfullhash}{762e3823d153cec47363655f65a68d30}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Transportmetrica A Transport Science}
+      \field{number}{2}
+      \field{title}{A seat assignment model for high-speed railway ticket booking system with customer preference consideration}
+      \field{volume}{15}
+      \field{year}{2019}
+      \field{pages}{776\bibrangedash 806}
+      \range{pages}{31}
+      \verb{doi}
+      \verb https://doi.org/10.1080/23249935.2018.1532467
+      \endverb
+    \endentry
+    \entry{zhou2023pricing}{article}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{hash=0e666ca1ec9bdcee719414b2940abf9a}{%
+           family={Zhou},
+           familyi={Z\bibinitperiod},
+           given={X.},
+           giveni={X\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MDPI}%
+      }
+      \strng{namehash}{eb06ff0f560ea0f4095e2ee60f99dcaa}
+      \strng{fullhash}{eb06ff0f560ea0f4095e2ee60f99dcaa}
+      \strng{bibnamehash}{eb06ff0f560ea0f4095e2ee60f99dcaa}
+      \strng{authorbibnamehash}{eb06ff0f560ea0f4095e2ee60f99dcaa}
+      \strng{authornamehash}{eb06ff0f560ea0f4095e2ee60f99dcaa}
+      \strng{authorfullhash}{eb06ff0f560ea0f4095e2ee60f99dcaa}
+      \field{extraname}{1}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Mathematics}
+      \field{number}{6}
+      \field{title}{Integrated pricing and passenger flow assignment model based on prospect theory and logit model}
+      \field{volume}{11}
+      \field{year}{2023}
+      \field{pages}{1412}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/math11061412
+      \endverb
+    \endentry
+    \entry{zhou2022nonlinear}{article}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{hash=0e666ca1ec9bdcee719414b2940abf9a}{%
+           family={Zhou},
+           familyi={Z\bibinitperiod},
+           given={X.},
+           giveni={X\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MDPI}%
+      }
+      \strng{namehash}{eb06ff0f560ea0f4095e2ee60f99dcaa}
+      \strng{fullhash}{eb06ff0f560ea0f4095e2ee60f99dcaa}
+      \strng{bibnamehash}{eb06ff0f560ea0f4095e2ee60f99dcaa}
+      \strng{authorbibnamehash}{eb06ff0f560ea0f4095e2ee60f99dcaa}
+      \strng{authornamehash}{eb06ff0f560ea0f4095e2ee60f99dcaa}
+      \strng{authorfullhash}{eb06ff0f560ea0f4095e2ee60f99dcaa}
+      \field{extraname}{2}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Mathematics}
+      \field{number}{10}
+      \field{title}{Nonlinear integer programming model for integrated ticket pricing and stop planning in railway systems}
+      \field{volume}{10}
+      \field{year}{2022}
+      \field{pages}{1679}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/math10101679
       \endverb
     \endentry
   \enddatalist

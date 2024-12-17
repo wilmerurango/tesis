@@ -1,0 +1,22 @@
+\chapter{Conclusões e trabalhos futuro}
+
+O presente estudo abordou a problemática de otimizar o Transporte Ferroviário de Passageiros por meio do desenvolvimento de modelos matemáticos de programação inteira mista, explorando dois enfoques principais: demanda independente e demanda comportamental. A aplicação desses modelos em cenários reais possibilitou uma avaliação comparativa detalhada, destacando as diferenças e os benefícios inerentes a cada abordagem.
+
+Em primeiro lugar, do ponto de vista computacional, todos os modelos demonstraram ser robustos e capazes de alcançar soluções ótimas dentro de tempos razoáveis, validando assim sua viabilidade para aplicações práticas na indústria ferroviária.
+
+Em segundo lugar, os modelos mostraram alta eficiência em encontrar a solução ou soluções ótimas dentro do espaço de busca, explorando no máximo um único nó. Até o momento, não foi possível explicar com precisão esse comportamento. No entanto, pode-se afirmar que isso não está relacionado à simplicidade das instâncias utilizadas, pois foram testadas instâncias consideradas de grande porte na indústria, representando até 30 estações e envolvendo até 74.788 variáveis de decisão inteiras.
+
+Em terceiro lugar, observou-se que, embora os modelos comportamentais apresentem um valor da função objetivo ligeiramente inferior ao do modelo independente, a qualidade da solução é superior. Isso reforça que, nesse tipo de problema, além de buscar a maximização do lucro, também se valoriza que a solução seja baseada em características mais próximas da realidade. Destaca-se como um resultado inesperado a semelhança dos valores da função objetivo entre os dois enfoques.
+
+Em quarto lugar, a infactibilidade do modelo PercentBehavioralModel ocorreu devido às características específicas das instâncias instância7, instância8 e instância10, que durante o ajuste da demanda comportamental em função da demanda independente, criou-se uma situação inviável. Isso demonstra que é necessário cuidado ao aplicar esse enfoque, para evitar situações semelhantes.
+
+Trabalhos futuros a serem incluídos na versão final desta proposta incluem:
+
+\begin{itemize}
+    \item Aprofundar a revisão bibliográfica: Fortalecer as bases teóricas da pesquisa, explorando ainda mais a literatura relacionada;
+    \item Explicar com maior clareza o comportamento dos modelos: Investigar detalhadamente o motivo pelo qual os modelos encontram a solução ótima explorando apenas um nó, além de explicar com mais precisão as causas da inviabilidade do modelo PercentBehavioralModel em certas instâncias;
+    \item Explorar outros enfoques para ajustar a demanda: neste caso, optou-se por adicionar restrições que melhorassem seu comportamento. No entanto, também seria possível abordar essa questão alterando a formulação da função objetivo.
+\end{itemize}
+
+
+
