@@ -121,7 +121,7 @@ class BaseModel:
                     A[i,v] == A[rota[rota.index(i)-1],v] - 
                     quicksum(X[rota[rota.index(i)-1],j,v_,k,t] for i_,j,v_,k,t in indexCombiDem0 if (rota[rota.index(i)-1] == i_) and (v_ == v)) + 
                     quicksum(X[i_,j,v_,k,t] for i_,j,v_,k,t in indexCombiDem0 if (j == i) and (v_ == v)),
-                    name=f"Dispo_{i,v}"
+                    name=f"A_{i,v}"
                 )
 
                 # restrição .3
@@ -133,7 +133,7 @@ class BaseModel:
                 # restrição .6
                 model.addConstr(
                     quicksum(Y[i_,j,v_,k,t] for i_,j,v_,k,t in indexCombiDem if (i == i_) and (v == v_) and  (k == demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v) & (demanda["DBD"]==t)]["Class"].to_list()[0]) ) <= self.Q[v], 
-                    name=f"AuthoCap_{i,v}"
+                    name=f"ClasMaxCap_{i,v}"
                 )
 
 
@@ -148,7 +148,7 @@ class BaseModel:
             # restrição .5
             model.addConstr(
                 X[i,j,v,k,t] <= d[i,j,v,k,t],
-                name = f"Assig_({i},{j},{v},{k},{t})"
+                name = f"Xd_({i},{j},{v},{k},{t})"
             )
 
 
@@ -157,7 +157,7 @@ class BaseModel:
                 # restrição .8
                 model.addConstr(
                     Y[i,j,v,k,t] >=  X[i,j,v,k,t] + Y[i,j,v,VK_[pos_k+1],t],
-                    name=f"Autho_({i},{j},{v},{k},{t})"
+                    name=f"JerarY_({i},{j},{v},{k},{t})"
                 )
 
             else:
@@ -165,7 +165,7 @@ class BaseModel:
                 # restricao .7
                 model.addConstr(
                     Y[i,j,v,k,t] >=  X[i,j,v,k,t],
-                    name=f"Autho_({i},{j},{v},{k},{t})"
+                    name=f"JerarY1_({i},{j},{v},{k},{t})"
                 )
 
 
@@ -176,13 +176,13 @@ class BaseModel:
             # restricao .9.1
             model.addConstr(
                 BY[i,j,v,k,t] <= Y[i,j,v,k,t],
-                # name = f"activ_bin_autho_low_({o},{d_},{v},{k},{t})"
+                name = f"BY_({i},{j},{v},{k},{t})"
             )
             
             # restricao .9.2
             model.addConstr(
                 Y[i,j,v,k,t] <= self.Q[v]*BY[i,j,v,k,t],
-                # name = f"activ_bin_autho_top_({o},{d_},{v},{k},{t})"
+                name = f"BY1_({i},{j},{v},{k},{t})"
                 )
             #[end] restrições de capitalismo
 
@@ -192,14 +192,14 @@ class BaseModel:
             if i == 0:
                 model.addConstr(
                     X[i,j,v,k,t] == 0,
-                    name = f"Assig_({0},{j},{v},{k},{t})"
+                    name = f"X0_({0},{j},{v},{k},{t})"
                 )
 
         # restricao .12
         for v in V:
             model.addConstr(
                 A[0,v] == self.Q[v],
-                name = f"Cap_0_{v}")
+                name = f"A0_{v}")
 
         return model, A, X, Y, BY, BX, BL, P, d, self.perio, indexCombiDem
 

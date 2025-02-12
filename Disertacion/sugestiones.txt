@@ -239,6 +239,31 @@ Los hallazgos de este estudio abren la puerta a futuras investigaciones que podr
 En resumen, este trabajo destaca cómo el uso de modelos matemáticos avanzados, junto con la incorporación de enfoques comportamentales, puede transformar la gestión operativa y estratégica del transporte ferroviario de pasajeros, contribuyendo significativamente a la sostenibilidad económica y la satisfacción del cliente en este sector.
 
 
+para ubicar nuestra propuesta de investigacion, se condensaron en la tabla 1 investigaciones relacionadas al transporte ferriviario de pasajeros en los ultimos 25 años, integrando lo que proponemos en este proyecto.
+
+- A Literature Review of Railway Pricing Based on Revenue Management 
+- Optimal Differential Pricing for Intercity High-Speed Railway Services with Time-Dependent Demand and Passenger Choice Behaviors under Capacity Constraints
+
+
+este tipo de abordajes podemos observarlo en trabajos como los de 15 y 16 , los cuales estudfiaon de forma conjunta el problema de fijacion de precios y asignacion de asientos, para varios trenes al mismo tiempo usando el modelo de multinomio para analizar el comportamiento de eleccion de los pasajeros de trenes.  
+
+un tipo de demando comunmente usado en la literatura es el logit multinomial, donde trabajos como los de 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -265,3 +290,33 @@ En conclusión, los modelos matemáticos para la gestión de reservas en el tran
 
 
 como ya se mensiono antes, esta pesquisa propone tres modelos matemaicos enteros mixtos, el primero usando un tipo de demanda independinete, el segundo usando un tipo de demanda comportamental con ajuste de proporciones , donde dichas proporciones son calculadas usando la demanda independiente, y el tercero que usa tambien un tipo de demanda comportamental con ajuste de hierarquia, donde dicha jerarquia esta relacionada a la cantidad de asientos reservados para cada clase de control.
+
+dado un trecho, un periodo y un tipo de asiento, se calcula la clase mas barata disponibilizada para la venta.
+
+una cierta clase solo puede ser reservada si y solo si, esta fue reservada en un periodo anterior.
+
+los precios disponibilizados para la venta deben aumentar a medidad que se aproxime la fecha de partidad del tren.
+
+un pasajero no debe tener la oportunidad de comprar un boleto para un trecho mas largo para bajarse en un estacion anterior.
+
+siempre los trechos directos deben ser igual o mas baratos que la suma de los boletos de los trechos menores.
+
+ajustar la demanda comportamental con proporciones.
+
+ajustar la demanda comportamental con  jerarquia.
+
+
+El transporte ferroviario de pasajeros juega un papel fundamental en la movilidad sostenible de las ciudades y regiones debido a su eficiencia energética y capacidad para trasladar grandes volúmenes de personas. Sin embargo, los sistemas actuales enfrentan desafíos significativos al momento de planificar y gestionar operaciones eficientes, especialmente cuando se trata de analizar la demanda. Nuestra propuesta permite capturar de manera más realista el comportamiento de los usuarios, contribuyendo a mejorar la calidad del servicio y la rentabilidad operativa del sistema.
+
+
+analise los resultados academicos de todos los estuadiantes de una universidad en colombia, colocando quienes podian estar en riesgo de expulsion por promedio academico (para cada uno de los programas de la instutucion), ademas de predecir cuantos salones podrian ser habilitados para el proximo periodo academico al analizado, en funcion de datos parciales de un periodo actual. lo primero fue usado para mejorar los indicadores instiucionales y lo segundo facilito la asignacion de horarios de toda la institucion.
+
+dentro mis funciones principale nunca estuvo usar SQl, sin embargo lo usaba solo para consultar de datos, que posteriormente analizaba usando python. Lo use cada vez que me conectaba a una base de datos y no tenia que usar ni power bi ni tableau. osea, lo use mas o menos por tres años.
+
+soy un profesional con sentido critico, capaz de encontrar caracter
+
+Minha experiência profissional e acadêmica está alinhada às necessidades da posição de analista de dados pleno. Tenho sólida experiência em análise de dados e geração de insights estratégicos, utilizando ferramentas como python, power BI e tableau para explorar padrões e apresentar resultados de forma clara e visual.
+
+Durante minha trajetória, trabalhei com automatização de KPIs e desenvolvimento de painéis de controle baseados em business intelligence. Além disso, meu conhecimento em SQL, aplicado por mais de três anos, me permitiu realizar consultas eficientes e análises complexas, garantindo suporte robusto para decisões estratégicas.
+
+Destaco também minha habilidade de traduzir análises em relatórios acessíveis, comunicando resultados de forma clara para stakeholders diversos. Estou motivado a contribuir com meu perfil analítico e minha visão estratégica para a melhoria contínua dos produtos e a satisfação dos usuários.
