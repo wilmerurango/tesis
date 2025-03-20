@@ -1,11 +1,11 @@
 \documentclass[12pt, openany]{book} % \documentclass[11pt,fleqn, twoside, final, openany,usenames,dvipsnames]{book}%
 \usepackage{changepage} % Para ajustar los márgenes localmente
+\usepackage[utf8]{inputenc}
 \usepackage[autostyle,german=guillemets,norwegian=quotes]{csquotes}
-\usepackage[style = numeric]{biblatex} %Imports biblatex package
+\usepackage[style=authoryear]{biblatex}
 \addbibresource{sections/referencias.bib} %Import the bibliography file
 %=============================== Preâmbulo ============================================
 \usepackage{amsfonts}
-\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[portuguese]{babel}
 % \usepackage[latin1]{inputenc}		% Inclusão de gráficos
@@ -31,6 +31,7 @@
 % \usepackage{pdfpages}
 \usepackage{subcaption}
 \usepackage{caption}
+\usepackage{enumitem} % Paquete para personalizar listas
 
 \hypersetup{
     colorlinks=true,
@@ -96,7 +97,7 @@
 %=============================== Capa, Resumo e Sumário ==============================
 % \input{capa}
 % \newpage
-\input{sections/capa2}
+% \input{sections/capa2}
 % \newpage
 % \includepdf[pages=-]{Ficha-Catalografica-Protocolo-975642308}
 % \newpage
@@ -104,17 +105,17 @@
 % \newpage
 
 % \input{Agradecimentos} \thispagestyle{empty}
-\input{sections/resumo}\thispagestyle{empty}
-\input{sections/abstrac}\thispagestyle{empty}
+% \input{sections/resumo}\thispagestyle{empty}
+% \input{sections/abstrac}\thispagestyle{empty}
 
 
 % %=============================== Lista de Tabelas e Figuras ==========================
-\listoffigures
-\addtocontents{lof}{\protect\thispagestyle{plain}}\thispagestyle{empty}
+% \listoffigures
+% \addtocontents{lof}{\protect\thispagestyle{plain}}\thispagestyle{empty}
 
-\listoftables
-\addtocontents{lot}{\protect\thispagestyle{plain}}\thispagestyle{empty}
-\baselineskip 1.1 \baselineskip
+% \listoftables
+% \addtocontents{lot}{\protect\thispagestyle{plain}}\thispagestyle{empty}
+% \baselineskip 1.1 \baselineskip
 
 
 % %=============================== Sumário =============================================
@@ -125,14 +126,14 @@
 % %=============================== Capítulos ===========================================%
 \doublespacing %Para um espaçamento duplo
 
-\input{sections/introducao} 
+% \input{sections/introducao} 
 % \input{Fundamentacao-teorica}
 \input{sections/revisao_literatura}
 \input{sections/modelo_matematico}
 % \input{Contribuicoes}
 % %\input{Metodos-de-resolucao-propostos}
-\input{sections/resultados_camputacionais}
-\input{sections/conclucoes}
+% \input{sections/resultados_camputacionais}
+% \input{sections/conclucoes}
 
 
 

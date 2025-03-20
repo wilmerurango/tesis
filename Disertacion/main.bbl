@@ -18,83 +18,71 @@
 
 
 \refsection{0}
-  \datalist[entry]{nty/global//global/global}
-    \entry{Ammirato}{article}{}
-      \name{author}{5}{}{%
-        {{hash=a554cb74bf0ae53ea456244ad88e2360}{%
-           family={Ammirato},
-           familyi={A\bibinitperiod},
-           given={Salvatore},
-           giveni={S\bibinitperiod}}}%
-        {{hash=8e56015686171017135929977e85cf3c}{%
-           family={Felicetti},
-           familyi={F\bibinitperiod},
-           given={Alberto\bibnamedelima Michele},
-           giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
-        {{hash=1dfe17173c8a4cff771c6e7086dc7bea}{%
-           family={Linzalone},
-           familyi={L\bibinitperiod},
-           given={Roberto},
-           giveni={R\bibinitperiod}}}%
-        {{hash=1df2c29f5d0f7066cf79d9e08c24b336}{%
-           family={Volpentesta},
-           familyi={V\bibinitperiod},
-           given={Antonio\bibnamedelima Palmiro},
-           giveni={A\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
-        {{hash=afb8cc2bd84564e4aad65ff2e64dfc7d}{%
-           family={Schiuma},
-           familyi={S\bibinitperiod},
-           given={Giovanni},
-           giveni={G\bibinitperiod}}}%
+  \datalist[entry]{nyt/global//global/global}
+    \entry{Gallego1994}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=39f2a5b71e2e9f98455e4a835f91683d}{%
+           family={Gallego},
+           familyi={G\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=1,uniquepart=given,hash=0937357893f2c90e215847f885184eb4}{%
+           family={Ryzin},
+           familyi={R\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod},
+           givenun=1,
+           prefix={van},
+           prefixi={v\bibinitperiod},
+           prefixun=0}}%
       }
-      \strng{namehash}{366f7c422cce73f4ed060b97a1fe19aa}
-      \strng{fullhash}{f80d53d539e20d9867c88f15795739b6}
-      \strng{bibnamehash}{366f7c422cce73f4ed060b97a1fe19aa}
-      \strng{authorbibnamehash}{366f7c422cce73f4ed060b97a1fe19aa}
-      \strng{authornamehash}{366f7c422cce73f4ed060b97a1fe19aa}
-      \strng{authorfullhash}{f80d53d539e20d9867c88f15795739b6}
-      \field{sortinit}{A}
-      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \strng{namehash}{813a44c663aab0314136d23319a3a2a9}
+      \strng{fullhash}{813a44c663aab0314136d23319a3a2a9}
+      \strng{bibnamehash}{813a44c663aab0314136d23319a3a2a9}
+      \strng{authorbibnamehash}{813a44c663aab0314136d23319a3a2a9}
+      \strng{authornamehash}{813a44c663aab0314136d23319a3a2a9}
+      \strng{authorfullhash}{813a44c663aab0314136d23319a3a2a9}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Emerald Publishing Limited}
-      \field{title}{A systematic literature review of revenue management in passenger transportation}
-      \field{volume}{24}
-      \field{year}{2020}
-      \field{pages}{223\bibrangedash 242}
-      \range{pages}{20}
-      \verb{doi}
-      \verb 10.1108/MBE-09-2019-0096
-      \endverb
-      \verb{urlraw}
-      \verb https://doi.org/10.1108/MBE-09-2019-0096
-      \endverb
-      \verb{url}
-      \verb https://doi.org/10.1108/MBE-09-2019-0096
-      \endverb
+      \field{journaltitle}{Management Science}
+      \field{number}{7}
+      \field{title}{Optimal dynamic auctions for revenue management}
+      \field{volume}{40}
+      \field{year}{1994}
+      \field{pages}{999\bibrangedash 1020}
+      \range{pages}{22}
     \endentry
     \entry{article_base}{article}{}
       \name{author}{4}{}{%
-        {{hash=dc17e11972df8b60f2996162604f37ac}{%
+        {{un=0,uniquepart=base,hash=dc17e11972df8b60f2996162604f37ac}{%
            family={Glover},
            familyi={G\bibinitperiod},
            given={Fred},
-           giveni={F\bibinitperiod}}}%
-        {{hash=66f87dcc6bd383ea4c598ed1b9bb9b6c}{%
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=66f87dcc6bd383ea4c598ed1b9bb9b6c}{%
            family={Glover},
            familyi={G\bibinitperiod},
            given={Randy},
-           giveni={R\bibinitperiod}}}%
-        {{hash=ccb95a6d83194841c648e900374e890c}{%
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ccb95a6d83194841c648e900374e890c}{%
            family={Lorenzo},
            familyi={L\bibinitperiod},
            given={Joe},
-           giveni={J\bibinitperiod}}}%
-        {{hash=d0f589d43719c079dbd9cd7daa85d362}{%
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d0f589d43719c079dbd9cd7daa85d362}{%
            family={McMillan},
            familyi={M\bibinitperiod},
            given={Claude},
-           giveni={C\bibinitperiod}}}%
+           giveni={C\bibinitperiod},
+           givenun=0}}%
       }
       \list{publisher}{1}{%
         {INFORMS}%
@@ -107,6 +95,8 @@
       \strng{authorfullhash}{5c0e4a815b77a16a93ff6aca2894a2ca}
       \field{sortinit}{G}
       \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Deregulation has opened up many opportunities and challenges in the transportation industry - opportunities to increase profits and challenges to keep from being outflanked by competition. A goal of particular interest to the scheduled airlines is to set prices more adaptively and to change them more rapidly. A difficult problem arises when many passengers with different itineraries compete for a limited number of seats on a single-flight segment. The problem is complicated by the existence of different fare classes, many flight segments, and different demands across time. For any given set of prices, flight-segment capacities, and passenger-carrying demand, there is some number of passengers at each fare class on each flight segment that will optimize revenue. Knowledge of such an optimum can be used not only in pricing analysis but also in setting policies to influence the passenger fare-class mix so that the optimum will be more nearly achieved in actual practice. We describe a method for identifying the optimum fare-class mix and the design of a system for that purpose which we built and implemented for Frontier Airlines. The recognition and formulation of the problem has become even more important as the number of aircraft in the sky has been reduced and the competition for a limited number of seats has become more intense.}
@@ -129,68 +119,20 @@
       \verb http://www.jstor.org/stable/25060268
       \endverb
     \endentry
-    \entry{Guerriero2021}{inbook}{}
-      \name{author}{3}{}{%
-        {{hash=a3a5e932e11ab3bfe69bdc519e02b61f}{%
-           family={Guerriero},
-           familyi={G\bibinitperiod},
-           given={Francesca},
-           giveni={F\bibinitperiod}}}%
-        {{hash=1e4e8916475b2fa427c3026b42f98c0f}{%
-           family={Luzzi},
-           familyi={L\bibinitperiod},
-           given={Martina},
-           giveni={M\bibinitperiod}}}%
-        {{hash=a1f72ef59a15762b533ba4e361da0631}{%
-           family={Macrina},
-           familyi={M\bibinitperiod},
-           given={Giusy},
-           giveni={G\bibinitperiod}}}%
-      }
-      \list{location}{1}{%
-        {Cham}%
-      }
-      \list{publisher}{1}{%
-        {Springer International Publishing}%
-      }
-      \strng{namehash}{52e12401a297dc69c7fbd5becfee3db3}
-      \strng{fullhash}{52e12401a297dc69c7fbd5becfee3db3}
-      \strng{bibnamehash}{52e12401a297dc69c7fbd5becfee3db3}
-      \strng{authorbibnamehash}{52e12401a297dc69c7fbd5becfee3db3}
-      \strng{authornamehash}{52e12401a297dc69c7fbd5becfee3db3}
-      \strng{authorfullhash}{52e12401a297dc69c7fbd5becfee3db3}
-      \field{sortinit}{G}
-      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{booktitle}{Optimization and Decision Science: ODS, Virtual Conference, November 19, 2020}
-      \field{isbn}{978-3-030-86841-3}
-      \field{title}{Revenue Management Approach for Passenger Transport Service: An Italian Case Study}
-      \field{year}{2021}
-      \field{pages}{237\bibrangedash 247}
-      \range{pages}{11}
-      \verb{doi}
-      \verb 10.1007/978-3-030-86841-3_20
-      \endverb
-      \verb{urlraw}
-      \verb https://doi.org/10.1007/978-3-030-86841-3_20
-      \endverb
-      \verb{url}
-      \verb https://doi.org/10.1007/978-3-030-86841-3_20
-      \endverb
-    \endentry
     \entry{han2020uncertainty}{article}{}
       \name{author}{2}{}{%
-        {{hash=d5f7ae42a563998bd7eccae3eaed6b75}{%
+        {{un=0,uniquepart=base,hash=d5f7ae42a563998bd7eccae3eaed6b75}{%
            family={Han},
            familyi={H\bibinitperiod},
            given={X.},
-           giveni={X\bibinitperiod}}}%
-        {{hash=07d0026ba35104b23c69c71e8289c06b}{%
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=07d0026ba35104b23c69c71e8289c06b}{%
            family={Ren},
            familyi={R\bibinitperiod},
            given={Z.},
-           giveni={Z\bibinitperiod}}}%
+           giveni={Z\bibinitperiod},
+           givenun=0}}%
       }
       \list{publisher}{1}{%
         {Springer}%
@@ -203,6 +145,8 @@
       \strng{authorfullhash}{47b776d155660f1e8d5fe10d5ff0019c}
       \field{sortinit}{H}
       \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Soft Computing}
@@ -216,20 +160,69 @@
       \verb 10.1007/s00500-019-04617-9
       \endverb
     \endentry
+    \entry{HEO2009446}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=6fff324d1eada13fca449957ff2b3f36}{%
+           family={Heo},
+           familyi={H\bibinitperiod},
+           given={Cindy\bibnamedelima Yoonjoung},
+           giveni={C\bibinitperiod\bibinitdelim Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6eefd68942246c8b768d79f922944e33}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Seoki},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{b7f88e1f99f83035ac001701dbc302d0}
+      \strng{fullhash}{b7f88e1f99f83035ac001701dbc302d0}
+      \strng{bibnamehash}{b7f88e1f99f83035ac001701dbc302d0}
+      \strng{authorbibnamehash}{b7f88e1f99f83035ac001701dbc302d0}
+      \strng{authornamehash}{b7f88e1f99f83035ac001701dbc302d0}
+      \strng{authorfullhash}{b7f88e1f99f83035ac001701dbc302d0}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0278-4319}
+      \field{journaltitle}{International Journal of Hospitality Management}
+      \field{number}{3}
+      \field{title}{Application of revenue management practices to the theme park industry}
+      \field{volume}{28}
+      \field{year}{2009}
+      \field{pages}{446\bibrangedash 453}
+      \range{pages}{8}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.ijhm.2009.02.001
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0278431909000255
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0278431909000255
+      \endverb
+      \keyw{Revenue management,Yield management,Theme park,Pricing}
+    \endentry
     \entry{doi:10.1080/02642069.2010.491543}{article}{}
       \name{author}{2}{}{%
-        {{hash=2940e646322aa496be79aeafc889d7f8}{%
+        {{un=0,uniquepart=base,hash=2940e646322aa496be79aeafc889d7f8}{%
            family={José\bibnamedelima Guadix},
            familyi={J\bibinitperiod\bibinitdelim G\bibinitperiod},
            given={Jesús\bibnamedelima Muñuzuri},
            giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0,
            suffix={Luis\bibnamedelima Onieva},
-           suffixi={L\bibinitperiod\bibinitdelim O\bibinitperiod}}}%
-        {{hash=25b42bdd9558b48bf04e6b6b18358ece}{%
+           suffixi={L\bibinitperiod\bibinitdelim O\bibinitperiod},
+           suffixun=0}}%
+        {{un=0,uniquepart=base,hash=25b42bdd9558b48bf04e6b6b18358ece}{%
            family={Cortés},
            familyi={C\bibinitperiod},
            given={Pablo},
-           giveni={P\bibinitperiod}}}%
+           giveni={P\bibinitperiod},
+           givenun=0}}%
       }
       \list{publisher}{1}{%
         {Routledge}%
@@ -242,6 +235,8 @@
       \strng{authorfullhash}{0e6d72647444c00b436ed63c6d5aa126}
       \field{sortinit}{J}
       \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{The Service Industries Journal}
@@ -257,11 +252,12 @@
     \endentry
     \entry{article_YM_to_RM}{article}{}
       \name{author}{1}{}{%
-        {{hash=910afcd3a1fc2a134457dad0ebb2f554}{%
+        {{un=0,uniquepart=base,hash=910afcd3a1fc2a134457dad0ebb2f554}{%
            family={Littlewood},
            familyi={L\bibinitperiod},
            given={Ken},
-           giveni={K\bibinitperiod}}}%
+           giveni={K\bibinitperiod},
+           givenun=0}}%
       }
       \strng{namehash}{910afcd3a1fc2a134457dad0ebb2f554}
       \strng{fullhash}{910afcd3a1fc2a134457dad0ebb2f554}
@@ -271,6 +267,8 @@
       \strng{authorfullhash}{910afcd3a1fc2a134457dad0ebb2f554}
       \field{sortinit}{L}
       \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Journal of Revenue and Pricing Management}
@@ -286,18 +284,21 @@
     \endentry
     \entry{doi:10.1287/trsc.33.2.233}{article}{}
       \name{author}{2}{}{%
-        {{hash=8c3200f173b0fb913d813418ad90cdaa}{%
+        {{un=0,uniquepart=base,hash=8c3200f173b0fb913d813418ad90cdaa}{%
            family={McGill},
            familyi={M\bibinitperiod},
            given={Jeffrey\bibnamedelima I.},
-           giveni={J\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
-        {{hash=9b0d200c4f8a63eccc76a7b694a8eacc}{%
+           giveni={J\bibinitperiod\bibinitdelim I\bibinitperiod},
+           givenun=0}}%
+        {{un=1,uniquepart=given,hash=9b0d200c4f8a63eccc76a7b694a8eacc}{%
            family={Ryzin},
            familyi={R\bibinitperiod},
            given={Garrett\bibnamedelima J.},
            giveni={G\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=1,
            prefix={van},
-           prefixi={v\bibinitperiod}}}%
+           prefixi={v\bibinitperiod},
+           prefixun=0}}%
       }
       \strng{namehash}{ca1640a51fe7cf41dfbd65c519641e03}
       \strng{fullhash}{ca1640a51fe7cf41dfbd65c519641e03}
@@ -307,6 +308,8 @@
       \strng{authorfullhash}{ca1640a51fe7cf41dfbd65c519641e03}
       \field{sortinit}{M}
       \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Transportation Science}
@@ -331,18 +334,21 @@
     \endentry
     \entry{article_Ryzin2014}{article}{}
       \name{author}{2}{}{%
-        {{hash=9b0d200c4f8a63eccc76a7b694a8eacc}{%
+        {{un=1,uniquepart=given,hash=9b0d200c4f8a63eccc76a7b694a8eacc}{%
            family={Ryzin},
            familyi={R\bibinitperiod},
            given={Garrett\bibnamedelima J.},
            giveni={G\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=1,
            prefix={van},
-           prefixi={v\bibinitperiod}}}%
-        {{hash=4f7d6c83f885ff5badf6810cb9ed5f9f}{%
+           prefixi={v\bibinitperiod},
+           prefixun=0}}%
+        {{un=0,uniquepart=base,hash=4f7d6c83f885ff5badf6810cb9ed5f9f}{%
            family={Talluri},
            familyi={T\bibinitperiod},
            given={Kalyan\bibnamedelima T.},
-           giveni={K\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+           giveni={K\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
       }
       \strng{namehash}{187e6fcf22079c6ccb9d88f5ed8b34d4}
       \strng{fullhash}{187e6fcf22079c6ccb9d88f5ed8b34d4}
@@ -352,6 +358,8 @@
       \strng{authorfullhash}{187e6fcf22079c6ccb9d88f5ed8b34d4}
       \field{sortinit}{R}
       \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{INFORMS Tutorials in Operations Research}
@@ -366,16 +374,18 @@
     \endentry
     \entry{schoebel2021tariff}{article}{}
       \name{author}{2}{}{%
-        {{hash=155454921174d29b0590cbce3be5ead8}{%
+        {{un=0,uniquepart=base,hash=155454921174d29b0590cbce3be5ead8}{%
            family={Schöbel},
            familyi={S\bibinitperiod},
            given={A.},
-           giveni={A\bibinitperiod}}}%
-        {{hash=2217991ca125c903a2060330053be58d}{%
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2217991ca125c903a2060330053be58d}{%
            family={Urban},
            familyi={U\bibinitperiod},
            given={F.},
-           giveni={F\bibinitperiod}}}%
+           giveni={F\bibinitperiod},
+           givenun=0}}%
       }
       \strng{namehash}{909ad7c9d20ef4f8dbe60dab048d70f0}
       \strng{fullhash}{909ad7c9d20ef4f8dbe60dab048d70f0}
@@ -385,6 +395,8 @@
       \strng{authorfullhash}{909ad7c9d20ef4f8dbe60dab048d70f0}
       \field{sortinit}{S}
       \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{ArXiv preprint}
@@ -398,49 +410,16 @@
       \verb https://arxiv.org/abs/2106.10521
       \endverb
     \endentry
-    \entry{ZHAO2019776}{article}{}
-      \name{author}{2}{}{%
-        {{hash=eb98b169c11fb26edc7149a20a3137da}{%
-           family={Zhao},
-           familyi={Z\bibinitperiod},
-           given={Xiang},
-           giveni={X\bibinitperiod}}}%
-        {{hash=716dffbb9eca8a6dae446cc50937b54f}{%
-           family={Zhao},
-           familyi={Z\bibinitperiod},
-           given={Peng},
-           giveni={P\bibinitperiod}}}%
-      }
-      \strng{namehash}{762e3823d153cec47363655f65a68d30}
-      \strng{fullhash}{762e3823d153cec47363655f65a68d30}
-      \strng{bibnamehash}{762e3823d153cec47363655f65a68d30}
-      \strng{authorbibnamehash}{762e3823d153cec47363655f65a68d30}
-      \strng{authornamehash}{762e3823d153cec47363655f65a68d30}
-      \strng{authorfullhash}{762e3823d153cec47363655f65a68d30}
-      \field{sortinit}{Z}
-      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Transportmetrica A Transport Science}
-      \field{number}{2}
-      \field{title}{A seat assignment model for high-speed railway ticket booking system with customer preference consideration}
-      \field{volume}{15}
-      \field{year}{2019}
-      \field{pages}{776\bibrangedash 806}
-      \range{pages}{31}
-      \verb{doi}
-      \verb https://doi.org/10.1080/23249935.2018.1532467
-      \endverb
-    \endentry
-    \entry{zhou2023pricing}{article}{}
+    \entry{zhou2022nonlinear}{article}{}
       \true{moreauthor}
       \true{morelabelname}
       \name{author}{1}{}{%
-        {{hash=0e666ca1ec9bdcee719414b2940abf9a}{%
+        {{un=0,uniquepart=base,hash=0e666ca1ec9bdcee719414b2940abf9a}{%
            family={Zhou},
            familyi={Z\bibinitperiod},
            given={X.},
-           giveni={X\bibinitperiod}}}%
+           giveni={X\bibinitperiod},
+           givenun=0}}%
       }
       \list{publisher}{1}{%
         {MDPI}%
@@ -454,28 +433,31 @@
       \field{extraname}{1}
       \field{sortinit}{Z}
       \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Mathematics}
-      \field{number}{6}
-      \field{title}{Integrated pricing and passenger flow assignment model based on prospect theory and logit model}
-      \field{volume}{11}
-      \field{year}{2023}
-      \field{pages}{1412}
+      \field{number}{10}
+      \field{title}{Nonlinear integer programming model for integrated ticket pricing and stop planning in railway systems}
+      \field{volume}{10}
+      \field{year}{2022}
+      \field{pages}{1679}
       \range{pages}{1}
       \verb{doi}
-      \verb 10.3390/math11061412
+      \verb 10.3390/math10101679
       \endverb
     \endentry
-    \entry{zhou2022nonlinear}{article}{}
+    \entry{zhou2023pricing}{article}{}
       \true{moreauthor}
       \true{morelabelname}
       \name{author}{1}{}{%
-        {{hash=0e666ca1ec9bdcee719414b2940abf9a}{%
+        {{un=0,uniquepart=base,hash=0e666ca1ec9bdcee719414b2940abf9a}{%
            family={Zhou},
            familyi={Z\bibinitperiod},
            given={X.},
-           giveni={X\bibinitperiod}}}%
+           giveni={X\bibinitperiod},
+           givenun=0}}%
       }
       \list{publisher}{1}{%
         {MDPI}%
@@ -489,17 +471,19 @@
       \field{extraname}{2}
       \field{sortinit}{Z}
       \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Mathematics}
-      \field{number}{10}
-      \field{title}{Nonlinear integer programming model for integrated ticket pricing and stop planning in railway systems}
-      \field{volume}{10}
-      \field{year}{2022}
-      \field{pages}{1679}
+      \field{number}{6}
+      \field{title}{Integrated pricing and passenger flow assignment model based on prospect theory and logit model}
+      \field{volume}{11}
+      \field{year}{2023}
+      \field{pages}{1412}
       \range{pages}{1}
       \verb{doi}
-      \verb 10.3390/math10101679
+      \verb 10.3390/math11061412
       \endverb
     \endentry
   \enddatalist

@@ -1,0 +1,21 @@
+{
+    "cSpell.language": "en,pt,pt-BR",
+    "cSpell.words": [
+        "gurobipy",
+        "wilmer"
+    ],
+    "cSpell.disableFiletypes": [
+        "/home/wilmer/Documentos/Codes/tesis/Instancias/data/anonymi_data.ipynb"
+    ]
+    // "[jupyter]": {
+    //     "cSpell.enabled": false
+    // },
+    // "[markdown]": {
+    //     "cSpell.enabled": false
+    // },
+    // "workbench.settings.useSplitJSON": true,
+    // "terminal.integrated.commandsToSkipShell": [
+    //     "\"cSpell.disableFiletypes\": [     \"*.ipynb\" ]"
+    // ]
+}
+

@@ -1,4 +1,9 @@
 # type: ignore
+"""
+ESTA CLASE ES USADA PARA EL PROBLEMA CUANDO LA VARIABLE "A" SOLO TENIA EL INDICE DE
+ESTACION DE ORIGEM A[I]
+"""
+
 import time
 import numpy as np
 import pandas as pd

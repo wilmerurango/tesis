@@ -15,7 +15,7 @@ Para compreender essas propostas, consideremos uma versão simplificada do probl
 	\item Todos os assentos disponibilizados para venda serão vendidos.
 \end{itemize}
 
-\begin{figure}[th]
+\begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.18]{img/repre_ini1.png}
 		\caption{Versão gráfica simples do Problema de Transporte Ferroviário de Passageiros}
@@ -50,7 +50,7 @@ Note que as restrições são aplicadas para cada uma das três primeiras estaç
 
 Cada uma das restrições leva em consideração o fluxo de pessoas que sairão e entrarão no trem. Levando isso em conta, é necessário calcular a disponibilidade do trem para cada estação. Considere uma solução viável para o modelo, conforme mostrado na figura \ref{fig: fig2}, com uma capacidade total de 100 assentos para um trem.
 
-\begin{figure}[!ht]
+\begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.4]{img/fig2.png}
 		\caption{Solução factível para o problema simplificado}
@@ -193,7 +193,7 @@ A restrição \ref{eq: m1_cap_assig} garante que os assentos reservados ao longo
 
 A restrição \ref{eq: m1_cap_autho_1er_class} garanta que a soma de autorizações da classe mais custosa, de cada estação de origem, de todos os períodos, não ultrapasse a capacidade do trem de cada tipo de assento. Note que apenas estamos considerando a classe mais cara devido à natureza cumulativa das variáveis de autorização é por isso que o valor de k é o mínimo das classes de cada tipo de assento, pois a ordem do nome das classes é crescente mas o seu valor é decrescente. Para melhor compreensão, suponhamos uma solução para um problema de dois vagões $V_1$ e $V_2$, 3 classes para $V_1$ e 3 classes para $V_2$, 5 estações,  10 trechos, um período e uma capacidade física do trem de 700 cadeiras, conforme mostra a figura \ref{fig: autorization}.
 
-\begin{figure}[!ht]
+\begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.40]{img/exemplo1.png}
 		\caption{Solução factível para a variável de decisão Autorização}
@@ -208,7 +208,7 @@ Observe que os nomes das classes são números ordenados de forma crescente [1, 
 Até ao momento foi referido que a variável $Y$ tem um carácter cumulativo e são as restrições \ref{eq: m1_autho_mayor_assig_1er_class} e \ref{eq: m1_autho_mayor_assig_mas_autho} que controlam este comportamento. A restrição \ref{eq: m1_autho_mayor_assig_1er_class} é um caso particular da restrição \ref{eq: m1_autho_mayor_assig_mas_autho}, aplicada apenas à última classe, ou classe mais barata reservada para cada tipo de assento ($k=max\{K_v\}$), e garante que a soma de todos os períodos, de cada estação de origem da classe mais barata da variável "autorização" é maior ou igual à variável de decisão "reservas" nas mesmas condições. Por outro lado, a restrição \ref{eq: m1_autho_mayor_assig_mas_autho} garante que cada classe autorizada seja sempre maior ou igual à classe autorizada imediatamente menor, mais a quantidade reservas da mesma classe, isto para cada período, cada trecho e cada classe diferente da classe mais barata. Para melhor compreensão, assuma as mesmas suposições que foram feitas na restrição \ref{eq: m1_cap_autho_1er_class}.
 
 
-\begin{figure}[h!]
+\begin{figure}[H]
 	\centering
 	\begin{subfigure}[b]{0.35\linewidth}
 		\includegraphics[width=\linewidth]{img/exemplo1.png}
@@ -265,7 +265,7 @@ Uma condição importante estabelece que uma classe pode ser reservada desde que
 Agora, a restrição \ref{eq: m1_assig_last_periodo} garante que uma certa variável binária $\alpha_{ijvkt}$ tomará o valor 1 se, e somente se, no período anterior ( $\alpha_{i,j,v,k,t+1}$) também assumiu o valor 1; caso contrário, ela fica livre para tomar qualquer valor, 0 ou 1. Isso significa que só é possível reservar uma certa classe se essa mesma classe foi reservada no período anterior. Vejamos um exemplo:
 
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
     \begin{subfigure}[b]{0.40\linewidth}
 		\begin{tikzpicture}
@@ -316,9 +316,7 @@ Outra condição especial deste problema está relacionada à disponibilização
 
 Por outro lado, a restrição \ref{eq: m1_binaria_Beta} e \ref{eq: m1_binaria_Beta_last} cumprem a mesma função de encontrar a última classe que foi disponibilizada para venda em um determinado trecho, período e tipo de assento. No entanto, a restrição \ref{eq: m1_binaria_Beta_last} é aplicada sempre que se analisa a classe mais barata, e, em outros casos, usa-se a restrição \ref{eq: m1_binaria_Beta}. Assim, essas duas equações atribuem o valor 1 à variável $\beta_{ijvkt}$ sempre que a classe atual $k$ seja a classe mais barata disponibilizada para venda no trecho $(i,j)$, tipo de assento $v$, e período $t$; caso contrário, atribui-se o valor zero. Essa restrição é necessária para aplicar as restrições \ref{eq: m1_preco_estacao_inicio} e \ref{eq: m1_preco_combinacao_rotas_contidas}.
 
-Vamos usar o mesmo exemplo da figura \ref{fig: exemplo_sip}, considerando apenas o trecho $E_1-E_3$ e adicionando a variável binária $\beta$.
-
-\begin{figure}[h!]
+\begin{figure}[H]
 	\centering
 	\begin{subfigure}[b]{0.35\linewidth}
 		\includegraphics[width=\linewidth]{img/BL_1.png}
@@ -337,7 +335,7 @@ Vamos usar o mesmo exemplo da figura \ref{fig: exemplo_sip}, considerando apenas
 Na figura \ref{fig:Beta_1}, vemos que, para a classe mais barata $c_6$, $\beta=\gamma=0$. Agora, para o restante das classes, realiza-se um cálculo com base nos valores de $\gamma$. Por exemplo, para a classe $c_1$, o cálculo seria: $\gamma$ de $c_1$ menos $\gamma$ da próxima classe, ou seja, $\gamma$ de $c_2$, o que resulta em $1-1$. Note, além disso, que para a classe $c_4$, fazendo o mesmo cálculo, o resultado é 1, como mostrado na figura \ref{fig:Beta_2}, e observe que essa classe é a última que possui um valor diferente de zero em $\gamma$.
 
 
-\begin{figure}[!ht]
+\begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.2]{img/fulfill.png}
 		\caption{Exemplo para as restrições \ref{eq: m1_preco_estacao_inicio} e \ref{eq: m1_preco_combinacao_rotas_contidas}}
@@ -367,7 +365,7 @@ Até agora, falamos de uma demanda independente para o modelo, mas agora trabalh
 
 Suponhamos para este caso que temos um trecho $(1-2)$ e três classes $(c_1, c_2, c_3)$, onde o preço de $c_1 > c_2 > c_3$, além, cada classe terá uma demanda de 10, 20 e 30, respectivamente.
 
-\begin{figure}[h!]
+\begin{figure}[H]
 	\centering
 	\begin{subfigure}[b]{0.40\linewidth}
 		\includegraphics[width=\linewidth]{img/dem_indepen.png}
@@ -393,7 +391,7 @@ O funcionamento seria o seguinte: imagine que as 10 pessoas dispostas a comprar 
 Agora vejamos como o modelo leria esse novo comportamento. Para isso, calculemos a nova demanda potencial: 
 
 para $c_1$, vejamos a lista e notemos quem está disposto a pagar por esse valor.
-\begin{figure}[!ht]
+\begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.24]{img/dem_compo_c1.png}
 		\caption{Exemplo: Demanda comportamental para a classe $c_1$}
@@ -405,7 +403,7 @@ para $c_1$, vejamos a lista e notemos quem está disposto a pagar por esse valor
 Segundo a figura \ref{fig: exemplo_dem_c1}, apenas 10 possíveis passageiros estão dispostos a pagar esse valor.
 
 Agora vamos ver quem está disposto a pagar um valor por um bilhete da classe $c_2$:
-\begin{figure}[!ht]
+\begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.24]{img/dem_compo_c2.png}
 		\caption{Exemplo: Demanda comportamental para a classe $c_2$}
@@ -417,7 +415,7 @@ Agora vamos ver quem está disposto a pagar um valor por um bilhete da classe $c
 Neste caso, 30 possíveis pessoas estariam dispostas a pagar esse valor. Observe que, de esta nova demanda, 10 pessoas correspondentes à demanda de $c_1$ também estariam dispostas a comprar pelo valor da classe $c_2$.
 
 Por último, para a classe mais barata c3, veja a figura \ref{fig: exemplo_dem_c3}.
-\begin{figure}[!ht]
+\begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.24]{img/dem_compo_c3.png}
 		\caption{Exemplo: Demanda comportamental para a classe $c_3$}
@@ -428,7 +426,7 @@ Por último, para a classe mais barata c3, veja a figura \ref{fig: exemplo_dem_c
 Note que, neste caso, 60 pessoas estariam dispostas a pagar um bilhete da classe $c_3$, ou seja, toda a demanda da rota $(1-2)$ compraria pelo valor mais barato se este estivesse disponível.
 
 Assim, a demanda potencial comportamental para o modelo seria como se apresenta na figura \ref{fig: exemplo_dem_poten}.
-\begin{figure}[!ht]
+\begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.24]{img/dem_compo_poten.png}
 		\caption{Exemplo: Demanda comportamental total Potencial}
@@ -480,7 +478,7 @@ Para essas novas restrições, além da demanda comportamental, também utilizar
 
 Observe que, ao calcular essas proporções, a demanda comportamental é reduzida, o que resulta em uma "perda de demanda". Esse complemento é então somado à classe mais barata do trecho, tipo de assento e período analisado, conforme ilustrado pela restrição \ref{eq: m2_dem_compor_porcentaje_dem_last}. Dessa forma, incentivamos o modelo a utilizar as classes mais baratas. Vamos analisar um exemplo: assuma que há um trecho com três classes para um tipo de assento e um período, e que essas classes possuem parâmetros de demanda independente $d$, conforme mostrado na Tabela \ref{tab: exemplo_ajuste_demanda}.
 
-\begin{table}[h!]
+\begin{table}[H]
     \centering
     \begin{tabular}{lccccc}
         \toprule

@@ -100,7 +100,7 @@ class BaseModel:
 
     def create_model(self): #I, J, rota, VK, NAD, BR, CR, P, Q, d, index, indexCombiDem, indexCombiDem0, demanda, dd
         
-        I, rota, IV, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass = self.create_sets()
+        I, rota, IV, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass, montecarlo_dic = self.create_sets()
        
         model = Model("Modelo 1.1.1")
 
@@ -395,6 +395,32 @@ class PercentBehavioralModel(BaseModel):
 
         return  potentialDemand["Bookings"].sum()
 
+    @staticmethod
+    def mtr(fila, merged_df, ns):
+        
+        class_dem = merged_df.loc[
+            (merged_df['Origin']==fila.Origin) & 
+            (merged_df['Destination']==fila.Destination) &
+            (merged_df['Vagon']==fila.Vagon) &
+            (merged_df['DBD']==fila.DBD)]
+        
+        if class_dem['Class'].shape[0] == 1:
+            return 1
+        else:
+            # Definir os dados da demanda e precos
+            precos = class_dem.Revenue.values # precos das classes
+            demandas = class_dem.Bookings1.values # demanda independente
+            
+            # Calcular probabilidades teoricas
+            prob_teoricas = [d / demandas.sum() for d in demandas]
+
+            # Gerar a simulacao com escolha aleatoria ponderada
+            simulaciones = np.random.choice(precos, size=ns, p=prob_teoricas)
+
+            resultado = np.sum(simulaciones == class_dem.loc[class_dem['Class']==fila.Class].Revenue.values)/ns
+
+            return resultado
+        
     def clean_data(self):
         # find parameters
         origin_cor = self.preco['Origin'].unique().tolist()
@@ -411,18 +437,39 @@ class PercentBehavioralModel(BaseModel):
         periodo = sorted(self.demanda['DBD'].unique().tolist(), reverse=True)    
 
         # [start] converting demand into behavioral
-        self.demanda["DemandaComport"] = self.demanda.apply(lambda fila: clases[fila["Vagon"]][clases[fila["Vagon"]].index(fila["Class"]):][::-1] , axis=1)
+        self.demanda["DemandaComport"] = self.demanda.apply(
+                                                            lambda fila: self.demanda.loc[
+                                                                (self.demanda["Origin"]==fila["Origin"]) & 
+                                                                (self.demanda["Destination"]==fila["Destination"]) &
+                                                                (self.demanda["Vagon"]==fila["Vagon"]) &
+                                                                (self.demanda["DBD"]==fila["DBD"])]["Class"].unique().tolist()[
+                                                                    self.demanda.loc[
+                                                                    (self.demanda["Origin"]==fila["Origin"]) & 
+                                                                    (self.demanda["Destination"]==fila["Destination"]) &
+                                                                    (self.demanda["Vagon"]==fila["Vagon"]) &
+                                                                    (self.demanda["DBD"]==fila["DBD"])]["Class"].unique().tolist().index(fila["Class"]):
+                                                                ][::-1], 
+                                                                axis=1
+                                                            )
         self.demanda["DemPotencialTot"] = self.demanda.apply(self.behav_demand, axis=1, df=self.demanda)
         self.demanda.columns = ['Origin', 'Destination', 'Vagon', 'Class', 'DBD', "Bookings1", 'PL', 'Bookings']
+        # self.demanda.to_excel('/home/wilmer/Documentos/Codes/tesis/Instancias/test/test3/demanda_comp.xlsx', index=False)
         # [end] converting demand into behavioral
+
+        # unir la demanda y el precio
+        merged = self.demanda.merge(self.preco, on=['Origin', 'Destination', 'Vagon', 'Class'], how='left')
+        montecarlo = self.demanda.copy()
+        montecarlo['Mtr']= montecarlo.apply(self.mtr, axis=1, merged_df=merged, ns=10000)
+        # montecarlo.to_excel('/home/wilmer/Documentos/Codes/tesis/Instancias/test/test3/montecarlo.xlsx', index=False)
 
         # sort data revenue
         self.preco = self.preco.sort_values(by=['Origin', 'Destination', 'Vagon', 'Revenue'], ascending=[True, True, True, False])
 
         # Transform to dictionary
         dem_cor = self.demanda.set_index(['Origin', 'Destination', 'Vagon', 'Class', 'DBD'])['Bookings'].to_dict()
-        demInde = self.demanda.set_index(['Origin', 'Destination', 'Vagon', 'Class', 'DBD'])['Bookings'].to_dict()
+        demInde = self.demanda.set_index(['Origin', 'Destination', 'Vagon', 'Class', 'DBD'])['Bookings1'].to_dict()
         preco_cor = self.preco.set_index(['Origin', 'Destination', 'Vagon', 'Class'])['Revenue'].to_dict()
+        montecarlo_dic = montecarlo.set_index(['Origin', 'Destination', 'Vagon', 'Class', 'DBD'])['Mtr'].to_dict()
 
         #todas as combinações dos indices
         # indexCombiPre = [tuple(x) for x in preco[['Origin','Destination','Vagon','Class']].to_numpy()] #para o preço
@@ -430,11 +477,53 @@ class PercentBehavioralModel(BaseModel):
         index_Cero = [(0, i, v, c, t) for i, v, t in product(stations, vagones, periodo) for c in clases[v]]
         indexCombiDem0 = indexCombiDem + index_Cero
 
-        return origin_cor, destin_cor, oridest, vagones, periodo, stations, clases, preco_cor, dem_cor, demInde, indexCombiDem, indexCombiDem0
+        return origin_cor, destin_cor, oridest, vagones, periodo, stations, clases, preco_cor, dem_cor, demInde, indexCombiDem, indexCombiDem0, montecarlo_dic
+
+    def create_sets(self):
+
+        if self.perio != 0:
+            periodo_lim = sorted(self.demanda['DBD'].unique().tolist())[:self.perio]
+            self.demanda = self.demanda[self.demanda['DBD'].isin(periodo_lim)]
+
+        rota = [0] + self.rota1
+        
+        I, J, OD, V,  T, stations, VK, P, d, dd, indexCombiDem, indexCombiDem0, montecarlo_dic = self.clean_data()
+
+        AD = [(i,j) for i,j in OD if self.rota1.index(j) == self.rota1.index(i)+1]
+        NAD = [(i,j) for i,j in OD if self.rota1.index(j) != self.rota1.index(i)+1]
+
+        I = [i for i in rota if i in I]
+        I2 = [0] + I    #também é usado para o "para todo" da restrição de fluxo
+        J = [i for i in rota if i in J]
+        stations = [i for i in rota if i in stations]
+        n = len(rota)-1
+
+        # listas de trechos contidos dentro de outros trechos
+        BR = {}
+        for i,j in NAD:
+            listTemp = list(combinations(self.rota1[self.rota1.index(i):self.rota1.index(j)+1], 2))
+            listTemp =  {(ii,jj) for ii,jj in listTemp if (ii,jj) in OD and (ii, jj) != (i,j)} #rota1.index(jj) == rota1.index(ii)+1 and 
+            if len(listTemp) != 0:
+                BR[(i,j)] = listTemp
+        
+        #indices
+        index = [(i,j,v,k,t) for i,j,v,k,t in  indexCombiDem if (i,j) in BR.keys()]
+
+        # Agrupar pelas primeiras 4 colunas e coletar os valores da coluna 5 nas listas
+        findClass = self.demanda.groupby(['Origin', 'Destination', 'Vagon', 'DBD'])['Class'].agg(list).reset_index()
+        findClass = findClass.set_index(['Origin', 'Destination', 'Vagon', 'DBD'])['Class'].to_dict()
+
+        #criar conjunto iv
+        IV = [(i,v) for i in I2 for v in V]
+        
+        #Todas as possíveis combinações para chegar do origem i até o destino j (Combinated of Routes)
+        CR = {}
+        
+        return I, I2, IV, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, self.demanda, findClass, montecarlo_dic
 
     def create_model(self): #I, J, rota, VK, NAD, BR, CR, P, Q, d, index, indexCombiDem, indexCombiDem0, demanda, dd
         
-        I, rota, IV, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass = self.create_sets()
+        I, rota, IV, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass, montecarlo_dic = self.create_sets()
 
         model = Model("Modelo 1.1.1")
 
@@ -984,7 +1073,7 @@ class BaseModel_Fulfillments_Skiplagging(BaseModel):
         BY = model.addVars(indexCombiDem, vtype=GRB.BINARY , name="BY")  #Binary all Y
         BX = model.addVars(indexCombiDem, vtype=GRB.BINARY , name="BX")  #Binary all X
         BL = model.addVars(indexCombiDem, vtype=GRB.BINARY , name="BL")  #Binary Last
-
+        BD = model.addVars(indexCombiDem, vtype=GRB.BINARY , name="BD")  #Binary exclusive class : Delta
 
         # função objetivo
         model.setObjective(
@@ -1178,7 +1267,7 @@ class BaseModel_Fulfillments_Skiplagging(BaseModel):
                 A[0,v] == self.Q[v],
                 name = f"Cap_0_{v}")
 
-        return model, A, X, Y, BY, BX, BL, P, d, self.perio, indexCombiDem
+        return model, A, X, Y, BY, BX, BL, BD, P, d, self.perio, indexCombiDem
 
 
 
@@ -2269,17 +2358,18 @@ class PercentBehavioralModel_Fulfillments_Skiplagging(PercentBehavioralModel):
     
     def create_sets(self):
 
-        I, I2, IV, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass = super().create_sets()
+        I, I2, IV, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass, montecarlo_dic = super().create_sets()
 
         for l,m in BR.keys():
             route_ = self.find_all_paths_with_tuples(BR[l,m], l, m)
             CR[(l,m)] = route_
         
-        return I, I2, IV, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass
+        return I, I2, IV, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass, montecarlo_dic
 
     def create_model(self): #I, J, rota, VK, NAD, BR, CR, P, Q, d, index, indexCombiDem, indexCombiDem0, demanda, dd
         
-        I, rota, IV, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass = self.create_sets()
+        I, rota, IV, J, OD, NAD, V,  T, stations, VK, P, d, dd, n, BR, CR, index, indexCombiDem, indexCombiDem0, demanda, findClass, montcar = self.create_sets()
+        preco_max = max(P.values())
 
         model = Model("Modelo 1.1.1")
 
@@ -2287,14 +2377,20 @@ class PercentBehavioralModel_Fulfillments_Skiplagging(PercentBehavioralModel):
         X = model.addVars(indexCombiDem0, vtype=GRB.INTEGER , name="X")
         Y = model.addVars(indexCombiDem, vtype=GRB.INTEGER , name="Y")
         A = model.addVars(IV, vtype=GRB.INTEGER , name="A") #rota = I2 (antes a rota foi nomeada de I2)
-        BY = model.addVars(indexCombiDem, vtype=GRB.BINARY , name="BY")  #Binary all Y
-        BX = model.addVars(indexCombiDem, vtype=GRB.BINARY , name="BX")  #Binary all X
-        BL = model.addVars(indexCombiDem, vtype=GRB.BINARY , name="BL")  #Binary Last
+        BY = model.addVars(indexCombiDem, vtype=GRB.BINARY , name="BY")  #Binary all Y           : gamma
+        BX = model.addVars(indexCombiDem, vtype=GRB.BINARY , name="BX")  #Binary all X           : alpha
+        BL = model.addVars(indexCombiDem, vtype=GRB.BINARY , name="BL")  #Binary Last            : beta
+        BD = model.addVars(indexCombiDem, vtype=GRB.BINARY , name="BD")  #Binary exclusive class : Delta
 
 
         # função objetivo
         model.setObjective(
-            quicksum(P[(i,j,v,k)]*X[(i,j,v,k,t)] for i,j,v,k,t in indexCombiDem),
+            quicksum(
+                P[(i,j,v,k)]
+                *X[(i,j,v,k,t)]
+                *montcar[(i,j,v,k,t)]
+                # *(dd[i,j,v,k,t]/d[i,j,v,demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v) & (demanda["DBD"]==t)]["Class"].to_list()[-1],t])
+                for i,j,v,k,t in indexCombiDem),
             sense = GRB.MAXIMIZE
         )
 
@@ -2380,6 +2476,7 @@ class PercentBehavioralModel_Fulfillments_Skiplagging(PercentBehavioralModel):
         for i,j,v,k,t in indexCombiDem:
 
             VK_ = demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v) & (demanda["DBD"]==t)]["Class"].to_list()
+            # print(i,j,v,k,t,': ',VK_)
             T_ = demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v) & (demanda["Class"]==k)]["DBD"].to_list()
             T_ = sorted(T_, reverse=True)
 
@@ -2388,12 +2485,39 @@ class PercentBehavioralModel_Fulfillments_Skiplagging(PercentBehavioralModel):
             pos_k = VK_.index(k)
             last_k = VK_[-1]
 
+            # # restrição .5
+            # model.addConstr(
+            #     X[i,j,v,k,t] <= d[i,j,v,k,t],
+            #     name = f"Assig_({i},{j},{v},{k},{t})"
+            # )
+
             # restrição .demanda comportamental
             if pos_k >= 1:
                 model.addConstr(
                     quicksum(X[i,j,v,kk,t] for kk in VK_[0:pos_k+1]) <= d[i,j,v,k,t],
                     name = f"DemComp({i},{j},{v},{k},{t})"
                 )
+            else:
+            
+                # [start] Classes Esclusivas
+                model.addConstr(
+                    BX[i,j,v,k,t] + quicksum(BX[i,j,v,k1,t] for k1 in VK_ if k1 > k ) <= 1 + len(VK_)*(1 - BD[i,j,v,k,t]),
+                    name = f"ExclusiveClass_({i},{j},{v},{k},{t})"
+                )
+
+                model.addConstr(
+                    P[i,j,v,k]*montcar[(i,j,v,k,t)]*X[i,j,v,k,t] + (preco_max*self.Q[v])*(1 - BD[i,j,v,k,t]) >= quicksum(P[i,j,v,k1]*montcar[(i,j,v,k,t)]*X[i,j,v,k1,t] for k1 in VK_ if k1 > k),
+                    name = f"ExclusiveClass2_({i},{j},{v},{k},{t})"
+                    # *(dd[i,j,v,k,t]/d[i,j,v,last_k,t])
+                    # *(dd[i,j,v,k1,t]/d[i,j,v,last_k,t])
+                )
+
+                model.addConstr(
+                    BX[i,j,v,k,t] <= BD[i,j,v,k,t],
+                    name = f"ExclusiveClass3_({i},{j},{v},{k},{t})"
+                )
+                # [end] Classes Esclusivas
+                
 
             # [start] restrição  fulfillments over periods
             model.addConstr(
@@ -2414,13 +2538,15 @@ class PercentBehavioralModel_Fulfillments_Skiplagging(PercentBehavioralModel):
                 )
             # [end] restrição  fulfillments over periods
 
+        
+
             if k != last_k:
 
-                # restrição .5 [1ra parte] modificação de la demanda con el porcentagem
-                model.addConstr(
-                    X[i,j,v,k,t] <= d[i,j,v,k,t]*(dd[i,j,v,k,t] / d[i,j,v,last_k,t]),
-                    name = f"Assig1_({i},{j},{v},{k},{t})"
-                )
+                # # restrição .5 [1ra parte] modificação de la demanda con el porcentagem
+                # model.addConstr(
+                #     X[i,j,v,k,t] <= d[i,j,v,k,t]*(dd[i,j,v,k,t] / d[i,j,v,last_k,t]),
+                #     name = f"Assig1_({i},{j},{v},{k},{t})"
+                # )
 
                 # restrição .8
                 model.addConstr(
@@ -2434,6 +2560,7 @@ class PercentBehavioralModel_Fulfillments_Skiplagging(PercentBehavioralModel):
                     name=f"Skiplagging_({i},{j},{v},{k},{t})"
                 )
                 # [end] restrição Skiplagging
+                
             else:
 
                 # restricao .7
@@ -2442,11 +2569,11 @@ class PercentBehavioralModel_Fulfillments_Skiplagging(PercentBehavioralModel):
                     name=f"Autho_({i},{j},{v},{k},{t})"
                 )
 
-                # restricao .5 [2da parte] modificação da demanda con a porcentagem
-                model.addConstr(
-                    X[i,j,v,k,t] <= dd[i,j,v,k,t] + (d[i,j,v,last_k,t] - quicksum( d[i,j,v,kk,t]*(dd[i,j,v,kk,t] / d[i,j,v,last_k,t]) for kk in VK_)),
-                    name = f"Assig2_({i},{j},{v},{k},{t})"
-                )
+                # # restricao .5 [2da parte] modificação da demanda con a porcentagem
+                # model.addConstr(
+                #     X[i,j,v,k,t] <= dd[i,j,v,k,t] + (d[i,j,v,last_k,t] - quicksum( d[i,j,v,kk,t]*(dd[i,j,v,kk,t] / d[i,j,v,last_k,t]) for kk in VK_)),
+                #     name = f"Assig2_({i},{j},{v},{k},{t})"
+                # )
 
                 # [start] restrições Skiplagging
                 model.addConstr(
@@ -2487,22 +2614,28 @@ class PercentBehavioralModel_Fulfillments_Skiplagging(PercentBehavioralModel):
                 A[0,v] == self.Q[v],
                 name = f"Cap_0_{v}")
 
-        return model, A, X, Y, BY, BX, BL, P, d, self.perio, indexCombiDem
+        return model, A, X, Y, BY, BX, BL, BD, P, d, self.perio, indexCombiDem, montcar
 
 
 
 # FUNÇÕES ADICIONAIS
-def save_solution(model, BX, BL, P, d, X, Y, A, BY, perio, nameModel, indexCombiDem, path):
+def save_solution(model, BX, BL, BD, P, d, X, Y, A, BY, perio, nameModel, indexCombiDem, mtr, path):
 
     lista = []
     for i, j, v, k, t in indexCombiDem:
         # if (i,j) in BR.keys():
-        lista.append([i+'-'+j,i,j,v, k, t, P[i,j,v,k], d[i,j,v,k,t], A[i,v].X, X[i,j,v,k,t].X, Y[i,j,v,k,t].X , BY[i,j,v,k,t].X, BX[i,j,v,k,t].X, BL[i,j,v,k,t].X])
+        try:
+            mtr[i,j,v,k,t]
+        except:
+            mtr[i,j,v,k,t] = -1
+        
+        lista.append([i+'-'+j,i,j,v, k, t, P[i,j,v,k], d[i,j,v,k,t], A[i,v].X, X[i,j,v,k,t].X, Y[i,j,v,k,t].X, mtr[i,j,v,k,t], BY[i,j,v,k,t].X, BX[i,j,v,k,t].X, BL[i,j,v,k,t].X, BD[i,j,v,k,t].X])
         # else:
         #     lista.append([i+'-'+j,i,j,v, k, t, P[i,j,v,k], d[i,j,v,k,t], X[i,j,v,k,t].X, Y[i,j,v,k,t].X , -1, BX[i,j,v,k,t].X ])
-
-    a = pd.DataFrame(lista, columns=['o-d',"Origen","Destino",'Vagon','Classe','Periodo','Preco','Demanda', 'AssenVazios[A]', 'Assignments[X]','Authorizations[Y]','\u03B3', '\u03B2', '\u03B1'])
     
+    a = pd.DataFrame(lista, columns=['o-d',"Origen","Destino",'Vagon','Classe','Periodo','Preco','Demanda', 'AssenVazios[A]', 'Assignments[X]','Authorizations[Y]', 'ProbMontecarlo', '\u03B3', '\u03B1', '\u03B2', '\u0394'])
+    a = a.sort_values(by=["Origen","Destino",'Vagon','Periodo','Classe'])
+
     a.to_excel(path+'/'+ nameModel +'.xlsx', index=False)
 
     return a
