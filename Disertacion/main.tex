@@ -1,9 +1,9 @@
-\documentclass[12pt, openany]{book} % \documentclass[11pt,fleqn, twoside, final, openany,usenames,dvipsnames]{book}%
+% \documentclass[12pt, openany, oneside]{book} % \documentclass[11pt,fleqn, twoside, final, openany,usenames,dvipsnames]{book}%
+\documentclass[12pt, oneside]{book}
 \usepackage{changepage} % Para ajustar los márgenes localmente
 \usepackage[utf8]{inputenc}
 \usepackage[autostyle,german=guillemets,norwegian=quotes]{csquotes}
-\usepackage[style=authoryear]{biblatex}
-\addbibresource{sections/referencias.bib} %Import the bibliography file
+
 %=============================== Preâmbulo ============================================
 \usepackage{amsfonts}
 \usepackage[T1]{fontenc}
@@ -12,7 +12,6 @@
 \usepackage[table, xcdraw]{xcolor}% http://ctan.org/pkg/xcolor
 \usepackage{indentfirst}
 % \usepackage{subfigure}
-% \usepackage{natbib} %usepackage{harvard}
 \usepackage{amssymb,fancyhdr,fancybox,epsfig,psfrag,tabularx}
 \usepackage{comment}
 \usepackage{amsthm}
@@ -33,6 +32,8 @@
 \usepackage{caption}
 \usepackage{enumitem} % Paquete para personalizar listas
 
+\usepackage[round]{natbib}%usepackage{harvard}
+
 \hypersetup{
     colorlinks=true,
     citecolor=blue,
@@ -48,9 +49,9 @@
 \usepackage{tikz}
 \usepackage{soul}
 \usepackage{rotating}
-\usetikzlibrary{patterns}
-\usetikzlibrary{plotmarks}
-
+% \usetikzlibrary{patterns}
+% \usetikzlibrary{plotmarks}
+\usetikzlibrary{positioning, arrows.meta, shapes.geometric}
 
 \urlstyle{same}
 \renewcommand\qedsymbol{$\blacksquare$}
@@ -90,6 +91,9 @@
     \fancyhead[R]{\thepage}
 }
 
+\setcounter{secnumdepth}{3} % Numera até subsubsection
+% \setcounter{tocdepth}{3}    % Mostra até subsubsection no sumário
+
 \begin{document}
 
 \pagestyle{plain}
@@ -120,31 +124,39 @@
 
 % %=============================== Sumário =============================================
 \tableofcontents 
-\addtocontents{toc} {\protect\thispagestyle{empty} } \thispagestyle{empty} 
+\addtocontents{toc}{\protect\thispagestyle{empty}}\thispagestyle{empty} 
 
 
 % %=============================== Capítulos ===========================================%
 \doublespacing %Para um espaçamento duplo
 
-% \input{sections/introducao} 
+\input{sections/introducao}
 % \input{Fundamentacao-teorica}
 \input{sections/revisao_literatura}
 \input{sections/modelo_matematico}
 % \input{Contribuicoes}
 % %\input{Metodos-de-resolucao-propostos}
 % \input{sections/resultados_camputacionais}
-% \input{sections/conclucoes}
+\input{sections/conclucoes}
 
 
+%=============================== Referências Bibliográficas===========================
+\cleardoublepage
+\phantomsection
 
-% %=============================== Referências Bibliográficas===========================
-% \addcontentsline{toc}{chapter}{Bibliografia}\label{referencias}
-%\begin{spacing}{0.1}
-% \bibliographystyle{agsm,dcu,kluwer, abbrvnat, unsrtnat} choose one
-% \bibliographystyle{agsm}
-% \bibliography{referencias}
-%\end{spacing}
-\printbibliography %Prints bibliography
+% Aumenta el contador de capítulo y muestra el número manualmente
+\refstepcounter{chapter}
+% \chapter*{\thechapter\  Referências}
+
+% Añade a la tabla de contenido como capítulo numerado
+\addcontentsline{toc}{chapter}{\thechapter\ \hspace{0.234cm} Referências}
+
+\renewcommand{\bibname}{Referências}
+\bibliographystyle{plainnat}
+
+\bibliography{sections/referencias}
+
+
 % %=============================== Anexos ==========================
 % \appendix
 % \renewcommand{\appendixname}{Appendix} %trocar Apendice por Anexo

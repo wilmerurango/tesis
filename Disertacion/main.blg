@@ -1,15 +1,50 @@
-[0] Config.pm:307> INFO - This is Biber 2.19
-[0] Config.pm:310> INFO - Logfile is 'main.blg'
-[109] biber:340> INFO - === lun mar 17, 2025, 12:57:24
-[127] Biber.pm:419> INFO - Reading 'main.bcf'
-[211] Biber.pm:979> INFO - Found 11 citekeys in bib section 0
-[228] Biber.pm:4419> INFO - Processing section 0
-[242] Biber.pm:4610> INFO - Looking for bibtex file 'sections/referencias.bib' for section 0
-[244] bibtex.pm:1713> INFO - LaTeX decoding ...
-[271] bibtex.pm:1519> INFO - Found BibTeX data source 'sections/referencias.bib'
-[429] UCollate.pm:68> INFO - Overriding locale 'pt-PT' defaults 'variable = shifted' with 'variable = non-ignorable'
-[429] UCollate.pm:68> INFO - Overriding locale 'pt-PT' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[429] Biber.pm:4239> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'pt-PT'
-[429] Biber.pm:4245> INFO - No sort tailoring available for locale 'pt-PT'
-[452] bbl.pm:660> INFO - Writing 'main.bbl' with encoding 'UTF-8'
-[460] bbl.pm:763> INFO - Output to main.bbl
+This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: plainnat.bst
+Database file #1: sections/referencias.bib
+Warning--empty journal in Cizaire2011
+Warning--empty booktitle in Cross1995ANIT
+Warning--empty booktitle in Williamson1992AirlineNS
+You've used 84 entries,
+            2773 wiz_defined-function locations,
+            1312 strings with 26285 characters,
+and the built_in function-call counts, 41882 in all, are:
+= -- 4024
+> -- 2281
+< -- 50
++ -- 771
+- -- 687
+* -- 3659
+:= -- 6634
+add.period$ -- 439
+call.type$ -- 84
+change.case$ -- 481
+chr.to.int$ -- 84
+cite$ -- 171
+duplicate$ -- 1728
+empty$ -- 3256
+format.name$ -- 835
+if$ -- 8786
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 84
+newline$ -- 615
+num.names$ -- 336
+pop$ -- 656
+preamble$ -- 1
+purify$ -- 397
+quote$ -- 0
+skip$ -- 1320
+stack$ -- 0
+substring$ -- 1658
+swap$ -- 109
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 919
+warning$ -- 3
+while$ -- 344
+width$ -- 0
+write$ -- 1466
+(There were 3 warnings)

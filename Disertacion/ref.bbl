@@ -1,0 +1,23 @@
+\begin{thebibliography}{}
+
+\bibitem[Corman et~al., 2011]{CORMAN20111}
+F. Corman, A. D’Ariano, I.A. Hansen, and D. Pacciarelli.
+\newblock Optimal multi-class rescheduling of railway traffic.
+\newblock {\em Journal of Rail Transport Planning \& Management}, 1(1):14--24, 2011.
+\newblock URL: \url{https://www.sciencedirect.com/science/article/pii/S2210970611000023}.
+
+\bibitem[Agasucci et~al., 2023]{AGASUCCI2023100394}
+V. Agasucci, G. Grani, and L. Lamorgese.
+\newblock Solving the train dispatching problem via deep reinforcement learning.
+\newblock {\em Journal of Rail Transport Planning \& Management}, 26:100394, 2023.
+\newblock URL: \url{https://www.sciencedirect.com/science/article/pii/S2210970623000264}.
+
+\bibitem[Tang et~al., 2022]{TANG2022103679}
+R. Tang, L. De Donato, N. Bešinović, F. Flammini, R. M.P. Goverde, Z. Lin, R. Liu, T. Tang, V. Vittorini, and Z. Wang.
+\newblock A literature review of Artificial Intelligence applications in railway systems.
+\newblock {\em Transportation Research Part C: Emerging Technologies}, 140:103679, 2022.
+\newblock URL: \url{https://www.sciencedirect.com/science/article/pii/S0968090X22001206}.
+
+
+\end{thebibliography}
+

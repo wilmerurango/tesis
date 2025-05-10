@@ -1,492 +1,615 @@
-% $ biblatex auxiliary file $
-% $ biblatex bbl format version 3.2 $
-% Do not modify the above lines!
-%
-% This is an auxiliary file used by the 'biblatex' package.
-% This file may safely be deleted. It will be recreated by
-% biber as required.
-%
-\begingroup
-\makeatletter
-\@ifundefined{ver@biblatex.sty}
-  {\@latex@error
-     {Missing 'biblatex' package}
-     {The bibliography requires the 'biblatex' package.}
-      \aftergroup\endinput}
-  {}
-\endgroup
+\begin{thebibliography}{84}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
+\bibitem[Agasucci et~al.(2023)Agasucci, Grani, and Lamorgese]{AGASUCCI2023}
+Valerio Agasucci, Giorgio Grani, and Leonardo Lamorgese.
+\newblock Solving the train dispatching problem via deep reinforcement learning.
+\newblock \emph{Journal of Rail Transport Planning and Management}, 26:\penalty0 100394, 2023.
+\newblock ISSN 2210-9706.
+\newblock \doi{https://doi.org/10.1016/j.jrtpm.2023.100394}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S2210970623000264}.
 
-\refsection{0}
-  \datalist[entry]{nyt/global//global/global}
-    \entry{Gallego1994}{article}{}
-      \name{author}{2}{}{%
-        {{un=0,uniquepart=base,hash=39f2a5b71e2e9f98455e4a835f91683d}{%
-           family={Gallego},
-           familyi={G\bibinitperiod},
-           given={G.},
-           giveni={G\bibinitperiod},
-           givenun=0}}%
-        {{un=1,uniquepart=given,hash=0937357893f2c90e215847f885184eb4}{%
-           family={Ryzin},
-           familyi={R\bibinitperiod},
-           given={G.},
-           giveni={G\bibinitperiod},
-           givenun=1,
-           prefix={van},
-           prefixi={v\bibinitperiod},
-           prefixun=0}}%
-      }
-      \strng{namehash}{813a44c663aab0314136d23319a3a2a9}
-      \strng{fullhash}{813a44c663aab0314136d23319a3a2a9}
-      \strng{bibnamehash}{813a44c663aab0314136d23319a3a2a9}
-      \strng{authorbibnamehash}{813a44c663aab0314136d23319a3a2a9}
-      \strng{authornamehash}{813a44c663aab0314136d23319a3a2a9}
-      \strng{authorfullhash}{813a44c663aab0314136d23319a3a2a9}
-      \field{sortinit}{G}
-      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Management Science}
-      \field{number}{7}
-      \field{title}{Optimal dynamic auctions for revenue management}
-      \field{volume}{40}
-      \field{year}{1994}
-      \field{pages}{999\bibrangedash 1020}
-      \range{pages}{22}
-    \endentry
-    \entry{article_base}{article}{}
-      \name{author}{4}{}{%
-        {{un=0,uniquepart=base,hash=dc17e11972df8b60f2996162604f37ac}{%
-           family={Glover},
-           familyi={G\bibinitperiod},
-           given={Fred},
-           giveni={F\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=66f87dcc6bd383ea4c598ed1b9bb9b6c}{%
-           family={Glover},
-           familyi={G\bibinitperiod},
-           given={Randy},
-           giveni={R\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=ccb95a6d83194841c648e900374e890c}{%
-           family={Lorenzo},
-           familyi={L\bibinitperiod},
-           given={Joe},
-           giveni={J\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=d0f589d43719c079dbd9cd7daa85d362}{%
-           family={McMillan},
-           familyi={M\bibinitperiod},
-           given={Claude},
-           giveni={C\bibinitperiod},
-           givenun=0}}%
-      }
-      \list{publisher}{1}{%
-        {INFORMS}%
-      }
-      \strng{namehash}{f4808e0de995258a401c1ed9f7e8e209}
-      \strng{fullhash}{5c0e4a815b77a16a93ff6aca2894a2ca}
-      \strng{bibnamehash}{f4808e0de995258a401c1ed9f7e8e209}
-      \strng{authorbibnamehash}{f4808e0de995258a401c1ed9f7e8e209}
-      \strng{authornamehash}{f4808e0de995258a401c1ed9f7e8e209}
-      \strng{authorfullhash}{5c0e4a815b77a16a93ff6aca2894a2ca}
-      \field{sortinit}{G}
-      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{Deregulation has opened up many opportunities and challenges in the transportation industry - opportunities to increase profits and challenges to keep from being outflanked by competition. A goal of particular interest to the scheduled airlines is to set prices more adaptively and to change them more rapidly. A difficult problem arises when many passengers with different itineraries compete for a limited number of seats on a single-flight segment. The problem is complicated by the existence of different fare classes, many flight segments, and different demands across time. For any given set of prices, flight-segment capacities, and passenger-carrying demand, there is some number of passengers at each fare class on each flight segment that will optimize revenue. Knowledge of such an optimum can be used not only in pricing analysis but also in setting policies to influence the passenger fare-class mix so that the optimum will be more nearly achieved in actual practice. We describe a method for identifying the optimum fare-class mix and the design of a system for that purpose which we built and implemented for Frontier Airlines. The recognition and formulation of the problem has become even more important as the number of aircraft in the sky has been reduced and the competition for a limited number of seats has become more intense.}
-      \field{issn}{00922102, 1526551X}
-      \field{journaltitle}{Interfaces}
-      \field{number}{3}
-      \field{title}{The Passenger-Mix Problem in the Scheduled Airlines}
-      \field{urlday}{7}
-      \field{urlmonth}{8}
-      \field{urlyear}{2024}
-      \field{volume}{12}
-      \field{year}{1982}
-      \field{urldateera}{ce}
-      \field{pages}{73\bibrangedash 80}
-      \range{pages}{8}
-      \verb{urlraw}
-      \verb http://www.jstor.org/stable/25060268
-      \endverb
-      \verb{url}
-      \verb http://www.jstor.org/stable/25060268
-      \endverb
-    \endentry
-    \entry{han2020uncertainty}{article}{}
-      \name{author}{2}{}{%
-        {{un=0,uniquepart=base,hash=d5f7ae42a563998bd7eccae3eaed6b75}{%
-           family={Han},
-           familyi={H\bibinitperiod},
-           given={X.},
-           giveni={X\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=07d0026ba35104b23c69c71e8289c06b}{%
-           family={Ren},
-           familyi={R\bibinitperiod},
-           given={Z.},
-           giveni={Z\bibinitperiod},
-           givenun=0}}%
-      }
-      \list{publisher}{1}{%
-        {Springer}%
-      }
-      \strng{namehash}{47b776d155660f1e8d5fe10d5ff0019c}
-      \strng{fullhash}{47b776d155660f1e8d5fe10d5ff0019c}
-      \strng{bibnamehash}{47b776d155660f1e8d5fe10d5ff0019c}
-      \strng{authorbibnamehash}{47b776d155660f1e8d5fe10d5ff0019c}
-      \strng{authornamehash}{47b776d155660f1e8d5fe10d5ff0019c}
-      \strng{authorfullhash}{47b776d155660f1e8d5fe10d5ff0019c}
-      \field{sortinit}{H}
-      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Soft Computing}
-      \field{number}{9}
-      \field{title}{Joint optimization of stop planning and ticket allocation under uncertainty theory}
-      \field{volume}{24}
-      \field{year}{2020}
-      \field{pages}{7293\bibrangedash 7308}
-      \range{pages}{16}
-      \verb{doi}
-      \verb 10.1007/s00500-019-04617-9
-      \endverb
-    \endentry
-    \entry{HEO2009446}{article}{}
-      \name{author}{2}{}{%
-        {{un=0,uniquepart=base,hash=6fff324d1eada13fca449957ff2b3f36}{%
-           family={Heo},
-           familyi={H\bibinitperiod},
-           given={Cindy\bibnamedelima Yoonjoung},
-           giveni={C\bibinitperiod\bibinitdelim Y\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=6eefd68942246c8b768d79f922944e33}{%
-           family={Lee},
-           familyi={L\bibinitperiod},
-           given={Seoki},
-           giveni={S\bibinitperiod},
-           givenun=0}}%
-      }
-      \strng{namehash}{b7f88e1f99f83035ac001701dbc302d0}
-      \strng{fullhash}{b7f88e1f99f83035ac001701dbc302d0}
-      \strng{bibnamehash}{b7f88e1f99f83035ac001701dbc302d0}
-      \strng{authorbibnamehash}{b7f88e1f99f83035ac001701dbc302d0}
-      \strng{authornamehash}{b7f88e1f99f83035ac001701dbc302d0}
-      \strng{authorfullhash}{b7f88e1f99f83035ac001701dbc302d0}
-      \field{sortinit}{H}
-      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{issn}{0278-4319}
-      \field{journaltitle}{International Journal of Hospitality Management}
-      \field{number}{3}
-      \field{title}{Application of revenue management practices to the theme park industry}
-      \field{volume}{28}
-      \field{year}{2009}
-      \field{pages}{446\bibrangedash 453}
-      \range{pages}{8}
-      \verb{doi}
-      \verb https://doi.org/10.1016/j.ijhm.2009.02.001
-      \endverb
-      \verb{urlraw}
-      \verb https://www.sciencedirect.com/science/article/pii/S0278431909000255
-      \endverb
-      \verb{url}
-      \verb https://www.sciencedirect.com/science/article/pii/S0278431909000255
-      \endverb
-      \keyw{Revenue management,Yield management,Theme park,Pricing}
-    \endentry
-    \entry{doi:10.1080/02642069.2010.491543}{article}{}
-      \name{author}{2}{}{%
-        {{un=0,uniquepart=base,hash=2940e646322aa496be79aeafc889d7f8}{%
-           family={José\bibnamedelima Guadix},
-           familyi={J\bibinitperiod\bibinitdelim G\bibinitperiod},
-           given={Jesús\bibnamedelima Muñuzuri},
-           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
-           givenun=0,
-           suffix={Luis\bibnamedelima Onieva},
-           suffixi={L\bibinitperiod\bibinitdelim O\bibinitperiod},
-           suffixun=0}}%
-        {{un=0,uniquepart=base,hash=25b42bdd9558b48bf04e6b6b18358ece}{%
-           family={Cortés},
-           familyi={C\bibinitperiod},
-           given={Pablo},
-           giveni={P\bibinitperiod},
-           givenun=0}}%
-      }
-      \list{publisher}{1}{%
-        {Routledge}%
-      }
-      \strng{namehash}{0e6d72647444c00b436ed63c6d5aa126}
-      \strng{fullhash}{0e6d72647444c00b436ed63c6d5aa126}
-      \strng{bibnamehash}{0e6d72647444c00b436ed63c6d5aa126}
-      \strng{authorbibnamehash}{0e6d72647444c00b436ed63c6d5aa126}
-      \strng{authornamehash}{0e6d72647444c00b436ed63c6d5aa126}
-      \strng{authorfullhash}{0e6d72647444c00b436ed63c6d5aa126}
-      \field{sortinit}{J}
-      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{The Service Industries Journal}
-      \field{number}{1}
-      \field{title}{An overview of revenue management in service industries: an application to car parks}
-      \field{volume}{31}
-      \field{year}{2011}
-      \field{pages}{91\bibrangedash 105}
-      \range{pages}{15}
-      \verb{doi}
-      \verb 10.1080/02642069.2010.491543
-      \endverb
-    \endentry
-    \entry{article_YM_to_RM}{article}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=910afcd3a1fc2a134457dad0ebb2f554}{%
-           family={Littlewood},
-           familyi={L\bibinitperiod},
-           given={Ken},
-           giveni={K\bibinitperiod},
-           givenun=0}}%
-      }
-      \strng{namehash}{910afcd3a1fc2a134457dad0ebb2f554}
-      \strng{fullhash}{910afcd3a1fc2a134457dad0ebb2f554}
-      \strng{bibnamehash}{910afcd3a1fc2a134457dad0ebb2f554}
-      \strng{authorbibnamehash}{910afcd3a1fc2a134457dad0ebb2f554}
-      \strng{authornamehash}{910afcd3a1fc2a134457dad0ebb2f554}
-      \strng{authorfullhash}{910afcd3a1fc2a134457dad0ebb2f554}
-      \field{sortinit}{L}
-      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Journal of Revenue and Pricing Management}
-      \field{month}{04}
-      \field{title}{Special Issue Papers: Forecasting and control of passenger bookings}
-      \field{volume}{4}
-      \field{year}{2005}
-      \field{pages}{111\bibrangedash 123}
-      \range{pages}{13}
-      \verb{doi}
-      \verb 10.1057/palgrave.rpm.5170134
-      \endverb
-    \endentry
-    \entry{doi:10.1287/trsc.33.2.233}{article}{}
-      \name{author}{2}{}{%
-        {{un=0,uniquepart=base,hash=8c3200f173b0fb913d813418ad90cdaa}{%
-           family={McGill},
-           familyi={M\bibinitperiod},
-           given={Jeffrey\bibnamedelima I.},
-           giveni={J\bibinitperiod\bibinitdelim I\bibinitperiod},
-           givenun=0}}%
-        {{un=1,uniquepart=given,hash=9b0d200c4f8a63eccc76a7b694a8eacc}{%
-           family={Ryzin},
-           familyi={R\bibinitperiod},
-           given={Garrett\bibnamedelima J.},
-           giveni={G\bibinitperiod\bibinitdelim J\bibinitperiod},
-           givenun=1,
-           prefix={van},
-           prefixi={v\bibinitperiod},
-           prefixun=0}}%
-      }
-      \strng{namehash}{ca1640a51fe7cf41dfbd65c519641e03}
-      \strng{fullhash}{ca1640a51fe7cf41dfbd65c519641e03}
-      \strng{bibnamehash}{ca1640a51fe7cf41dfbd65c519641e03}
-      \strng{authorbibnamehash}{ca1640a51fe7cf41dfbd65c519641e03}
-      \strng{authornamehash}{ca1640a51fe7cf41dfbd65c519641e03}
-      \strng{authorfullhash}{ca1640a51fe7cf41dfbd65c519641e03}
-      \field{sortinit}{M}
-      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Transportation Science}
-      \field{number}{2}
-      \field{title}{Revenue Management: Research Overview and Prospects}
-      \field{volume}{33}
-      \field{year}{1999}
-      \field{pages}{233\bibrangedash 256}
-      \range{pages}{24}
-      \verb{doi}
-      \verb 10.1287/trsc.33.2.233
-      \endverb
-      \verb{eprint}
-      \verb https://doi.org/10.1287/trsc.33.2.233
-      \endverb
-      \verb{urlraw}
-      \verb https://doi.org/10.1287/trsc.33.2.233
-      \endverb
-      \verb{url}
-      \verb https://doi.org/10.1287/trsc.33.2.233
-      \endverb
-    \endentry
-    \entry{article_Ryzin2014}{article}{}
-      \name{author}{2}{}{%
-        {{un=1,uniquepart=given,hash=9b0d200c4f8a63eccc76a7b694a8eacc}{%
-           family={Ryzin},
-           familyi={R\bibinitperiod},
-           given={Garrett\bibnamedelima J.},
-           giveni={G\bibinitperiod\bibinitdelim J\bibinitperiod},
-           givenun=1,
-           prefix={van},
-           prefixi={v\bibinitperiod},
-           prefixun=0}}%
-        {{un=0,uniquepart=base,hash=4f7d6c83f885ff5badf6810cb9ed5f9f}{%
-           family={Talluri},
-           familyi={T\bibinitperiod},
-           given={Kalyan\bibnamedelima T.},
-           giveni={K\bibinitperiod\bibinitdelim T\bibinitperiod},
-           givenun=0}}%
-      }
-      \strng{namehash}{187e6fcf22079c6ccb9d88f5ed8b34d4}
-      \strng{fullhash}{187e6fcf22079c6ccb9d88f5ed8b34d4}
-      \strng{bibnamehash}{187e6fcf22079c6ccb9d88f5ed8b34d4}
-      \strng{authorbibnamehash}{187e6fcf22079c6ccb9d88f5ed8b34d4}
-      \strng{authornamehash}{187e6fcf22079c6ccb9d88f5ed8b34d4}
-      \strng{authorfullhash}{187e6fcf22079c6ccb9d88f5ed8b34d4}
-      \field{sortinit}{R}
-      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{INFORMS Tutorials in Operations Research}
-      \field{month}{10}
-      \field{title}{An Introduction to Revenue Management}
-      \field{year}{2014}
-      \field{pages}{142\bibrangedash 194}
-      \range{pages}{53}
-      \verb{doi}
-      \verb https://doi.org/10.1287/educ.1053.0019
-      \endverb
-    \endentry
-    \entry{schoebel2021tariff}{article}{}
-      \name{author}{2}{}{%
-        {{un=0,uniquepart=base,hash=155454921174d29b0590cbce3be5ead8}{%
-           family={Schöbel},
-           familyi={S\bibinitperiod},
-           given={A.},
-           giveni={A\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=2217991ca125c903a2060330053be58d}{%
-           family={Urban},
-           familyi={U\bibinitperiod},
-           given={F.},
-           giveni={F\bibinitperiod},
-           givenun=0}}%
-      }
-      \strng{namehash}{909ad7c9d20ef4f8dbe60dab048d70f0}
-      \strng{fullhash}{909ad7c9d20ef4f8dbe60dab048d70f0}
-      \strng{bibnamehash}{909ad7c9d20ef4f8dbe60dab048d70f0}
-      \strng{authorbibnamehash}{909ad7c9d20ef4f8dbe60dab048d70f0}
-      \strng{authornamehash}{909ad7c9d20ef4f8dbe60dab048d70f0}
-      \strng{authorfullhash}{909ad7c9d20ef4f8dbe60dab048d70f0}
-      \field{sortinit}{S}
-      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{ArXiv preprint}
-      \field{title}{Optimal fare structures and algorithms for ticket assignment in public transportation systems}
-      \field{volume}{abs/2106.10521}
-      \field{year}{2021}
-      \verb{urlraw}
-      \verb https://arxiv.org/abs/2106.10521
-      \endverb
-      \verb{url}
-      \verb https://arxiv.org/abs/2106.10521
-      \endverb
-    \endentry
-    \entry{zhou2022nonlinear}{article}{}
-      \true{moreauthor}
-      \true{morelabelname}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=0e666ca1ec9bdcee719414b2940abf9a}{%
-           family={Zhou},
-           familyi={Z\bibinitperiod},
-           given={X.},
-           giveni={X\bibinitperiod},
-           givenun=0}}%
-      }
-      \list{publisher}{1}{%
-        {MDPI}%
-      }
-      \strng{namehash}{eb06ff0f560ea0f4095e2ee60f99dcaa}
-      \strng{fullhash}{eb06ff0f560ea0f4095e2ee60f99dcaa}
-      \strng{bibnamehash}{eb06ff0f560ea0f4095e2ee60f99dcaa}
-      \strng{authorbibnamehash}{eb06ff0f560ea0f4095e2ee60f99dcaa}
-      \strng{authornamehash}{eb06ff0f560ea0f4095e2ee60f99dcaa}
-      \strng{authorfullhash}{eb06ff0f560ea0f4095e2ee60f99dcaa}
-      \field{extraname}{1}
-      \field{sortinit}{Z}
-      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Mathematics}
-      \field{number}{10}
-      \field{title}{Nonlinear integer programming model for integrated ticket pricing and stop planning in railway systems}
-      \field{volume}{10}
-      \field{year}{2022}
-      \field{pages}{1679}
-      \range{pages}{1}
-      \verb{doi}
-      \verb 10.3390/math10101679
-      \endverb
-    \endentry
-    \entry{zhou2023pricing}{article}{}
-      \true{moreauthor}
-      \true{morelabelname}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=0e666ca1ec9bdcee719414b2940abf9a}{%
-           family={Zhou},
-           familyi={Z\bibinitperiod},
-           given={X.},
-           giveni={X\bibinitperiod},
-           givenun=0}}%
-      }
-      \list{publisher}{1}{%
-        {MDPI}%
-      }
-      \strng{namehash}{eb06ff0f560ea0f4095e2ee60f99dcaa}
-      \strng{fullhash}{eb06ff0f560ea0f4095e2ee60f99dcaa}
-      \strng{bibnamehash}{eb06ff0f560ea0f4095e2ee60f99dcaa}
-      \strng{authorbibnamehash}{eb06ff0f560ea0f4095e2ee60f99dcaa}
-      \strng{authornamehash}{eb06ff0f560ea0f4095e2ee60f99dcaa}
-      \strng{authorfullhash}{eb06ff0f560ea0f4095e2ee60f99dcaa}
-      \field{extraname}{2}
-      \field{sortinit}{Z}
-      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Mathematics}
-      \field{number}{6}
-      \field{title}{Integrated pricing and passenger flow assignment model based on prospect theory and logit model}
-      \field{volume}{11}
-      \field{year}{2023}
-      \field{pages}{1412}
-      \range{pages}{1}
-      \verb{doi}
-      \verb 10.3390/math11061412
-      \endverb
-    \endentry
-  \enddatalist
-\endrefsection
-\endinput
+\bibitem[Ammirato et~al.(2020)Ammirato, Felicetti, Linzalone, Volpentesta, and Schiuma]{Ammirato2020}
+Salvatore Ammirato, Alberto~Michele Felicetti, Roberto Linzalone, Antonio~Palmiro Volpentesta, and Giovanni Schiuma.
+\newblock A systematic literature review of revenue management in passenger transportation.
+\newblock \emph{Measuring Business Excellence}, 24\penalty0 (2):\penalty0 223--242, 2020.
+\newblock ISSN 1368-3047.
+\newblock \doi{10.1108/MBE-09-2019-0096}.
+\newblock URL \url{https://doi.org/10.1108/MBE-09-2019-0096}.
 
+\bibitem[Aslani et~al.(2014)Aslani, Modarres, and Sibdari]{ASLANI201456}
+Shirin Aslani, Mohammad Modarres, and Soheil Sibdari.
+\newblock On the fairness of airlines' ticket pricing as a result of revenue management techniques.
+\newblock \emph{Journal of Air Transport Management}, 40:\penalty0 56--64, 2014.
+\newblock ISSN 0969-6997.
+\newblock \doi{https://doi.org/10.1016/j.jairtraman.2014.05.004}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S0969699714000556}.
+
+\bibitem[Avinal(2006)]{Avinal15022006}
+Erhan~Atilla Avinal.
+\newblock Revenue management in hotels.
+\newblock \emph{Journal of Foodservice Business Research}, 7\penalty0 (4):\penalty0 51--57, 2006.
+\newblock \doi{10.1300/J369v07n04\_02}.
+\newblock URL \url{https://doi.org/10.1300/J369v07n04_02}.
+
+\bibitem[Barbier et~al.(2020)Barbier, Anjos, Cirinei, and Savard]{BARBIER20201002}
+Thibault Barbier, Miguel~F. Anjos, Fabien Cirinei, and Gilles Savard.
+\newblock Product-closing approximation for ranking-based choice network revenue management.
+\newblock \emph{European Journal of Operational Research}, 286\penalty0 (3):\penalty0 1002--1017, 2020.
+\newblock ISSN 0377-2217.
+\newblock \doi{https://doi.org/10.1016/j.ejor.2020.04.042}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S0377221720303957}.
+
+\bibitem[Belobaba(1987)]{Belobaba1987}
+Peter~P. Belobaba.
+\newblock Survey paper—airline yield management an overview of seat inventory control.
+\newblock \emph{Transportation Science}, 21\penalty0 (2):\penalty0 63--73, 1987.
+\newblock \doi{10.1287/trsc.21.2.63}.
+\newblock URL \url{https://doi.org/10.1287/trsc.21.2.63}.
+
+\bibitem[Bertsimas and de~Boer(2002)]{bertsimas2002}
+Dimitris Bertsimas and S~de~Boer.
+\newblock Joint network pricing and resource allocation.
+\newblock Technical report, Technical report, 2002.
+
+\bibitem[Besinovi et~al.(2022)Besinovi, De~Donato, Flammini, Goverde, Lin, Liu, Marrone, Nardone, Tang, and Vittorini]{Besinovic2022}
+Nikola Besinovi, Lorenzo De~Donato, Francesco Flammini, Rob M.~P. Goverde, Zhiyuan Lin, Ronghui Liu, Stefano Marrone, Roberto Nardone, Tianli Tang, and Valeria Vittorini.
+\newblock Artificial intelligence in railway transport: Taxonomy, regulations, and applications.
+\newblock \emph{IEEE Transactions on Intelligent Transportation Systems}, 23\penalty0 (9):\penalty0 14011--14024, 2022.
+\newblock \doi{10.1109/TITS.2021.3131637}.
+
+\bibitem[Birbil et~al.(2009)Birbil, Frenk, Gromicho, and Zhang]{Birbil2009}
+\c{S}.~İlker Birbil, J.~B.~G. Frenk, Joaquim A.~S. Gromicho, and Shuzhong Zhang.
+\newblock The role of robust optimization in single-leg airline revenue management.
+\newblock \emph{Management Science}, 55\penalty0 (1):\penalty0 148--163, 2009.
+\newblock \doi{10.1287/mnsc.1070.0843}.
+\newblock URL \url{https://doi.org/10.1287/mnsc.1070.0843}.
+
+\bibitem[Brumelle and McGill(1993)]{Brumelle_1993}
+S.~L. Brumelle and J.~I. McGill.
+\newblock Airline seat allocation with multiple nested fare classes.
+\newblock \emph{Operations Research}, 41\penalty0 (1):\penalty0 127--137, 02 1993.
+\newblock \doi{10.1287/opre.41.1.127}.
+\newblock URL \url{https://ideas.repec.org/a/inm/oropre/v41y1993i1p127-137.html}.
+
+\bibitem[Casey(2014)]{Casey2014}
+Don~B Casey.
+\newblock Past, present and future challenges of revenue management, pricing and scheduling.
+\newblock \emph{Journal of Revenue and Pricing Management}, 13\penalty0 (5):\penalty0 343--346, 2014.
+\newblock ISSN 1477-657X.
+\newblock \doi{10.1057/rpm.2014.16}.
+\newblock URL \url{https://doi.org/10.1057/rpm.2014.16}.
+
+\bibitem[Chang et~al.(2000)Chang, Yeh, and Shen]{CHANG200091}
+Yu-Hern Chang, Chung-Hsing Yeh, and Ching-Cheng Shen.
+\newblock A multiobjective model for passenger train services planning: application to taiwan's high-speed rail line.
+\newblock \emph{Transportation Research Part B: Methodological}, 34\penalty0 (2):\penalty0 91--106, 2000.
+\newblock ISSN 0191-2615.
+\newblock \doi{https://doi.org/10.1016/S0191-2615(99)00013-2}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S0191261599000132}.
+
+\bibitem[Chen et~al.(2023)Chen, Xu, Yu, and Zhang]{Chen2023}
+Ji~Chen, Yifan Xu, Peiwen Yu, and Jun Zhang.
+\newblock A reinforcement learning approach for hotel revenue management with evidence from field experiments.
+\newblock \emph{Journal of Operations Management}, 69\penalty0 (7):\penalty0 1176--1201, 2023.
+\newblock \doi{https://doi.org/10.1002/joom.1246}.
+\newblock URL \url{https://onlinelibrary.wiley.com/doi/abs/10.1002/joom.1246}.
+
+\bibitem[Cheraghi et~al.(2010)Cheraghi, Dadashzadeh, and Venkitachalam]{Cheraghi2010RevenueMI}
+S.Hossein Cheraghi, Mohammad Dadashzadeh, and Prakash Venkitachalam.
+\newblock Revenue management in manufacturing: A research landscape.
+\newblock \emph{Journal of Business \& Economics Research}, 8, 2010.
+\newblock URL \url{https://api.semanticscholar.org/CorpusID:154873467}.
+
+\bibitem[Chew et~al.(2009)Chew, Lee, and Liu]{CHEW2009}
+Ek~Peng Chew, Chulung Lee, and Rujing Liu.
+\newblock Joint inventory allocation and pricing decisions for perishable products.
+\newblock \emph{International Journal of Production Economics}, 120\penalty0 (1):\penalty0 139--150, 2009.
+\newblock ISSN 0925-5273.
+\newblock \doi{https://doi.org/10.1016/j.ijpe.2008.07.018}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S0925527308003368}.
+\newblock Special Issue on Operations Strategy and Supply Chains Management.
+
+\bibitem[Cizaire(2011)]{Cizaire2011}
+Claire Cizaire.
+\newblock Optimization models for joint airline pricing and seat inventory control: Multiple products, multiple periods.
+\newblock 09 2011.
+
+\bibitem[Claessens et~al.(1998)Claessens, {van Dijk}, and Zwaneveld]{CLAESSENS1998474}
+M.T. Claessens, N.M. {van Dijk}, and P.J. Zwaneveld.
+\newblock Cost optimal allocation of rail passenger lines.
+\newblock \emph{European Journal of Operational Research}, 110\penalty0 (3):\penalty0 474--489, 1998.
+\newblock ISSN 0377-2217.
+\newblock \doi{https://doi.org/10.1016/S0377-2217(97)00271-3}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S0377221797002713}.
+
+\bibitem[Corman et~al.(2011)Corman, D'Ariano, Hansen, and Pacciarelli]{CORMAN201114}
+Francesco Corman, Andrea D'Ariano, Ingo~A. Hansen, and Dario Pacciarelli.
+\newblock Optimal multi-class rescheduling of railway traffic.
+\newblock \emph{Journal of Rail Transport Planning and Management}, 1\penalty0 (1):\penalty0 14--24, 2011.
+\newblock ISSN 2210-9706.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S2210970611000023}.
+\newblock Robust Modelling of Capacity, Delays and Rescheduling in Regional Networks.
+
+\bibitem[Cross(1995)]{Cross1995ANIT}
+Robert~G. Cross.
+\newblock An introduction to revenue management.
+\newblock 1995.
+\newblock URL \url{https://api.semanticscholar.org/CorpusID:166489213}.
+
+\bibitem[Cross(1997)]{Robert1997}
+Robert~G. Cross.
+\newblock Launching the revenue rocket: How revenue management can work for your business.
+\newblock \emph{Cornell Hotel and Restaurant Administration Quarterly}, 38\penalty0 (2):\penalty0 32--43, 1997.
+\newblock \doi{10.1177/001088049703800222}.
+\newblock URL \url{https://doi.org/10.1177/001088049703800222}.
+
+\bibitem[Dana(1999)]{Dana1999}
+James~D. Dana.
+\newblock Equilibrium price dispersion under demand uncertainty: The roles of costly capacity and market structure.
+\newblock \emph{The RAND Journal of Economics}, 30\penalty0 (4):\penalty0 632--660, 1999.
+\newblock ISSN 07416261.
+\newblock URL \url{http://www.jstor.org/stable/2556068}.
+
+\bibitem[Dobson and Piga(2013)]{Dobson2013}
+Paul Dobson and Claudio Piga.
+\newblock The impact of mergers on fares structure: Evidence from european low-cost airlines.
+\newblock \emph{Economic Inquiry}, 51\penalty0 (2):\penalty0 1196--1217, 2013.
+\newblock URL \url{https://EconPapers.repec.org/RePEc:bla:ecinqu:v:51:y:2013:i:2:p:1196-1217}.
+
+\bibitem[Dowlut and Gobin-Rahimbux(2023)]{dowlut2023forecasting}
+Noomesh Dowlut and Baby Gobin-Rahimbux.
+\newblock Forecasting resort hotel tourism demand using deep learning techniques – a systematic literature review.
+\newblock \emph{Heliyon}, 9\penalty0 (7), 2023.
+\newblock ISSN 2405-8440.
+\newblock \doi{10.1016/j.heliyon.2023.e18385}.
+\newblock URL \url{https://doi.org/10.1016/j.heliyon.2023.e18385}.
+
+\bibitem[Erdelyi~Alexander(2011)]{Erdelyi2011}
+Topaloglu~Huseyin Erdelyi~Alexander.
+\newblock Using decomposition methods to solve pricing problems in network revenue management.
+\newblock \emph{Journal of Revenue and Pricing Management}, 10\penalty0 (4):\penalty0 325--343, 2011.
+\newblock \doi{10.1057/rpm.2009.53}.
+
+\bibitem[Feng and Xiao(2001)]{Feng2001}
+Youyi Feng and Baichun Xiao.
+\newblock A dynamic airline seat inventory control model and its optimal policy.
+\newblock \emph{Operations Research}, 49\penalty0 (6):\penalty0 938--949, 2001.
+\newblock \doi{10.1287/opre.49.6.938.10026}.
+\newblock URL \url{https://doi.org/10.1287/opre.49.6.938.10026}.
+
+\bibitem[Fröidh(2008)]{FROIDH2008268}
+Oskar Fröidh.
+\newblock Perspectives for a future high-speed train in the swedish domestic travel market.
+\newblock \emph{Journal of Transport Geography}, 16\penalty0 (4):\penalty0 268--277, 2008.
+\newblock ISSN 0966-6923.
+\newblock \doi{https://doi.org/10.1016/j.jtrangeo.2007.09.005}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S0966692307000919}.
+
+\bibitem[Fukushi et~al.(2022)Fukushi, Delgado, Raveau, and Santos]{FUKUSHI2022297}
+Mitsuyoshi Fukushi, Felipe Delgado, Sebastián Raveau, and Bruno~F. Santos.
+\newblock Chairs: A choice-based air transport simulator applied to airline competition and revenue management.
+\newblock \emph{Transportation Research Part A: Policy and Practice}, 155:\penalty0 297--315, 2022.
+\newblock ISSN 0965-8564.
+\newblock \doi{https://doi.org/10.1016/j.tra.2021.11.010}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S0965856421002895}.
+
+\bibitem[Gallego and van Ryzin(1994)]{Gallego1994}
+G.~Gallego and G.~van Ryzin.
+\newblock Optimal dynamic auctions for revenue management.
+\newblock \emph{Management Science}, 40\penalty0 (7):\penalty0 999--1020, 1994.
+
+\bibitem[Gallego and van Ryzin(1997)]{Gallego_Ryzin1997}
+Guillermo Gallego and Garrett van Ryzin.
+\newblock A multiproduct dynamic pricing problem and its applications to network yield management.
+\newblock \emph{Operations Research}, 45\penalty0 (1):\penalty0 24--41, 1997.
+\newblock \doi{10.1287/opre.45.1.24}.
+\newblock URL \url{https://doi.org/10.1287/opre.45.1.24}.
+
+\bibitem[Gao et~al.(2010)Gao, Ball, and Karaesmen]{Gao2010}
+Huina Gao, Michael~O Ball, and Itir~Z Karaesmen.
+\newblock Competitive seat inventory control decisions under the regret criterion.
+\newblock \emph{Journal of Revenue and Pricing Management}, 9\penalty0 (1):\penalty0 49--65, 2010.
+\newblock ISSN 1477-657X.
+\newblock \doi{10.1057/rpm.2009.40}.
+\newblock URL \url{https://doi.org/10.1057/rpm.2009.40}.
+
+\bibitem[Glover et~al.(1982)Glover, Glover, Lorenzo, and McMillan]{article_base}
+Fred Glover, Randy Glover, Joe Lorenzo, and Claude McMillan.
+\newblock The passenger-mix problem in the scheduled airlines.
+\newblock \emph{Interfaces}, 12\penalty0 (3):\penalty0 73--80, 1982.
+\newblock ISSN 00922102, 1526551X.
+\newblock URL \url{http://www.jstor.org/stable/25060268}.
+
+\bibitem[Guan et~al.(2023)Guan, Qin, Mao, and Zhou]{Guan2023}
+Xueyi Guan, Jin Qin, Chenghui Mao, and Wenliang Zhou.
+\newblock A literature review of railway pricing based on revenue management.
+\newblock \emph{Mathematics}, 11\penalty0 (4), 2023.
+\newblock ISSN 2227-7390.
+\newblock \doi{10.3390/math11040857}.
+\newblock URL \url{https://www.mdpi.com/2227-7390/11/4/857}.
+
+\bibitem[Guerriero et~al.(2021)Guerriero, Luzzi, and Macrina]{Guerriero2021}
+Francesca Guerriero, Martina Luzzi, and Giusy Macrina.
+\newblock \emph{Revenue Management Approach for Passenger Transport Service: An Italian Case Study}, pages 237--247.
+\newblock Springer International Publishing, Cham, 2021.
+\newblock ISBN 978-3-030-86841-3.
+\newblock \doi{10.1007/978-3-030-86841-3_20}.
+\newblock URL \url{https://doi.org/10.1007/978-3-030-86841-3_20}.
+
+\bibitem[Guo et~al.(2012)Guo, Xiao, and Li]{Guo2012}
+Peng Guo, Baichun Xiao, and Jun Li.
+\newblock Unconstraining methods in revenue management systems: Research overview and prospects.
+\newblock \emph{Advances in Operations Research}, 2012\penalty0 (1):\penalty0 270910, 2012.
+\newblock \doi{https://doi.org/10.1155/2012/270910}.
+\newblock URL \url{https://onlinelibrary.wiley.com/doi/abs/10.1155/2012/270910}.
+
+\bibitem[Gönsch et~al.(2013)Gönsch, Klein, Neugebauer, and Steinhardt]{Gönsch2013}
+Jochen Gönsch, Robert Klein, Michael Neugebauer, and Claudius Steinhardt.
+\newblock Dynamic pricing with strategic customers.
+\newblock \emph{Journal of Business Economics}, 83\penalty0 (5):\penalty0 505--549, July 2013.
+\newblock ISSN 1861-8928.
+\newblock \doi{10.1007/s11573-013-0663-7}.
+\newblock URL \url{https://doi.org/10.1007/s11573-013-0663-7}.
+
+\bibitem[Han and Ren(2020)]{han2020uncertainty}
+X.~Han and Z.~Ren.
+\newblock Joint optimization of stop planning and ticket allocation under uncertainty theory.
+\newblock \emph{Soft Computing}, 24\penalty0 (9):\penalty0 7293--7308, 2020.
+\newblock \doi{10.1007/s00500-019-04617-9}.
+
+\bibitem[He et~al.(2023)He, Chen, and Wang]{HE2023109707}
+Haonan He, Liangyu Chen, and Shanyong Wang.
+\newblock Flight short-term booking demand forecasting based on a long short-term memory network.
+\newblock \emph{Computers \& Industrial Engineering}, 186:\penalty0 109707, 2023.
+\newblock ISSN 0360-8352.
+\newblock \doi{10.1016/j.cie.2023.109707}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S0360835223007313}.
+
+\bibitem[Henriques and Pereira(2024)]{henriques2024hotel}
+Henrique Henriques and Luis~Nobre Pereira.
+\newblock Hotel demand forecasting models and methods using artificial intelligence: A systematic literature review.
+\newblock \emph{Tourism \& Management Studies}, 20\penalty0 (3):\penalty0 39--51, 2024.
+\newblock \doi{10.18089/tms.20240304}.
+\newblock URL \url{https://doi.org/10.18089/tms.20240304}.
+
+\bibitem[Heo and Lee(2009)]{HEO2009446}
+Cindy~Yoonjoung Heo and Seoki Lee.
+\newblock Application of revenue management practices to the theme park industry.
+\newblock \emph{International Journal of Hospitality Management}, 28\penalty0 (3):\penalty0 446--453, 2009.
+\newblock ISSN 0278-4319.
+\newblock \doi{https://doi.org/10.1016/j.ijhm.2009.02.001}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S0278431909000255}.
+
+\bibitem[Hetrakul and Cirillo(2013)]{HETRAKUL20131}
+Pratt Hetrakul and Cinzia Cirillo.
+\newblock Accommodating taste heterogeneity in railway passenger choice models based on internet booking data.
+\newblock \emph{Journal of Choice Modelling}, 6:\penalty0 1--16, 2013.
+\newblock ISSN 1755-5345.
+\newblock \doi{https://doi.org/10.1016/j.jocm.2013.04.003}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S1755534513000080}.
+
+\bibitem[Hetrakul and Cirillo(2014)]{HETRAKUL201468}
+Pratt Hetrakul and Cinzia Cirillo.
+\newblock A latent class choice based model system for railway optimal pricing and seat allocation.
+\newblock \emph{Transportation Research Part E: Logistics and Transportation Review}, 61:\penalty0 68--83, 2014.
+\newblock ISSN 1366-5545.
+\newblock \doi{https://doi.org/10.1016/j.tre.2013.10.005}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S1366554513001725}.
+
+\bibitem[Huang and Liang(2011)]{HUANG2011333}
+Kuancheng Huang and Yu-Tung Liang.
+\newblock A dynamic programming algorithm based on expected revenue approximation for the network revenue management problem.
+\newblock \emph{Transportation Research Part E: Logistics and Transportation Review}, 47\penalty0 (3):\penalty0 333--341, 2011.
+\newblock ISSN 1366-5545.
+\newblock \doi{https://doi.org/10.1016/j.tre.2010.11.005}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S1366554510001092}.
+\newblock Selected papers from the 13th ATRS Conference, Abu Dhabi, 2009.
+
+\bibitem[Huisman et~al.(2005)Huisman, Kroon, Lentink, and Vromans]{Huisman_2005}
+Dennis Huisman, Leo~G. Kroon, Ramon~M. Lentink, and Michiel J. C.~M. Vromans.
+\newblock Operations research in passenger railway transportation.
+\newblock \emph{Statistica Neerlandica}, 59\penalty0 (4):\penalty0 467--497, 2005.
+\newblock \doi{https://doi.org/10.1111/j.1467-9574.2005.00303.x}.
+\newblock URL \url{https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9574.2005.00303.x}.
+
+\bibitem[Ivanov and Zhechev(2011)]{Ivanov2011}
+Stanislav Ivanov and Vladimir Zhechev.
+\newblock Hotel revenue management - a critical literature review.
+\newblock \emph{Tourism}, 60, 12 2011.
+\newblock \doi{10.2139/ssrn.1977467}.
+
+\bibitem[König(2020)]{Konig2020}
+Eva König.
+\newblock A review on railway delay management.
+\newblock \emph{Public Transport}, 12\penalty0 (2):\penalty0 335--361, 2020.
+\newblock ISSN 1613-7159.
+\newblock \doi{10.1007/s12469-020-00233-1}.
+\newblock URL \url{https://doi.org/10.1007/s12469-020-00233-1}.
+
+\bibitem[Li et~al.(2022)Li, Mahmoudzadeh, and Wang]{LI2022100054}
+Yihua Li, Ahmadreza Mahmoudzadeh, and Xiubin~Bruce Wang.
+\newblock Airlines seat pricing with seat upgrading.
+\newblock \emph{Multimodal Transportation}, 1\penalty0 (4):\penalty0 100054, 2022.
+\newblock ISSN 2772-5863.
+\newblock \doi{https://doi.org/10.1016/j.multra.2022.100054}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S2772586322000545}.
+
+\bibitem[Littlewood(2005)]{article_YM_to_RM}
+Ken Littlewood.
+\newblock Special issue papers: Forecasting and control of passenger bookings.
+\newblock \emph{Journal of Revenue and Pricing Management}, 4:\penalty0 111--123, 04 2005.
+\newblock \doi{10.1057/palgrave.rpm.5170134}.
+
+\bibitem[Maged M.~Dessouky and Leachman(2006)]{Dessouky01022006}
+Jiamin~Zhao Maged M.~Dessouky, Quan~Lu and Robert~C. Leachman.
+\newblock An exact solution procedure to determine the optimal dispatching times for complex rail networks.
+\newblock \emph{IIE Transactions}, 38\penalty0 (2):\penalty0 141--152, 2006.
+\newblock \doi{10.1080/074081791008988}.
+\newblock URL \url{https://doi.org/10.1080/074081791008988}.
+
+\bibitem[McGill and van Ryzin(1999)]{McGill_Ryzin1999}
+Jeffrey McGill and Garrett van Ryzin.
+\newblock Revenue management: Research overview and prospects.
+\newblock \emph{Transportation Science}, 33:\penalty0 233--256, 05 1999.
+\newblock \doi{10.1287/trsc.33.2.233}.
+
+\bibitem[Mulyani(2021)]{Mulyani2021TheFH}
+Yuniar Mulyani.
+\newblock The forty-year history of revenue management: Bibliometric analysis.
+\newblock \emph{OPSI}, 2021.
+\newblock URL \url{https://api.semanticscholar.org/CorpusID:237823656}.
+
+\bibitem[Méndez-Díaz et~al.(2014)Méndez-Díaz, Miranda-Bront, Vulcano, and Zabala]{MENDEZDIAZ2014}
+Isabel Méndez-Díaz, Juan~José Miranda-Bront, Gustavo Vulcano, and Paula Zabala.
+\newblock A branch-and-cut algorithm for the latent-class logit assortment problem.
+\newblock \emph{Discrete Applied Mathematics}, 164:\penalty0 246--263, 2014.
+\newblock ISSN 0166-218X.
+\newblock \doi{https://doi.org/10.1016/j.dam.2012.03.003}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S0166218X12001072}.
+\newblock Combinatorial Optimization.
+
+\bibitem[Netessine and Shumsky(2005)]{Netessine2005}
+Serguei Netessine and Robert~A. Shumsky.
+\newblock Revenue management games: Horizontal and vertical competition.
+\newblock \emph{Management Science}, 51\penalty0 (5):\penalty0 813--831, 2005.
+\newblock \doi{10.1287/mnsc.1040.0356}.
+\newblock URL \url{https://doi.org/10.1287/mnsc.1040.0356}.
+
+\bibitem[Noone et~al.(2011)Noone, McGuire, and Rohlfs]{Noone2011}
+B.~M. Noone, K.~A. McGuire, and K.~V. Rohlfs.
+\newblock Social media meets hotel revenue management: Opportunities, issues and unanswered questions.
+\newblock \emph{Journal of Revenue and Pricing Management}, 10\penalty0 (4):\penalty0 293--305, 2011.
+
+\bibitem[Otero and Akhavan-Tabatabaei(2015)]{OTERO2015188}
+Daniel~F. Otero and Raha Akhavan-Tabatabaei.
+\newblock A stochastic dynamic pricing model for the multiclass problems in the airline industry.
+\newblock \emph{European Journal of Operational Research}, 242\penalty0 (1):\penalty0 188--200, 2015.
+\newblock ISSN 0377-2217.
+\newblock \doi{https://doi.org/10.1016/j.ejor.2014.09.038}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S0377221714007772}.
+
+\bibitem[Pereira(2016)]{PEREIRA201613}
+Luis~Nobre Pereira.
+\newblock An introduction to helpful forecasting methods for hotel revenue management.
+\newblock \emph{International Journal of Hospitality Management}, 58:\penalty0 13--23, 2016.
+\newblock ISSN 0278-4319.
+\newblock \doi{https://doi.org/10.1016/j.ijhm.2016.07.003}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S027843191630086X}.
+
+\bibitem[Pereira and and(2022)]{Pereira02092022}
+Luis~Nobre Pereira and Vitor~Cerqueira and.
+\newblock Forecasting hotel demand for revenue management using machine learning regression methods.
+\newblock \emph{Current Issues in Tourism}, 25\penalty0 (17):\penalty0 2733--2750, 2022.
+\newblock \doi{10.1080/13683500.2021.1999397}.
+\newblock URL \url{https://doi.org/10.1080/13683500.2021.1999397}.
+
+\bibitem[Qi et~al.(2018)Qi, Yang, Di, Li, Yang, and Gao]{QI2018151}
+Jianguo Qi, Lixing Yang, Zhen Di, Shukai Li, Kai Yang, and Yuan Gao.
+\newblock Integrated optimization for train operation zone and stop plan with passenger distributions.
+\newblock \emph{Transportation Research Part E: Logistics and Transportation Review}, 109:\penalty0 151--173, 2018.
+\newblock ISSN 1366-5545.
+\newblock \doi{https://doi.org/10.1016/j.tre.2017.11.003}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S1366554517303812}.
+
+\bibitem[Rusdiansyah et~al.(2013)Rusdiansyah, Dwi A.~P., and Puspitasari]{Rusdiansyah_Dwi}
+Ahmad Rusdiansyah, Rescha Dwi A.~P., and Nia Puspitasari.
+\newblock Model dynamic pricinguntuk penetapan harga tiket pesawat terbang berbasis waktu dan persediaan kursi dengan mempertimbangkan keputusan kompetitor.
+\newblock \emph{Jurnal Teknik Industri: Jurnal Keilmuan dan Aplikasi Teknik Industri}, 15\penalty0 (1):\penalty0 45--56, 05 2013.
+\newblock \doi{10.9744/jti.15.1.45-56}.
+\newblock URL \url{https://jurnalindustri.petra.ac.id/index.php/ind/article/view/18707}.
+
+\bibitem[Sarhani and Voß(2024)]{SARHANI2024100120}
+Malek Sarhani and Stefan Voß.
+\newblock Prediction of rail transit delays with machine learning: How to exploit open data sources.
+\newblock \emph{Multimodal Transportation}, 3\penalty0 (2):\penalty0 100120, 2024.
+\newblock ISSN 2772-5863.
+\newblock \doi{https://doi.org/10.1016/j.multra.2024.100120}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S2772586324000017}.
+
+\bibitem[Sch{\"o}bel and Urban(2021)]{schoebel2021tariff}
+A.~Sch{\"o}bel and F.~Urban.
+\newblock Optimal fare structures and algorithms for ticket assignment in public transportation systems.
+\newblock \emph{ArXiv preprint}, abs/2106.10521, 2021.
+\newblock URL \url{https://arxiv.org/abs/2106.10521}.
+
+\bibitem[Shaik(2024)]{mahaboobsubani2024}
+Mahaboobsubani Shaik.
+\newblock Ai-driven revenue management using lang chain models in hospitality.
+\newblock \emph{International Journal of Leading Research Publication}, 5\penalty0 (3), 3 2024.
+\newblock \doi{10.5281/zenodo.14471629}.
+\newblock URL \url{https://doi.org/10.5281/zenodo.14471629}.
+
+\bibitem[Shan et~al.(2024)Shan, Lv, Wu, Zhao, and Zhang]{Shan2024}
+Xinghua Shan, Xiaoyan Lv, Jinfei Wu, Shuo Zhao, and Junfeng Zhang.
+\newblock Revenue management method and critical techniques of railway passenger transport.
+\newblock \emph{Railway Sciences}, 3\penalty0 (5):\penalty0 636--649, 2024.
+\newblock ISSN 2755-0907, 2755-0915.
+\newblock \doi{10.1108/RS-04-2024-0013}.
+\newblock URL \url{https://doi.org/10.1108/RS-04-2024-0013}.
+
+\bibitem[Shen and Su(2007)]{Shen2007}
+Zuo-Jun~Max Shen and Xuanming Su.
+\newblock Customer behavior modeling in revenue management and auctions: A review and new research opportunities.
+\newblock \emph{Production and Operations Management}, 16\penalty0 (6):\penalty0 713--728, 2007.
+\newblock \doi{https://doi.org/10.1111/j.1937-5956.2007.tb00291.x}.
+\newblock URL \url{https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1937-5956.2007.tb00291.x}.
+
+\bibitem[Smith et~al.(1992)Smith, Leimkuhler, and Darrow]{Smith1992}
+Barry~C. Smith, John~F. Leimkuhler, and Ross~M. Darrow.
+\newblock Yield management at american airlines.
+\newblock \emph{Interfaces}, 22\penalty0 (1):\penalty0 8--31, 1992.
+\newblock \doi{10.1287/inte.22.1.8}.
+\newblock URL \url{https://doi.org/10.1287/inte.22.1.8}.
+
+\bibitem[Strauss et~al.(2018)Strauss, Klein, and Steinhardt]{STRAUSS2018375}
+Arne~K. Strauss, Robert Klein, and Claudius Steinhardt.
+\newblock A review of choice-based revenue management: Theory and methods.
+\newblock \emph{European Journal of Operational Research}, 271\penalty0 (2):\penalty0 375--387, 2018.
+\newblock ISSN 0377-2217.
+\newblock \doi{https://doi.org/10.1016/j.ejor.2018.01.011}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S0377221718300110}.
+
+\bibitem[Sun et~al.(2018)Sun, Jiang, Gu, Zhou, Li, and Zhang]{SUN201896}
+Yanshuo Sun, Zhibin Jiang, Jinjing Gu, Min Zhou, Yeming Li, and Lei Zhang.
+\newblock Analyzing high speed rail passengers' train choices based on new online booking data in china.
+\newblock \emph{Transportation Research Part C: Emerging Technologies}, 97:\penalty0 96--113, 2018.
+\newblock ISSN 0968-090X.
+\newblock \doi{https://doi.org/10.1016/j.trc.2018.10.015}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S0968090X18301694}.
+
+\bibitem[Talluri and van Ryzin(1998)]{Talluri_Ryzin1998}
+Kalyan Talluri and Garrett van Ryzin.
+\newblock An analysis of bid-price controls for network revenue management.
+\newblock \emph{Management Science}, 44\penalty0 (11-part-1):\penalty0 1577--1593, 1998.
+\newblock \doi{10.1287/mnsc.44.11.1577}.
+\newblock URL \url{https://doi.org/10.1287/mnsc.44.11.1577}.
+
+\bibitem[Talluri and Van~Ryzin(2004)]{talluri2004theory}
+Kalyan~T Talluri and Garrett~J Van~Ryzin.
+\newblock Theory and practice of revenue management.
+\newblock \emph{Springer Science \& Business Media}, 2004.
+
+\bibitem[Talluri et~al.(2008)Talluri, van Ryzin, Karaesmen, and Vulcano]{4736064}
+Kalyan~T. Talluri, Garrett~J. van Ryzin, Itir~Z. Karaesmen, and Gustavo~J. Vulcano.
+\newblock Revenue management: Models and methods.
+\newblock In \emph{2008 Winter Simulation Conference}, pages 145--156, 2008.
+\newblock \doi{10.1109/WSC.2008.4736064}.
+
+\bibitem[Tang et~al.(2022)Tang, {De Donato}, Bessinovic, Flammini, Goverde, Lin, Liu, Tang, Vittorini, and Wang]{TANG2022}
+Ruifan Tang, Lorenzo {De Donato}, Nikola Bessinovic, Francesco Flammini, Rob~M.P. Goverde, Zhiyuan Lin, Ronghui Liu, Tianli Tang, Valeria Vittorini, and Ziyulong Wang.
+\newblock A literature review of artificial intelligence applications in railway systems.
+\newblock \emph{Transportation Research Part C: Emerging Technologies}, 140:\penalty0 103679, 2022.
+\newblock ISSN 0968-090X.
+\newblock \doi{https://doi.org/10.1016/j.trc.2022.103679}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S0968090X22001206}.
+
+\bibitem[Tang et~al.(2025)Tang, Chai, Wu, Yin, and D'Ariano]{TANG2025103900}
+Tao Tang, Simin Chai, Wei Wu, Jiateng Yin, and Andrea D'Ariano.
+\newblock A multi-task deep reinforcement learning approach to real-time railway train rescheduling.
+\newblock \emph{Transportation Research Part E: Logistics and Transportation Review}, 194:\penalty0 103900, 2025.
+\newblock ISSN 1366-5545.
+\newblock \doi{https://doi.org/10.1016/j.tre.2024.103900}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S1366554524004915}.
+
+\bibitem[Thirumuruganathan et~al.(2023)Thirumuruganathan, Emadi, gyo Jung, Salminen, Robillos, and Jansen]{THIRUMURUGANATHAN2023103759}
+Saravanan Thirumuruganathan, Noora~Al Emadi, Soon gyo Jung, Joni Salminen, Dianne~Ramirez Robillos, and Bernard~J. Jansen.
+\newblock Will they take this offer? a machine learning price elasticity model for predicting upselling acceptance of premium airline seating.
+\newblock \emph{Information \& Management}, 60\penalty0 (3):\penalty0 103759, 2023.
+\newblock ISSN 0378-7206.
+\newblock \doi{10.1016/j.im.2023.103759}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S0378720623000071}.
+
+\bibitem[Vinod(2004)]{Vinod2004}
+Ben Vinod.
+\newblock Unlocking the value of revenue management in the hotel industry.
+\newblock \emph{Journal of Revenue and Pricing Management}, 3\penalty0 (2):\penalty0 178--190, 2004.
+\newblock ISSN 1477-657X.
+\newblock \doi{10.1057/palgrave.rpm.5170105}.
+\newblock URL \url{https://doi.org/10.1057/palgrave.rpm.5170105}.
+
+\bibitem[Walczak and Brumelle(2007)]{Walczak2007}
+Darius Walczak and Shelby Brumelle.
+\newblock Semi-markov information model for revenue management and dynamic pricing.
+\newblock \emph{OR Spectrum}, 29\penalty0 (1):\penalty0 61--83, 2007.
+\newblock ISSN 1436-6304.
+\newblock \doi{10.1007/s00291-005-0026-z}.
+\newblock URL \url{https://doi.org/10.1007/s00291-005-0026-z}.
+
+\bibitem[Wang et~al.(2018)Wang, Tang, and Huo]{WANG2018173}
+Weidi Wang, Ou~Tang, and Jiazhen Huo.
+\newblock Dynamic capacity allocation for airlines with multi-channel distribution.
+\newblock \emph{Journal of Air Transport Management}, 69:\penalty0 173--181, 2018.
+\newblock ISSN 0969-6997.
+\newblock \doi{https://doi.org/10.1016/j.jairtraman.2018.02.006}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S0969699717303204}.
+
+\bibitem[Wen and Chen(2017)]{WEN201791}
+Chieh-Hua Wen and Po-Hung Chen.
+\newblock Passenger booking timing for low-cost airlines: A continuous logit approach.
+\newblock \emph{Journal of Air Transport Management}, 64:\penalty0 91--99, 2017.
+\newblock ISSN 0969-6997.
+\newblock \doi{https://doi.org/10.1016/j.jairtraman.2017.06.030}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S0969699717302995}.
+\newblock Selected papers from the 19th ATRS World Conference, Singapore, 2015.
+
+\bibitem[Williamson(1992)]{Williamson1992AirlineNS}
+Elizabeth~Louise. Williamson.
+\newblock Airline network seat inventory control : methodologies and revenue impacts.
+\newblock 1992.
+\newblock URL \url{https://api.semanticscholar.org/CorpusID:109755890}.
+
+\bibitem[Xu et~al.(2018)Xu, Yang, Liu, and Shi]{XU201882}
+Guangming Xu, Hai Yang, Wei Liu, and Feng Shi.
+\newblock Itinerary choice and advance ticket booking for high-speed-railway network services.
+\newblock \emph{Transportation Research Part C: Emerging Technologies}, 95:\penalty0 82--104, 2018.
+\newblock ISSN 0968-090X.
+\newblock \doi{https://doi.org/10.1016/j.trc.2018.07.010}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S0968090X18300251}.
+
+\bibitem[Zhang and Adelman(2009)]{Zhang2009}
+Dan Zhang and Daniel Adelman.
+\newblock An approximate dynamic programming approach to network revenue management with customer choice.
+\newblock \emph{Transportation Science}, 43\penalty0 (3):\penalty0 381--394, 2009.
+\newblock \doi{10.1287/trsc.1090.0262}.
+\newblock URL \url{https://doi.org/10.1287/trsc.1090.0262}.
+
+\bibitem[Zhang and Cooper(2009)]{ZHANG2009848}
+Dan Zhang and William~L. Cooper.
+\newblock Pricing substitutable flights in airline revenue management.
+\newblock \emph{European Journal of Operational Research}, 197\penalty0 (3):\penalty0 848--861, 2009.
+\newblock ISSN 0377-2217.
+\newblock \doi{https://doi.org/10.1016/j.ejor.2006.10.067}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S0377221708002038}.
+
+\bibitem[Zhao and Zhao(2019)]{ZHAO2019776}
+Xiang Zhao and Peng Zhao.
+\newblock A seat assignment model for high-speed railway ticket booking system with customer preference consideration.
+\newblock \emph{Transportmetrica A Transport Science}, 15\penalty0 (2):\penalty0 776--806, 2019.
+\newblock \doi{https://doi.org/10.1080/23249935.2018.1532467}.
+
+\bibitem[Zheng and Geroliminis(2016)]{ZHENG2016}
+Nan Zheng and Nikolas Geroliminis.
+\newblock Modeling and optimization of multimodal urban networks with limited parking and dynamic pricing.
+\newblock \emph{Transportation Research Part B: Methodological}, 83:\penalty0 36--58, 2016.
+\newblock ISSN 0191-2615.
+\newblock \doi{https://doi.org/10.1016/j.trb.2015.10.008}.
+\newblock URL \url{https://www.sciencedirect.com/science/article/pii/S0191261515002234}.
+
+\bibitem[Zhou and Others(2022)]{zhou2022nonlinear}
+X.~Zhou and Others.
+\newblock Nonlinear integer programming model for integrated ticket pricing and stop planning in railway systems.
+\newblock \emph{Mathematics}, 10\penalty0 (10):\penalty0 1679, 2022.
+\newblock \doi{10.3390/math10101679}.
+
+\bibitem[Zhou and Others(2023)]{zhou2023pricing}
+X.~Zhou and Others.
+\newblock Integrated pricing and passenger flow assignment model based on prospect theory and logit model.
+\newblock \emph{Mathematics}, 11\penalty0 (6):\penalty0 1412, 2023.
+\newblock \doi{10.3390/math11061412}.
+
+\end{thebibliography}

@@ -320,3 +320,46 @@ Minha experiência profissional e acadêmica está alinhada às necessidades da 
 Durante minha trajetória, trabalhei com automatização de KPIs e desenvolvimento de painéis de controle baseados em business intelligence. Além disso, meu conhecimento em SQL, aplicado por mais de três anos, me permitiu realizar consultas eficientes e análises complexas, garantindo suporte robusto para decisões estratégicas.
 
 Destaco também minha habilidade de traduzir análises em relatórios acessíveis, comunicando resultados de forma clara para stakeholders diversos. Estou motivado a contribuir com meu perfil analítico e minha visão estratégica para a melhoria contínua dos produtos e a satisfação dos usuários.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cabe aclarar que esta investigacion esta enfocada en la aplicacion del RM en el problema de trasnporte Ferroviario de Pasajeros. Aclarado eso, es importante decir que en este ambito existen dos areas importantes de desarrollo de investigacion, como lo es:
+
+en primer lugar se encuentra el control de inventario, el cual  constituye la piedra angular operativa del RM ferroviario. Su cometido es determinar, a lo largo del horizonte de reservas, cuántas plazas reservar (o proteger) para cada tarifa o clase de control y mercado origen–destino, de modo que la combinación final de volumen vendido y precio medio maximice el ingreso esperado al cierre. Para ello, la política de aceptación–rechazo debe equilibrar dos riesgos contrapuestos: rechazar hoy una solicitud de bajo precio que podría ir vacía, o aceptar‑la y sacrificar la disponibilidad futura para un pasajero dispuesto a pagar más.
+
+2001 – Feng y Xiao (2001) trasladan por primera vez al tren de larga distancia el modelo dinámico de control de inventario formulado para aerolíneas. Objetivo: derivar la política óptima de aceptación en función del tiempo restante y el número de plazas disponibles. Metodología: proceso de decisión de Markov con llegadas Poisson independientes por clase tarifaria; solución por programación dinámica. Resultados: regla de umbral estacionaria fácilmente implementable que incrementa el ingreso simulado en torno al 6 % frente a una política first‑come, first‑served. Vacío: la independencia de clases ignora la sustitución entre tarifas.
+
+2002 – Bertsimas y de Boer (2002) abordan el problema en redes con rutas superpuestas. Objetivo: asignar capacidad a cada itinerario origen–destino para maximizar el ingreso total. Metodología: programa no lineal convexo y descomposición anidada. Resultados: proteger asientos a nivel de ruta completa genera entre 3 y 6 % de ingresos adicionales respecto a reglas locales por tramo. Vacío: demanda tratada como fija, sin retroalimentación del precio.
+
+2007 – Walczak y Brumelle (2007) introducen un modelo semi‑Markov. Objetivo: capturar el efecto de tiempo de permanencia en cada estado sobre la demanda. Metodología: cadena semi‑Markov con tasas de llegada dependientes de la anticipación de compra; simulaciones Monte Carlo. Resultados: mejoras de ingreso del 5‑8 % sobre la política umbral cuando la demanda se acelera cerca de la fecha de salida. Vacío: sólo dos niveles tarifarios y ausencia de validación empírica.
+
+2009 – Chew, Lee y Liu (2009) integran por vez primera precios y cupos. Objetivo: decidir simultáneamente tarifa y protección de inventario en un producto perecedero. Metodología: modelo bi‑etapa resuelto por programación dinámica; comparación con estrategias secuenciales. Resultados: incremento del 18 % en ingresos medios en un caso de alta velocidad asiático. Vacío: implementado en un único par origen–destino, sin efectos de red.
+
+2011 – Cizaire (2011) amplía el horizonte a múltiples periodos con demanda estocástica. Objetivo: optimizar precios y cupos en una red ferroviaria europea. Metodología: modelo mixto entero lineal con heurísticas de rolling horizon. Resultados: ganancias de 10‑12 % frente a políticas fijas; sensibilidad alta a la precisión de los pronósticos. Vacío: requisito computacional elevado que dificulta la aplicación en tiempo real.
+
+2012 – Méndez‑Díaz, Nickel, Salas y Velasco (2012) abordan la escalabilidad. Objetivo: resolver el control de inventario en trenes de cercanías de gran tamaño. Metodología: formulación de programa entero mixto y algoritmo branch‑and‑price con generación dinámica de columnas. Resultados: brecha óptima < 2 % en instancias reales con tiempos razonables. Vacío: la demanda sigue exógena; no se modela el efecto de tarifas dinámicas sobre la elección del pasajero.
+
+2014 – Hetrakul y Cirillo (2014) conectan inventario y comportamiento del viajero. Objetivo: maximizar ingresos integrando elección del momento de compra y asignación de cupos. Metodología: modelo de clases latentes combinado con función log‑lineal de demanda y optimización conjunta. Resultados: mejoras del 14‑25 % y evidencia de que la heterogeneidad de preferencias es clave. Vacío: estudio limitado a un corredor; falta analizar robustez ante perturbaciones operativas.
+
+2022 – Besinović et al. (2022) revisan la irrupción de la inteligencia artificial. Objetivo: clasificar aplicaciones de machine learning en control de inventario. Metodología: taxonomía y casos. Resultados: algoritmos de reinforcement learning prometen políticas adaptativas sin supuestos rígidos de distribución. Vacío: barreras de explicabilidad y certificación regulatoria impiden su adopción industrial.
+
+en segundo lugar, Para completar la panorámica y subrayar otro eje decisivo del RM ferroviario, es indispensable distinguir entre los trabajos que modelan demanda independiente (supuestamente exógena y no sensible a la oferta simultánea) y los que introducen una demanda comportamental o conductual, es decir, dependiente de la elección del pasajero frente a un menú de tarifas y cupos.
+
+Demanda independiente (1999‑2002). Los primeros modelos –Dana (1999) y Feng y Xiao (2001)– tratan cada clase tarifaria como un flujo estocástico separado (normal o Poisson) cuya llegada no se ve afectada por la disponibilidad de otras tarifas. Esta hipótesis facilita la programación dinámica o la formulación markoviana de control de inventario, pero desconoce la sustitución intrínseca entre precios, algo que los operadores ferroviarios pronto constatarían como limitación práctica.
+
+Demanda comportamental (2007‑2008). El giro comienza con Walczak y Brumelle (2007), quienes, aunque mantienen la estructura semi‑Markov, permiten que la probabilidad de llegada de cada segmento varíe con el estado de reservas, capturando un primer efecto de “desvío” entre tarifas (una aproximación conductual rudimentaria). Sin embargo, la auténtica irrupción del enfoque de elección aparece en el bienio 2013‑2014, cuando Hetrakul y Cirillo (2014) integran un modelo de clases latentes que predice cuándo y qué tarifa comprará cada pasajero en función de precio, anticipación y atributos de viaje. Al combinar este modelo con la optimización de cupos, los autores demuestran que incorporar la heterogeneidad de preferencias incrementa los ingresos hasta un 25 % frente a políticas que suponen demandas independientes.
+
+Importancia del tema. La evolución evidencia que los modelos de demanda comportamental son ahora imprescindibles para: (i) estimar con realismo la canibalización entre franjas horarias y niveles tarifarios; (ii) diseñar precios dinámicos personalizados en canales digitales; y (iii) evaluar cómo reaccionan segmentos sensibles al precio frente a objetivos de sostenibilidad o equidad. Pese a estos avances, las revisiones recientes de Ammirato et al. (2020) y Besinović et al. (2022) revelan que buena parte de los estudios ferroviarios aún emplean supuestos de demanda independiente, lo que refuerza la necesidad de profundizar en enfoques conductuales basados en machine learning y datos masivos de compra.

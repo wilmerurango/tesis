@@ -1,18 +1,37 @@
 \chapter{Modelagem matemática }
 
-\section{Modelagem matemática}
+\section{Descrição do problema}
+O problema em análise considera um trem com diferentes tipos de assentos que realizará uma viagem entre uma estação de origem \( E_1 \) e uma estação de destino final \( E_n \) (onde \( n \) representa a última estação da rota). Esse trem terá um itinerário que inclui o nome do trem, a estação de origem, a estação de destino, bem como a data e o horário de partida.
 
-Como mencionado anteriormente, esta pesquisa propõe três modelos matemáticos de programação inteira mista. O primeiro utiliza uma demanda do tipo independente; o segundo emprega um modelo de demanda comportamental ajustado por proporções, onde essas proporções são calculadas com base na demanda independente; e o terceiro adota um modelo de demanda comportamental ajustado por hierarquia, em que essa hierarquia está associada à quantidade de assentos reservados para cada classe de controle.
+Os assentos disponíveis são classificados conforme suas características — por exemplo, VIP, padrão, entre outros. Para cada tipo de assento, será definida uma lista de preços a ser disponibilizada para venda. Cada preço dessa lista é denominado \textit{classe de controle} (control class). Os bilhetes serão oferecidos ao público antes da partida do trem, sendo o intervalo entre o início das vendas e o momento da partida denominado \textit{horizonte de reserva}. Esse horizonte será segmentado em diversos períodos, que podem adotar diferentes granularidades temporais, como dias, semanas ou meses, inclusive de forma combinada. Os períodos são organizados de forma decrescente, sendo que o valor zero corresponde à data de partida, e o maior valor representa o início da disponibilização dos bilhetes, formando a sequência \( [t, t-1, t-2, ..., 0] \).
 
-Para compreender essas propostas, consideremos uma versão simplificada do problema como se mostra na figura \ref{fig: fig1}, onde temos:
+Diante dessas condições, o objetivo é controlar a disponibilidade de assentos — tanto os reservados quanto os autorizados para venda — em cada período do horizonte de reserva, visando à maximização do lucro total obtido com a comercialização dos assentos reservados.
+
+Para alcançar esse objetivo, o modelo deve considerar restrições que assegurem: a capacidade física do trem, a integridade das variáveis inteiras, a relação entre os assentos reservados e a demanda, bem como a coerência entre os assentos reservados e os efetivamente disponibilizados para venda.
+
+Essas restrições compõem o \textit{modelo básico}. No entanto, esta pesquisa propõe a inserção de dois conjuntos adicionais de restrições, que, segundo os autores, refletem práticas amplamente utilizadas em ambientes reais. Esses conjuntos são: as restrições do tipo \textbf{ \textit{Fulfillments over Periods}}, relacionadas a condições temporais; e as restrições do tipo \textbf{\textit{Skip Lagging}}, associadas ao padrão de paradas do trem. Onde, o primeiro conjunto garante que: i) Os preços das classes de controle ofertadas devem aumentar progressivamente à medida que se aproxima a data de partida do trem; ii) Uma determinada classe de controle para um trecho específico só poderá ser reservada se já tiver sido reservada em um período anterior dentro do horizonte de reserva.
+
+Já o segundo conjunto assegura que: i) Os passageiros não possam adquirir bilhetes para estações posteriores com a intenção de desembarcar antes do destino indicado no bilhete. Ou seja, para uma origem dada, os preços das passagens para destinos mais distantes devem ser proporcionais à distância percorrida; ii) Para um par origem-destino, a soma dos preços dos trechos intermediários contínuos não deve ser inferior ao valor de uma passagem direta.
+
+Por fim, é importante destacar um conceito essencial: o tipo de demanda considerado. Neste trabalho, serão utilizadas duas abordagens: a \textbf{Demanda independente}: caracterizada por decisões de compra que não consideram a oferta disponível no momento da compra; e a \textbf{Demanda comportamental}: baseada em listas de preferência, nas quais os passageiros escolhem entre diferentes preços conforme sua disponibilidade e preferências no momento da compra.
+
+
+\section{Formulação matemática}
+
+% Como mencionado anteriormente, esta pesquisa propõe três modelos matemáticos de programação inteira mista. O primeiro utiliza uma demanda do tipo independente; o segundo emprega um modelo de demanda comportamental ajustado por proporções, onde essas proporções são calculadas com base na demanda independente; e o terceiro adota um modelo de demanda comportamental ajustado por hierarquia, em que essa hierarquia está associada à quantidade de assentos reservados para cada classe de controle.
+
+Para facilitar a compreensão da proposta, apresenta-se a seguir uma versão simplificada do problema, conforme ilustrado na Figura \ref{fig: fig1}, na qual são considerados os seguintes elementos:
 
 \begin{itemize}
+	\setlength{\itemsep}{-0.5em} % Ajusta el interlineado entre ítems
 	\item 4 estações pelas quais o trem deve passar em um único sentido, ou seja, o trem não tem retorno.
 	\item O trem tem uma capacidade física máxima de assentos;
-	\item Há apenas um tipo de classe comercial;
+	\item Há apenas um tipo de classe de controle;
 	\item Existe apenas um período no horizonte de reserva;
-	\item A variável de decisão é a quantidade de assentos que pode ser disponibilizada para venda em um trecho com origem e destino específicos;
-	\item Todos os assentos disponibilizados para venda serão vendidos.
+	\item Considera-se, neste caso, apenas a variável de decisão associada à quantidade de assentos reservados em um trecho com origem e destino específicos;
+	\item Todos os assentos reservados serão vendidos;
+	\item É considerada um tipo de demanda independente;
+	\item É considerada somente a restrição de capacidade física do trem.
 \end{itemize}
 
 \begin{figure}[H]
@@ -23,20 +42,22 @@ Para compreender essas propostas, consideremos uma versão simplificada do probl
 		\label{fig: fig1}
 	\end{center}
 \end{figure}
+\vspace{-1cm}
+
+Com base no exposto, é possível definir os seguintes parâmetros e variáveis de decisão:
+
+\begin{description}[style=unboxed, leftmargin=2.5cm, labelindent=1.5cm]
+	\setlength{\itemsep}{-2.2em} % Ajusta el interlineado entre ítems
+	\setlength{\parskip}{0em} % Espaciado entre párrafos
+	\item[$x_{ij}$]: Quantidade de assentos que serão reservados no trecho com origem em $i$ e destino em $j$, onde $j>i$ (variável de decisão); \\
+	\item[$A_i$]: Quantidade de assentos vagos na estação $i$; \\
+	\item[$P_{ij}$]: Preço da passagem no trecho com origem em $i$ e destino em $j$; \\
+	\item[$Q$]: Capacidade física do trem.
+\end{description}
 
 
-\section{Primeira abordagem: modelo baseado em demanda independente}\label{sec:modelo1}
 
-Para este modelo, assumiremos uma demanda independente, o que significa que cada cliente pode comprar um produto específico independentemente da oferta disponível no momento da compra. Em outras palavras, pode-se dizer que, se um cliente estiver disposto a pagar um valor, por exemplo, de 10 reais por um assento, ele comprará o bilhete exatamente por esse valor, mesmo que um preço mais baixo esteja disponível. Agora, se o cliente não encontrar esse valor exato, ele preferirá não comprar.
-
-Então, para esta proposta, temos o seguinte
-
-\noindent $x_{ij}$: Quantidade de assentos que serão reservados no trecho com origem em $i$ e destino em $j$, onde $j>i$ (variável de decisão). \\
-\noindent $A_i$: Quantidade de assentos vagos na estação $i$. \\
-\noindent $P_{ij}$: Preço da passagem no trajeto com origem em $i$ e destino em $j$. \\
-\noindent $Q$: Capacidade física do trem.
-
-Dado o exposto, a função objetivo será maximizar o lucro para cada possível venda em cada trajeto $i,j$, matematicamente seria:
+Assim, a função objetivo será maximizar o lucro para cada possível reserva em cada trecho $i,j$, matematicamente seria:
 
 $FO: max \quad x_{12}P_{12} + x_{13}P_{13} + x_{14}P_{14} + x_{23}P_{23} + x_{24}P_{24} + x_{34}P_{34}$
 
@@ -46,9 +67,9 @@ Estação 1: $x_{12} + x_{13} + x_{14} \leq A_1 \quad onde \quad A_1 = Q $ \\
 \indent Estação 2: $x_{23} + x_{24}  \leq  A_2 \quad onde \quad A_2 = A_1 - (x_{12} + x_{13} + x_{14}) + x_{12} $ \\
 \indent Estação 3: $x_{34} \leq A_3 \quad onde \quad A_3 = A_2 - (x_{23} + x_{24}) + x_{13} + x_{23} $
 
-Note que as restrições são aplicadas para cada uma das três primeiras estações, $E_1, E_2$ e $E_3$, já que são as estações que têm pelo menos um destino, e a última estação, E4, é excluída, pois não possui nenhum destino.
+Observe que as restrições de capacidade são aplicadas apenas às três primeiras estações — $E_1, E_2$ e $E_3$ —, já que são as únicas que possuem pelo menos um destino associado. A estação $E_4$ é excluída, pois não possui nenhum destino.
 
-Cada uma das restrições leva em consideração o fluxo de pessoas que sairão e entrarão no trem. Levando isso em conta, é necessário calcular a disponibilidade do trem para cada estação. Considere uma solução viável para o modelo, conforme mostrado na figura \ref{fig: fig2}, com uma capacidade total de 100 assentos para um trem.
+Cada uma das restrições leva em consideração o fluxo de pessoas que sairão e entrarão no trem. Levando isso em conta, é necessário calcular a quantidade de assentos vagos do trem para cada estação. Considere uma solução viável para o modelo, conforme mostrado na Figura \ref{fig: fig2}, com uma capacidade total de 100 assentos para um trem.
 
 \begin{figure}[H]
 	\begin{center}
@@ -58,173 +79,419 @@ Cada uma das restrições leva em consideração o fluxo de pessoas que sairão 
 		\label{fig: fig2}
 	\end{center}
 \end{figure}
+\vspace{-1cm}
 
-Note que, para a restrição da estação 1, o trem está com todos os assentos vazios, ou seja, \(A_1=100\), e que a soma das variáveis seria \(x_{12} + x_{13} + x_{14} = 10 + 5 + 15 = 30\). Portanto, teríamos \(30 \leq 100\), ou seja, foram disponibilizados para venda 30 assentos dos 100 que o trem possui. Nesse sentido, no momento da partida do trem da estação 1, haveria 70 assentos vazios ou disponíveis para venda em estações posteriores.
+Note que, para a restrição da estação 1, o trem está com todos os assentos vazios, ou seja, \(A_1=100\), e que a soma das variáveis seria \(x_{12} + x_{13} + x_{14} = 10 + 5 + 15 = 30\). Portanto, a restrição é satisfeita com \(30 \leq 100\), ou seja, foram reservados 30 assentos dos 100 que o trem possui. Nesse sentido, no momento da partida do trem da estação 1, haveria 70 assentos vazios ou disponíveis para reservar em estações posteriores.
 
-Agora, para a estação 2, teríamos \(A_2 = 100 - 30 + 10 = 70 + 10 = 80\). Já era conhecido que havia 70 assentos disponíveis vindos da estação 1, mas também é preciso levar em conta que os assentos com destino à estação 2 também ficarão disponíveis da estação 2 em diante, para este caso \(x_{12} = 10\). Portanto, para a estação 2, teríamos 80 assentos vazios para disponibilizar, ou seja, \(60 \leq 80\). Analogamente, o mesmo raciocínio seria aplicado para a estação 3, ou seja, teríamos a soma de todos os assentos que chegaram à estação 3, \(x_{13} = 5\) e \(x_{23} = 40\), assim teríamos \(A_3 = 80 - 60 + 5 + 40 = 20 + 5 + 40 = 65\), e no final teríamos \(60 \leq 65\).
-
-Além da lógica anterior, assume-se que há um trem, com vários tipo de assento, que viajará de uma estação $E_1$ até uma estação $E_n$ (onde $n$ é a última estação onde o trem chegará). Esse trem terá um itinerário que conterá o nome do trem, a estação de origem, a estação de destino, a data e hora de partida e de chegada. Além disso, haverá uma lista de preços (para cada tipo de assento) a ser disponibilizada para venda. Cada um dos preços da lista será chamado de classe de controle ou control class. Os bilhetes serão disponibilizados para venda antes da partida do trem, e o tempo entre a disponibilização e a referida partida será chamado de horizonte de reserva. Esse horizonte será dividido em vários períodos, que podem ter diferentes temporalidades. Por exemplo, pode haver períodos em dias, semanas, meses, etc., e combinações entre eles. Os períodos dentro do horizonte de reserva estão ordenados de forma descendente, onde o menor valor é zero e representa a data de partida do trem, e o valor maior representa a data de disponibilização das vendas, $[ t,t-1,t-2,...,0]$.
-
-Cada relação possível entre uma estação e outra será denominada origem-destino ou trecho. Será dito que uma origem-destino é adjacente se, e somente se, não houver estações intermediárias entre elas; caso contrário, serão não adjacentes. Por exemplo, na figura \ref{fig: fig1}, os trechos adjacentes seriam: $(E_1-E_2)$, $(E_2-E_3)$, $(E_3-E_4)$, e os trechos não adjacentes seriam: $(E_1-E_3)$, $(E_1-E_4)$ e $(E_2-E_4)$. Além disso, observe que os trechos não adjacentes podem conter outros trechos, tanto adjacentes quanto não adjacentes. Por exemplo, o trecho $(E_1-E_4)$ da figura \ref{fig: fig1} contém os trechos adjacentes $(E_1-E_2)$, $(E_2-E_3)$, e contém os trechos não adjacentes $(E_1-E_3)$ e $(E_2-E_4)$. Vejamos o modelo completo:
+Agora, para a estação 2, teríamos \(A_2 = 100 - 30 + 10 = 70 + 10 = 80\). Já era conhecido que havia 70 assentos disponíveis vindos da estação 1, mas também é preciso levar em conta que os assentos com destino à estação 2 também ficarão disponíveis da estação 2 em diante, para este caso \(x_{12} = 10\). Portanto, para a estação 2, teríamos 80 assentos vazios para reservar, é assim que a restrição é cumprida com \(60 \leq 80\). Analogamente, o mesmo raciocínio seria aplicado para a estação 3, ou seja, teríamos a soma de todos os assentos que chegaram à estação 3, \(x_{13} = 5\) e \(x_{23} = 40\), assim teríamos \(A_3 = 80 - 60 + 5 + 40 = 20 + 5 + 40 = 65\), e no final, a restrição é satisfeita com \(60 \leq 65\).
 
 
-% Vejamos agora o modelo proposto completo:
-% \begin{table}[H]
-% 	\centering
-% 	\small
-% 	\begin{tabular}{p{2cm} p{9.5cm} p{3.2cm}}
-% 		\toprule
-% 		\textbf{Definição} & \textbf{Descrição}                                                                                                                                                                                                                                                                                                                                                                                                            & \textbf{Domínio}                             \\ \midrule
-% 		\multicolumn{3}{l}{\textbf{Conjuntos}}                                                                                                                                                                                                                                                                                                                                                                                                                                                            \\ \midrule
-% 		$O$                & Conjunto de Estações de origem                                                                                                                                                                                                                                                                                                                                                                                                &                                              \\
-% 		$D$                & Conjunto de Estações de Destino                                                                                                                                                                                                                                                                                                                                                                                               &                                              \\
-% 		$OD$               & Conjunto de Trechos com itinerário                                                                                                                                                                                                                                                                                                                                                                                            &                                              \\
-% 		$NAD$              & \multicolumn{2}{p{12.7cm}}{Conjunto de Trechos que NÃO são Adjacentes e que tem itinerário}                                                                                                                                                                                                                                                                                                                                                                                  \\
-% 		$BRI_{(o,d)}$      & \multicolumn{2}{p{12.7cm}}{Conjunto de Trechos contidos dentro de cada trecho $(o,d)$ NÃO Adjacente }                                                                                                                                                                                                                                                                                                                                                                        \\
-% 		$CR_{(o,d)}$       & \multicolumn{2}{p{12.7cm}}{É um conjunto que contém outros subconjuntos, onde cada subconjunto é uma rota possível para ir desde a origem $o$ até o destino $d$, sendo $(o,d)$ não adjacente. Por exemplo, para a rota $E_1 - E_4$ da figura \ref{fig: fig1}, $CR_{(E_1,E_4)}=\{ \textcolor{green}{\{} (E_1-E_2),(E_2-E_4)\textcolor{green}{\}}, \textcolor{blue}{\{} (E_1-E_3),(E_3-E_4)\textcolor{blue}{\}}, \textcolor{red}{\{}(E_1-E_2),(E_2-E_3),(E_3-E_4) \textcolor{red}{\}} \} $}                                                                                                                                                                                                                                 \\
-% 		$S$                & Representa cada subconjunto dentro de $CR_{(o,d)}$                                                                                                                                                                                                                                                                                                                                                                          &                                              \\
-% 		$V$                & Conjunto de tipos de assento do trem                                                                                                                                                                                                                                                                                                                                                                                                 &                                              \\
-% 		$T$                & Conjunto de Períodos                                                                                                                                                                                                                                                                                                                                                                                           &                                              \\
-% 		$K_v$              & \multicolumn{2}{p{12.7cm}}{É o conjunto de classes de controle para cada tipo de assento $v$. Por exemplo, suponha que há dois tipos de assento $z$ e $p$, e cada tipo contém três classes de controle $c_1, c_2, c_3$, então a representação seria $K_z:\{c_1,c_2,c_3\}$ e $K_p:\{c_1,c_2,c_3\}$. Além disso, considere que os elementos de cada $K_v$ são ordenados, onde sempre se cumpre que a classe de menor índice é a classe mais custosa, ou seja $c_1>c_2>c_3$.}                    \\ \midrule
-% 		% \multicolumn{3}{l}{\textbf{Parâmetros}}                                                                                                                                                                                                                                                                                                                                                                                                                                                           \\ \midrule
-% 		% $n$                & Quantidade de Estações                                                                                                                                                                                                                                                                                                                                                                                                        &                                              \\
-% 		% $Q_v$              & Capacidade física do trem para cada tipo de assento $v$                                                                                                                                                                                                                                                                                                                                                                         & $v \in V$                                    \\
-% 		% $P_{ijvk}$         & Preços  das passagens no Trecho $(i,j)$, tipo de assento $v$ e Classe de Control $k$                                                                                                                                                                                                                                                                                                                                                    & $(i,j) \in OD,v \in V, k \in K_v$            \\
-% 		% $d_{ijvkt}$        & Demanda Independente no Trecho $(i,j)$, tipo de assento $v$ e Classe de Control $k$                                                                                                                                                                                                                                                                                                                                                   & $(i,j) \in OD,v \in V, k \in K_v, t \in T$   \\ \midrule
-% 		% $d'_{ijvkt}$       & Demanda Comportamental no Trecho $(i,j)$, tipo de assento $v$ e Classe de Control $k$                                                                                                                                                                                                                                                                                                                                                  & $(i,j) \in OD,v \in V, k \in K_v, t \in T$   \\ 
-% 		% \multicolumn{3}{l}{\textbf{Variáveis de decisão}}                                                                                                                                                                                                                                                                                                                                                                                                                                                 \\ \midrule
-% 		% $X_{ijvkt}$        & Quantidade de passagens reservadas no trecho $(i,j)$, tipo de assento $v$ e com classe de control $k$ no período $t$                                                                                                                                                                                                                                                                                                                    & $(i,j) \in OD, v \in V, k \in K_v, t \in T$  \\
-% 		% $Y_{ijvkt}$        & Quantidade de passagens autorizados no trecho $(i,j)$, tipo de assento $v$ e com classe de control $k$ no período $t$                                                                                                                                                                                                                                                                                                                   & $(i,j) \in OD, v \in V, k \in K_v, t \in T$  \\
-% 		% $\gamma_{ijvkt}$       & É uma variavel binaria que toma o valor de 1 quando $Y_{ijvkt} \neq 0$ e toma  valor de 0 caso contrario                                                                                                                                                                                                                                                                                                                      & $(i,j) \in OD, v \in V, k \in K_v, t \in T$ \\
-% 		% $\beta_{ijvkt}$       & É uma variavel binaria que toma o valor de 1 quando a classe $k$ é a classe mais barata que foi autorizada para venda, no trecho $i,j$, tipo de assento $v$ e periodo $t$; e toma  valor de 0 caso contrario                                                                                                                                                                                                                                                                    & $(i,j) \in OD, v \in V, k \in K_v, t \in T$  \\
-% 		% $\alpha_{ijvkt}$       & É uma variavel binaria que toma o valor de 1 quando $X_{ijvkt} \neq 0$ e toma  valor de 0 caso contrario                                                                                                                                                                                                                                                                                                                      & $(i,j) \in OD, v \in V, k \in K_v, t \in T$ \\
-% 		% \multicolumn{3}{l}{\textbf{Variável auxiliar}}                                                                                                                                                                                                                                                                                                                                                                                                                                                    \\ \midrule
-% 		% $A_{iv}$            & Armazena a quantidade de assentos vazios disponíveis para venda em cada estação de origem e cada tipo de assento durante todo o horizonte de reserva. Cabe esclarecer que esta não é uma variável de decisão, pois esta variável apenas armazena um cálculo com base na capacidade física do trem e nas variáveis de decisão de passagens reservadas                                                                                                          & $i \in O, v \in V$                                    \\
-% 		% \bottomrule
-% 	\end{tabular}
-% 	\caption{Notação matemática do problema primeria parte}
-% 	\label{tab: m1_definicao1}
-% \end{table}
+% Cada relação possível entre uma estação e outra será denominada origem-destino ou trecho. Será dito que uma origem-destino é adjacente se, e somente se, não houver estações intermediárias entre elas; caso contrário, serão não adjacentes. Por exemplo, na Figura \ref{fig: fig1}, os trechos adjacentes seriam: $(E_1-E_2)$, $(E_2-E_3)$, $(E_3-E_4)$, e os trechos não adjacentes seriam: $(E_1-E_3)$, $(E_1-E_4)$ e $(E_2-E_4)$. Além disso, observe que os trechos não adjacentes podem conter outros trechos, tanto adjacentes quanto não adjacentes. Por exemplo, o trecho $(E_1-E_4)$ da Figura \ref{fig: fig1} contém os trechos adjacentes $(E_1-E_2)$, $(E_2-E_3)$, e contém os trechos não adjacentes $(E_1-E_3)$ e $(E_2-E_4)$. Vejamos o modelo completo:
 
 
-% Vejamos agora o modelo proposto completo:
-\begin{table}[H]
-	\centering
-	\small
-	\begin{tabular}{p{2cm} p{9.5cm} p{3.2cm}}
-		\toprule
-		\textbf{Definição} & \textbf{Descrição}                                                                                                                                                                                                                                                                                                                                                                                                            & \textbf{Domínio}                             \\ \midrule
-		\multicolumn{3}{l}{\textbf{Conjuntos}}                                                                                                                                                                                                                                                                                                                                                                                                                                                            \\ \midrule
-		$O$                & Conjunto de Estações de origem                                                                                                                                                                                                                                                                                                                                                                                                &                                              \\
-		$D$                & Conjunto de Estações de Destino                                                                                                                                                                                                                                                                                                                                                                                               &                                              \\
-		$OD$               & Conjunto de Trechos com itinerário                                                                                                                                                                                                                                                                                                                                                                                            &                                              \\
-		$NAD$              & \multicolumn{2}{p{12.7cm}}{Conjunto de Trechos que NÃO são Adjacentes e que tem itinerário}                                                                                                                                                                                                                                                                                                                                                                                  \\
-		$BRI_{(o,d)}$      & \multicolumn{2}{p{12.7cm}}{Conjunto de Trechos contidos dentro de cada trecho $(o,d)$ NÃO Adjacente }                                                                                                                                                                                                                                                                                                                                                                        \\
-		$CR_{(o,d)}$       & \multicolumn{2}{p{12.7cm}}{É um conjunto que contém outros subconjuntos, onde cada subconjunto é uma rota possível para ir desde a origem $o$ até o destino $d$, sendo $(o,d)$ não adjacente. Por exemplo, para a rota $E_1 - E_4$ da figura \ref{fig: fig1}, $CR_{(E_1,E_4)}=\{ \textcolor{green}{\{} (E_1-E_2),(E_2-E_4)\textcolor{green}{\}}, \textcolor{blue}{\{} (E_1-E_3),(E_3-E_4)\textcolor{blue}{\}}, \textcolor{red}{\{}(E_1-E_2),(E_2-E_3),(E_3-E_4) \textcolor{red}{\}} \} $}                                                                                                                                                                                                                                 \\
-		$S$                & Representa cada subconjunto dentro de $CR_{(o,d)}$                                                                                                                                                                                                                                                                                                                                                                          &                                              \\
-		$V$                & Conjunto de tipos de assento do trem                                                                                                                                                                                                                                                                                                                                                                                                 &                                              \\
-		$T$                & Conjunto de Períodos                                                                                                                                                                                                                                                                                                                                                                                           &                                              \\
-		$K_v$              & \multicolumn{2}{p{12.7cm}}{É o conjunto de classes de controle para cada tipo de assento $v$. Por exemplo, suponha que há dois tipos de assento $z$ e $p$, e cada tipo contém três classes de controle $c_1, c_2, c_3$, então a representação seria $K_z:\{c_1,c_2,c_3\}$ e $K_p:\{c_1,c_2,c_3\}$. Além disso, considere que os elementos de cada $K_v$ são ordenados, onde sempre se cumpre que a classe de menor índice é a classe mais custosa, ou seja $c_1>c_2>c_3$.}                    \\ \midrule
-		\multicolumn{3}{l}{\textbf{Parâmetros}}                                                                                                                                                                                                                                                                                                                                                                                                                                                           \\ \midrule
-		$n$                & Quantidade de Estações                                                                                                                                                                                                                                                                                                                                                                                                        &                                              \\
-		$Q_v$              & Capacidade física do trem para cada tipo de assento $v$                                                                                                                                                                                                                                                                                                                                                                         & $v \in V$                                    \\
-		$P_{ijvk}$         & Preços  das passagens no Trecho $(i,j)$, tipo de assento $v$ e Classe de Control $k$                                                                                                                                                                                                                                                                                                                                                    & $(i,j) \in OD,v \in V, k \in K_v$            \\
-		$d_{ijvkt}$        & Demanda Independente no Trecho $(i,j)$, tipo de assento $v$ e Classe de Control $k$                                                                                                                                                                                                                                                                                                                                                   & $(i,j) \in OD,v \in V, k \in K_v, t \in T$   \\ \midrule
-		\multicolumn{3}{l}{\textbf{Variáveis de decisão}}                                                                                                                                                                                                                                                                                                                                                                                                                                                 \\ \midrule
-		$X_{ijvkt}$        & Quantidade de passagens reservadas no trecho $(i,j)$, tipo de assento $v$ e com classe de control $k$ no período $t$                                                                                                                                                                                                                                                                                                                    & $(i,j) \in OD, v \in V, k \in K_v, t \in T$  \\
-		$Y_{ijvkt}$        & Quantidade de passagens autorizados no trecho $(i,j)$, tipo de assento $v$ e com classe de control $k$ no período $t$                                                                                                                                                                                                                                                                                                                   & $(i,j) \in OD, v \in V, k \in K_v, t \in T$  \\
-		$\gamma_{ijvkt}$       & É uma variável binaria que toma o valor de 1 quando $Y_{ijvkt} \neq 0$ e toma  valor de 0 caso contrario                                                                                                                                                                                                                                                                                                                      & $(i,j) \in OD, v \in V, k \in K_v, t \in T$ \\
-		$\beta_{ijvkt}$       & É uma variável binaria que toma o valor de 1 quando a classe $k$ é a classe mais barata que foi autorizada para venda, no trecho $i,j$, tipo de assento $v$ e período $t$; e toma  valor de 0 caso contrario                                                                                                                                                                                                                                                                    & $(i,j) \in OD, v \in V, k \in K_v, t \in T$  \\
-		$\alpha_{ijvkt}$       & É uma variável binaria que toma o valor de 1 quando $X_{ijvkt} \neq 0$ e toma  valor de 0 caso contrario                                                                                                                                                                                                                                                                                                                      & $(i,j) \in OD, v \in V, k \in K_v, t \in T$ \\
-		\multicolumn{3}{l}{\textbf{Variável auxiliar}}                                                                                                                                                                                                                                                                                                                                                                                                                                                    \\ \midrule
-		$A_{iv}$            & Armazena a quantidade de assentos vazios disponíveis para venda em cada estação de origem e cada tipo de assento durante todo o horizonte de reserva. Cabe esclarecer que esta não é uma variável de decisão, pois esta variável apenas armazena um cálculo com base na capacidade física do trem e nas variáveis de decisão de passagens reservadas                                                                                                          & $i \in O, v \in V$                                    \\
-		\bottomrule
-	\end{tabular}
-	\caption{Notação matemática do problema}
-	\label{tab: m1_definicao2}
-\end{table}
+Nas seções seguintes, para cada abordagem, serão apresentados os modelos completos, iniciando por um modelo base. Em seguida, a esse modelo base serão adicionados, de forma separada, tanto os conjuntos de restrições do tipo Skip Lagging quanto os conjuntos de restrições do tipo Fulfillment. Por fim, também será apresentado o modelo completo, no qual todos os conjuntos de restrições são incorporados simultaneamente.
 
+\section{Primeira abordagem: modelo baseado em demanda independente}\label{sec:modelo1}
+
+Nos modelos desta seção, considera-se uma demanda independente, ou seja, assume-se que cada cliente realiza sua decisão de compra de forma isolada em relação à oferta disponível no momento da aquisição. Em termos práticos, isso implica que, se um passageiro estiver disposto a pagar, por exemplo, R\$10 por um determinado assento, ele efetuará a compra apenas se encontrar esse valor específico, mesmo que existam tarifas mais baixas disponíveis. Caso não encontre o preço correspondente à sua disposição de pagamento, optará por não realizar a compra.
+
+\subsection{Modelo básico}
+O modelo base é composto pelas restrições fundamentais que estruturam o problema em estudo. Essas restrições definem os limites operacionais e lógicos essenciais para garantir a viabilidade da solução, refletindo as condições básicas do sistema ferroviário de transporte de passageiros, como a capacidade física do trem, a integridade das variáveis inteiras, a relação entre os assentos reservados e a demanda, bem como a coerência entre os assentos reservados e os efetivamente disponibilizados para venda.
+
+% Antes de apresentar os modelos completos e generalizados, são descritos a seguir todos os conjuntos, parâmetros e variáveis de decisão necessários para sua compreensão adequada. Essa etapa é essencial para garantir clareza na formulação matemática e no entendimento das relações que compõem a estrutura do modelo.
+
+Então, para esta proposta considere os seguintes conjuntos:
+
+\begin{description}[style=unboxed, leftmargin=2.5cm, labelindent=1.5cm]
+	\setlength{\itemsep}{-2.2em} % Ajusta el interlineado entre ítems
+	\setlength{\parskip}{0em} % Espaciado entre párrafos
+	\item[$O:$] Conjunto de estações de origem. \\
+	\item[$D:$] Conjunto de estações de destino. \\
+	\item[$OD:$] Conjunto de trechos com itinerário. \\
+	      % \item[$NAD:$] Conjunto de trechos que NÃO são adjacentes e que tem itinerário.\\
+	      % \item[$BRI_{(o,d)}:$] Conjunto de trechos contidos dentro de cada trecho $(o,d)$ não adjacente.\\
+	      % \item[$CR_{(o,d)}:$] É um conjunto que contém outros subconjuntos, onde cada subconjunto é uma rota possível para ir desde a origem $o$ até o destino $d$, sendo $(o,d)$ não adjacente. \\
+	      % \item[$S:$] Representa cada subconjunto dentro de $CR_{(o,d)}$. \\
+	\item[$V:$] Conjunto de tipos de assento do trem. \\
+	\item[$T:$] Conjunto de períodos. \\
+	\item[$K_v:$] É o conjunto de classes de controle para cada tipo de assento $v$. Onde os índices de cada $K_v$ estão em ordem decrescente, enquanto seus valores são crescentes.
+\end{description}
+
+Considere os seguintes parâmetros:
+\begin{description}[style=unboxed, leftmargin=2.5cm, labelindent=1.5cm]
+	\setlength{\itemsep}{-2.2em} % Ajusta el interlineado entre ítems
+	\setlength{\parskip}{0em} % Espaciado entre párrafos
+	% \item[$n:$] Quantidade de estações.\\
+	\item[$Q_v:$] Capacidade física do trem para cada tipo de assento $v$, onde $v \in V$. \\
+	\item[$P_{ijvk}:$] Preços  das passagens no trecho $(i,j)$, tipo de assento $v$ e classe de controle $k$, onde $(i,j) \in OD,v \in V, k \in K_v$.  \\
+	\item[$d_{ijvkt}:$] Demanda independente no trecho $(i,j)$, tipo de assento $v$ e classe de controle $k$, onde $(i,j) \in OD,v \in V, k \in K_v, t \in T$.
+	      % \item[$d'_{ijvkt}:$] Demanda comportamental no trecho $(i,j)$, tipo de assento $v$ e classe de controle $k$, onde $(i,j) \in OD,v \in V, k \in K_v, t \in T$.
+\end{description}
+
+Considere as seguintes variáveis de decisão:
+\begin{description}[style=unboxed, leftmargin=2.5cm, labelindent=1.5cm]
+	\setlength{\itemsep}{-2.2em} % Ajusta el interlineado entre ítems
+	\setlength{\parskip}{0em} % Espaciado entre párrafos
+	\item[$X_{ijvkt}:$] Quantidade de passagens reservadas no trecho $(i,j)$, tipo de assento $v$ e com classe de controle $k$ no período $t$, onde $(i,j) \in OD, v \in V, k \in K_v, t \in T$.  \\
+	\item[$Y_{ijvk}:$] Quantidade de passagens autorizadas no trecho $(i,j)$, tipo de assento $v$ e com classe de controle $k$, onde $(i,j) \in OD, v \in V, k \in K_v$.
+	      % \item[$\gamma_{ijvkt}:$] É uma variável binaria que toma o valor de 1 quando $Y_{ijvkt} \neq 0$ e toma  valor de 0 caso contrario, onde $(i,j) \in OD, v \in V, k \in K_v, t \in T$. \\
+	      % \item[$\beta_{ijvkt}:$] É uma variável binaria que toma o valor de 1 quando a classe $k$ é a classe mais barata que foi autorizada para venda, no trecho $(i,j)$, tipo de assento $v$ e período $t$; e toma  valor de 0 caso contrario, onde $(i,j) \in OD, v \in V, k \in K_v, t \in T$.  \\
+	      % \item[$\alpha_{ijvkt}:$] É uma variável binaria que toma o valor de 1 quando $X_{ijvkt} \neq 0$ e toma  valor de 0 caso contrario, onde $(i,j) \in OD, v \in V, k \in K_v, t \in T$.
+\end{description}
+
+Considere a seguinte variável auxiliar:
+\begin{description}[style=unboxed, leftmargin=2.5cm, labelindent=1.5cm]
+	\setlength{\itemsep}{-2.2em} % Ajusta el interlineado entre ítems
+	\setlength{\parskip}{0em} % Espaciado entre párrafos
+	\item[$A_{iv}:$] Armazena a quantidade de assentos vazios disponíveis para venda em cada estação de origem $i$ e cada tipo de assento $v$ durante todo o horizonte de reserva, onde $i \in O, v \in V$. Cabe esclarecer que esta não é uma variável de decisão, pois esta variável apenas armazena um cálculo com base na capacidade física do trem e nas variáveis de decisão de passagens reservadas.
+\end{description}
+
+\noindent \textbf{Modelo}
+\begin{equation}
+	Max \quad Z = \sum_{(i,j)\in OD} \sum_{v\in V} \sum_{k\in K_v} \sum_{t\in T} P_{ijvk} X_{ijvkt}           \label{eq: m1_fo}
+\end{equation}
+Em primeiro lugar, define-se a função objetivo conforme apresentada na equação \eqref{eq: m1_fo}. Observa-se que seu propósito é maximizar a receita total, considerando as quantidades de assentos reservados para cada combinação de trechos, tipo de assento, classes de controle e periodos, ponderadas pelos respectivos preços associados.
+\begin{equation}
+	A_{iv} = A_{i-1,v} - \sum_{(i,j) \in OD/j \geq i} \sum_{k\in K_v}\sum_{t\in T}X_{i-1,j,v,k,t} + \sum_{(i,j) \in OD/j<i} \sum_{k\in K_v}\sum_{t\in T}X_{jivkt}, \quad \forall i \in O, v \in V  \label{eq: m1_disponi}
+\end{equation}
+A restrição \eqref{eq: m1_disponi} tem como finalidade calcular, de forma sistemática, a quantidade de assentos disponíveis em cada estação de origem em todo o horizonte de reserva. Essa formulação representa uma generalização do procedimento apresentado no exemplo simplificado utilizado anteriormente para o cálculo de $A_{i}$, expandindo-o para capturar a dinâmica completa do sistema ao longo do tempo, entre múltiplas classes de controle e considerando cada tipo de assento de forma específica.
+\begin{equation}
+	Y_{ijvk} \geq  \sum_{t \in T} X_{ijvkt},  \quad k = max\{K_v\}, \forall(i,j) \in OD ,v \in V    \label{eq: m1_autho_mayor_assig_1er_class}
+\end{equation}
+\begin{equation}
+	Y_{ijvk} \geq  \sum_{t \in T} X_{ijvkt} + Y_{i,j,v,k + 1} , \quad \forall(i,j) \in OD, v \in V, k \in K_v / k < \lVert K_v \rVert  \label{eq: m1_autho_mayor_assig_mas_autho}
+\end{equation}
+A variável de decisão $Y_{ijvk}$ adota uma estrutura do tipo nesting, onde cada classe tarifária mais cara (classe “pai”) engloba todas as classes mais baratas (classes “filhas”). Nesse encadeamento, todas as classes possuem um pai e um filho, com exceção da classe mais cara — que não possui pai — e da classe mais barata — que não possui filho. Dessa forma, o valor mínimo da variável $Y_{ijvk}$ para uma determinada classe deve ser igual ou superior à soma das reservas dessa própria classe e das autorizações concedidas à sua classe filha (como visto na Figura \ref{fig: nesting} para as classes $1, 2, 3$). A restrição \eqref{eq: m1_autho_mayor_assig_1er_class} formaliza esse comportamento especificamente para a classe mais barata, enquanto a restrição \eqref{eq: m1_autho_mayor_assig_mas_autho} garante essa hierarquia para as demais classes de controle.
+\begin{figure}[H]
+	\begin{center}
+		\begin{tikzpicture}[
+				boxY/.style={rectangle, minimum width=2.2cm, minimum height=0.8cm, rounded corners=2pt, fill=red!70, text=white, font=\bfseries, align=center},
+				boxX/.style={rectangle, minimum width=1.5cm, minimum height=0.8cm, rounded corners=2pt, fill=teal!80, text=white, font=\bfseries, align=center},
+				arrow/.style={-Latex, thick, blue!70},
+				every node/.style={inner sep=3pt}
+			]
+
+			% Nodos
+			\node[boxY] (y1) at (0,0) {Y$_{12P\textcolor{black}{1}}$};
+			\node[boxX] (x1) at (2.7,0) {$\sum_{t \in T} X_{12P\textcolor{black}{1}t}$};
+
+			\node[boxY] (y2) at (2.7,-1.1) {Y$_{12P\textcolor{black}{2}}$};
+			\node[boxX] (x2) at (5.4,-1.1) {$\sum_{t \in T} X_{12P\textcolor{black}{2}t}$};
+
+			\node[boxY] (y3) at (5.4,-2.2) {Y$_{12P\textcolor{black}{3}}$};
+			\node[boxX] (x3) at (8.1,-2.2) {$\sum_{t \in T} X_{12P\textcolor{black}{3}t}$};
+
+			% Flechas (curvas según la imagen original)
+			\draw[arrow] (y1.east) -- (x1.west);
+			\draw[arrow] (y1.east) to[out=-20,in=180] (y2.west);
+			\draw[arrow] (y2.east) -- (x2.west);
+			\draw[arrow] (y2.east) to[out=-20,in=180] (y3.west);
+			\draw[arrow] (y3.east) -- (x3.west);
+
+			% Texto explicativo
+			% \node[align=left] at (-0.3,-5.3) {
+			% 	\small Trecho: 12\\
+			% 	\small Tipo assento: P
+			% };
+
+		\end{tikzpicture}
+	\end{center}
+	\caption{Exemplo de nesting para o trecho $E_1 - E_2$ e tipo de assento $P$}
+	\label{fig: nesting}
+\end{figure}
+\begin{equation}
+	\sum_{(i,j) \in OD} Y_{ijvk} \leq A_{iv}, \quad  k = min\{K_v\}, \forall i \in O / (i,j) \in OD,   \forall v \in V      \label{eq: m1_cap_autho_1er_class}
+\end{equation}
+Considerando que a variável $Y_{ijvk}$ é do tipo nesting e levando em conta as duas restrições \eqref{eq: m1_autho_mayor_assig_1er_class} e \eqref{eq: m1_autho_mayor_assig_mas_autho}, fica evidente que a classe mais cara engloba as quantidades das demais classes; portanto, deve-se assegurar que ela não exceda o número de assentos vazios. Essa condição é garantida pela restrição \eqref{eq: m1_cap_autho_1er_class}.
+\begin{equation}
+	X_{ijvkt} \leq d_{ijvkt},  \quad \forall (i,j) \in OD / i < j  ,v \in V, k \in K_v, t\in T  \label{eq: m1_assig_menor_dem}
+\end{equation}
+A restrição \eqref{eq: m1_assig_menor_dem} assegura que, para cada trecho, classe, tipo de assento e período do horizonte de reserva, a quantidade de passagens reservadas não exceda a demanda correspondente.
+\allowdisplaybreaks
+\begin{gather}
+	A_{0,v} = Q_v \quad \forall v \in V \label{eq: m1_ini_disponi} \\
+	X_{0,j,v,k,t} = 0 \quad \forall j \in D,\, v \in V,\, k \in K_v,\, t \in T \label{eq: m1_ini_assig} \\
+	X_{ijvkt} \in \mathbb{Z}^+ \quad \forall(i,j) \in OD,\, v \in V,\, k \in K_v,\, t \in T \label{eq: m1_dom_assig} \\
+	Y_{ijvk} \in \mathbb{Z}^+ \quad \forall(i,j) \in OD,\, v \in V,\, k \in K_v \label{eq: m1_dom_autho} \\
+	A_{iv} \in \mathbb{Z}^+ \quad \forall i \in O,\, v \in V \label{eq: m1_dom_disponi}
+\end{gather}
+
+As restrições \eqref{eq: m1_ini_disponi} e \eqref{eq: m1_ini_assig} são usadas para inicializar a restrição \eqref{eq: m1_disponi} quando \(i = 1\). E as restrições de \eqref{eq: m1_dom_assig} a \eqref{eq: m1_dom_disponi} representam o domínio das variáveis.
+
+Assim, o \textbf{modelo básico} seria o seguinte:
 \allowdisplaybreaks
 \begin{align}
-	 & Max \quad Z = \sum_{(i,j)\in OD} \sum_{v\in V} \sum_{k\in K_v} \sum_{t\in T} P_{ijvk} X_{ijvkt}                                                                                                                \label{eq: m1_fo}                                                             \\
-	 & \text{s.a.}  \notag                                                                                                                                                                                                                                                                          \\
-	 & A_{iv} = A_{i-1,v} - \sum_{(i,j) \in OD/j \geq i} \sum_{k\in K_v}\sum_{t\in T}X_{i-1,j,v,k,t} + \sum_{(i,j) \in OD/j<i} \sum_{k\in K_v}\sum_{t\in T}X_{jivkt}, \quad \forall i \in O, v \in V  \label{eq: m1_disponi}                                                         \\
-	 & \sum_{(i,j) \in OD} \sum_{k\in K_v}\sum_{t\in T} X_{ijvkt} \leq A_{iv} , \quad \forall i \in O /i<j, i < n, v \in V                                                                                       \label{eq: m1_cap_assig}                                                       \\
-	%  & \textcolor{red}{ Y_{ijvkt} \geq Y_{i,j,v,k+1,t},  \quad \forall (i,j) \in OD / i < j, v \in V, k \in K_v / k < \lVert K_v \rVert , t \in T }                                                                  \label{eq: m1_jerar_class}                                                     \\   % P_{ijvk} \geq P_{i,j,v,k+1}
-	 & \sum_{(i,j) \in OD}\sum_{v\in V}\sum_{t\in T} Y_{i,j,v,k,t} \leq Q_v, \quad  k = min\{K_v\}, \forall i \in O                                                                                                    \label{eq: m1_cap_autho_1er_class}                                             \\
-	 & Y_{ijvkt} \geq  X_{ijvkt},  \quad k = max\{K_v\}, \forall(i,j) \in OD ,v \in V, t \in T                                                                                                                       \label{eq: m1_autho_mayor_assig_1er_class}                                     \\
-	 & Y_{ijvkt} \geq  X_{ijvkt} + Y_{i,j,v,k + 1,t} , \quad \forall(i,j) \in OD, v \in V, k \in K_v / k < \lVert K_v \rVert , t \in T                                                                               \label{eq: m1_autho_mayor_assig_mas_autho}                                     \\
-	 & \textit{\underline{Demanda Independente  }}         \notag                                                                                                                                                                                                                                 \\
-	 & X_{ijvkt} \leq d_{ijvkt},  \quad \forall (i,j) \in OD / i < j  ,v \in V, k \in K_v, t\in T                                                                                                  \label{eq: m1_assig_menor_dem}                                                 \\
-	%  & \sum_{k' \in K_v / k' \leq k}X_{i,j,v,k',t} \leq d'_{ijvkt} \quad \forall (i,j) \in OD, v \in V, k \in K_v / k > 1, t\in T                                                                                    \label{eq: m1_dem_compor_acumulacao_class}                                                 \\
-	%  & X_{ijvkt} \leq \left( d'_{ijvkt} \right) \left(\frac{d_{ijvkt}}{d'_{i,j,v,k',t}}\right),  \quad \forall (i,j) \in OD, v \in V, k \in K_v/ k < k', k' < max\{K_v\}, t\in T                                     \label{eq: m1_dem_compor_porcentaje_dem}                                                                               \\
-	% \begin{split}
-	% 	 & X_{i,j,v,k',t} \leq d_{i,j,v,k',t} + \left( d'_{i,j,v,k',t} - \sum_{k \in K_v }\frac{d'_{ijvkt} d_{ijvkt}}{d'_{i,j,v,k',t}} \right),  \quad \forall (i,j) \in OD                                                                                                                         \\
-	% 	 & v \in V, k' = max\{K_v\}, t\in T                                                                                                                                                                                                                                                     \\
-	% \end{split}                                                                                                                                                                                                      \label{eq: m1_dem_compor_porcentaje_dem_last}                                                                                \\
-	 & \textit{\underline{Fulfillments over periods} }   \notag                                                                                                                                                                                                                                    \\
-	 & \gamma_{ijvkt} \leq Y_{ijvkt} \leq \gamma_{ijvkt} Q_v, \quad  \forall (i,j)\in OD, v \in V, k \in K_v, t \in T                                                                                                       \label{eq: m1_activ_bin_autho}                                                 \\
-	 & \alpha_{ijvkt} \leq X_{ijvkt} \leq \alpha_{ijvkt}d_{ijvkt}, \quad   \forall(i,j) \in OD, v \in V, k \in K_v, t \in T                                                                                                  \label{eq: m1_binaria_alpha}                                                                               \\
-	 & \alpha_{ijvkt} \leq \alpha_{i,j,v,k,t+1}, \quad   \forall(i,j) \in OD, v \in V, k \in K_v, t \in T/ t \neq max\{T\}                                                                                                   \label{eq: m1_assig_last_periodo}                                                                              \\
-	 & \sum_{k \in K_v}\beta_{ijvkt}P_{ijvk} \geq \sum_{k \in K_v}\beta_{i,j,v,k,t+1}P_{ijvk},  , \quad   \forall(i,j) \in OD, v \in V, t \in T/ t \neq max\{T\}                                                              \label{eq: m1_fulfill_periodo}                          \\
-	 & \textit{\underline{Skip Lagging}}    \notag                                                                                                                                                                                                                                                  \\
-	 & \beta_{ijvkt} = \gamma_{ijvkt} - \gamma_{i,j,v,k+1,t}, \quad \forall (i,j) \in OD, v \in V, k \in K /k < max\{K_v\}, t\in T                                                                                               \label{eq: m1_binaria_Beta}             \\                                                                   
-	 & \beta_{ijvkt} = \gamma_{ijvkt}, \quad   \forall(i,j) \in OD, v \in V, k = max\{K_v\}, t \in T                                                                                                                         \label{eq: m1_binaria_Beta_last}                                                                           \\
-	 & \sum_{k \in K_v}\beta_{ijvkt}P_{ijvk} \leq \sum_{k \in K_v}\beta_{i,j',v,k,t}P_{ijvk}, \quad \forall i \in O, j \in D, j' \in D / j' > j, v \in V, t \in T                                                           \label{eq: m1_preco_estacao_inicio}                                                                              \\
-	 \begin{split}
-	 	& \sum_{k \in K_v}\beta_{odvkt}P_{odvk} \leq \sum_{(i,j) \in S}\sum_{k \in K_v}\beta_{ijvkt}P_{ijvk}, \quad    \forall (o,d) \in NAD, \\
-		& v \in V, t \in T , \quad  \forall S \in CR_{o,d} / S \subset CR_{o,d}           \\
-	\end{split}                                                                                                                                                                                                       \label{eq: m1_preco_combinacao_rotas_contidas}                                          \\
-	 & \textit{\underline{Inicialização e domínio }}    \notag                                                                                                                                                                                                                                      \\
-	 & A_{0,v} = Q_v,     \quad  \forall v \in V                                                                                                                                                                                                 \label{eq: m1_ini_disponi}                                                    \\
-	 & X_{0,j,v,k,t} = 0,     \quad \forall j \in D, v \in V, k \in K_v, t \in T                                                                                                                                      \label{eq: m1_ini_assig}                                                      \\
-	 & X_{ijvkt} \in \mathbb{Z}^+ , \quad   \forall(i,j) \in OD, v \in V, k \in K_v, t \in T                                                                                                                                                                                     \label{eq: m1_dom_assig}                                                      \\
-	 & Y_{ijvkt} \in \mathbb{Z}^+ , \quad   \forall(i,j) \in OD, v \in V, k \in K_v, t \in T                                                                                                                                                                                   \label{eq: m1_dom_autho}                                                      \\
-	 & A_{iv} \in \mathbb{Z}^+  , \quad \forall i \in O, v \in V                                                                                                                                                                               \label{eq: m1_dom_disponi}                                                    \\
-	 & \gamma_{ijvkt}, \beta_{ijvkt}, \alpha_{ijvkt}\in \{0,1\} , \quad   \forall(i,j) \in OD, v \in V, k \in K_v, t \in T                                                                                                                                                                                       \label{eq: m1_dom_bin_nadja}
+	& Max \quad Z = \sum_{(i,j)\in OD} \sum_{v\in V} \sum_{k\in K_v} \sum_{t\in T} P_{ijvk} X_{ijvkt}     \tag{\ref{eq: m1_fo}}   \\
+	& \text{s.a.}  \notag \\
+	& A_{iv} = A_{i-1,v} - \sum_{(i,j) \in OD/j \geq i} \sum_{k\in K_v}\sum_{t\in T}X_{i-1,j,v,k,t} + \sum_{(i,j) \in OD/j<i} \sum_{k\in K_v}\sum_{t\in T}X_{jivkt}, \quad \forall i \in O, v \in V   \tag{\ref{eq: m1_disponi}} \\
+	& Y_{ijvk} \geq  \sum_{t \in T} X_{ijvkt},  \quad k = max\{K_v\}, \forall(i,j) \in OD ,v \in V     \tag{\ref{eq: m1_autho_mayor_assig_1er_class}} \\
+	& Y_{ijvk} \geq  \sum_{t \in T} X_{ijvkt} + Y_{i,j,v,k + 1} , \quad \forall(i,j) \in OD, v \in V, k \in K_v / k < \lVert K_v \rVert   \tag{\ref{eq: m1_autho_mayor_assig_mas_autho}} \\
+	& \sum_{(i,j) \in OD} Y_{ijvk} \leq A_{iv}, \quad  k = min\{K_v\}, \forall i \in O / (i,j) \in OD,   \forall v \in V       \tag{\ref{eq: m1_cap_autho_1er_class}} \\
+	& X_{ijvkt} \leq d_{ijvkt},  \quad \forall (i,j) \in OD / i < j  ,v \in V, k \in K_v, t\in T   \tag{\ref{eq: m1_assig_menor_dem}} \\
+	& A_{0,v} = Q_v \quad \forall v \in V  \tag{\ref{eq: m1_ini_disponi}} \\ 
+	& X_{0,j,v,k,t} = 0 \quad \forall j \in D,\, v \in V,\, k \in K_v,\, t \in T  \tag{\ref{eq: m1_ini_assig}} \\ 
+	& X_{ijvkt} \in \mathbb{Z}^+ \quad \forall(i,j) \in OD,\, v \in V,\, k \in K_v,\, t \in T  \tag{\ref{eq: m1_dom_assig}} \\ 
+	& Y_{ijvk} \in \mathbb{Z}^+ \quad \forall(i,j) \in OD,\, v \in V,\, k \in K_v  \tag{\ref{eq: m1_dom_autho}} \\ 
+	& A_{iv} \in \mathbb{Z}^+ \quad \forall i \in O,\, v \in V  \tag{\ref{eq: m1_dom_disponi}} 
+\end{align}
+
+\subsection{Modelo fulfillments over periods}
+Lembrando que as restrições do tipo fulfillment over periods referem-se ao atendimento de determinados níveis de serviço, demanda ou capacidade ao longo do horizonte de reservas, este modelo adiciona, ao modelo básico, um conjunto de restrições que definem quando assentos em determinadas classes devem ser reservados ou não. Além disso, 
+deve-se garantir algumas regras para os precos das classes em função do tempo. Para este fim, devem ser adicionadas as seguintes variáveis de decisão:
+
+\begin{description}[style=unboxed, leftmargin=2.5cm, labelindent=1.5cm]
+	\setlength{\itemsep}{-2.2em} % Ajusta el interlineado entre ítems
+	\setlength{\parskip}{0em} % Espaciado entre párrafos
+	\item[$\beta_{ijvkt}:$] É uma variável binaria que toma o valor de 1 quando a classe $k$ é a classe mais barata que foi autorizada para venda, no trecho $(i,j)$, tipo de assento $v$ e período $t$; e toma  valor de 0 caso contrario, onde $(i,j) \in OD, v \in V, k \in K_v, t \in T$.  \\
+	\item[$\alpha_{ijvkt}:$] É uma variável binaria que toma o valor de 1 quando $X_{ijvkt} \neq 0$ e toma  valor de 0 caso contrario, onde $(i,j) \in OD, v \in V, k \in K_v, t \in T$.
+\end{description}
+\textbf{Restrições:}
+\begin{equation}
+	\alpha_{ijvkt} \leq X_{ijvkt} \leq \alpha_{ijvkt}d_{ijvkt}, \quad   \forall(i,j) \in OD, v \in V, k \in K_v, t \in T   \label{eq: m1_binaria_alpha}
+\end{equation}
+A restrição  \eqref{eq: m1_binaria_alpha} é utilizada para determinar quando a variável de decisão $X$ assume valores diferentes de zero e quando não. Assim, $\alpha$ toma o valor de 1 no primeiro caso e 0 no segundo.
+\begin{equation}
+	\beta_{ijvkt} = \alpha_{ijvkt} - \alpha_{i,j,v,k+1,t}, \quad \forall (i,j) \in OD, v \in V, k \in K /k < max\{K_v\}, t\in T    \label{eq: m1_binaria_Beta}
+\end{equation}
+\begin{equation}
+	\beta_{ijvkt} = \alpha_{ijvkt}, \quad   \forall(i,j) \in OD, v \in V, k = max\{K_v\}, t \in T    \label{eq: m1_binaria_Beta_last}
+\end{equation}
+As restrições \eqref{eq: m1_binaria_Beta} e \eqref{eq: m1_binaria_Beta_last} têm como objetivo identificar a classe de assento mais barata reservada em um determinado trecho, tipo de assento e período. A restrição \eqref{eq: m1_binaria_Beta} é utilizada exclusivamente para as classes mais baratas, enquanto a restrição \eqref{eq: m1_binaria_Beta_last} se aplica às demais classes de assento. Assim, a variável $\beta$ assume o valor de 1 quando a classe $k$ é a mais barata reservada e 0 caso contrário (veja a Figura \ref{fig: betha}).
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.45]{img/betha.png}
+		\caption{Exemplo cálculo da variável $\beta$ para o trecho $E_1 - E_2$, um período e um tipo de assento}
+		\label{fig: betha}
+	\end{center}
+\end{figure}
+\begin{equation}
+	\alpha_{ijvkt} \leq \alpha_{i,j,v,k,t+1}, \quad   \forall(i,j) \in OD, v \in V, k \in K_v, t \in T/ t \neq max\{T\}     \label{eq: m1_assig_last_periodo}
+\end{equation}
+Uma condição importante estabelece que uma classe pode ser reservada desde que essa mesma classe já tenha sido reservada em períodos anteriores. Para isso, definem-se a restrição \eqref{eq: m1_assig_last_periodo}. Cabe lembrar que o tempo $t$ representa os $t$ períodos antes da saída do trem, sendo que a partida do trem ocorre em $t = 0$.
+\begin{equation}
+	\sum_{k \in K_v}\beta_{ijvkt}P_{ijvk} \geq \sum_{k \in K_v}\beta_{i,j,v,k,t+1}P_{ijvk},  \quad   \forall(i,j) \in OD, v \in V, t \in T/ t \neq max\{T\}   \label{eq: m1_fulfill_periodo}
+\end{equation}
+Outra condição especial deste problema está relacionada à disponibilização dos preços dos bilhetes ao longo do tempo. Esses preços devem seguir uma lógica contínua, sem oscilações. Em outras palavras, os preços dos bilhetes devem sempre aumentar conforme a data de partida do trem se aproxima. A restrição \eqref{eq: m1_fulfill_periodo} é responsável por garantir que essa condição seja atendida.
+
+Assim, o \textbf{modelo fulfillments over periods} seria o seguinte:
+\allowdisplaybreaks
+\begin{align}
+	& Max \quad Z = \sum_{(i,j)\in OD} \sum_{v\in V} \sum_{k\in K_v} \sum_{t\in T} P_{ijvk} X_{ijvkt}     \tag{\ref{eq: m1_fo}}   \\
+	& \text{s.a.}  \notag \\
+	& A_{iv} = A_{i-1,v} - \sum_{(i,j) \in OD/j \geq i} \sum_{k\in K_v}\sum_{t\in T}X_{i-1,j,v,k,t} + \sum_{(i,j) \in OD/j<i} \sum_{k\in K_v}\sum_{t\in T}X_{jivkt}, \quad \forall i \in O, v \in V   \tag{\ref{eq: m1_disponi}} \\
+	& Y_{ijvk} \geq  \sum_{t \in T} X_{ijvkt},  \quad k = max\{K_v\}, \forall(i,j) \in OD ,v \in V     \tag{\ref{eq: m1_autho_mayor_assig_1er_class}} \\
+	& Y_{ijvk} \geq  \sum_{t \in T} X_{ijvkt} + Y_{i,j,v,k + 1} , \quad \forall(i,j) \in OD, v \in V, k \in K_v / k < \lVert K_v \rVert   \tag{\ref{eq: m1_autho_mayor_assig_mas_autho}} \\
+	& \sum_{(i,j) \in OD} Y_{ijvk} \leq A_{iv}, \quad  k = min\{K_v\}, \forall i \in O / (i,j) \in OD,   \forall v \in V       \tag{\ref{eq: m1_cap_autho_1er_class}} \\
+	& X_{ijvkt} \leq d_{ijvkt},  \quad \forall (i,j) \in OD / i < j  ,v \in V, k \in K_v, t\in T   \tag{\ref{eq: m1_assig_menor_dem}} \\
+	& A_{0,v} = Q_v \quad \forall v \in V  \tag{\ref{eq: m1_ini_disponi}} \\ 
+	& X_{0,j,v,k,t} = 0 \quad \forall j \in D,\, v \in V,\, k \in K_v,\, t \in T  \tag{\ref{eq: m1_ini_assig}} \\ 
+	& X_{ijvkt} \in \mathbb{Z}^+ \quad \forall(i,j) \in OD,\, v \in V,\, k \in K_v,\, t \in T  \tag{\ref{eq: m1_dom_assig}} \\ 
+	& Y_{ijvk} \in \mathbb{Z}^+ \quad \forall(i,j) \in OD,\, v \in V,\, k \in K_v  \tag{\ref{eq: m1_dom_autho}} \\ 
+	& A_{iv} \in \mathbb{Z}^+ \quad \forall i \in O,\, v \in V  \tag{\ref{eq: m1_dom_disponi}} \\
+	& \alpha_{ijvkt} \leq X_{ijvkt} \leq \alpha_{ijvkt}d_{ijvkt}, \quad   \forall(i,j) \in OD, v \in V, k \in K_v, t \in T   \tag{\ref{eq: m1_binaria_alpha}} \\
+	& \beta_{ijvkt} = \alpha_{ijvkt} - \alpha_{i,j,v,k+1,t}, \quad \forall (i,j) \in OD, v \in V, k \in K /k < max\{K_v\}, t\in T    \tag{\ref{eq: m1_binaria_Beta}}   \\
+	& \beta_{ijvkt} = \alpha_{ijvkt}, \quad   \forall(i,j) \in OD, v \in V, k = max\{K_v\}, t \in T    \tag{\ref{eq: m1_binaria_Beta_last}}   \\
+	& \alpha_{ijvkt} \leq \alpha_{i,j,v,k,t+1}, \quad   \forall(i,j) \in OD, v \in V, k \in K_v, t \in T/ t \neq max\{T\}     \tag{\ref{eq: m1_assig_last_periodo}}   \\
+	& \sum_{k \in K_v}\beta_{ijvkt}P_{ijvk} \geq \sum_{k \in K_v}\beta_{i,j,v,k,t+1}P_{ijvk},  \quad   \forall(i,j) \in OD, v \in V, t \in T/ t \neq max\{T\}   \tag{\ref{eq: m1_fulfill_periodo}}
 \end{align}
 
 
-Na equação \ref{eq: m1_fo}, a qual representa a função objetivo, temos a soma do produto entre a quantidade de assentos reservados a cada trajeto de origem e destino para a classe comercial em cada período e cada tipo de assento, multiplicada pelo preço correspondente para cada trajeto e classe. Observe que queremos maximizar os ingressos em função dos assentos que estão reservados, que é o mais próximo que se tem da realidade em função da demanda conhecida.
+\subsection{Modelo skip lagging}
+A seguir, apresenta-se um modelo que incorpora restrições de skip lagging. O skip lagging envolve a possibilidade de reservar um assento para um destino intermediário, mas com a intenção de não completar a viagem até o destino final. Este modelo propõe restrições que regulam a viabilidade e as condições em que o skip lagging pode ser aplicado, considerando a gestão de capacidade, as políticas de precificação e os níveis de serviço a serem atendidos ao longo do horizonte de reservas. para esse fim, devem ser adicionadas as seguintes:
 
-A restrição \ref{eq: m1_disponi} é responsável por calcular a quantidade de assentos vazios disponíveis em cada estação de origem, para cada tipo de assento, ao longo de todo o horizonte de reserva. Ela é uma generalização do exemplo simplificado utilizado para calcular $A_{iv}$.
+Variáveis de decisão (mesmas usadas no modelo de fulfillments over periods):
+\begin{description}[style=unboxed, leftmargin=2.5cm, labelindent=1.5cm]
+	\setlength{\itemsep}{-2.2em} % Ajusta el interlineado entre ítems
+	\setlength{\parskip}{0em} % Espaciado entre párrafos
+	\item[$\beta_{ijvkt}:$] É uma variável binaria que toma o valor de 1 quando a classe $k$ é a classe mais barata que foi autorizada para venda, no trecho $(i,j)$, tipo de assento $v$ e período $t$; e toma  valor de 0 caso contrario, onde $(i,j) \in OD, v \in V, k \in K_v, t \in T$.  \\
+	\item[$\alpha_{ijvkt}:$] É uma variável binaria que toma o valor de 1 quando $X_{ijvkt} \neq 0$ e toma  valor de 0 caso contrario, onde $(i,j) \in OD, v \in V, k \in K_v, t \in T$.
+\end{description}
+Conjuntos:
+\begin{description}[style=unboxed, leftmargin=2.5cm, labelindent=1.5cm]
+	\setlength{\itemsep}{-2.2em} % Ajusta el interlineado entre ítems
+	\setlength{\parskip}{0em} % Espaciado entre párrafos
+	      \item[$NAD:$] Conjunto de trechos que NÃO são adjacentes e que tem itinerário.\\
+	      \item[$CR_{(o,d)}:$] É um conjunto que contém outros subconjuntos, onde cada subconjunto é uma rota possível para ir desde a origem $o$ até o destino $d$, sendo $(o,d)$ não adjacente. \\
+	      \item[$S:$] Representa cada subconjunto dentro de $CR_{(o,d)}$.
+\end{description}
+\textbf{Restrições:}\\
+Este modelo também usa as restrições \eqref{eq: m1_binaria_alpha}, \eqref{eq: m1_binaria_Beta} e
+\eqref{eq: m1_binaria_Beta_last}
+\begin{equation}
+	\sum_{k \in K_v}\beta_{ijvkt}P_{ijvk} \leq \sum_{k \in K_v}\beta_{i,j',v,k,t}P_{ijvk}, \quad \forall i \in O, j \in D, j' \in D / j' > j, v \in V, t \in T    \label{eq: m1_preco_estacao_inicio}
+\end{equation}
+Dentro do problema, é necessário garantir que, para todos os trechos com a mesma estação de origem, os trechos mais curtos disponibilizados para venda sejam mais baratos que os trechos mais longos. Isso é para evitar que passageiros comprem bilhetes para um trecho maior e desembarquem em estações anteriores. Essa situação é controlada pela restrição \eqref{eq: m1_preco_estacao_inicio}.
+\begin{equation}
+	\begin{split}
+		\sum_{k \in K_v}\beta_{odvkt}P_{odvk} \leq \sum_{(i,j) \in S}\sum_{k \in K_v}\beta_{ijvkt}P_{ijvk}, \quad    \forall (o,d) \in NAD, \\
+		v \in V, t \in T , \quad  \forall S \in CR_{o,d} / S \subset CR_{o,d}   \label{eq: m1_preco_combinacao_rotas_contidas}
+	\end{split}
+\end{equation}
+Além, deve-se garantir que todas as possíveis combinações dos preços mais baratos dos trechos contidos dentro dos trechos não adjacentes sejam maiores ou iguais ao preço desse trecho não adjacente. Em outras palabras, deve-se evitar que os passageiros comprem bilhetes para trechos intermediários com o objetivo de alcançar seu destino final. Essa situação é controlada pela restrição \eqref{eq: m1_preco_combinacao_rotas_contidas}.
 
-A restrição \ref{eq: m1_cap_assig} garante que os assentos reservados ao longo de todo o horizonte de reserva, para cada trecho, não excedam a capacidade disponível para cada tipo de assento em cada estação de origem.
+Assim, o \textbf{modelo skip lagging} seria o seguinte:
+\allowdisplaybreaks
+\begin{align}
+	& Max \quad Z = \sum_{(i,j)\in OD} \sum_{v\in V} \sum_{k\in K_v} \sum_{t\in T} P_{ijvk} X_{ijvkt}     \tag{\ref{eq: m1_fo}}   \\
+	& \text{s.a.}  \notag \\
+	& A_{iv} = A_{i-1,v} - \sum_{(i,j) \in OD/j \geq i} \sum_{k\in K_v}\sum_{t\in T}X_{i-1,j,v,k,t} + \sum_{(i,j) \in OD/j<i} \sum_{k\in K_v}\sum_{t\in T}X_{jivkt}, \quad \forall i \in O, v \in V   \tag{\ref{eq: m1_disponi}} \\
+	& Y_{ijvk} \geq  \sum_{t \in T} X_{ijvkt},  \quad k = max\{K_v\}, \forall(i,j) \in OD ,v \in V     \tag{\ref{eq: m1_autho_mayor_assig_1er_class}} \\
+	& Y_{ijvk} \geq  \sum_{t \in T} X_{ijvkt} + Y_{i,j,v,k + 1} , \quad \forall(i,j) \in OD, v \in V, k \in K_v / k < \lVert K_v \rVert   \tag{\ref{eq: m1_autho_mayor_assig_mas_autho}} \\
+	& \sum_{(i,j) \in OD} Y_{ijvk} \leq A_{iv}, \quad  k = min\{K_v\}, \forall i \in O / (i,j) \in OD,   \forall v \in V       \tag{\ref{eq: m1_cap_autho_1er_class}} \\
+	& X_{ijvkt} \leq d_{ijvkt},  \quad \forall (i,j) \in OD / i < j  ,v \in V, k \in K_v, t\in T   \tag{\ref{eq: m1_assig_menor_dem}} \\
+	& A_{0,v} = Q_v \quad \forall v \in V  \tag{\ref{eq: m1_ini_disponi}} \\ 
+	& X_{0,j,v,k,t} = 0 \quad \forall j \in D,\, v \in V,\, k \in K_v,\, t \in T  \tag{\ref{eq: m1_ini_assig}} \\ 
+	& X_{ijvkt} \in \mathbb{Z}^+ \quad \forall(i,j) \in OD,\, v \in V,\, k \in K_v,\, t \in T  \tag{\ref{eq: m1_dom_assig}} \\ 
+	& Y_{ijvk} \in \mathbb{Z}^+ \quad \forall(i,j) \in OD,\, v \in V,\, k \in K_v  \tag{\ref{eq: m1_dom_autho}} \\ 
+	& A_{iv} \in \mathbb{Z}^+ \quad \forall i \in O,\, v \in V  \tag{\ref{eq: m1_dom_disponi}} \\
+	& \alpha_{ijvkt} \leq X_{ijvkt} \leq \alpha_{ijvkt}d_{ijvkt}, \quad   \forall(i,j) \in OD, v \in V, k \in K_v, t \in T   \tag{\ref{eq: m1_binaria_alpha}} \\
+	& \beta_{ijvkt} = \alpha_{ijvkt} - \alpha_{i,j,v,k+1,t}, \quad \forall (i,j) \in OD, v \in V, k \in K /k < max\{K_v\}, t\in T    \tag{\ref{eq: m1_binaria_Beta}}   \\
+	& \beta_{ijvkt} = \alpha_{ijvkt}, \quad   \forall(i,j) \in OD, v \in V, k = max\{K_v\}, t \in T    \tag{\ref{eq: m1_binaria_Beta_last}}   \\
+	& \sum_{k \in K_v}\beta_{ijvkt}P_{ijvk} \leq \sum_{k \in K_v}\beta_{i,j',v,k,t}P_{ijvk}, \quad \forall i \in O, j \in D, j' \in D / j' > j, v \in V, t \in T    \tag{\ref{eq: m1_preco_estacao_inicio}}   \\
+	\begin{split}
+		& \sum_{k \in K_v}\beta_{odvkt}P_{odvk} \leq \sum_{(i,j) \in S}\sum_{k \in K_v}\beta_{ijvkt}P_{ijvk}, \quad    \forall (o,d) \in NAD, \\
+		& v \in V, t \in T , \quad  \forall S \in CR_{o,d} / S \subset CR_{o,d}     \\
+	\end{split}   \tag{\ref{eq: m1_preco_combinacao_rotas_contidas}}
+\end{align}
 
-A restrição \ref{eq: m1_cap_autho_1er_class} garanta que a soma de autorizações da classe mais custosa, de cada estação de origem, de todos os períodos, não ultrapasse a capacidade do trem de cada tipo de assento. Note que apenas estamos considerando a classe mais cara devido à natureza cumulativa das variáveis de autorização é por isso que o valor de k é o mínimo das classes de cada tipo de assento, pois a ordem do nome das classes é crescente mas o seu valor é decrescente. Para melhor compreensão, suponhamos uma solução para um problema de dois vagões $V_1$ e $V_2$, 3 classes para $V_1$ e 3 classes para $V_2$, 5 estações,  10 trechos, um período e uma capacidade física do trem de 700 cadeiras, conforme mostra a figura \ref{fig: autorization}.
 
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[scale=0.40]{img/exemplo1.png}
-		\caption{Solução factível para a variável de decisão Autorização}
-		% Fonte:~\cite{khaksar2013genetic}}
-		\label{fig: autorization}
-	\end{center}
-\end{figure}
+\subsection{Modelo completo}
+Nesta seção, integra-se o modelo base com os dois conjuntos de restrições: as de skip lagging e as de fulfillment over periods.
+assim, o \textbf{modelo completo} é o seguinte:
+\allowdisplaybreaks
+\begin{align}
+	& Max \quad Z = \sum_{(i,j)\in OD} \sum_{v\in V} \sum_{k\in K_v} \sum_{t\in T} P_{ijvk} X_{ijvkt}     \tag{\ref{eq: m1_fo}}   \\
+	& \text{s.a.}  \notag \\
+	& A_{iv} = A_{i-1,v} - \sum_{(i,j) \in OD/j \geq i} \sum_{k\in K_v}\sum_{t\in T}X_{i-1,j,v,k,t} + \sum_{(i,j) \in OD/j<i} \sum_{k\in K_v}\sum_{t\in T}X_{jivkt}, \quad \forall i \in O, v \in V   \tag{\ref{eq: m1_disponi}} \\
+	& Y_{ijvk} \geq  \sum_{t \in T} X_{ijvkt},  \quad k = max\{K_v\}, \forall(i,j) \in OD ,v \in V     \tag{\ref{eq: m1_autho_mayor_assig_1er_class}} \\
+	& Y_{ijvk} \geq  \sum_{t \in T} X_{ijvkt} + Y_{i,j,v,k + 1} , \quad \forall(i,j) \in OD, v \in V, k \in K_v / k < \lVert K_v \rVert   \tag{\ref{eq: m1_autho_mayor_assig_mas_autho}} \\
+	& \sum_{(i,j) \in OD} Y_{ijvk} \leq A_{iv}, \quad  k = min\{K_v\}, \forall i \in O / (i,j) \in OD,   \forall v \in V       \tag{\ref{eq: m1_cap_autho_1er_class}} \\
+	& X_{ijvkt} \leq d_{ijvkt},  \quad \forall (i,j) \in OD / i < j  ,v \in V, k \in K_v, t\in T   \tag{\ref{eq: m1_assig_menor_dem}} \\
+	& A_{0,v} = Q_v \quad \forall v \in V  \tag{\ref{eq: m1_ini_disponi}} \\ 
+	& X_{0,j,v,k,t} = 0 \quad \forall j \in D,\, v \in V,\, k \in K_v,\, t \in T  \tag{\ref{eq: m1_ini_assig}} \\ 
+	& X_{ijvkt} \in \mathbb{Z}^+ \quad \forall(i,j) \in OD,\, v \in V,\, k \in K_v,\, t \in T  \tag{\ref{eq: m1_dom_assig}} \\ 
+	& Y_{ijvk} \in \mathbb{Z}^+ \quad \forall(i,j) \in OD,\, v \in V,\, k \in K_v  \tag{\ref{eq: m1_dom_autho}} \\ 
+	& A_{iv} \in \mathbb{Z}^+ \quad \forall i \in O,\, v \in V  \tag{\ref{eq: m1_dom_disponi}} \\
+	& \alpha_{ijvkt} \leq X_{ijvkt} \leq \alpha_{ijvkt}d_{ijvkt}, \quad   \forall(i,j) \in OD, v \in V, k \in K_v, t \in T   \tag{\ref{eq: m1_binaria_alpha}} \\
+	& \beta_{ijvkt} = \alpha_{ijvkt} - \alpha_{i,j,v,k+1,t}, \quad \forall (i,j) \in OD, v \in V, k \in K /k < max\{K_v\}, t\in T    \tag{\ref{eq: m1_binaria_Beta}}   \\
+	& \beta_{ijvkt} = \alpha_{ijvkt}, \quad   \forall(i,j) \in OD, v \in V, k = max\{K_v\}, t \in T    \tag{\ref{eq: m1_binaria_Beta_last}}   \\
+	& \alpha_{ijvkt} \leq \alpha_{i,j,v,k,t+1}, \quad   \forall(i,j) \in OD, v \in V, k \in K_v, t \in T/ t \neq max\{T\}     \tag{\ref{eq: m1_assig_last_periodo}}   \\
+	& \sum_{k \in K_v}\beta_{ijvkt}P_{ijvk} \geq \sum_{k \in K_v}\beta_{i,j,v,k,t+1}P_{ijvk},  \quad   \forall(i,j) \in OD, v \in V, t \in T/ t \neq max\{T\}   \tag{\ref{eq: m1_fulfill_periodo}} \\
+	& \sum_{k \in K_v}\beta_{ijvkt}P_{ijvk} \leq \sum_{k \in K_v}\beta_{i,j',v,k,t}P_{ijvk}, \quad \forall i \in O, j \in D, j' \in D / j' > j, v \in V, t \in T    \tag{\ref{eq: m1_preco_estacao_inicio}}   \\
+	\begin{split}
+		& \sum_{k \in K_v}\beta_{odvkt}P_{odvk} \leq \sum_{(i,j) \in S}\sum_{k \in K_v}\beta_{ijvkt}P_{ijvk}, \quad    \forall (o,d) \in NAD, \\
+		& v \in V, t \in T , \quad  \forall S \in CR_{o,d} / S \subset CR_{o,d}     \\
+	\end{split}   \tag{\ref{eq: m1_preco_combinacao_rotas_contidas}}
+\end{align}
 
-Observe que os nomes das classes são números ordenados de forma crescente [1, 2, 3] também o valor da classe 1 é mais caro que o valor da classe 2 e este é maior que o valor da classe 3. Além disso, a soma que não ultrapassará a capacidade do trem é a soma das classes 1 de cada tipo de assento de cada estação de origem. Por exemplo, para a estação 3 seria $43 + 85$ para $V_1$ trecho 3-4 e 3-5, mais, $105 + 88$ para $V_2$ nos mesmos trechos, ou seja $43 + 85 + 105 + 88 = 321 \leq 700$
 
 
-Até ao momento foi referido que a variável $Y$ tem um carácter cumulativo e são as restrições \ref{eq: m1_autho_mayor_assig_1er_class} e \ref{eq: m1_autho_mayor_assig_mas_autho} que controlam este comportamento. A restrição \ref{eq: m1_autho_mayor_assig_1er_class} é um caso particular da restrição \ref{eq: m1_autho_mayor_assig_mas_autho}, aplicada apenas à última classe, ou classe mais barata reservada para cada tipo de assento ($k=max\{K_v\}$), e garante que a soma de todos os períodos, de cada estação de origem da classe mais barata da variável "autorização" é maior ou igual à variável de decisão "reservas" nas mesmas condições. Por outro lado, a restrição \ref{eq: m1_autho_mayor_assig_mas_autho} garante que cada classe autorizada seja sempre maior ou igual à classe autorizada imediatamente menor, mais a quantidade reservas da mesma classe, isto para cada período, cada trecho e cada classe diferente da classe mais barata. Para melhor compreensão, assuma as mesmas suposições que foram feitas na restrição \ref{eq: m1_cap_autho_1er_class}.
 
 
-\begin{figure}[H]
-	\centering
-	\begin{subfigure}[b]{0.35\linewidth}
-		\includegraphics[width=\linewidth]{img/exemplo1.png}
-		\caption{Autorizados [Variável $Y$]}
-		\label{fig:auto_assig_a}
-	\end{subfigure}\hspace{5mm}
-	\begin{subfigure}[b]{0.35\linewidth}
-		\includegraphics[width=\linewidth]{img/exemplo2.png}
-		\caption{Reservados [Variável $X$]}
-		\label{fig:auto_assig_b}
-	\end{subfigure}
-	\caption{Solução factível para os assentos Autorizados e assentos Reservados}
-	\label{fig:auto_assig}
-\end{figure}
 
-Observe a linha correspondente ao trecho 1-2 do tipo de assento $V_2$ na tabela \ref{fig:auto_assig_b}, veja que a classe reservada mais barata foi a classe 2 com valor de 52, por este motivo na tabela \ref{fig:auto_assig_a} na mesma posição o valor deverá ser igual ou maior que 52, que neste caso é o mesmo valor; Agora observe para o mesmo trecho para o tipo de assento $V_1$ classe 3 em ambas as tabelas acontece a mesma coisa, esse comportamento é garantido pela restrição \ref{eq: m1_autho_mayor_assig_1er_class}. Agora não vamos olhar para a classe mais barata, vamos olhar para qualquer outra, por exemplo, para o mesmo trecho veja a classe 1 do tipo de assento $V_1$ da tabela \ref{fig:auto_assig_b} com valor 29, se quiséssemos saber o valor correspondente na tabela \ref{fig:auto_assig_a} deveríamos adicionar a classe imediata menor (à direita) da classe 1 na tabela \ref{fig:auto_assig_a}, neste caso seria a classe 2 com valor 116, e some o valor da classe 1 da tabela \ref{fig:auto_assig_b}, que já sabemos que é 29, assim, o valor buscado será maior ou igual a $116+29 = 145$, como visto em tabela \ref{fig:auto_assig_a}, lembre-se que nessa posição o valor mínimo será o calculado, mas poderá assumir um valor superior. Esta última situação é controlada pela restrição \ref{eq: m1_autho_mayor_assig_mas_autho}.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \allowdisplaybreaks
+% \begin{align}
+% 	 & Max \quad Z = \sum_{(i,j)\in OD} \sum_{v\in V} \sum_{k\in K_v} \sum_{t\in T} P_{ijvk} X_{ijvkt}                                                                                                                \label{eq: m1_fo}                                                                                                       \\
+% 	 & \text{s.a.}  \notag                                                                                                                                                                                                                                                                                                                    \\
+% 	 & A_{iv} = A_{i-1,v} - \sum_{(i,j) \in OD/j \geq i} \sum_{k\in K_v}\sum_{t\in T}X_{i-1,j,v,k,t} + \sum_{(i,j) \in OD/j<i} \sum_{k\in K_v}\sum_{t\in T}X_{jivkt}, \quad \forall i \in O, v \in V  \label{eq: m1_disponi}                                                                                                                  \\
+% 	 & \sum_{(i,j) \in OD} \sum_{k\in K_v}\sum_{t\in T} X_{ijvkt} \leq A_{iv} , \quad \forall i \in O /i<j, i < n, v \in V                                                                                       \label{eq: m1_cap_assig}                                                                                                     \\
+% 	 & \textcolor{red}{ Y_{ijvkt} \geq Y_{i,j,v,k+1,t},  \quad \forall (i,j) \in OD / i < j, v \in V, k \in K_v / k < \lVert K_v \rVert , t \in T }                                                                  \label{eq: m1_jerar_class}                                                     \\   % P_{ijvk} \geq P_{i,j,v,k+1}
+% 	 & \sum_{(i,j) \in OD}\sum_{t\in T} Y_{i,j,v,k,t} \leq Q_v, \quad  k = min\{K_v\}, \forall i \in O / (i,j) \in OD,   \forall v \in V                                                                                                \label{eq: m1_cap_autho_1er_class}                                                                                     \\
+% 	 & Y_{ijvkt} \geq  X_{ijvkt},  \quad k = max\{K_v\}, \forall(i,j) \in OD ,v \in V, t \in T                                                                                                                       \label{eq: m1_autho_mayor_assig_1er_class}                                                                               \\
+% 	 & Y_{ijvkt} \geq  X_{ijvkt} + Y_{i,j,v,k + 1,t} , \quad \forall(i,j) \in OD, v \in V, k \in K_v / k < \lVert K_v \rVert , t \in T                                                                               \label{eq: m1_autho_mayor_assig_mas_autho}                                                                               \\
+% 	 & \textit{\underline{Demanda Independente  }}         \notag                                                                                                                                                                                                                                                                             \\
+% 	 & X_{ijvkt} \leq d_{ijvkt},  \quad \forall (i,j) \in OD / i < j  ,v \in V, k \in K_v, t\in T                                                                                                  \label{eq: m1_assig_menor_dem}                                                                                                             \\
+% 	 & \sum_{k' \in K_v / k' \leq k}X_{i,j,v,k',t} \leq d'_{ijvkt} \quad \forall (i,j) \in OD, v \in V, k \in K_v / k > 1, t\in T                                                                                    \label{eq: m1_dem_compor_acumulacao_class}                                                 \\
+% 	 & X_{ijvkt} \leq \left( d'_{ijvkt} \right) \left(\frac{d_{ijvkt}}{d'_{i,j,v,k',t}}\right),  \quad \forall (i,j) \in OD, v \in V, k \in K_v/ k < k', k' < max\{K_v\}, t\in T                                     \label{eq: m1_dem_compor_porcentaje_dem}                                                                               \\
+% 	\begin{split}
+% 		 & X_{i,j,v,k',t} \leq d_{i,j,v,k',t} + \left( d'_{i,j,v,k',t} - \sum_{k \in K_v }\frac{d'_{ijvkt} d_{ijvkt}}{d'_{i,j,v,k',t}} \right),  \quad \forall (i,j) \in OD                                                                                                                         \\
+% 		 & v \in V, k' = max\{K_v\}, t\in T                                                                                                                                                                                                                                                     \\
+% 	% \end{split}                                                                                                                                                                                                      \label{eq: m1_dem_compor_porcentaje_dem_last}                                                                                \\
+% 	 & \textit{\underline{Fulfillments over periods} }   \notag                                                                                                                                                                                                                                                                               \\
+% 	 & \gamma_{ijvkt} \leq Y_{ijvkt} \leq \gamma_{ijvkt} Q_v, \quad  \forall (i,j)\in OD, v \in V, k \in K_v, t \in T                                                                                                       \label{eq: m1_activ_bin_autho}                                                                                    \\
+% 	 & \alpha_{ijvkt} \leq X_{ijvkt} \leq \alpha_{ijvkt}d_{ijvkt}, \quad   \forall(i,j) \in OD, v \in V, k \in K_v, t \in T                                                                                                  \label{eq: m1_binaria_alpha}                                                                                     \\
+% 	 & \alpha_{ijvkt} \leq \alpha_{i,j,v,k,t+1}, \quad   \forall(i,j) \in OD, v \in V, k \in K_v, t \in T/ t \neq max\{T\}                                                                                                   \label{eq: m1_assig_last_periodo}                                                                                \\
+% 	 & \sum_{k \in K_v}\beta_{ijvkt}P_{ijvk} \geq \sum_{k \in K_v}\beta_{i,j,v,k,t+1}P_{ijvk},  \quad   \forall(i,j) \in OD, v \in V, t \in T/ t \neq max\{T\}                                                              \label{eq: m1_fulfill_periodo}                                                                                    \\
+% 	 & \textit{\underline{Skip Lagging}}    \notag                                                                                                                                                                                                                                                                                            \\
+% 	 & \beta_{ijvkt} = \gamma_{ijvkt} - \gamma_{i,j,v,k+1,t}, \quad \forall (i,j) \in OD, v \in V, k \in K /k < max\{K_v\}, t\in T                                                                                               \label{eq: m1_binaria_Beta}                                                                                  \\
+% 	 & \beta_{ijvkt} = \gamma_{ijvkt}, \quad   \forall(i,j) \in OD, v \in V, k = max\{K_v\}, t \in T                                                                                                                         \label{eq: m1_binaria_Beta_last}                                                                                 \\
+% 	 & \sum_{k \in K_v}\beta_{ijvkt}P_{ijvk} \leq \sum_{k \in K_v}\beta_{i,j',v,k,t}P_{ijvk}, \quad \forall i \in O, j \in D, j' \in D / j' > j, v \in V, t \in T                                                           \label{eq: m1_preco_estacao_inicio}                                                                               \\
+% 	\begin{split}
+% 		 & \sum_{k \in K_v}\beta_{odvkt}P_{odvk} \leq \sum_{(i,j) \in S}\sum_{k \in K_v}\beta_{ijvkt}P_{ijvk}, \quad    \forall (o,d) \in NAD, \\
+% 		 & v \in V, t \in T , \quad  \forall S \in CR_{o,d} / S \subset CR_{o,d}                                                               \\
+% 	\end{split}                                                                                                                                                                                                       \label{eq: m1_preco_combinacao_rotas_contidas}                                                                          \\
+% 	 & \textit{\underline{Ajuste de Demanda} }   \notag                                                                                                                                                                                                                                                                                       \\
+% 	 & \alpha_{ijvkt} +  \sum_{k' \in K_v / k'>k}  \alpha_{i,j,v,k',t}  \leq 1+M(1-\delta_{ijvkt}), \quad   \forall(i,j) \in OD, v \in V, k \in K_v, t \in T                                                                                                                                                                                  \\
+% 	 & P_{ijvk}X_{ijvkt} + M(1-\delta_{ijvkt})   \geq \sum_{k' \in K_v / k'>k} P_{i,j,v,k'}X_{i,j,v,k',t},  \quad   \forall(i,j) \in OD, v \in V, k \in K_v, t \in T                                                                                                                                                                          \\
+% 	 & \alpha_{ijvkt} \leq \delta_{ijvkt}, \quad   \forall(i,j) \in OD, v \in V, k \in K_v, t \in T                                                                                                                                                                                                                                           \\
+% 	 & \textit{\underline{Inicialização e domínio }}    \notag                                                                                                                                                                                                                                                                                \\
+% 	 & A_{0,v} = Q_v,     \quad  \forall v \in V                                                                                                                                                                                                 \label{eq: m1_ini_disponi}                                                                   \\
+% 	 & X_{0,j,v,k,t} = 0,     \quad \forall j \in D, v \in V, k \in K_v, t \in T                                                                                                                                      \label{eq: m1_ini_assig}                                                                                                \\
+% 	 & X_{ijvkt} \in \mathbb{Z}^+ , \quad   \forall(i,j) \in OD, v \in V, k \in K_v, t \in T                                                                                                                                                                                     \label{eq: m1_dom_assig}                                     \\
+% 	 & Y_{ijvkt} \in \mathbb{Z}^+ , \quad   \forall(i,j) \in OD, v \in V, k \in K_v, t \in T                                                                                                                                                                                   \label{eq: m1_dom_autho}                                       \\
+% 	 & A_{iv} \in \mathbb{Z}^+  , \quad \forall i \in O, v \in V                                                                                                                                                                               \label{eq: m1_dom_disponi}                                                                     \\
+% 	 & \gamma_{ijvkt}, \beta_{ijvkt}, \alpha_{ijvkt}\in \{0,1\} , \quad   \forall(i,j) \in OD, v \in V, k \in K_v, t \in T                                                                                                                                                                                       \label{eq: m1_dom_bin_nadja}
+% \end{align}
+
+
+% Na equação \ref{eq: m1_fo}, a qual representa a função objetivo, temos a soma do produto entre a quantidade de assentos reservados a cada trajeto de origem e destino para a classe comercial em cada período e cada tipo de assento, multiplicada pelo preço correspondente para cada trajeto e classe. Observe que queremos maximizar os ingressos em função dos assentos que estão reservados, que é o mais próximo que se tem da realidade em função da demanda conhecida.
+
+% A restrição \ref{eq: m1_disponi} é responsável por calcular a quantidade de assentos vazios disponíveis em cada estação de origem, para cada tipo de assento, ao longo de todo o horizonte de reserva. Ela é uma generalização do exemplo simplificado utilizado para calcular $A_{iv}$.
+
+% A restrição \ref{eq: m1_cap_assig} garante que os assentos reservados ao longo de todo o horizonte de reserva, para cada trecho, não excedam a capacidade disponível para cada tipo de assento em cada estação de origem.
+
+% A restrição \ref{eq: m1_cap_autho_1er_class} garanta que a soma de autorizações da classe mais custosa, de cada estação de origem, de todos os períodos, não ultrapasse a capacidade do trem de cada tipo de assento. Note que apenas estamos considerando a classe mais cara devido à natureza cumulativa das variáveis de autorização é por isso que o valor de k é o mínimo das classes de cada tipo de assento, pois a ordem do nome das classes é crescente mas o seu valor é decrescente. Para melhor compreensão, suponhamos uma solução para um problema de dois vagões $V_1$ e $V_2$, 3 classes para $V_1$ e 3 classes para $V_2$, 5 estações,  10 trechos, um período e uma capacidade física do trem de 700 cadeiras, conforme mostra a Figura \ref{fig: autorization}.
+
+% \begin{figure}[H]
+% 	\begin{center}
+% 		\includegraphics[scale=0.40]{img/exemplo1.png}
+% 		\caption{Solução factível para a variável de decisão Autorização}
+% 		% Fonte:~\cite{khaksar2013genetic}}
+% 		\label{fig: autorization}
+% 	\end{center}
+% \end{figure}
+
+% Observe que os nomes das classes são números ordenados de forma crescente [1, 2, 3] também o valor da classe 1 é mais caro que o valor da classe 2 e este é maior que o valor da classe 3. Além disso, a soma que não ultrapassará a capacidade do trem é a soma das classes 1 de cada tipo de assento de cada estação de origem. Por exemplo, para a estação 3 seria $43 + 85$ para $V_1$ trecho 3-4 e 3-5, mais, $105 + 88$ para $V_2$ nos mesmos trechos, ou seja $43 + 85 + 105 + 88 = 321 \leq 700$
+
+
+% Até ao momento foi referido que a variável $Y$ tem um carácter cumulativo e são as restrições \ref{eq: m1_autho_mayor_assig_1er_class} e \ref{eq: m1_autho_mayor_assig_mas_autho} que controlam este comportamento. A restrição \ref{eq: m1_autho_mayor_assig_1er_class} é um caso particular da restrição \ref{eq: m1_autho_mayor_assig_mas_autho}, aplicada apenas à última classe, ou classe mais barata reservada para cada tipo de assento ($k=max\{K_v\}$), e garante que a soma de todos os períodos, de cada estação de origem da classe mais barata da variável "autorização" é maior ou igual à variável de decisão "reservas" nas mesmas condições. Por outro lado, a restrição \ref{eq: m1_autho_mayor_assig_mas_autho} garante que cada classe autorizada seja sempre maior ou igual à classe autorizada imediatamente menor, mais a quantidade reservas da mesma classe, isto para cada período, cada trecho e cada classe diferente da classe mais barata. Para melhor compreensão, assuma as mesmas suposições que foram feitas na restrição \ref{eq: m1_cap_autho_1er_class}.
+
+
+% \begin{figure}[H]
+% 	\centering
+% 	\begin{subfigure}[b]{0.35\linewidth}
+% 		\includegraphics[width=\linewidth]{img/exemplo1.png}
+% 		\caption{Autorizados [Variável $Y$]}
+% 		\label{fig:auto_assig_a}
+% 	\end{subfigure}\hspace{5mm}
+% 	\begin{subfigure}[b]{0.35\linewidth}
+% 		\includegraphics[width=\linewidth]{img/exemplo2.png}
+% 		\caption{Reservados [Variável $X$]}
+% 		\label{fig:auto_assig_b}
+% 	\end{subfigure}
+% 	\caption{Solução factível para os assentos Autorizados e assentos Reservados}
+% 	\label{fig:auto_assig}
+% \end{figure}
+
+% Observe a linha correspondente ao trecho 1-2 do tipo de assento $V_2$ na tabela \ref{fig:auto_assig_b}, veja que a classe reservada mais barata foi a classe 2 com valor de 52, por este motivo na tabela \ref{fig:auto_assig_a} na mesma posição o valor deverá ser igual ou maior que 52, que neste caso é o mesmo valor; Agora observe para o mesmo trecho para o tipo de assento $V_1$ classe 3 em ambas as tabelas acontece a mesma coisa, esse comportamento é garantido pela restrição \ref{eq: m1_autho_mayor_assig_1er_class}. Agora não vamos olhar para a classe mais barata, vamos olhar para qualquer outra, por exemplo, para o mesmo trecho veja a classe 1 do tipo de assento $V_1$ da tabela \ref{fig:auto_assig_b} com valor 29, se quiséssemos saber o valor correspondente na tabela \ref{fig:auto_assig_a} deveríamos adicionar a classe imediata menor (à direita) da classe 1 na tabela \ref{fig:auto_assig_a}, neste caso seria a classe 2 com valor 116, e some o valor da classe 1 da tabela \ref{fig:auto_assig_b}, que já sabemos que é 29, assim, o valor buscado será maior ou igual a $116+29 = 145$, como visto em tabela \ref{fig:auto_assig_a}, lembre-se que nessa posição o valor mínimo será o calculado, mas poderá assumir um valor superior. Esta última situação é controlada pela restrição \ref{eq: m1_autho_mayor_assig_mas_autho}.
 
 % Suponha que você tem um trecho não adjacente E1-E3, e que esse trecho contém outros trechos E1-E2 e E2-E3. Para esta situação, a classe mais barata ativada no trecho E1-E3 deverá ser a classe mais barata ativada nos trechos E1-E2 e E2-E3. Isso é feito com o objetivo de que as combinações dos preços dos bilhetes por trechos não sejam mais econômicos do que o preço de um bilhete direto. Para alcançar isso, é criada uma variável binária para cada trecho não adjacente ($\gamma$), que será ativada, ou tomará o valor de 1, quando as passagem autorizadas $"Y"$ (ou assentos a serem disponibilizados para venda) de uma classe desse trecho, de um tipo de assento e de um período, forem diferentes de zero e tomará o valor de zero caso contrário. Esse comportamento será controlado pela restrição \ref{eq: m1_activ_bin_autho}.
 
@@ -256,114 +523,113 @@ Observe a linha correspondente ao trecho 1-2 do tipo de assento $V_2$ na tabela 
 
 % Para o trecho $"E_1-E_3"$, note que quando $Y \neq 0$, $\gamma = 1$ e quando $Y = 0$, $\gamma = 0$ (controlado pela restrição \ref{eq: m1_activ_bin_autho}). Agora observe que, quando $ \gamma = 1$ para uma certa classe, os trechos $E_1-E_2$ e $E_2-E_3$ assumem valores entre 1 e um número suficientemente grande ($1 \le Y \leq Q$) neste caso a capacidade do trem, o que indica que os assentos a serem disponibilizados para essa classe nesses trechos não podem ser zero. Por outro lado, quando $\gamma = 0$, os trechos menores devem zerar a classe correspondente com ($0 \leq Y \leq 0$), ou seja, não se deve disponibilizar assentos com essa classe (controlado pela restrição \ref{eq: m1_autho_igualar_trecho_maior}). Deve-se esclarecer que as classe de controle dos trechos contidos, apenas imitam o comportamento da classe não adjacente correspondente, e não os valores que esta assume.
 
-A restrição \ref{eq: m1_assig_menor_dem} garante que a quantidade de passagens reservadas não ultrapasse a demanda para cada trecho de cada classe de cada tipo de assento e em cada período no horizonte de reserva.
+% A restrição \ref{eq: m1_assig_menor_dem} garante que a quantidade de passagens reservadas não ultrapasse a demanda para cada trecho de cada classe de cada tipo de assento e em cada período no horizonte de reserva.
 
-A restrição  \ref{eq: m1_activ_bin_autho} é utilizada para determinar quando a variável de decisão $Y$ assume valores diferentes de zero e quando não. Assim, $\gamma $ toma o valor de 1 no primeiro caso e 0 no segundo.
+% A restrição  \ref{eq: m1_activ_bin_autho} é utilizada para determinar quando a variável de decisão $Y$ assume valores diferentes de zero e quando não. Assim, $\gamma $ toma o valor de 1 no primeiro caso e 0 no segundo.
 
-Uma condição importante estabelece que uma classe pode ser reservada desde que essa mesma classe já tenha sido reservada em períodos anteriores. Para isso, definem-se as restrições \ref{eq: m1_binaria_alpha} e \ref{eq: m1_assig_last_periodo}, onde a primeira busca atribuir o valor 1 à variável $\alpha_{ijvkt}$ quando $X_{ijvkt}$ assume um valor diferente de zero, e atribuir 0 caso contrário; essa restrição possui a mesma estrutura e raciocínio da restrição \ref{eq: m1_activ_bin_autho}.
+% Uma condição importante estabelece que uma classe pode ser reservada desde que essa mesma classe já tenha sido reservada em períodos anteriores. Para isso, definem-se as restrições \ref{eq: m1_binaria_alpha} e \ref{eq: m1_assig_last_periodo}, onde a primeira busca atribuir o valor 1 à variável $\alpha_{ijvkt}$ quando $X_{ijvkt}$ assume um valor diferente de zero, e atribuir 0 caso contrário; essa restrição possui a mesma estrutura e raciocínio da restrição \ref{eq: m1_activ_bin_autho}.
 
-Agora, a restrição \ref{eq: m1_assig_last_periodo} garante que uma certa variável binária $\alpha_{ijvkt}$ tomará o valor 1 se, e somente se, no período anterior ( $\alpha_{i,j,v,k,t+1}$) também assumiu o valor 1; caso contrário, ela fica livre para tomar qualquer valor, 0 ou 1. Isso significa que só é possível reservar uma certa classe se essa mesma classe foi reservada no período anterior. Vejamos um exemplo:
-
-
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[b]{0.40\linewidth}
-		\begin{tikzpicture}
-            \node[anchor=south west, inner sep=0] (image1) at (-0.33,0.5) {\includegraphics[width=\linewidth]{img/assig_t1.png}};
-			\draw[purple, line width=0.7mm, rounded corners=5pt] (3.7,2.23) rectangle (5.46,2.83);
-        \end{tikzpicture}
-        \caption{Assentos Reservados $[X]$, em $t = 1$}
-        \label{fig:assig_t1}
-    \end{subfigure}\hspace{5mm}
-    \begin{subfigure}[b]{0.40\linewidth}
-        \begin{tikzpicture}
-            \node[anchor=south west, inner sep=0] (image1) at (-0.33,0.5) {\includegraphics[width=\linewidth]{img/bx_t1.png}};
-            \draw[blue, line width=0.8mm] (2.5,2) circle (0.35cm); % Ajusta las coordenadas y radio
-			\draw[purple, line width=0.7mm, rounded corners=5pt] (3.7,2.23) rectangle (5.46,2.83);
-        \end{tikzpicture}
-        \caption{$\alpha$, em $t = 1$}
-        \label{fig:alpha_t1}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.40\linewidth}
-		\begin{tikzpicture}
-			\node[anchor=south west, inner sep=0] (image3) at (0.16,0.03) {\includegraphics[width=\linewidth]{img/assig_t0.png}};
-			\draw[blue, line width=0.7mm] (3,1.5) circle (0.35cm); % Ajusta las coordenadas y radio
-        \end{tikzpicture}
-		\caption{Assentos Reservados $[X]$, em $t = 0$}
-        \label{fig:assig_t0}
-    \end{subfigure}\hspace{5mm}
-    \begin{subfigure}[b]{0.40\linewidth}
-        \begin{tikzpicture}
-            \node[anchor=south west, inner sep=0] (image2) at (0.16,0.03) {\includegraphics[width=\linewidth]{img/bx_to.png}};
-            \draw[blue, line width=0.7mm] (3,1.5) circle (0.35cm); % Ajusta las coordenadas y radio
-        \end{tikzpicture}
-        \caption{$\alpha$, em $t = 0$}
-        \label{fig:alpha_t0}
-    \end{subfigure}
-    \caption{Exemplo: Restrições Fulfillments over periods}
-    \label{fig:restricao_fulfillments}
-\end{figure}
+% Agora, a restrição \ref{eq: m1_assig_last_periodo} garante que uma certa variável binária $\alpha_{ijvkt}$ tomará o valor 1 se, e somente se, no período anterior ( $\alpha_{i,j,v,k,t+1}$) também assumiu o valor 1; caso contrário, ela fica livre para tomar qualquer valor, 0 ou 1. Isso significa que só é possível reservar uma certa classe se essa mesma classe foi reservada no período anterior. Vejamos um exemplo:
 
 
-Lembre que $t=0$ é a data de partida do trem, ou seja, quanto maior for o valor de $t$, mais longe estará da data de partida. Assim, $t=1$ será o período exatamente anterior a $t=0$.
+% \begin{figure}[H]
+% 	\centering
+% 	\begin{subfigure}[b]{0.40\linewidth}
+% 		\begin{tikzpicture}
+% 			\node[anchor=south west, inner sep=0] (image1) at (-0.33,0.5) {\includegraphics[width=\linewidth]{img/assig_t1.png}};
+% 			\draw[purple, line width=0.7mm, rounded corners=5pt] (3.7,2.23) rectangle (5.46,2.83);
+% 		\end{tikzpicture}
+% 		\caption{Assentos Reservados $[X]$, em $t = 1$}
+% 		\label{fig:assig_t1}
+% 	\end{subfigure}\hspace{5mm}
+% 	\begin{subfigure}[b]{0.40\linewidth}
+% 		\begin{tikzpicture}
+% 			\node[anchor=south west, inner sep=0] (image1) at (-0.33,0.5) {\includegraphics[width=\linewidth]{img/bx_t1.png}};
+% 			\draw[blue, line width=0.8mm] (2.5,2) circle (0.35cm); % Ajusta las coordenadas y radio
+% 			\draw[purple, line width=0.7mm, rounded corners=5pt] (3.7,2.23) rectangle (5.46,2.83);
+% 		\end{tikzpicture}
+% 		\caption{$\alpha$, em $t = 1$}
+% 		\label{fig:alpha_t1}
+% 	\end{subfigure}
+% 	\begin{subfigure}[b]{0.40\linewidth}
+% 		\begin{tikzpicture}
+% 			\node[anchor=south west, inner sep=0] (image3) at (0.16,0.03) {\includegraphics[width=\linewidth]{img/assig_t0.png}};
+% 			\draw[blue, line width=0.7mm] (3,1.5) circle (0.35cm); % Ajusta las coordenadas y radio
+% 		\end{tikzpicture}
+% 		\caption{Assentos Reservados $[X]$, em $t = 0$}
+% 		\label{fig:assig_t0}
+% 	\end{subfigure}\hspace{5mm}
+% 	\begin{subfigure}[b]{0.40\linewidth}
+% 		\begin{tikzpicture}
+% 			\node[anchor=south west, inner sep=0] (image2) at (0.16,0.03) {\includegraphics[width=\linewidth]{img/bx_to.png}};
+% 			\draw[blue, line width=0.7mm] (3,1.5) circle (0.35cm); % Ajusta las coordenadas y radio
+% 		\end{tikzpicture}
+% 		\caption{$\alpha$, em $t = 0$}
+% 		\label{fig:alpha_t0}
+% 	\end{subfigure}
+% 	\caption{Exemplo: Restrições Fulfillments over periods}
+% 	\label{fig:restricao_fulfillments}
+% \end{figure}
 
-Para cada trecho, tipo de assento e classe dados na figura \ref{fig:restricao_fulfillments}, suponha que: a figura \ref{fig:assig_t1} é uma solução factível que representa a quantidade de assentos reservados para o período $t=1$; a figura \ref{fig:alpha_t1}  é a variável binária $\alpha_{ijvkt}$, que mostra 1 sempre que a quantidade de assentos reservados for diferente de zero em $t=1$ e mostra zero caso contrário (controlado pela restrição \ref{eq: m1_binaria_alpha}). As figuras \ref{fig:assig_t0} e \ref{fig:alpha_t0} representam o mesmo que as figuras \ref{fig:assig_t1} e \ref{fig:alpha_t1}, mas para o período $t=0$.
 
-Observe que as posições na figura \ref{fig:alpha_t0} tomarão o valor zero sempre que, na figura \ref{fig:alpha_t1}, essa posição também for zero. Isso significa que, se a classe do período anterior for zero, então a do período atual também será zero. Note também que, quando o valor na figura \ref{fig:alpha_t1} é 1, na figura \ref{fig:alpha_t0} o valor poderá ser 0 ou 1. Por exemplo, para o trecho $1-3$ do tipo de assento $v_1$ e classe 2, note que na figura \ref{fig:alpha_t1} o valor é 1 e na figura \ref{fig:alpha_t0} é zero, o que significa que a classe 2 foi reservada no período anterior, mas no período atual não foi.
+% Lembre que $t=0$ é a data de partida do trem, ou seja, quanto maior for o valor de $t$, mais longe estará da data de partida. Assim, $t=1$ será o período exatamente anterior a $t=0$.
 
+% Para cada trecho, tipo de assento e classe dados na Figura \ref{fig:restricao_fulfillments}, suponha que: a Figura \ref{fig:assig_t1} é uma solução factível que representa a quantidade de assentos reservados para o período $t=1$; a Figura \ref{fig:alpha_t1}  é a variável binária $\alpha_{ijvkt}$, que mostra 1 sempre que a quantidade de assentos reservados for diferente de zero em $t=1$ e mostra zero caso contrário (controlado pela restrição \ref{eq: m1_binaria_alpha}). As figuras \ref{fig:assig_t0} e \ref{fig:alpha_t0} representam o mesmo que as figuras \ref{fig:assig_t1} e \ref{fig:alpha_t1}, mas para o período $t=0$.
 
-Outra condição especial deste problema está relacionada à disponibilização dos preços dos bilhetes ao longo do tempo. Esses preços devem seguir uma lógica contínua, sem oscilações. Em outras palavras, os preços dos bilhetes devem sempre aumentar conforme a data de partida do trem se aproxima. A restrição \ref{eq: m1_fulfill_periodo} é responsável por garantir que essa condição seja atendida.
-
-Por outro lado, a restrição \ref{eq: m1_binaria_Beta} e \ref{eq: m1_binaria_Beta_last} cumprem a mesma função de encontrar a última classe que foi disponibilizada para venda em um determinado trecho, período e tipo de assento. No entanto, a restrição \ref{eq: m1_binaria_Beta_last} é aplicada sempre que se analisa a classe mais barata, e, em outros casos, usa-se a restrição \ref{eq: m1_binaria_Beta}. Assim, essas duas equações atribuem o valor 1 à variável $\beta_{ijvkt}$ sempre que a classe atual $k$ seja a classe mais barata disponibilizada para venda no trecho $(i,j)$, tipo de assento $v$, e período $t$; caso contrário, atribui-se o valor zero. Essa restrição é necessária para aplicar as restrições \ref{eq: m1_preco_estacao_inicio} e \ref{eq: m1_preco_combinacao_rotas_contidas}.
-
-\begin{figure}[H]
-	\centering
-	\begin{subfigure}[b]{0.35\linewidth}
-		\includegraphics[width=\linewidth]{img/BL_1.png}
-		\caption{Cálculo Variável $\beta$}
-		\label{fig:Beta_1}
-	\end{subfigure}\hspace{5mm}
-	\begin{subfigure}[b]{0.35\linewidth}
-		\includegraphics[width=\linewidth]{img/BL_2.png}
-		\caption{Resultado Variável $\beta$}
-		\label{fig:Beta_2}
-	\end{subfigure}
-	\caption{Exemplo para as restrições \ref{eq: m1_binaria_Beta} e \ref{eq: m1_binaria_Beta_last}}
-	\label{fig:Beta}
-\end{figure}
-
-Na figura \ref{fig:Beta_1}, vemos que, para a classe mais barata $c_6$, $\beta=\gamma=0$. Agora, para o restante das classes, realiza-se um cálculo com base nos valores de $\gamma$. Por exemplo, para a classe $c_1$, o cálculo seria: $\gamma$ de $c_1$ menos $\gamma$ da próxima classe, ou seja, $\gamma$ de $c_2$, o que resulta em $1-1$. Note, além disso, que para a classe $c_4$, fazendo o mesmo cálculo, o resultado é 1, como mostrado na figura \ref{fig:Beta_2}, e observe que essa classe é a última que possui um valor diferente de zero em $\gamma$.
+% Observe que as posições na Figura \ref{fig:alpha_t0} tomarão o valor zero sempre que, na Figura \ref{fig:alpha_t1}, essa posição também for zero. Isso significa que, se a classe do período anterior for zero, então a do período atual também será zero. Note também que, quando o valor na Figura \ref{fig:alpha_t1} é 1, na Figura \ref{fig:alpha_t0} o valor poderá ser 0 ou 1. Por exemplo, para o trecho $1-3$ do tipo de assento $v_1$ e classe 2, note que na Figura \ref{fig:alpha_t1} o valor é 1 e na Figura \ref{fig:alpha_t0} é zero, o que significa que a classe 2 foi reservada no período anterior, mas no período atual não foi.
 
 
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[scale=0.2]{img/fulfill.png}
-		\caption{Exemplo para as restrições \ref{eq: m1_preco_estacao_inicio} e \ref{eq: m1_preco_combinacao_rotas_contidas}}
-		% Fonte:~\cite{khaksar2013genetic}}
-		\label{fig: fulfill}
-	\end{center}
-\end{figure}
+% Outra condição especial deste problema está relacionada à disponibilização dos preços dos bilhetes ao longo do tempo. Esses preços devem seguir uma lógica contínua, sem oscilações. Em outras palavras, os preços dos bilhetes devem sempre aumentar conforme a data de partida do trem se aproxima. A restrição \ref{eq: m1_fulfill_periodo} é responsável por garantir que essa condição seja atendida.
 
-Dentro do problema, é necessário garantir que, para todos os trechos com a mesma estação de origem, os trechos mais curtos disponibilizados para venda sejam mais baratos que os trechos mais longos. Isso é para evitar que passageiros comprem bilhetes para um trecho maior e desembarquem em estações anteriores. Por exemplo, se uma pessoa quer ir da estação $E_1$ para a estação $E_2$, mas percebe que o preço para ir de $E_1$ a $E_3$ é mais barato, então essa pessoa comprará o bilhete de $E_1$ a $E_3$ e desembarcará na estação $E_2$. Essa situação é controlada pela restrição \ref{eq: m1_preco_estacao_inicio}. 
+% Por outro lado, a restrição \ref{eq: m1_binaria_Beta} e \ref{eq: m1_binaria_Beta_last} cumprem a mesma função de encontrar a última classe que foi disponibilizada para venda em um determinado trecho, período e tipo de assento. No entanto, a restrição \ref{eq: m1_binaria_Beta_last} é aplicada sempre que se analisa a classe mais barata, e, em outros casos, usa-se a restrição \ref{eq: m1_binaria_Beta}. Assim, essas duas equações atribuem o valor 1 à variável $\beta_{ijvkt}$ sempre que a classe atual $k$ seja a classe mais barata disponibilizada para venda no trecho $(i,j)$, tipo de assento $v$, e período $t$; caso contrário, atribui-se o valor zero. Essa restrição é necessária para aplicar as restrições \ref{eq: m1_preco_estacao_inicio} e \ref{eq: m1_preco_combinacao_rotas_contidas}.
 
-Vamos ver um exemplo mais claro: na figura \ref{fig: fulfill}, temos três estações, assumindo um único período e um único tipo de assento, além de três classes para cada trecho ($c_1, c_2, c_3$). Note que $\gamma$ e $\beta$ são as variáveis binárias explicadas anteriormente, e $P$ representa o preço de cada classe de controle. Para este caso, a restrição \ref{eq: m1_preco_estacao_inicio} pode ser aplicada aos trechos $(E_1-E_2)$ e $(E_1-E_3)$.
+% \begin{figure}[H]
+% 	\centering
+% 	\begin{subfigure}[b]{0.35\linewidth}
+% 		\includegraphics[width=\linewidth]{img/BL_1.png}
+% 		\caption{Cálculo Variável $\beta$}
+% 		\label{fig:Beta_1}
+% 	\end{subfigure}\hspace{5mm}
+% 	\begin{subfigure}[b]{0.35\linewidth}
+% 		\includegraphics[width=\linewidth]{img/BL_2.png}
+% 		\caption{Resultado Variável $\beta$}
+% 		\label{fig:Beta_2}
+% 	\end{subfigure}
+% 	\caption{Exemplo para as restrições \ref{eq: m1_binaria_Beta} e \ref{eq: m1_binaria_Beta_last}}
+% 	\label{fig:Beta}
+% \end{figure}
 
-Observe como o produto da soma do preço $P$ e da variável $\beta$ ativa o preço da classe mais barata ($c_3$ com valor de \$7) em $(E_1-E_2)$, e o produto da soma de $(E_1-E_3)$ ativa o preço da classe $c_2$ (com valor de \$8). No final, teríamos que \$7 deve ser menor ou igual a \$8, o que está garantindo que o trecho $(E_1-E_2)$ seja mais barato que o trecho $(E_1-E_3)$.
+% Na Figura \ref{fig:Beta_1}, vemos que, para a classe mais barata $c_6$, $\beta=\gamma=0$. Agora, para o restante das classes, realiza-se um cálculo com base nos valores de $\gamma$. Por exemplo, para a classe $c_1$, o cálculo seria: $\gamma$ de $c_1$ menos $\gamma$ da próxima classe, ou seja, $\gamma$ de $c_2$, o que resulta em $1-1$. Note, além disso, que para a classe $c_4$, fazendo o mesmo cálculo, o resultado é 1, como mostrado na Figura \ref{fig:Beta_2}, e observe que essa classe é a última que possui um valor diferente de zero em $\gamma$.
 
-Note a importância do valor da variável $\beta$, que é responsável por "habilitar apenas os preços" das classes mais baratas disponibilizadas para a venda.
 
-Além do mencionado anteriormente, também deve-se garantir que todas as possíveis combinações dos preços mais baratos dos trechos contidos dentro dos trechos não adjacentes sejam maiores ou iguais ao preço desse trecho não adjacente. Essa situação é controlada pela restrição \ref{eq: m1_preco_combinacao_rotas_contidas}.
+% \begin{figure}[H]
+% 	\begin{center}
+% 		\includegraphics[scale=0.2]{img/fulfill.png}
+% 		\caption{Exemplo para as restrições \ref{eq: m1_preco_estacao_inicio} e \ref{eq: m1_preco_combinacao_rotas_contidas}}
+% 		% Fonte:~\cite{khaksar2013genetic}}
+% 		\label{fig: fulfill}
+% 	\end{center}
+% \end{figure}
 
-Para dar um exemplo, analisemos novamente a figura \ref{fig: fulfill} e identifiquemos os trechos não adjacentes e os trechos que estes contêm. Note que o trecho $(E_1-E_3)$ seria o único trecho não adjacente e contém os trechos $(E_1-E_2)$ e $(E_2-E_3)$. Portanto, precisamos garantir que a soma das classes mais baratas disponibilizadas em $(E_1-E_2)$ e $(E_2-E_3)$ seja maior ou igual à classe mais barata disponibilizada em $(E_1-E_3)$. Em termos numéricos, teríamos que $5+3 \geq 8$. Assim, este exemplo satisfaz nossa restrição.
+% Dentro do problema, é necessário garantir que, para todos os trechos com a mesma estação de origem, os trechos mais curtos disponibilizados para venda sejam mais baratos que os trechos mais longos. Isso é para evitar que passageiros comprem bilhetes para um trecho maior e desembarquem em estações anteriores. Por exemplo, se uma pessoa quer ir da estação $E_1$ para a estação $E_2$, mas percebe que o preço para ir de $E_1$ a $E_3$ é mais barato, então essa pessoa comprará o bilhete de $E_1$ a $E_3$ e desembarcará na estação $E_2$. Essa situação é controlada pela restrição \ref{eq: m1_preco_estacao_inicio}.
 
-As restrições de \ref{eq: m1_ini_assig} e \ref{eq: m1_ini_disponi} são usadas para inicializar a restrição \ref{eq: m1_disponi} quando \(i = 1\). E as restrições de \ref{eq: m1_dom_assig} a \ref{eq: m1_dom_bin_nadja} representam o domínio das variáveis.
+% Vamos ver um exemplo mais claro: na Figura \ref{fig: fulfill}, temos três estações, assumindo um único período e um único tipo de assento, além de três classes para cada trecho ($c_1, c_2, c_3$). Note que $\gamma$ e $\beta$ são as variáveis binárias explicadas anteriormente, e $P$ representa o preço de cada classe de controle. Para este caso, a restrição \ref{eq: m1_preco_estacao_inicio} pode ser aplicada aos trechos $(E_1-E_2)$ e $(E_1-E_3)$.
+
+% Observe como o produto da soma do preço $P$ e da variável $\beta$ ativa o preço da classe mais barata ($c_3$ com valor de \$7) em $(E_1-E_2)$, e o produto da soma de $(E_1-E_3)$ ativa o preço da classe $c_2$ (com valor de \$8). No final, teríamos que \$7 deve ser menor ou igual a \$8, o que está garantindo que o trecho $(E_1-E_2)$ seja mais barato que o trecho $(E_1-E_3)$.
+
+% Note a importância do valor da variável $\beta$, que é responsável por "habilitar apenas os preços" das classes mais baratas disponibilizadas para a venda.
+
+% Além do mencionado anteriormente, também deve-se garantir que todas as possíveis combinações dos preços mais baratos dos trechos contidos dentro dos trechos não adjacentes sejam maiores ou iguais ao preço desse trecho não adjacente. Essa situação é controlada pela restrição \ref{eq: m1_preco_combinacao_rotas_contidas}.
+
+% Para dar um exemplo, analisemos novamente a Figura \ref{fig: fulfill} e identifiquemos os trechos não adjacentes e os trechos que estes contêm. Note que o trecho $(E_1-E_3)$ seria o único trecho não adjacente e contém os trechos $(E_1-E_2)$ e $(E_2-E_3)$. Portanto, precisamos garantir que a soma das classes mais baratas disponibilizadas em $(E_1-E_2)$ e $(E_2-E_3)$ seja maior ou igual à classe mais barata disponibilizada em $(E_1-E_3)$. Em termos numéricos, teríamos que $5+3 \geq 8$. Assim, este exemplo satisfaz nossa restrição.
+
+% As restrições de \ref{eq: m1_ini_assig} e \ref{eq: m1_ini_disponi} são usadas para inicializar a restrição \ref{eq: m1_disponi} quando \(i = 1\). E as restrições de \ref{eq: m1_dom_assig} a \ref{eq: m1_dom_bin_nadja} representam o domínio das variáveis.
 
 
 \section{Segunda abordagem: modelos baseados em demanda comportamental} \label{sec: modelagemComportamental}
+Nesta seção, serão apresentados modelos baseados em demandas comportamentais, os quais buscam capturar o comportamento dos consumidores em contextos de reserva e consumo de serviços. Ao incorporar elementos da teoria comportamental, esses modelos permitem uma melhor compreensão das escolhas dos clientes, levando em consideração fatores psicológicos e contextuais que influenciam suas decisões. Para modelar a demanda comportamental, serão utilizadas listas de preferência, que refletem as preferências individuais dos consumidores em relação a diferentes opções de produtos ou serviços.
 
-Até agora, falamos de uma demanda independente para o modelo, mas agora trabalharemos com uma demanda comportamental. A demanda comportamental está mais próxima da realidade do que a demanda independente. Veja o seguinte exemplo:
-
-Suponhamos para este caso que temos um trecho $(1-2)$ e três classes $(c_1, c_2, c_3)$, onde o preço de $c_1 > c_2 > c_3$, além, cada classe terá uma demanda de 10, 20 e 30, respectivamente.
+Para compreender melhor essa situação, analisa-se o seguinte exemplo: considera-se um trecho $E_1-E_2$, com três classes de controle $(c_1, c_2, c_3)$, onde $c_1 > c_2 > c_3$. Além disso, existe um único período, um único tipo de assento disponível e cada classe terá uma demanda de 10, 20 e 30, respectivamente.
 
 \begin{figure}[H]
 	\centering
@@ -382,31 +648,31 @@ Suponhamos para este caso que temos um trecho $(1-2)$ e três classes $(c_1, c_2
 \end{figure}
 
 
-Para interpretar a demanda independente, podemos dizer (segundo a figura \ref{fig:dem_indepen}) que: existem 10 pessoas dispostas a comprar passagens \textbf{a um preço} de $c_1$, 20 pessoas a comprar \textbf{a um preço} de $c_2$ e 30 pessoas a comprar \textbf{a um preço} de $c_3$. No entanto, se as 10 pessoas dispostas a pagar $c_1$ encontrarem um melhor valor no momento da compra (por exemplo, $c_3$), essas pessoas prefeririam não comprar, mesmo quando encontram um preço mais barato. Situação que, na realidade, não faria sentido.
+Para interpretar a demanda independente, podemos dizer (segundo a Figura \ref{fig:dem_indepen}) que: existem 10 pessoas dispostas a comprar passagens \textbf{a um preço} de $c_1$, 20 pessoas a comprar \textbf{a um preço} de $c_2$ e 30 pessoas a comprar \textbf{a um preço} de $c_3$. No entanto, se as 10 pessoas dispostas a pagar $c_1$ encontrarem um melhor valor no momento da compra (por exemplo, $c_3$), essas pessoas prefeririam não comprar, situação que, na realidade, não faria sentido.
 
-Por outro lado, temos a demanda comportamental, denotada como $d'$, que esta representada com uma lista de preferência, conforme visto na figura \ref{fig:dem_comporta}. Esta lista significa que, por exemplo, 10 pessoas estão dispostas a comprar \textbf{até um preço} com valor $c_1$ (antes de preferir não comprar (NC)), 20 pessoas estão dispostas a comprar \textbf{até um preço} de $c_2$  (antes de preferir não comprar) e 30 pessoas estão dispostas a comprar \textbf{até um preço} de $c_3$  (antes de preferir não comprar).
+Por outro lado, temos a demanda comportamental, denotada como $d'$, que esta representada com uma lista de preferência, conforme visto na Figura \ref{fig:dem_comporta}. Esta lista significa que, por exemplo, 10 pessoas estão dispostas a comprar \textbf{até um preço} com valor $c_1$ (antes de preferir não comprar (NC)), 20 pessoas estão dispostas a comprar \textbf{até um preço} de $c_2$  (antes de preferir não comprar) e 30 pessoas estão dispostas a comprar \textbf{até um preço} de $c_3$  (antes de preferir não comprar).
 
 O funcionamento seria o seguinte: imagine que as 10 pessoas dispostas a comprar até um valor de $c_1$ vão tentar comprar primeiro a um valor mais barato, neste caso $c_3$. Se $c_3$ não estiver disponível, elas procurariam assentos com valor $c_2$. Se $c_2$ também não estiver disponível, subiriam na lista e procurariam passagens com valor de $c_1$. Se estes não estiverem disponíveis, então não comprariam. Note que esse comportamento é o que comumente se usa na realidade.
 
-Agora vejamos como o modelo leria esse novo comportamento. Para isso, calculemos a nova demanda potencial: 
+Agora, analisa-se como o modelo interpretaria esse novo comportamento. Para isso, calcula-se a nova demanda potencial:
 
-para $c_1$, vejamos a lista e notemos quem está disposto a pagar por esse valor.
+Para $c_1$, analisa-se a lista e verifica-se quem está disposto a pagar por esse valor.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.24]{img/dem_compo_c1.png}
-		\caption{Exemplo: Demanda comportamental para a classe $c_1$}
+		\caption{Exemplo: demanda comportamental para a classe $c_1$}
 		% Fonte:~\cite{khaksar2013genetic}}
 		\label{fig: exemplo_dem_c1}
 	\end{center}
 \end{figure}
 
-Segundo a figura \ref{fig: exemplo_dem_c1}, apenas 10 possíveis passageiros estão dispostos a pagar esse valor.
+Segundo a Figura \ref{fig: exemplo_dem_c1}, apenas 10 possíveis passageiros estão dispostos a pagar esse valor.
 
-Agora vamos ver quem está disposto a pagar um valor por um bilhete da classe $c_2$:
+Agora, analisa-se quem está disposto a pagar um valor por um bilhete da classe $c_2$
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.24]{img/dem_compo_c2.png}
-		\caption{Exemplo: Demanda comportamental para a classe $c_2$}
+		\caption{Exemplo: demanda comportamental para a classe $c_2$}
 		% Fonte:~\cite{khaksar2013genetic}}
 		\label{fig: exemplo_dem_c2}
 	\end{center}
@@ -414,46 +680,86 @@ Agora vamos ver quem está disposto a pagar um valor por um bilhete da classe $c
 
 Neste caso, 30 possíveis pessoas estariam dispostas a pagar esse valor. Observe que, de esta nova demanda, 10 pessoas correspondentes à demanda de $c_1$ também estariam dispostas a comprar pelo valor da classe $c_2$.
 
-Por último, para a classe mais barata c3, veja a figura \ref{fig: exemplo_dem_c3}.
+Por último, para a classe mais barata c3, veja a Figura \ref{fig: exemplo_dem_c3}.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.24]{img/dem_compo_c3.png}
-		\caption{Exemplo: Demanda comportamental para a classe $c_3$}
+		\caption{Exemplo: demanda comportamental para a classe $c_3$}
 		% Fonte:~\cite{khaksar2013genetic}}
 		\label{fig: exemplo_dem_c3}
 	\end{center}
 \end{figure}
-Note que, neste caso, 60 pessoas estariam dispostas a pagar um bilhete da classe $c_3$, ou seja, toda a demanda da rota $(1-2)$ compraria pelo valor mais barato se este estivesse disponível.
+Note que, neste caso, 60 pessoas estariam dispostas a pagar um bilhete da classe $c_3$, ou seja, toda a demanda do trecho $(E_1-E_2)$ compraria pelo valor mais barato se este estivesse disponível.
 
-Assim, a demanda potencial comportamental para o modelo seria como se apresenta na figura \ref{fig: exemplo_dem_poten}.
+Assim, a demanda potencial comportamental para o modelo seria como se apresenta na Figura \ref{fig: exemplo_dem_poten}.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.24]{img/dem_compo_poten.png}
-		\caption{Exemplo: Demanda comportamental total Potencial}
-		% Fonte:~\cite{khaksar2013genetic}}
+		\caption{Exemplo: demanda comportamental total potencial}
 		\label{fig: exemplo_dem_poten}
 	\end{center}
 \end{figure}
 No entanto, é importante lembrar que a demanda potencial inicial era de 60 pessoas, mas até este ponto, a demanda poderia ser maior, pois a demanda de cada classe comercial agora é o acúmulo das demandas das classes mais caras. Essa situação precisa ser controlada para não criar uma demanda inexistente; para isso, serão consideradas as seguintes restrições, relacionando neste caso as variáveis de decisão de assentos reservados:
-
 \begin{align}
-    & X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_1}} \leq d'_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_1}} = 10                        \label{eq: dem_asiig_c1} \\
-    & X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_2}} \leq d'_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_2}} = 30                        \label{eq: dem_asiig_c2} \\
-    & X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_3}} \leq d'_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_3}} = 60                      \label{eq: dem_asiig_c3} \\
-    & X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_1}} + X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_2}} \leq d'_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_2}}  = 30           \label{eq: dem_compo_c2} \\
-    & X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_1}} + X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_2}} + X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_3}} \leq d'_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_3}} = 60 \label{eq: dem_compo_c3}                    
+	 & X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_1}} \leq d'_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_1}} = 10                        \label{eq: dem_asiig_c1}                                                                                    \\
+	 & X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_2}} \leq d'_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_2}} = 30                        \label{eq: dem_asiig_c2}                                                                                    \\
+	 & X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_3}} \leq d'_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_3}} = 60                      \label{eq: dem_asiig_c3}                                                                                      \\
+	 & X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_1}} + X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_2}} \leq d'_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_2}}  = 30           \label{eq: dem_compo_c2}                                           \\
+	 & X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_1}} + X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_2}} + X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_3}} \leq d'_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_3}} = 60 \label{eq: dem_compo_c3}
 \end{align}
 
-Observe que as restrições de \ref{eq: dem_asiig_c1} até \ref{eq: dem_asiig_c3} são restrições conhecidas que limitam os valores que as passagens reservadas podem assumir, enquanto as restrições \ref{eq: dem_compo_c2} e \ref{eq: dem_compo_c3} são as que nos ajudarão a controlar para não ultrapassarmos a demanda potencial total inicial. 
+Observe-se que as restrições de \ref{eq: dem_asiig_c1} até \ref{eq: dem_asiig_c3} são restrições conhecidas que limitam os valores que as passagens reservadas podem assumir, enquanto as restrições \ref{eq: dem_compo_c2} e \ref{eq: dem_compo_c3} são as que auxiliarão no controle para que não se ultrapasse a demanda potencial total inicial.
 
 Por exemplo, se $X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_2}}$ assume o valor de 30 (restrição \ref{eq: dem_asiig_c2}), a restrição \ref{eq: dem_compo_c2} garante que $X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_1}}$ seja igual a 0, pois a demanda de 10 pessoas correspondente preferiu comprar ao preço da classe $c_2$. A mesma situação ocorreria se $X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_3}}$ assumisse o valor de 60 (restrição \ref{eq: dem_asiig_c3}), então a restrição \ref{eq: dem_compo_c3} garantiria que a demanda por $X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_1}}$ e $X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_2}}$ fosse igual a zero, já que esses clientes decidiram comprar pelo valor da classe $c_3$. Dessa forma, esse conjunto de restrições funcionaria para cada combinação possível das variáveis descritas.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Agora, para formular o modelo completo utilizando a demanda comportamental baseada em listas ou faixas de preferência, basta modificar apenas as restrições que controlam a demanda no modelo independente e adicionar as restrições generalizadas descritas no modelo comportamental.
 
 \allowdisplaybreaks
 \begin{align}
-	& X_{ijvkt} \leq d'_{ijvkt},  \quad \forall (i,j) \in OD / i < j  ,v \in V, k \in K_v, t\in T                                                                                                 \label{eq: m2_assig_menor_dem}                                                 \\
-	& \sum_{k' \in K_v / k' \leq k}X_{i,j,v,k',t} \leq d'_{ijvkt} \quad \forall (i,j) \in OD, v \in V, k \in K_v / k > 1, t\in T                                                                                    \label{eq: m2_dem_compor_acumulacao_class}                                     
+	 & X_{ijvkt} \leq d'_{ijvkt},  \quad \forall (i,j) \in OD / i < j  ,v \in V, k \in K_v, t\in T                                                                                                 \label{eq: m2_assig_menor_dem}                               \\
+	 & \sum_{k' \in K_v / k' \leq k}X_{i,j,v,k',t} \leq d'_{ijvkt} \quad \forall (i,j) \in OD, v \in V, k \in K_v / k > 1, t\in T                                                                                    \label{eq: m2_dem_compor_acumulacao_class}
 \end{align}
 
 As restrições \ref{eq: m2_assig_menor_dem} e \ref{eq: m2_dem_compor_acumulacao_class} representam a generalização das restrições de \ref{eq: dem_asiig_c1} a \ref{eq: dem_compo_c3}. Apenas adicionando essas duas últimas restrições e eliminando a restrição \ref{eq: m1_assig_menor_dem} do modelo independente, obteríamos, em teoria, um modelo com demanda comportamental. No entanto, essa afirmação não é completamente verdadeira. Embora as novas restrições limitem a demanda do modelo de forma que possam ser utilizadas as listas de preferência, o modelo ainda se comportará como um modelo independente.
@@ -466,11 +772,11 @@ Portanto, não basta apenas adicionar as restrições \ref{eq: m2_assig_menor_de
 
 \allowdisplaybreaks
 \begin{align}
-	& X_{ijvkt} \leq \left( d'_{ijvkt} \right) \left(\frac{d_{ijvkt}}{d'_{i,j,v,k',t}}\right),  \quad \forall (i,j) \in OD, v \in V, k \in K_v/ k < k', k' < max\{K_v\}, t\in T                                     \label{eq: m2_dem_compor_porcentaje_dem}                                       \\
+	 & X_{ijvkt} \leq \left( d'_{ijvkt} \right) \left(\frac{d_{ijvkt}}{d'_{i,j,v,k',t}}\right),  \quad \forall (i,j) \in OD, v \in V, k \in K_v/ k < k', k' < max\{K_v\}, t\in T                                     \label{eq: m2_dem_compor_porcentaje_dem} \\
 	\begin{split}
-		& X_{i,j,v,k',t} \leq d_{i,j,v,k',t} + \left( d'_{i,j,v,k',t} - \sum_{k \in K_v }\frac{d'_{ijvkt} d_{ijvkt}}{d'_{i,j,v,k',t}} \right),  \quad \forall (i,j) \in OD,                                                                                                                         \\
-		& v \in V, k' = max\{K_v\}, t\in T                                                                                                                                                                                                                                                         \\
-	\end{split}                                                                                                                                                                                                      \label{eq: m2_dem_compor_porcentaje_dem_last}                                                                              
+		 & X_{i,j,v,k',t} \leq d_{i,j,v,k',t} + \left( d'_{i,j,v,k',t} - \sum_{k \in K_v }\frac{d'_{ijvkt} d_{ijvkt}}{d'_{i,j,v,k',t}} \right),  \quad \forall (i,j) \in OD, \\
+		 & v \in V, k' = max\{K_v\}, t\in T                                                                                                                                  \\
+	\end{split}                                                                                                                                                                                                      \label{eq: m2_dem_compor_porcentaje_dem_last}
 \end{align}
 
 
@@ -479,19 +785,19 @@ Para essas novas restrições, além da demanda comportamental, também utilizar
 Observe que, ao calcular essas proporções, a demanda comportamental é reduzida, o que resulta em uma "perda de demanda". Esse complemento é então somado à classe mais barata do trecho, tipo de assento e período analisado, conforme ilustrado pela restrição \ref{eq: m2_dem_compor_porcentaje_dem_last}. Dessa forma, incentivamos o modelo a utilizar as classes mais baratas. Vamos analisar um exemplo: assuma que há um trecho com três classes para um tipo de assento e um período, e que essas classes possuem parâmetros de demanda independente $d$, conforme mostrado na Tabela \ref{tab: exemplo_ajuste_demanda}.
 
 \begin{table}[H]
-    \centering
-    \begin{tabular}{lccccc}
-        \toprule
-        & Classes & $d$ & \% & $d'$ & \textbf{\% * $d'$} \\
-        \midrule
-              & $c_1$ & 36 & 34,62\% & 36 & \textbf{12,46} \\
-              & $c_2$ & 58 & 55,77\% & 94 & \textbf{52,42} \\
-              & $c_3$ & 10 & 9,62\% & 104 & \textbf{10 + 29,12} \\
-        \midrule
-              & Total & 104 & & & \\
-        \bottomrule
-    \end{tabular}
-    \caption{Exemplo ajuste da demanda comportamental com proporções}
+	\centering
+	\begin{tabular}{lccccc}
+		\toprule
+		 & Classes & $d$ & \%      & $d'$ & \textbf{\% * $d'$}  \\
+		\midrule
+		 & $c_1$   & 36  & 34,62\% & 36   & \textbf{12,46}      \\
+		 & $c_2$   & 58  & 55,77\% & 94   & \textbf{52,42}      \\
+		 & $c_3$   & 10  & 9,62\%  & 104  & \textbf{10 + 29,12} \\
+		\midrule
+		 & Total   & 104 &         &      &                     \\
+		\bottomrule
+	\end{tabular}
+	\caption{Exemplo ajuste da demanda comportamental com proporções}
 	\label{tab: exemplo_ajuste_demanda}
 \end{table}
 
@@ -525,7 +831,7 @@ Outra abordagem proposta, como alternativa às restrições \ref{eq: m2_dem_comp
 
 \allowdisplaybreaks
 \begin{align}
-	&X_{ijvkt} \leq X_{i,j,v,k+1,t}, \quad   \forall(i,j) \in OD, v \in V, k \in K_v / k \neq max\{K_v\}, t \in T  \label{eq: m2_ajuste_hierarquia}
+	 & X_{ijvkt} \leq X_{i,j,v,k+1,t}, \quad   \forall(i,j) \in OD, v \in V, k \in K_v / k \neq max\{K_v\}, t \in T  \label{eq: m2_ajuste_hierarquia}
 \end{align}
 
 Retomemos novamente o exemplo apresentado na tabela \ref{tab: exemplo_ajuste_demanda}. Se aplicarmos essa nova lógica, o resultado esperado seria que $X_{\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_1}} \leq X_{\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_2}} \leq X_{\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_3}}$. No entanto, como neste ponto (antes de adicionar as restrições que complementam a demanda comportamental) o modelo ainda se comporta como independente — uma situação já explicada anteriormente —, o modelo utilizaria a demanda independente como base para criar a hierarquia descendente. É importante destacar algo crucial: mencionamos que o modelo considera a demanda independente para ajustar a hierarquia. No entanto, ao formular a restrição, utilizamos a variável $X$ e não o parâmetro $d'$. Isso não é uma contradição e foi feito intencionalmente. Na verdade, essa escolha foi realizada para explicar, de forma prática, como o modelo funciona internamente. Dito isso, uma solução para o nosso exemplo seria:
@@ -536,13 +842,13 @@ Retomemos novamente o exemplo apresentado na tabela \ref{tab: exemplo_ajuste_dem
 		\centering
 		\begin{tabular}{lcccc}
 			\toprule
-			\textbf{} & \textbf{Classes} & \textbf{$d$} & \textbf{$d'$} & \textbf{X} \\
+			\textbf{} & \textbf{Classes} & \textbf{$d$} & \textbf{$d'$} & \textbf{X}  \\
 			\midrule
-			& $c_1$ & 36  & 36  & \textbf{34} \\
-			& $c_2$ & 58  & 94  & \textbf{35} \\
-			& $c_3$ & 10  & 104 & \textbf{35} \\
+			          & $c_1$            & 36           & 36            & \textbf{34} \\
+			          & $c_2$            & 58           & 94            & \textbf{35} \\
+			          & $c_3$            & 10           & 104           & \textbf{35} \\
 			\midrule
-			& \textbf{Total} & 104 & & \\
+			          & \textbf{Total}   & 104          &               &             \\
 			\bottomrule
 		\end{tabular}
 		\caption{Exemplo restrição  \ref{eq: m2_ajuste_hierarquia}}
@@ -628,7 +934,7 @@ Esse último enfoque não requer intervenção direta na demanda comportamental 
 
 % Observe que esta formulação é baseada nos modelos de transporte, onde as estações de origem seriam os depósitos e estão restritas por sua capacidade (capacidade do trem), e as estações de destino seriam os destinos e estão restritas, neste caso, pela mesma capacidade do trem e não pela demanda de cada destino.
 
-% Esta formulação garante que sempre será disponibilizada, no máximo, a capacidade do trem tanto para cada saída quanto para cada chegada do trem. Imagine uma solução viável como a mostrada na figura \ref{fig: fig2}.
+% Esta formulação garante que sempre será disponibilizada, no máximo, a capacidade do trem tanto para cada saída quanto para cada chegada do trem. Imagine uma solução viável como a mostrada na Figura \ref{fig: fig2}.
 
 % \begin{figure}[h]
 % 	\begin{center}
@@ -639,7 +945,7 @@ Esse último enfoque não requer intervenção direta na demanda comportamental 
 % 	\end{center}
 % \end{figure}
 
-% Observe que os valores das variáveis são os mesmos que foram mostrados na figura \ref{fig: fig3}. E ainda todas as restrições, tanto por linha quanto por coluna (por origens e por destinos), continuam sendo atendidas.
+% Observe que os valores das variáveis são os mesmos que foram mostrados na Figura \ref{fig: fig3}. E ainda todas as restrições, tanto por linha quanto por coluna (por origens e por destinos), continuam sendo atendidas.
 
 % \begin{table}[h]
 % 	\centering
