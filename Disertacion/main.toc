@@ -20,10 +20,14 @@
 \contentsline {section}{\numberline {3.1}Descrição do problema}{29}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Formulação matemática}{30}{section.3.2}%
 \contentsline {section}{\numberline {3.3}Primeira abordagem: modelo baseado em demanda independente}{33}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Modelo básico}{33}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Modelo fulfillments over periods}{36}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Modelo skip lagging}{39}{subsection.3.3.3}%
-\contentsline {subsection}{\numberline {3.3.4}Modelo completo}{41}{subsection.3.3.4}%
+\contentsline {subsection}{\numberline {3.3.1}Modelo básico independente}{33}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Modelo fulfillments over periods independente}{36}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Modelo skip lagging independente}{39}{subsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.3.4}Modelo completo independente}{41}{subsection.3.3.4}%
 \contentsline {section}{\numberline {3.4}Segunda abordagem: modelos baseados em demanda comportamental}{42}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Conclusões e trabalhos futuro}{49}{chapter.4}%
-\contentsline {chapter}{5\ \hspace {0.234cm} Referências}{51}{chapter.5}%
+\contentsline {subsection}{\numberline {3.4.1}Modelo básico comportamental}{45}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Modelo fulfillments over periods comportamental}{48}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Modelo skip lagging comportamental}{49}{subsection.3.4.3}%
+\contentsline {subsection}{\numberline {3.4.4}Modelo completo comportamental}{50}{subsection.3.4.4}%
+\contentsline {chapter}{\numberline {4}Conclusões e trabalhos futuro}{52}{chapter.4}%
+\contentsline {chapter}{5\ \hspace {0.234cm} Referências}{54}{chapter.5}%

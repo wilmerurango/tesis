@@ -514,7 +514,7 @@ class GeralModelY:
             quicksum(
                 self.P[(i,j,v,k)]
                 *self.X[(i,j,v,k,t)]
-                # *self.montcar[(i,j,v,k,t)]
+                *self.montcar[(i,j,v,k,t)]
                 # *(dd[i,j,v,k,t]/d[i,j,v,demanda.loc[(demanda["Origin"]==i) & (demanda["Destination"]==j) & (demanda["Vagon"]==v) & (demanda["DBD"]==t)]["Class"].to_list()[-1],t])
                 for i,j,v,k,t in self.indexCombiDem),
             sense = GRB.MAXIMIZE
