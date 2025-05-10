@@ -187,9 +187,9 @@ class GeralModelY:
 
         fig.show()
 
-    def non_unimodular_constraint(self):
+    def non_unimodular_constraint(self, model):
         # Leer el modelo LP
-        modelop = read(str(self.path_dem)[:-11] + self.nome + '.lp')  # Asegúrate de que esté en el mismo directorio
+        modelop = read(str(self.path_dem)[:-11] + self.abordagem + '_' + model + '_' + self.nome + '.lp')  # Asegúrate de que esté en el mismo directorio
 
         # Asegurar que el modelop está actualizado
         modelop.update()
@@ -273,17 +273,17 @@ class GeralModelY:
 
         return constraints
 
-    def find_non_unimod_non_deleted(self):
+    def find_non_unimod_non_deleted(self, model:str):
         """
         Compara los sets de nombres de restricciones y devuelve la lista
         de las que fueron eliminadas tras el preprocesamiento.
         """
-        orig_set = self.parse_constraints(str(self.path_dem)[:-11] + self.nome + '.lp')
-        pre_set  = self.parse_constraints(str(self.path_dem)[:-11] + self.nome + '_pre.lp')
+        orig_set = self.parse_constraints(str(self.path_dem)[:-11] + self.abordagem + '_' + model + '_' + self.nome + '.lp')
+        pre_set  = self.parse_constraints(str(self.path_dem)[:-11] + self.abordagem + '_' + model + '_' + self.nome + '_pre.lp')
 
         removed = sorted(orig_set - pre_set)
 
-        non_unimodular = self.non_unimodular_constraint()
+        non_unimodular = self.non_unimodular_constraint(model)
 
         non_unimodular_non_deleted = [i for i in non_unimodular if i not in removed]
 
@@ -788,9 +788,8 @@ class GeralModelY:
 
         self.save_solution(name_model)
 
-        # if self.model.status == GRB.OPTIMAL:
-        #     print(f"Obj = {self.model.ObjVal}")
-        #     self.find_non_unimod_non_deleted()
+        if self.model.status == GRB.OPTIMAL:
+            self.find_non_unimod_non_deleted(name_model)
         # else:
         #     print("Infactivel")
 
