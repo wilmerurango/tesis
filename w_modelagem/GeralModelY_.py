@@ -90,6 +90,10 @@ class GeralModelY:
         # Salvar Valores das Variaveis num df
         self.result_vars = None
 
+        # Variaves quantidade de restricoes no unimodulares
+        self.NamenoUnimodNodelet = None
+
+
     def executed(self, nome_):
         """¿El método `nome` se ha ejecutado al menos una vez?"""
         return self.execut_log.get(nome_, 0) > 0
@@ -286,7 +290,10 @@ class GeralModelY:
         # metricas
         percent_non_unimod_non_del = (len(non_unimodular_non_deleted) / self.model.NumConstrs )* 100
         
-        print('% Non Unimod. Non Del.: ', percent_non_unimod_non_del,'%  (', len(non_unimodular_non_deleted),'-', self.model.NumConstrs,')')
+        print('% Non Unimod. Non Del.: ', round(percent_non_unimod_non_del,2),'%  (', len(non_unimodular_non_deleted),'-', self.model.NumConstrs,')')
+
+        # Variaves quantidade de restricoes no unimodulares
+        self.NamenoUnimodNodelet = non_unimodular_non_deleted
 
     @staticmethod
     def behav_demand(fila, df):
@@ -802,7 +809,7 @@ class GeralModelY:
         create_time = end_time_crea_model - start_time_crea_model
         run_time = self.run_solver('independ_base_model')
 
-        return self.model, create_time, run_time
+        return self.model, create_time, run_time, self.NamenoUnimodNodelet
 
     def independ_fullfilment_model(self):
 
@@ -815,7 +822,7 @@ class GeralModelY:
         create_time = end_time_crea_model - start_time_crea_model
         run_time = self.run_solver('independ_fullfilment_model')
 
-        return self.model, create_time, run_time
+        return self.model, create_time, run_time, self.NamenoUnimodNodelet
 
     def independ_skiplagging_model(self):
 
@@ -828,7 +835,7 @@ class GeralModelY:
         create_time = end_time_crea_model - start_time_crea_model
         run_time = self.run_solver('independ_skiplagging_model')
 
-        return self.model, create_time, run_time
+        return self.model, create_time, run_time, self.NamenoUnimodNodelet
 
     def independ_complete_model(self):
 
@@ -842,7 +849,7 @@ class GeralModelY:
         create_time = end_time_crea_model - start_time_crea_model
         run_time = self.run_solver('independ_complete_model')
 
-        return self.model, create_time, run_time
+        return self.model, create_time, run_time, self.NamenoUnimodNodelet
         
 
 
@@ -858,7 +865,7 @@ class GeralModelY:
         create_time = end_time_crea_model - start_time_crea_model
         run_time = self.run_solver('behavioral_base_model')
 
-        return self.model, create_time, run_time
+        return self.model, create_time, run_time, self.NamenoUnimodNodelet
 
     def behavioral_fullfilment_model(self):
 
@@ -873,7 +880,7 @@ class GeralModelY:
         create_time = end_time_crea_model - start_time_crea_model
         run_time = self.run_solver('behavioral_fullfilment_model')
 
-        return self.model, create_time, run_time
+        return self.model, create_time, run_time, self.NamenoUnimodNodelet
 
     def behavioral_skiplagging_model(self):
 
@@ -888,7 +895,7 @@ class GeralModelY:
         create_time = end_time_crea_model - start_time_crea_model
         run_time = self.run_solver('behavioral_skiplagging_model')
 
-        return self.model, create_time, run_time
+        return self.model, create_time, run_time, self.NamenoUnimodNodelet
 
     def behavioral_complete_model(self):
 
@@ -904,7 +911,7 @@ class GeralModelY:
         create_time = end_time_crea_model - start_time_crea_model
         run_time = self.run_solver('behavioral_complete_model')
 
-        return self.model, create_time, run_time
+        return self.model, create_time, run_time, self.NamenoUnimodNodelet
 
     
 # =================================[-END- EXECUTAR MODELOS]========================================
