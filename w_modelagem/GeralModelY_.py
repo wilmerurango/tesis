@@ -788,8 +788,8 @@ class GeralModelY:
 
         self.save_solution(name_model)
 
-        if self.model.status == GRB.OPTIMAL:
-            self.find_non_unimod_non_deleted(name_model)
+        # if self.model.status == GRB.OPTIMAL:
+        #     self.find_non_unimod_non_deleted(name_model)
         # else:
         #     print("Infactivel")
 

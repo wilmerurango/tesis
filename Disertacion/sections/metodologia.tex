@@ -1,0 +1,162 @@
+\chapter{Metodologia}
+
+\section{Instâncias}
+
+Para verificar as características dos modelos propostos, foram utilizadas 10 instâncias reais fornecidas por uma empresa canadense parceira. As características de cada uma dessas instâncias estão apresentadas na Tabela \ref{tab: instancias}.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{ccccccc}
+		\toprule
+		\textbf{Instância}                                                  &
+		\textbf{\begin{tabular}[c]{@{}c@{}}Nome \\ Trem\end{tabular}}       &
+		\textbf{\begin{tabular}[c]{@{}c@{}}Capacidade \\ Trem\end{tabular}} &
+		\textbf{Data Partida}                                               &
+		\textbf{\# Trechos}                                                 &
+		\textbf{\# Períodos}                                                &
+		\textbf{\# Classes}                                                                                          \\
+		\midrule
+		Inst1                                                               & 68 & 561 & 2023-11-21 & 256 & 120 & 15 \\
+		Inst2                                                               & 13 & 637 & 2023-11-26 & 252 & 146 & 15 \\
+		Inst3                                                               & 71 & 563 & 2023-10-13 & 250 & 105 & 16 \\
+		Inst4                                                               & 71 & 561 & 2023-11-21 & 241 & 124 & 15 \\\midrule
+		Inst5                                                               & 8  & 561 & 2022-12-04 & 152 & 116 & 17 \\
+		Inst6                                                               & 40 & 565 & 2023-11-21 & 149 & 68  & 16 \\
+		Inst7                                                               & 74 & 491 & 2023-07-25 & 136 & 70  & 16 \\\midrule
+		Inst8                                                               & 72 & 493 & 2023-10-25 & 100 & 85  & 16 \\
+		Inst9                                                               & 45 & 563 & 2023-03-16 & 90  & 73  & 16 \\
+		Inst10                                                              & 15 & 493 & 2023-08-07 & 50  & 60  & 12 \\
+		\bottomrule
+	\end{tabular}
+	\caption{Resumo das instâncias utilizadas no experimento}
+	\label{tab: instancias}
+\end{table}
+
+A coluna "\# Trechos" \, representa a quantidade de trechos que a viagem do trem possui em cada instância. A coluna "\# Períodos" \, indica a quantidade de períodos considerados na programação desse trajeto dentro do seu horizonte de reserva. Por fim, a coluna "\# Classes" \, mostra o número máximo de classes disponíveis para cada viagem de cada trem; Observe que, para cada trecho, podem estar disponíveis todas as classes indicadas na coluna correspondente ou uma quantidade menor.
+
+Por outro lado, estabeleceu-se que as instâncias compreendidas entre a instância Inst1 e a instância Inst4 foram classificadas como grandes, as instâncias entre a instância Inst5 e a instância Inst7 como médias, e as demais foram classificadas como pequenas.
+
+\section{Modelos Matemáticos}
+Foram abordados dois enfoques distintos para o desenho dos modelos. O primeiro enfoque, baseado nos tipos de demanda, abrange a demanda independente e a demanda comportamental. O segundo enfoque trata da indexação das passagens autorizadas para venda, sendo classificado em estático e dinâmico. No enfoque estático, a quantidade de assentos a serem autorizados é calculada para todo o horizonte de reserva de uma vez, sem considerar variações temporais. Já no enfoque dinâmico, os assentos autorizados são calculados por períodos dentro do horizonte de reserva, levando em conta a evolução da demanda ao longo do tempo.
+
+Os dois enfoques resultaram em quatro modelos distintos, conforme ilustrado na Figura X. No entanto, os autores desta pesquisa buscaram analisar como a solução de cada modelo variava ao adicionar ou remover os conjuntos de restrições específicos (fulfillment over periods e skip lagging). Para isso, cada modelo foi inicialmente dividido em uma versão básica, à qual foram incorporados, de forma separada, os conjuntos de restrições. Por fim, obteve-se o modelo completo, que inclui todos os conjuntos de restrições. Essa classificação pode ser visualizada na Tabela X.
+
+
+\begin{table}[H]
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{
+  @{} 
+  >{\raggedright\arraybackslash}p{2.5cm} % Tipo de Autorização
+  >{\raggedright\arraybackslash}p{2.5cm} % Tipo de Demanda
+  >{\raggedright\arraybackslash}X        % Modelo
+  >{\raggedright\arraybackslash}X        % Nome do Modelo
+  @{}
+}
+\toprule
+\textbf{Tipo de Autorização} & \textbf{Tipo de Demanda} & \textbf{Modelo}                         & \textbf{Nome do Modelo}                \\
+\midrule
+\multirow{8}{=}{Estática}
+  & \multirow{4}{=}{Independente}
+    & Modelo Básico                            & \texttt{Model\_Basic\_Independ\_Est}      \\
+  & 
+    & Modelo \emph{fulfillments over periods}  & \texttt{Model\_Fulfill\_Independ\_Est}    \\
+  & 
+    & Modelo \emph{skip lagging}               & \texttt{Model\_Skipla\_Independ\_Est}     \\
+  & 
+    & Modelo Completo                          & \texttt{Model\_Comp\_Independ\_Est}       \\
+\cmidrule(lr){2-2}\cmidrule(lr){3-4}
+  & \multirow{4}{=}{Comportamental}
+    & Modelo Básico                            & \texttt{Model\_Basic\_Comporta\_Est}      \\
+  & 
+    & Modelo \emph{fulfillments over periods}  & \texttt{Model\_Fulfill\_Comporta\_Est}    \\
+  & 
+    & Modelo \emph{skip lagging}               & \texttt{Model\_Skipla\_Comporta\_Est}     \\
+  & 
+    & Modelo Completo                          & \texttt{Model\_Comp\_Comporta\_Est}       \\
+\midrule
+\multirow{8}{=}{Dinâmica}
+  & \multirow{4}{=}{Independente}
+    & Modelo Básico                            & \texttt{Model\_Basic\_Independ\_Din}      \\
+  & 
+    & Modelo \emph{fulfillments over periods}  & \texttt{Model\_Fulfill\_Independ\_Din}    \\
+  & 
+    & Modelo \emph{skip lagging}               & \texttt{Model\_Skipla\_Independ\_Din}     \\
+  & 
+    & Modelo Completo                          & \texttt{Model\_Comp\_Independ\_Din}       \\
+\cmidrule(lr){2-2}\cmidrule(lr){3-4}
+  & \multirow{4}{=}{Comportamental}
+    & Modelo Básico                            & \texttt{Model\_Basic\_Comporta\_Din}      \\
+  & 
+    & Modelo \emph{fulfillments over periods}  & \texttt{Model\_Fulfill\_Comporta\_Din}    \\
+  & 
+    & Modelo \emph{skip lagging}               & \texttt{Model\_Skipla\_Comporta\_Din}     \\
+  & 
+    & Modelo Completo                          & \texttt{Model\_Comp\_Comporta\_Din}       \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+
+
+
+
+
+% \begin{table}[H]
+% 	\begin{tabular}{@{}ccll@{}}
+% 		\toprule
+% 		\multicolumn{1}{l}{\textbf{Tipo de Demanda}} & \multicolumn{1}{l}{\textbf{Tipo de autorizacao}} & \textbf{Modelo}                  & \textbf{Nome do Modelo}       \\ \midrule
+% 		\multirow{8}{*}{Independente}                & \multirow{4}{*}{Estática}                        & Modelo Básico                    & Model\_Basic\_Independ\_Est   \\
+% 		                                             &                                                  & Modelo fulfillments over periods & Model\_Fulfill\_Independ\_Est \\
+% 		                                             &                                                  & Modelo skip lagging              & Model\_Skipla\_Independ\_Est  \\
+% 		                                             &                                                  & Modelo Completo                  & Model\_Comp\_Independ\_Est    \\ \cmidrule(l){2-4}
+% 		                                             & \multirow{4}{*}{Dinâmica}                        & Modelo Básico                    & Model\_Basic\_Independ\_Din   \\
+% 		                                             &                                                  & Modeo fulfillments over periods  & Model\_Fulfill\_Independ\_Din \\
+% 		                                             &                                                  & Modelo skip lagging              & Model\_Skipla\_Independ\_Din  \\
+% 		                                             &                                                  & Modelo Completo                  & Model\_Comp\_Independ\_Din    \\ \midrule
+% 		\multirow{8}{*}{Comportamental}              & \multirow{4}{*}{Estática}                        & Modelo Básico                    & Model\_Basic\_Comporta\_Est   \\
+% 		                                             &                                                  & Modelo fulfillments over periods & Model\_Fulfill\_Comporta\_Est \\
+% 		                                             &                                                  & Modelo skip lagging              & Model\_Skipla\_Comporta\_Est  \\
+% 		                                             &                                                  & Modelo Completo                  & Model\_Comp\_Comporta\_Est    \\ \cmidrule(l){2-4}
+% 		                                             & \multirow{4}{*}{Dinâmica}                        & Modelo Básico                    & Model\_Basic\_Comporta\_Din   \\
+% 		                                             &                                                  & Modelo fulfillments over periods & Model\_Fulfill\_Comporta\_Din \\
+% 		                                             &                                                  & Modelo skip lagging              & Model\_Skipla\_Comporta\_Din  \\
+% 		                                             &                                                  & Modelo Completo                  & Model\_Comp\_Comporta\_Din    \\ \bottomrule
+% 	\end{tabular}
+% \end{table}
+
+
+
+% Embora três modelos matemáticos tenham sido propostos — a formulação independente e as formulações comportamentais —, ao resolver as instâncias decidiu-se inicialmente testar os modelos sem as restrições de fulfillment nem as restrições de skiplagging. Em seguida, cada modelo foi testado separadamente com cada grupo de restrições. Por fim, ambos os modelos foram avaliados considerando os dois conjuntos de restrições simultaneamente. Essa abordagem foi adotada para observar como a solução evoluía ou se comportava ao incluir cada tipo de restrição no modelo. Dito isso, a seguir são apresentados os modelos com suas respectivas descrições.
+\vspace{0.5cm}
+
+% \begin{small}
+% 	\begin{longtable}{p{5.4cm} p{10.4cm}}
+% 		\hline
+% 		\textbf{Tipo de Modelo}            & \textbf{Descrição}                                                                                                                       \\ \hline
+% 		BaseModel                          & Modelo base independente sem as restrições de Fulfillments nem as restrições de Skiplagging.                                             \\ \hline
+% 		BaseModelFulfillments              & Modelo base independente com as restrições de Fulfillments.                                                                              \\ \hline
+% 		BaseModelSkiplagging               & Modelo base independente com as restrições de Skiplagging.                                                                               \\ \hline
+% 		BaseModelFull                      & Modelo independente completo com os dois conjuntos de restrições.                                                                        \\ \hline
+% 		HierarBehavioralModel              & Modelo base comportamental com ajuste de demanda do tipo hierarquia, sem as restrições de Fulfillments nem as restrições de Skiplagging. \\ \hline
+% 		HierarBehavioralModelFulfillments  & Modelo base comportamental com ajuste de demanda do tipo hierarquia, com as restrições de Fulfillments.                                  \\ \hline
+% 		HierarBehavioralModelSkiplagging   & Modelo base comportamental com ajuste de demanda do tipo hierarquia, com as restrições de Skiplagging.                                   \\ \hline
+% 		HierarBehavioralModelFull          & Modelo comportamental completo com ajuste de demanda do tipo hierarquia, com os dois conjuntos de restrições.                            \\ \hline
+% 		PercentBehavioralModel             & Modelo base comportamental com ajuste de demanda do tipo proporção, sem as restrições de Fulfillments nem as restrições de Skiplagging.  \\ \hline
+% 		PercentBehavioralModelFulfillments & Modelo base comportamental com ajuste de demanda do tipo proporção, com as restrições de Fulfillments.                                   \\ \hline
+% 		PercentBehavioralModelSkiplagging  & Modelo base comportamental com ajuste de demanda do tipo proporção, com as restrições de Skiplagging.                                    \\ \hline
+% 		PercentBehavioralModelFull         & Modelo comportamental completo com ajuste de demanda do tipo proporção, com os dois conjuntos de restrições.                             \\ \hline
+% 		\caption{Descrição dos modelos matemáticos propostos}
+% 		\label{tab:modelos}
+% 	\end{longtable}
+% \end{small}
+
+
+\section{Ferramentas e ambiente computacional}
+O experimento foi conduzido em um computador ASUS, com sistema operacional Windows 11 Pro de 64 bits. O equipamento conta com um processador Intel(R) Core(TM) i9-13900KF (32 CPUs) de 13ª geração, com frequência de ~3.0 GHz e arquitetura x64, 128 GB de memória RAM e tarjeta grafica  NVIDIA GeForce RTX 4070 Ti de 16GB de ram.
+
+Para o desenvolvimento e execução do experimento, foi utilizada a linguagem de programação Python na versão 3.12.7, juntamente com o solver Gurobi, versão 12.0.2.
+
+

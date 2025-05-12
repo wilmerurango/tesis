@@ -2,67 +2,67 @@
 
 \chapter{Resultados Computacionais}
 
-\section{Modelos Matemáticos}
-Embora três modelos matemáticos tenham sido propostos — a formulação independente e as formulações comportamentais —, ao resolver as instâncias decidiu-se inicialmente testar os modelos sem as restrições de fulfillment nem as restrições de skiplagging. Em seguida, cada modelo foi testado separadamente com cada grupo de restrições. Por fim, ambos os modelos foram avaliados considerando os dois conjuntos de restrições simultaneamente. Essa abordagem foi adotada para observar como a solução evoluía ou se comportava ao incluir cada tipo de restrição no modelo. Dito isso, a seguir são apresentados os modelos com suas respectivas descrições.
-\vspace{0.5cm}
+% \section{Modelos Matemáticos}
+% Embora três modelos matemáticos tenham sido propostos — a formulação independente e as formulações comportamentais —, ao resolver as instâncias decidiu-se inicialmente testar os modelos sem as restrições de fulfillment nem as restrições de skiplagging. Em seguida, cada modelo foi testado separadamente com cada grupo de restrições. Por fim, ambos os modelos foram avaliados considerando os dois conjuntos de restrições simultaneamente. Essa abordagem foi adotada para observar como a solução evoluía ou se comportava ao incluir cada tipo de restrição no modelo. Dito isso, a seguir são apresentados os modelos com suas respectivas descrições.
+% \vspace{0.5cm}
 
-\begin{small}
-	\begin{longtable}{p{5.4cm} p{10.4cm}}
-		\hline
-		\textbf{Tipo de Modelo}            & \textbf{Descrição}                                                                                                                       \\ \hline
-		BaseModel                          & Modelo base independente sem as restrições de Fulfillments nem as restrições de Skiplagging.                                             \\ \hline
-		BaseModelFulfillments              & Modelo base independente com as restrições de Fulfillments.                                                                              \\ \hline
-		BaseModelSkiplagging               & Modelo base independente com as restrições de Skiplagging.                                                                               \\ \hline
-		BaseModelFull                      & Modelo independente completo com os dois conjuntos de restrições.                                                                        \\ \hline
-		HierarBehavioralModel              & Modelo base comportamental com ajuste de demanda do tipo hierarquia, sem as restrições de Fulfillments nem as restrições de Skiplagging. \\ \hline
-		HierarBehavioralModelFulfillments  & Modelo base comportamental com ajuste de demanda do tipo hierarquia, com as restrições de Fulfillments.                                  \\ \hline
-		HierarBehavioralModelSkiplagging   & Modelo base comportamental com ajuste de demanda do tipo hierarquia, com as restrições de Skiplagging.                                   \\ \hline
-		HierarBehavioralModelFull          & Modelo comportamental completo com ajuste de demanda do tipo hierarquia, com os dois conjuntos de restrições.                            \\ \hline
-		PercentBehavioralModel             & Modelo base comportamental com ajuste de demanda do tipo proporção, sem as restrições de Fulfillments nem as restrições de Skiplagging.  \\ \hline
-		PercentBehavioralModelFulfillments & Modelo base comportamental com ajuste de demanda do tipo proporção, com as restrições de Fulfillments.                                   \\ \hline
-		PercentBehavioralModelSkiplagging  & Modelo base comportamental com ajuste de demanda do tipo proporção, com as restrições de Skiplagging.                                    \\ \hline
-		PercentBehavioralModelFull         & Modelo comportamental completo com ajuste de demanda do tipo proporção, com os dois conjuntos de restrições.                             \\ \hline
-		\caption{Descrição dos modelos matemáticos propostos}
-		\label{tab:modelos}
-	\end{longtable}
-\end{small}
+% \begin{small}
+% 	\begin{longtable}{p{5.4cm} p{10.4cm}}
+% 		\hline
+% 		\textbf{Tipo de Modelo}            & \textbf{Descrição}                                                                                                                       \\ \hline
+% 		BaseModel                          & Modelo base independente sem as restrições de Fulfillments nem as restrições de Skiplagging.                                             \\ \hline
+% 		BaseModelFulfillments              & Modelo base independente com as restrições de Fulfillments.                                                                              \\ \hline
+% 		BaseModelSkiplagging               & Modelo base independente com as restrições de Skiplagging.                                                                               \\ \hline
+% 		BaseModelFull                      & Modelo independente completo com os dois conjuntos de restrições.                                                                        \\ \hline
+% 		HierarBehavioralModel              & Modelo base comportamental com ajuste de demanda do tipo hierarquia, sem as restrições de Fulfillments nem as restrições de Skiplagging. \\ \hline
+% 		HierarBehavioralModelFulfillments  & Modelo base comportamental com ajuste de demanda do tipo hierarquia, com as restrições de Fulfillments.                                  \\ \hline
+% 		HierarBehavioralModelSkiplagging   & Modelo base comportamental com ajuste de demanda do tipo hierarquia, com as restrições de Skiplagging.                                   \\ \hline
+% 		HierarBehavioralModelFull          & Modelo comportamental completo com ajuste de demanda do tipo hierarquia, com os dois conjuntos de restrições.                            \\ \hline
+% 		PercentBehavioralModel             & Modelo base comportamental com ajuste de demanda do tipo proporção, sem as restrições de Fulfillments nem as restrições de Skiplagging.  \\ \hline
+% 		PercentBehavioralModelFulfillments & Modelo base comportamental com ajuste de demanda do tipo proporção, com as restrições de Fulfillments.                                   \\ \hline
+% 		PercentBehavioralModelSkiplagging  & Modelo base comportamental com ajuste de demanda do tipo proporção, com as restrições de Skiplagging.                                    \\ \hline
+% 		PercentBehavioralModelFull         & Modelo comportamental completo com ajuste de demanda do tipo proporção, com os dois conjuntos de restrições.                             \\ \hline
+% 		\caption{Descrição dos modelos matemáticos propostos}
+% 		\label{tab:modelos}
+% 	\end{longtable}
+% \end{small}
 
 
-\section{Instâncias}
+% \section{Instâncias}
 
-Para verificar as características dos modelos propostos, foram utilizadas 10 instâncias reais fornecidas pela empresa canadense Expetrio. As características de cada uma dessas instâncias estão apresentadas na Tabela \ref{tab:instancias}.
+% Para verificar as características dos modelos propostos, foram utilizadas 10 instâncias reais fornecidas pela empresa canadense Expetrio. As características de cada uma dessas instâncias estão apresentadas na Tabela \ref{tab:instancias}.
 
-\begin{table}[H]
-	\centering
-	\begin{tabular}{ccccccc}
-		\toprule
-		\textbf{Instância}                                                  &
-		\textbf{\begin{tabular}[c]{@{}c@{}}Nome \\ Trem\end{tabular}}       &
-		\textbf{\begin{tabular}[c]{@{}c@{}}Capacidade \\ Trem\end{tabular}} &
-		\textbf{Data Partida}                                               &
-		\textbf{\# Trechos}                                                 &
-		\textbf{\# Períodos}                                                &
-		\textbf{\# Classes}                                                                                          \\
-		\midrule
-		Instância1                                                          & 68 & 561 & 2023-11-21 & 256 & 120 & 15 \\
-		Instância2                                                          & 13 & 637 & 2023-11-26 & 252 & 146 & 15 \\
-		Instância3                                                          & 71 & 563 & 2023-10-13 & 250 & 105 & 16 \\
-		Instância4                                                          & 71 & 561 & 2023-11-21 & 241 & 124 & 15 \\\midrule
-		Instância5                                                          & 8  & 561 & 2022-12-04 & 152 & 116 & 17 \\
-		Instância6                                                          & 40 & 565 & 2023-11-21 & 149 & 68  & 16 \\
-		Instância7                                                          & 74 & 491 & 2023-07-25 & 136 & 70  & 16 \\\midrule
-		Instância8                                                          & 72 & 493 & 2023-10-25 & 100 & 85  & 16 \\
-		Instância9                                                          & 45 & 563 & 2023-03-16 & 90  & 73  & 16 \\
-		Instância10                                                         & 15 & 493 & 2023-08-07 & 50  & 60  & 12 \\
-		\bottomrule
-	\end{tabular}
-	\caption{Resumo das instâncias utilizadas no experimento}
-	\label{tab:instancias}
-\end{table}
+% \begin{table}[H]
+% 	\centering
+% 	\begin{tabular}{ccccccc}
+% 		\toprule
+% 		\textbf{Instância}                                                  &
+% 		\textbf{\begin{tabular}[c]{@{}c@{}}Nome \\ Trem\end{tabular}}       &
+% 		\textbf{\begin{tabular}[c]{@{}c@{}}Capacidade \\ Trem\end{tabular}} &
+% 		\textbf{Data Partida}                                               &
+% 		\textbf{\# Trechos}                                                 &
+% 		\textbf{\# Períodos}                                                &
+% 		\textbf{\# Classes}                                                                                          \\
+% 		\midrule
+% 		Inst1                                                          & 68 & 561 & 2023-11-21 & 256 & 120 & 15 \\
+% 		Inst2                                                          & 13 & 637 & 2023-11-26 & 252 & 146 & 15 \\
+% 		Inst3                                                          & 71 & 563 & 2023-10-13 & 250 & 105 & 16 \\
+% 		Inst4                                                          & 71 & 561 & 2023-11-21 & 241 & 124 & 15 \\\midrule
+% 		Inst5                                                          & 8  & 561 & 2022-12-04 & 152 & 116 & 17 \\
+% 		Inst6                                                          & 40 & 565 & 2023-11-21 & 149 & 68  & 16 \\
+% 		Inst7                                                          & 74 & 491 & 2023-07-25 & 136 & 70  & 16 \\\midrule
+% 		Inst8                                                          & 72 & 493 & 2023-10-25 & 100 & 85  & 16 \\
+% 		Inst9                                                          & 45 & 563 & 2023-03-16 & 90  & 73  & 16 \\
+% 		Inst10                                                         & 15 & 493 & 2023-08-07 & 50  & 60  & 12 \\
+% 		\bottomrule
+% 	\end{tabular}
+% 	\caption{Resumo das instâncias utilizadas no experimento}
+% 	\label{tab:instancias}
+% \end{table}
 
-A coluna "\# Trechos" \, representa a quantidade de trechos que a viagem do trem possui em cada instância. A coluna "\# Períodos" \, indica a quantidade de períodos considerados na programação desse trajeto dentro do seu horizonte de reserva. Por fim, a coluna "\# Classes" \, mostra o número máximo de classes disponíveis para cada viagem de cada trem; Observe que, para cada trecho, podem estar disponíveis todas as classes indicadas na coluna correspondente ou uma quantidade menor.
+% A coluna "\# Trechos" \, representa a quantidade de trechos que a viagem do trem possui em cada instância. A coluna "\# Períodos" \, indica a quantidade de períodos considerados na programação desse trajeto dentro do seu horizonte de reserva. Por fim, a coluna "\# Classes" \, mostra o número máximo de classes disponíveis para cada viagem de cada trem; Observe que, para cada trecho, podem estar disponíveis todas as classes indicadas na coluna correspondente ou uma quantidade menor.
 
-Por outro lado, afirmamos que as instâncias compreendidas entre a Instância1 e a Instância4 são classificadas como grandes, as instâncias entre a Instância5 e a Instância7 como médias, e as demais como pequenas.
+% Por outro lado, afirmamos que as instâncias compreendidas entre a Instância1 e a Instância4 são classificadas como grandes, as instâncias entre a Instância5 e a Instância7 como médias, e as demais como pequenas.
 
 \section{Experimentos Computacionais}
 Para resolver as instâncias utilizando os modelos matemáticos propostos, foi empregado um computador da marca Dell, modelo Precision 3660, equipado com o sistema operacional Windows 11 Pro de 64 bits, processador 13th Gen Intel(R) Core(TM) i7-13700 2.10 GHz baseado em arquitetura x64, e memória RAM de 16GB. Além disso, utilizou-se o Python como linguagem de programação na versão 3.10.14, e o solver Gurobi na versão 11.0.3.

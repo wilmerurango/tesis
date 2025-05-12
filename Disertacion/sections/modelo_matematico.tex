@@ -57,7 +57,7 @@ Com base no exposto, é possível definir os seguintes parâmetros e variáveis 
 
 
 
-Assim, a função objetivo será maximizar o lucro para cada possível reserva em cada trecho $i,j$, matematicamente seria:
+Assim, a função objetivo será maximizar o lucro para cada possível reserva em cada trecho $(i,j)$, matematicamente seria:
 
 $FO: max \quad x_{12}P_{12} + x_{13}P_{13} + x_{14}P_{14} + x_{23}P_{23} + x_{24}P_{24} + x_{34}P_{34}$
 
@@ -89,9 +89,9 @@ Agora, para a estação 2, teríamos \(A_2 = 100 - 30 + 10 = 70 + 10 = 80\). Já
 % Cada relação possível entre uma estação e outra será denominada origem-destino ou trecho. Será dito que uma origem-destino é adjacente se, e somente se, não houver estações intermediárias entre elas; caso contrário, serão não adjacentes. Por exemplo, na Figura \ref{fig: fig1}, os trechos adjacentes seriam: $(E_1-E_2)$, $(E_2-E_3)$, $(E_3-E_4)$, e os trechos não adjacentes seriam: $(E_1-E_3)$, $(E_1-E_4)$ e $(E_2-E_4)$. Além disso, observe que os trechos não adjacentes podem conter outros trechos, tanto adjacentes quanto não adjacentes. Por exemplo, o trecho $(E_1-E_4)$ da Figura \ref{fig: fig1} contém os trechos adjacentes $(E_1-E_2)$, $(E_2-E_3)$, e contém os trechos não adjacentes $(E_1-E_3)$ e $(E_2-E_4)$. Vejamos o modelo completo:
 
 
-Nas seções seguintes, para cada abordagem, serão apresentados os modelos completos, iniciando por um modelo base. Em seguida, a esse modelo base serão adicionados, de forma separada, tanto os conjuntos de restrições do tipo Skip Lagging quanto os conjuntos de restrições do tipo Fulfillment. Por fim, também será apresentado o modelo completo, no qual todos os conjuntos de restrições são incorporados simultaneamente.
+Nas seções seguintes, para cada abordagem, serão apresentados os modelos propostos, iniciando por um modelo base, em seguida, a esse modelo base serão adicionados, de forma separada, tanto os conjuntos de restrições do tipo Fulfillment over periods quanto os conjuntos de restrições do tipo Skip Lagging. Por fim, também será apresentado o modelo completo, no qual todos os conjuntos de restrições são incorporados simultaneamente.
 
-\section{Primeira abordagem: modelo baseado em demanda independente}\label{sec:modelo1}
+\section{Primeira abordagem: modelo baseado em demanda independente e autorizações estáticas}
 
 Nos modelos desta seção, considera-se uma demanda independente, ou seja, assume-se que cada cliente realiza sua decisão de compra de forma isolada em relação à oferta disponível no momento da aquisição. Em termos práticos, isso implica que, se um passageiro estiver disposto a pagar, por exemplo, R\$10 por um determinado assento, ele efetuará a compra apenas se encontrar esse valor específico, mesmo que existam tarifas mais baixas disponíveis. Caso não encontre o preço correspondente à sua disposição de pagamento, optará por não realizar a compra.
 
@@ -114,7 +114,7 @@ Então, para esta proposta considere os seguintes conjuntos:
 	      % \item[$S:$] Representa cada subconjunto dentro de $CR_{(o,d)}$. \\
 	\item[$V:$] Conjunto de tipos de assento do trem. \\
 	\item[$T:$] Conjunto de períodos. \\
-	\item[$K_v:$] É o conjunto de classes de controle para cada tipo de assento $v$. Onde os índices de cada $K_v$ estão em ordem decrescente, enquanto seus valores são crescentes.
+	\item[$K_v:$] Conjunto das classes de controle para cada tipo de assento $v$. Onde os índices de cada $K_v$ estão em ordem decrescente, enquanto seus valores são crescentes.
 \end{description}
 
 Considere os seguintes parâmetros:
@@ -124,7 +124,7 @@ Considere os seguintes parâmetros:
 	% \item[$n:$] Quantidade de estações.\\
 	\item[$Q_v:$] Capacidade física do trem para cada tipo de assento $v$, onde $v \in V$. \\
 	\item[$P_{ijvk}:$] Preços  das passagens no trecho $(i,j)$, tipo de assento $v$ e classe de controle $k$, onde $(i,j) \in OD,v \in V, k \in K_v$.  \\
-	\item[$d_{ijvkt}:$] Demanda independente no trecho $(i,j)$, tipo de assento $v$ e classe de controle $k$, onde $(i,j) \in OD,v \in V, k \in K_v, t \in T$.
+	\item[$d_{ijvkt}:$] Demanda independente no trecho $(i,j)$, tipo de assento $v$, classe de controle $k$ e periodo $t$, onde $(i,j) \in OD,v \in V, k \in K_v, t \in T$.
 	      % \item[$d'_{ijvkt}:$] Demanda comportamental no trecho $(i,j)$, tipo de assento $v$ e classe de controle $k$, onde $(i,j) \in OD,v \in V, k \in K_v, t \in T$.
 \end{description}
 
@@ -133,7 +133,7 @@ Considere as seguintes variáveis de decisão:
 	\setlength{\itemsep}{-2.2em} % Ajusta el interlineado entre ítems
 	\setlength{\parskip}{0em} % Espaciado entre párrafos
 	\item[$X_{ijvkt}:$] Quantidade de passagens reservadas no trecho $(i,j)$, tipo de assento $v$ e com classe de controle $k$ no período $t$, onde $(i,j) \in OD, v \in V, k \in K_v, t \in T$.  \\
-	\item[$Y_{ijvk}:$] Quantidade de passagens autorizadas no trecho $(i,j)$, tipo de assento $v$ e com classe de controle $k$, onde $(i,j) \in OD, v \in V, k \in K_v$.
+	\item[$Y_{ijvk}:$] Quantidade de passagens autorizadas em todo o horizonte de reserva, no trecho $(i,j)$, tipo de assento $v$ e com classe de controle $k$, onde $(i,j) \in OD, v \in V, k \in K_v$.
 	      % \item[$\gamma_{ijvkt}:$] É uma variável binaria que toma o valor de 1 quando $Y_{ijvkt} \neq 0$ e toma  valor de 0 caso contrario, onde $(i,j) \in OD, v \in V, k \in K_v, t \in T$. \\
 	      % \item[$\beta_{ijvkt}:$] É uma variável binaria que toma o valor de 1 quando a classe $k$ é a classe mais barata que foi autorizada para venda, no trecho $(i,j)$, tipo de assento $v$ e período $t$; e toma  valor de 0 caso contrario, onde $(i,j) \in OD, v \in V, k \in K_v, t \in T$.  \\
 	      % \item[$\alpha_{ijvkt}:$] É uma variável binaria que toma o valor de 1 quando $X_{ijvkt} \neq 0$ e toma  valor de 0 caso contrario, onde $(i,j) \in OD, v \in V, k \in K_v, t \in T$.
@@ -221,7 +221,7 @@ A restrição \eqref{eq: m1_assig_menor_dem} assegura que, para cada trecho, cla
 
 As restrições \eqref{eq: m1_ini_disponi} e \eqref{eq: m1_ini_assig} são usadas para inicializar a restrição \eqref{eq: m1_disponi} quando \(i = 1\). E as restrições de \eqref{eq: m1_dom_assig} a \eqref{eq: m1_dom_disponi} representam o domínio das variáveis.
 
-Assim, o \textbf{modelo básico} seria o seguinte:
+Assim, o modelo \textbf{ \texttt{Model\_Basic\_Independ\_Est}} seria o seguinte:
 \allowdisplaybreaks
 \begin{align}
 	& Max \quad Z = \sum_{(i,j)\in OD} \sum_{v\in V} \sum_{k\in K_v} \sum_{t\in T} P_{ijvk} X_{ijvkt}     \tag{\ref{eq: m1_fo}}   \\
@@ -279,7 +279,7 @@ Uma condição importante estabelece que uma classe pode ser reservada desde que
 \end{equation}
 Outra condição especial deste problema está relacionada à disponibilização dos preços dos bilhetes ao longo do tempo. Esses preços devem seguir uma lógica contínua, sem oscilações. Em outras palavras, os preços dos bilhetes devem sempre aumentar conforme a data de partida do trem se aproxima. A restrição \eqref{eq: m1_fulfill_periodo} é responsável por garantir que essa condição seja atendida.
 
-Assim, o \textbf{modelo fulfillments over periods} seria o seguinte:
+Assim, o modelo \textbf{ \texttt{Model\_Fulfill\_Independ\_Est}} seria o seguinte:
 \allowdisplaybreaks
 \begin{align}
 	& Max \quad Z = \sum_{(i,j)\in OD} \sum_{v\in V} \sum_{k\in K_v} \sum_{t\in T} P_{ijvk} X_{ijvkt}     \tag{\ref{eq: m1_fo}}   \\
@@ -323,7 +323,7 @@ Conjuntos:
 \end{description}
 \textbf{Restrições:}\\
 Este modelo também usa as restrições \eqref{eq: m1_binaria_alpha}, \eqref{eq: m1_binaria_Beta} e
-\eqref{eq: m1_binaria_Beta_last}
+\eqref{eq: m1_binaria_Beta_last} pertencente ao modelo de fulfillments over periods da seção anterior.
 \begin{equation}
 	\sum_{k \in K_v}\beta_{ijvkt}P_{ijvk} \leq \sum_{k \in K_v}\beta_{i,j',v,k,t}P_{ijvk}, \quad \forall i \in O, j \in D, j' \in D / j' > j, v \in V, t \in T    \label{eq: m1_preco_estacao_inicio}
 \end{equation}
@@ -336,7 +336,7 @@ Dentro do problema, é necessário garantir que, para todos os trechos com a mes
 \end{equation}
 Além, deve-se garantir que todas as possíveis combinações dos preços mais baratos dos trechos contidos dentro dos trechos não adjacentes sejam maiores ou iguais ao preço desse trecho não adjacente. Em outras palabras, deve-se evitar que os passageiros comprem bilhetes para trechos intermediários com o objetivo de alcançar seu destino final. Essa situação é controlada pela restrição \eqref{eq: m1_preco_combinacao_rotas_contidas}.
 
-Assim, o \textbf{modelo skip lagging} seria o seguinte:
+Assim, o modelo \textbf{ \texttt{Model\_Skipla\_Independ\_Est}} seria o seguinte:
 \allowdisplaybreaks
 \begin{align}
 	& Max \quad Z = \sum_{(i,j)\in OD} \sum_{v\in V} \sum_{k\in K_v} \sum_{t\in T} P_{ijvk} X_{ijvkt}     \tag{\ref{eq: m1_fo}}   \\
@@ -365,7 +365,7 @@ Assim, o \textbf{modelo skip lagging} seria o seguinte:
 
 \subsection{Modelo completo independente}
 Nesta seção, integra-se o modelo base com os dois conjuntos de restrições: as de skip lagging e as de fulfillment over periods.
-assim, o \textbf{modelo completo} é o seguinte:
+Assim, o modelo \textbf{ \texttt{Model\_Comp\_Independ\_Est}} é o seguinte:
 \allowdisplaybreaks
 \begin{align}
 	& Max \quad Z = \sum_{(i,j)\in OD} \sum_{v\in V} \sum_{k\in K_v} \sum_{t\in T} P_{ijvk} X_{ijvkt}     \tag{\ref{eq: m1_fo}}   \\
@@ -395,7 +395,7 @@ assim, o \textbf{modelo completo} é o seguinte:
 \end{align}
 
 
-\section{Segunda abordagem: modelos baseados em demanda comportamental} \label{sec: modelagemComportamental}
+\section{Segunda abordagem: modelos baseados em demanda comportamental  e autorizações estáticas} \label{sec: modelagemComportamental}
 Nesta seção, serão apresentados modelos baseados em demandas comportamentais, os quais buscam capturar o comportamento dos consumidores em contextos de reserva e consumo de serviços. Ao incorporar elementos da teoria comportamental, esses modelos permitem uma melhor compreensão das escolhas dos clientes, levando em consideração fatores psicológicos e contextuais que influenciam suas decisões. Para modelar a demanda comportamental, serão utilizadas listas de preferência, que refletem as preferências individuais dos consumidores em relação a diferentes opções de produtos ou serviços.
 
 Para compreender melhor essa situação, analisa-se o seguinte exemplo: considera-se um trecho $E_1-E_2$, com três classes de controle $(c_1, c_2, c_3)$, onde $c_1 > c_2 > c_3$. Além disso, existe um único período, um único tipo de assento disponível e cada classe terá uma demanda de 10, 20 e 30, respectivamente.
@@ -449,7 +449,7 @@ Agora, analisa-se quem está disposto a pagar um valor por um bilhete da classe 
 
 Neste caso, 30 possíveis pessoas estariam dispostas a pagar esse valor. Observe que, de esta nova demanda, 10 pessoas correspondentes à demanda de $c_1$ também estariam dispostas a comprar pelo valor da classe $c_2$.
 
-Por último, para a classe mais barata c3, veja a Figura \ref{fig: exemplo_dem_c3}.
+Por último, para a classe mais barata $c_3$, veja a Figura \ref{fig: exemplo_dem_c3}.
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.24]{img/dem_compo_c3.png}
@@ -477,9 +477,9 @@ No entanto, é importante lembrar que a demanda potencial inicial era de 60 pess
 	 & X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_1}} + X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_2}} + X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_3}} \leq d'_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_3}} = 60 \label{eq: dem_compo_c3}
 \end{align}
 
-Observe-se que as restrições de \ref{eq: dem_asiig_c1} até \ref{eq: dem_asiig_c3} são restrições conhecidas que limitam os valores que as passagens reservadas podem assumir, enquanto as restrições \ref{eq: dem_compo_c2} e \ref{eq: dem_compo_c3} são as que auxiliarão no controle para que não se ultrapasse a demanda potencial total inicial.
+Observe-se que as restrições de \eqref{eq: dem_asiig_c1} até \eqref{eq: dem_asiig_c3} são restrições conhecidas que limitam os valores que as passagens reservadas podem assumir, enquanto as restrições \eqref{eq: dem_compo_c2} e \eqref{eq: dem_compo_c3} são as que auxiliarão no controle para que não se ultrapasse a demanda potencial total inicial.
 
-Por exemplo, se $X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_2}}$ assume o valor de 30 (restrição \ref{eq: dem_asiig_c2}), a restrição \ref{eq: dem_compo_c2} garante que $X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_1}}$ seja igual a 0, pois a demanda de 10 pessoas correspondente preferiu comprar ao preço da classe $c_2$. A mesma situação ocorreria se $X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_3}}$ assumisse o valor de 60 (restrição \ref{eq: dem_asiig_c3}), então a restrição \ref{eq: dem_compo_c3} garantiria que a demanda por $X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_1}}$ e $X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_2}}$ fosse igual a zero, já que esses clientes decidiram comprar pelo valor da classe $c_3$. Dessa forma, esse conjunto de restrições funcionaria para cada combinação possível das variáveis descritas.
+Por exemplo, se $X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_2}}$ assume o valor de 30 (na restrição \ref{eq: dem_asiig_c2}), a restrição \eqref{eq: dem_compo_c2} garantiria que $X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_1}}$ seja igual a 0, pois a demanda de 10 pessoas correspondente preferiu comprar ao preço da classe $c_2$. A mesma situação ocorreria se $X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_3}}$ assumisse o valor de 60 (na restrição \ref{eq: dem_asiig_c3}), então a restrição \eqref{eq: dem_compo_c3} garantiria que a demanda por $X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_1}}$ e $X_{12\textcolor[rgb]{0.0588, 0.5412, 0.4275}{c_2}}$ fosse igual a zero, já que esses clientes decidiram comprar pelo valor da classe $c_3$. Dessa forma, esse conjunto de restrições funcionaria para cada combinação possível das variáveis descritas.
 
 Os modelos desta seção possuem grande semelhança com os modelos do abordaje com demanda independente, razão pela qual serão adotadas as mesmas definições de conjuntos, variáveis de decisão e parâmetros. Serão feitas as devidas anotações sempre que houver algum cambio ou ajuste necessário.
 
@@ -531,10 +531,10 @@ Portanto, é necessário, de alguma forma, informar ao modelo que ele deve consi
 \end{gather}
 Dessa forma, as restrições  \eqref{eq: ajuste1},  \eqref{eq: ajuste2} e  \eqref{eq: ajuste3} atuam de maneira integrada para realizar o ajuste necessário. Esse ajuste consiste em identificar a classe mais cara e verificar se seu preço é superior à soma dos preços das classes mais baratas. Se a condição for verdadeira, as classes mais baratas serão desabilitadas, e apenas a classe mais cara será mantida. Caso contrário, o modelo permanecerá livre para selecionar a opção mais vantajosa, de acordo com as condições estabelecidas.
 
-Assim, o \textbf{modelo básico} seria o seguinte:
+Assim, o modelo \textbf{ \texttt{Model\_Basic\_Comporta\_Est}} seria o seguinte:
 \allowdisplaybreaks
 \begin{align}
-	& Max \quad Z = \sum_{(i,j)\in OD} \sum_{v\in V} \sum_{k\in K_v} \sum_{t\in T} P_{ijvk} X_{ijvkt}     \tag{\ref{eq: m1_fo}}   \\
+	& Max \quad Z = \sum_{(i,j)\in OD} \sum_{v\in V} \sum_{k\in K_v} \sum_{t\in T} \sigma_{ijvk} P_{ijvk} X_{ijvkt}     \tag{\ref{eq: m1_fo}}   \\
 	& \text{s.a.}  \notag \\
 	& A_{iv} = A_{i-1,v} - \sum_{(i,j) \in OD/j \geq i} \sum_{k\in K_v}\sum_{t\in T}X_{i-1,j,v,k,t} + \sum_{(i,j) \in OD/j<i} \sum_{k\in K_v}\sum_{t\in T}X_{jivkt}, \quad \forall i \in O, v \in V   \tag{\ref{eq: m1_disponi}} \\
 	& Y_{ijvk} \geq  \sum_{t \in T} X_{ijvkt},  \quad k = max\{K_v\}, \forall(i,j) \in OD ,v \in V     \tag{\ref{eq: m1_autho_mayor_assig_1er_class}} \\
@@ -560,9 +560,11 @@ Assim, o \textbf{modelo básico} seria o seguinte:
 
 \subsection{Modelo fulfillments over periods comportamental}
 Todos os parâmetros, conjuntos, variáveis de decisão e restrições foram detalhadamente explicados nas seções anteriores. Por tanto, nesta seção, somente são adicionadas as restrições de fulfillment, criadas no modelo independente, ao modelo comportamental básico apresentado na seção anterior.
+
+Assim, o modelo \textbf{ \texttt{Model\_Fulfill\_Comporta\_Est}} seria o seguinte:
 \allowdisplaybreaks
 \begin{align}
-	& Max \quad Z = \sum_{(i,j)\in OD} \sum_{v\in V} \sum_{k\in K_v} \sum_{t\in T} P_{ijvk} X_{ijvkt}     \tag{\ref{eq: m1_fo}}   \\
+	& Max \quad Z = \sum_{(i,j)\in OD} \sum_{v\in V} \sum_{k\in K_v} \sum_{t\in T} \sigma_{ijvk} P_{ijvk} X_{ijvkt}     \tag{\ref{eq: m1_fo}}   \\
 	& \text{s.a.}  \notag \\
 	& A_{iv} = A_{i-1,v} - \sum_{(i,j) \in OD/j \geq i} \sum_{k\in K_v}\sum_{t\in T}X_{i-1,j,v,k,t} + \sum_{(i,j) \in OD/j<i} \sum_{k\in K_v}\sum_{t\in T}X_{jivkt}, \quad \forall i \in O, v \in V   \tag{\ref{eq: m1_disponi}} \\
 	& Y_{ijvk} \geq  \sum_{t \in T} X_{ijvkt},  \quad k = max\{K_v\}, \forall(i,j) \in OD ,v \in V     \tag{\ref{eq: m1_autho_mayor_assig_1er_class}} \\
@@ -595,9 +597,11 @@ Todos os parâmetros, conjuntos, variáveis de decisão e restrições foram det
 
 \subsection{Modelo skip lagging comportamental}
 De maneira análoga ao modelo fulfillment over periods, nesta seção, são incorporadas as restrições de skip lagging, do modelo independente, ao modelo comportamental básico.
+
+Assim, o modelo \textbf{ \texttt{Model\_Skipla\_Comporta\_Est}} seria o seguinte:
 \allowdisplaybreaks
 \begin{align}
-	& Max \quad Z = \sum_{(i,j)\in OD} \sum_{v\in V} \sum_{k\in K_v} \sum_{t\in T} P_{ijvk} X_{ijvkt}     \tag{\ref{eq: m1_fo}}   \\
+	& Max \quad Z = \sum_{(i,j)\in OD} \sum_{v\in V} \sum_{k\in K_v} \sum_{t\in T} \sigma_{ijvk} P_{ijvk} X_{ijvkt}     \tag{\ref{eq: m1_fo}}   \\
 	& \text{s.a.}  \notag \\
 	& A_{iv} = A_{i-1,v} - \sum_{(i,j) \in OD/j \geq i} \sum_{k\in K_v}\sum_{t\in T}X_{i-1,j,v,k,t} + \sum_{(i,j) \in OD/j<i} \sum_{k\in K_v}\sum_{t\in T}X_{jivkt}, \quad \forall i \in O, v \in V   \tag{\ref{eq: m1_disponi}} \\
 	& Y_{ijvk} \geq  \sum_{t \in T} X_{ijvkt},  \quad k = max\{K_v\}, \forall(i,j) \in OD ,v \in V     \tag{\ref{eq: m1_autho_mayor_assig_1er_class}} \\
@@ -632,10 +636,12 @@ De maneira análoga ao modelo fulfillment over periods, nesta seção, são inco
 
 
 \subsection{Modelo completo comportamental}
-Nesta seção, integramos o modelo comportamental base com os conjuntos de restrições de fulfillment over periods e skip lagging, incorporando todos os elementos de forma simultânea.
+Nesta seção, integra-se o modelo comportamental base com os conjuntos de restrições de fulfillment over periods e skip lagging, incorporando todos os elementos de forma simultânea.
+
+Assim, o modelo \textbf{ \texttt{Model\_Comp\_Comporta\_Est}} seria o seguinte:
 \allowdisplaybreaks
 \begin{align}
-	& Max \quad Z = \sum_{(i,j)\in OD} \sum_{v\in V} \sum_{k\in K_v} \sum_{t\in T} P_{ijvk} X_{ijvkt}     \tag{\ref{eq: m1_fo}}   \\
+	& Max \quad Z = \sum_{(i,j)\in OD} \sum_{v\in V} \sum_{k\in K_v} \sum_{t\in T} \sigma_{ijvk}  P_{ijvk} X_{ijvkt}     \tag{\ref{eq: m1_fo}}   \\
 	& \text{s.a.}  \notag \\
 	& A_{iv} = A_{i-1,v} - \sum_{(i,j) \in OD/j \geq i} \sum_{k\in K_v}\sum_{t\in T}X_{i-1,j,v,k,t} + \sum_{(i,j) \in OD/j<i} \sum_{k\in K_v}\sum_{t\in T}X_{jivkt}, \quad \forall i \in O, v \in V   \tag{\ref{eq: m1_disponi}} \\
 	& Y_{ijvk} \geq  \sum_{t \in T} X_{ijvkt},  \quad k = max\{K_v\}, \forall(i,j) \in OD ,v \in V     \tag{\ref{eq: m1_autho_mayor_assig_1er_class}} \\

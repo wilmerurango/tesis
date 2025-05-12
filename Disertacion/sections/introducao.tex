@@ -56,6 +56,17 @@ Esta seção apresenta alguns dos termos comumente utilizados na gestão de rece
 	\item[Reservas:] As reservas representam o número de assentos protegidos para atender à demanda potencial de uma classe de controle específica em um determinado itinerário, durante um período específico do horizonte de reserva. O tamanho da reserva é definido no processo de otimização, considerando a demanda potencial do itinerário e da classe de controle correspondente. As reservas também são conhecidas como níveis de proteção.
 
 	\item[Autorizações:] As autorizações representam o número de assentos disponíveis para venda em um determinado itinerário e classe de controle. Elas podem ser entendidas como a quantidade de bilhetes apresentados aos passageiros como disponíveis para compra. As autorizações têm como objetivo controlar o volume de passageiros ao longo de um itinerário ou trecho.
+	
+	As Autorizações podem ser classificadas como estáticas ou dinâmicas. As Autorizações estáticas não estão indexadas no tempo, enquanto as dinâmicas estão. Para uma melhor compreensão, observe a Figura \ref{fig: classAuto}, onde, no caso de uma classe de controle $A_1$, ela assume um valor só para todo o horizonte de reserva no caso de autorização estática, e toma valores distintos em função de cada período para as autorizações dinâmicas.
+
+	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[scale=0.25]{img/classAuto.png}
+			\caption{Classes de autorização}
+			\label{fig: classAuto}
+		\end{center}
+	\end{figure}
+	\vspace{-1cm}
 
 	\item[Demanda comportamental:] Neste modelo, assume-se que o comportamento de compra dos passageiros é influenciado pelo conjunto de classes de controle disponíveis. Um exemplo desse conceito é ilustrado na Figura \ref{fig: dc1}. Considere um cenário em que 4 clientes desejam comprar a tarifa A3, sendo essa sua primeira opção. Caso a tarifa A3 não esteja disponível, um dos clientes desiste da compra, enquanto os outros 3 permanecem no sistema e estão dispostos a adquirir a tarifa A2. Se A2 também não estiver disponível, mais 2 clientes abandonam a compra, restando apenas um cliente que opta por A1 (geralmente, a opção de maior valor).
 

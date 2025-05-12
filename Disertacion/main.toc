@@ -1,33 +1,39 @@
 \babel@toc {portuguese}{}\relax 
 \thispagestyle {empty}
-\contentsline {chapter}{\numberline {1}Introdução}{2}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Conceitos básicos}{2}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Visão geral da pesquisa}{6}{section.1.2}%
-\contentsline {chapter}{\numberline {2}Revisão da literatura}{9}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Fundamentos de Revenue Management (RM)}{9}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Definição e importância}{9}{subsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.1.2}Histórico e evolução}{10}{subsection.2.1.2}%
-\contentsline {section}{\numberline {2.2}Transporte Ferroviário de Passageiros}{13}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Áreas de pesquisa}{13}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Controle de inventário}{15}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}Modelagem da demanda}{17}{subsection.2.2.3}%
-\contentsline {section}{\numberline {2.3}Aplicação de RM ao transporte ferroviário de passageiros}{18}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Outras aplicações industriais de RM}{21}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Aviação}{22}{subsection.2.4.1}%
-\contentsline {subsection}{\numberline {2.4.2}Hotelaria}{25}{subsection.2.4.2}%
-\contentsline {section}{\numberline {2.5}Contextualização desta pesquisa}{28}{section.2.5}%
-\contentsline {chapter}{\numberline {3}Modelagem matemática }{29}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Descrição do problema}{29}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Formulação matemática}{30}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Primeira abordagem: modelo baseado em demanda independente}{33}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Modelo básico independente}{33}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Modelo fulfillments over periods independente}{36}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Modelo skip lagging independente}{39}{subsection.3.3.3}%
-\contentsline {subsection}{\numberline {3.3.4}Modelo completo independente}{41}{subsection.3.3.4}%
-\contentsline {section}{\numberline {3.4}Segunda abordagem: modelos baseados em demanda comportamental}{42}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Modelo básico comportamental}{45}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Modelo fulfillments over periods comportamental}{48}{subsection.3.4.2}%
-\contentsline {subsection}{\numberline {3.4.3}Modelo skip lagging comportamental}{49}{subsection.3.4.3}%
-\contentsline {subsection}{\numberline {3.4.4}Modelo completo comportamental}{50}{subsection.3.4.4}%
-\contentsline {chapter}{\numberline {4}Conclusões e trabalhos futuro}{52}{chapter.4}%
-\contentsline {chapter}{5\ \hspace {0.234cm} Referências}{54}{chapter.5}%
+\contentsline {chapter}{\numberline {1}Introdução}{3}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Conceitos básicos}{3}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Visão geral da pesquisa}{7}{section.1.2}%
+\contentsline {chapter}{\numberline {2}Revisão da literatura}{10}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Fundamentos de Revenue Management (RM)}{10}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Definição e importância}{10}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Histórico e evolução}{11}{subsection.2.1.2}%
+\contentsline {section}{\numberline {2.2}Transporte Ferroviário de Passageiros}{14}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Áreas de pesquisa}{14}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Controle de inventário}{16}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Modelagem da demanda}{18}{subsection.2.2.3}%
+\contentsline {section}{\numberline {2.3}Aplicação de RM ao transporte ferroviário de passageiros}{19}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Outras aplicações industriais de RM}{22}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Aviação}{23}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Hotelaria}{26}{subsection.2.4.2}%
+\contentsline {section}{\numberline {2.5}Contextualização desta pesquisa}{29}{section.2.5}%
+\contentsline {chapter}{\numberline {3}Metodologia}{31}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Instâncias}{31}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Modelos Matemáticos}{32}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Ferramentas e ambiente computacional}{33}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Modelagem matemática }{34}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Descrição do problema}{34}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Formulação matemática}{35}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Primeira abordagem: modelo baseado em demanda independente e autorizações estáticas}{38}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Modelo básico independente}{38}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Modelo fulfillments over periods independente}{41}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Modelo skip lagging independente}{44}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}Modelo completo independente}{46}{subsection.4.3.4}%
+\contentsline {section}{\numberline {4.4}Segunda abordagem: modelos baseados em demanda comportamental e autorizações estáticas}{47}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Modelo básico comportamental}{50}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Modelo fulfillments over periods comportamental}{53}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Modelo skip lagging comportamental}{54}{subsection.4.4.3}%
+\contentsline {subsection}{\numberline {4.4.4}Modelo completo comportamental}{55}{subsection.4.4.4}%
+\contentsline {chapter}{\numberline {5}Resultados Computacionais}{58}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Experimentos Computacionais}{58}{section.5.1}%
+\contentsline {chapter}{\numberline {6}Conclusões e trabalhos futuro}{65}{chapter.6}%
+\contentsline {chapter}{7\ \hspace {0.234cm} Referências}{67}{chapter.7}%
