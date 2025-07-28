@@ -7,7 +7,7 @@ Esta seção apresenta alguns dos termos comumente utilizados na gestão de rece
 
 \begin{description}[style=unboxed, leftmargin=0cm]
 
-	\item[Viagem:] Um trem programado para uma data específica é denominado "viagem". Uma viagem inclui uma estação de partida (estação de origem) e uma estação de chegada (estação de destino final). Exemplo: O trem \#03450-1 de 12 de janeiro de 2024 é uma viagem:
+	\item[Viagem:] Um trem programado para uma data específica é denominado "viagem". Uma viagem inclui uma estação de partida (estação de origem) e uma estação de chegada (estação de destino final). A Figura \ref{fig: viagem} representa um exemplo de viagem, onde se tem um trem com o nome \#03450-1 e data de partida em 12 de junho de 2024.
 
 	      \begin{figure}[H]
 		      \begin{center}
@@ -18,7 +18,7 @@ Esta seção apresenta alguns dos termos comumente utilizados na gestão de rece
 	      \end{figure}
 	      \vspace{-1cm}
 
-	\item[Trecho:] Um trecho é uma conexão direta entre duas estações,também pode ser denominado como origem-destino. Além, será dito que um trecho é adjacente se, e somente se, não houver estações intermediárias entre elas; caso contrário, serão não adjacentes. Por exemplo, o trecho AC é ñao adjcente e os trechos AB e BC são adjacentes. É importante aclarar que que os trechos não adjacentes podem conter outros trechos, tanto adjacentes quanto não adjacentes.
+	\item[Trecho:] Um trecho é uma conexão direta entre duas estações, também pode ser denominado como origem-destino. Além disso, será dito que um trecho é adjacente se, e somente se, não houver estações intermediárias entre elas; caso contrário, serão não adjacentes. Por exemplo, a Figura \ref{fig: trecho} apresenta vários trechos, sendo que o trecho AC não é adjacente, enquanto os trechos AB e BC são adjacentes. É importante aclarar que os trechos não adjacentes podem conter outros trechos, tanto adjacentes quanto não adjacentes.
 
 	      \begin{figure}[H]
 		      \begin{center}
@@ -29,7 +29,7 @@ Esta seção apresenta alguns dos termos comumente utilizados na gestão de rece
 	      \end{figure}
 	      \vspace{-1cm}
 
-	\item[Itinerário:] Um itinerário é uma combinação única de origem, destino, horário de partida e trem. Um itinerário pode consistir em um ou mais trechos, e uma viagem pode englobar um ou mais itinerários.
+	\item[Itinerário:] Um itinerário é uma combinação única de origem, destino, horário de partida e trem. Como mostrado na Figura \ref{fig: itinerario}, um itinerário pode consistir em um ou mais trechos, e uma viagem pode englobar um ou mais itinerários.
 
 	      \begin{figure}[H]
 		      \begin{center}
@@ -42,7 +42,7 @@ Esta seção apresenta alguns dos termos comumente utilizados na gestão de rece
 
 	\item[Classes de controle:] Uma classe de controle é um produto oferecido por um operador de transporte a passageiros potenciais por um preço específico. As classes de controle também são conhecidas como classes tarifárias, produtos tarifários ou classes de reservas. Uma classe de controle define os benefícios e/ou restrições que o passageiro terá como resultado do preço pago pelo bilhete.
 
-	\item[Horizonte de reserva:] É o período de tempo entre o momento em que os bilhetes para o trem em questão são disponibilizados para venda pela primeira vez e a data de partida do trem. O horizonte de reserva geralmente é discretizado por dias, de forma que cada período representa um dia específico antes da partida (DBD). Frequentemente, realizamos uma agregação temporal para reduzir o tamanho do horizonte de reserva, selecionando alguns DBD específicos como pontos de controle (CP). Nesse contexto, o horizonte de contabilização é discretizado por períodos, onde o tamanho de cada período corresponde ao intervalo de tempo entre dois CP consecutivos.
+	\item[Horizonte de reserva:] É o período de tempo entre o momento em que os bilhetes para o trem em questão são disponibilizados para venda pela primeira vez e a data de partida do trem. O horizonte de reserva geralmente é discretizado por dias, de forma que cada período representa um dia específico antes da partida \textit{(DBD)}. Frequentemente, realiza-se uma agregação temporal para reduzir o tamanho do horizonte de reserva, selecionando alguns \textit{DBD} específicos como pontos de controle \textit{(CP)}, essa situação é representada na Figura \ref{fig: h_reserva}. Nesse contexto, o horizonte de contabilização é discretizado por períodos, onde o tamanho de cada período corresponde ao intervalo de tempo entre dois \textit{CP} consecutivos.
 
 	      \begin{figure}[H]
 		      \begin{center}
@@ -57,7 +57,7 @@ Esta seção apresenta alguns dos termos comumente utilizados na gestão de rece
 
 	\item[Autorizações:] As autorizações representam o número de assentos disponíveis para venda em um determinado itinerário e classe de controle. Elas podem ser entendidas como a quantidade de bilhetes apresentados aos passageiros como disponíveis para compra. As autorizações têm como objetivo controlar o volume de passageiros ao longo de um itinerário ou trecho.
 	
-	As Autorizações podem ser classificadas como estáticas ou dinâmicas. As Autorizações estáticas não estão indexadas no tempo, enquanto as dinâmicas estão. Para uma melhor compreensão, observe a Figura \ref{fig: classAuto}, onde, no caso de uma classe de controle $A_1$, ela assume um valor só para todo o horizonte de reserva no caso de autorização estática, e toma valores distintos em função de cada período para as autorizações dinâmicas.
+	As Autorizações podem ser classificadas como \textit{estáticas} ou \textit{dinâmicas}. As Autorizações estáticas não estão indexadas no tempo, enquanto as dinâmicas estão. Para uma melhor compreensão, observe a Figura \ref{fig: classAuto}, onde, no caso de uma classe de controle $A_1$, ela assume apenas um valor para todo o horizonte de reserva no caso de autorização estática, e toma valores distintos em função de cada período para as autorizações dinâmicas.
 
 	\begin{figure}[H]
 		\begin{center}
@@ -79,7 +79,7 @@ Esta seção apresenta alguns dos termos comumente utilizados na gestão de rece
 	      \end{figure}
 	      \vspace{-1cm}
 
-	\item[Demanda independente:] Os clientes compram um produto específico, independentemente da oferta disponível no momento. Em um modelo de demanda independente, assume-se que um cliente disposto a pagar R\$100 por um bilhete nunca optaria por um bilhete mais barato (por exemplo, R\$50), mesmo que este estivesse disponível.
+	\item[Demanda independente:] Os clientes compram um produto específico, independentemente da oferta disponível no momento. Para exemplificar essa situação, observe a Figura \ref{fig: di1}, no qual é representado um modelo de demanda independente, onde se assume que um cliente disposto a pagar R\$100 por um bilhete nunca optaria por um bilhete mais barato (por exemplo, R\$50), mesmo que este estivesse disponível.
 
 	      \begin{figure}[H]
 		      \begin{center}
@@ -99,25 +99,50 @@ Esta seção apresenta alguns dos termos comumente utilizados na gestão de rece
 
 \section{Visão geral da pesquisa}
 
-Os problemas relacionados à gestão de receitas (Revenue Management - RM) podem ser definidos como estratégias que visam maximizar as receitas ajustando-se preços e a disponibilidade de capacidade com base na demanda \citep{Gallego1994}. A área de RM foi inicialmente desenvolvida pela indústria aérea nas décadas de 70 e 80, quando as companhias aéreas começaram a adotar técnicas de otimização para definir os preços dos bilhetes com base na disponibilidade de assentos e na antecedência das reservas \citep{article_base}. O objetivo principal do RM consiste em otimizar a disponibilidade e o preço dos produtos para gerar a maior quantidade de receita possível. Entre suas principais características estão a segmentação de clientes, o controle de capacidade, o ajuste dinâmico de preços e o uso de previsões para estimar a demanda. O sucesso alcançado no setor aeronáutico foi tão expressivo que o RM foi expandido para outros setores com características semelhantes, como hotelaria, restaurantes, varejo, comércio eletrônico e transporte \citep{HEO2009446}.
+Os problemas relacionados à gestão de receitas (\textit{Revenue Management} - RM) podem ser definidos como estratégias que visam maximizar as receitas ajustando-se preços e a disponibilidade de capacidade com base na demanda \citep{Gallego1994}. A área de RM foi inicialmente desenvolvida pela indústria aérea nas décadas de 70 e 80, quando as companhias aéreas começaram a adotar técnicas de otimização para definir os preços dos bilhetes com base na disponibilidade de assentos e na antecedência das reservas \citep{article_base}. O objetivo principal do RM consiste em otimizar a disponibilidade e o preço dos produtos para gerar a maior quantidade de receita possível. Entre suas principais características estão a segmentação de clientes, o controle de capacidade, o ajuste dinâmico de preços e o uso de previsões para estimar a demanda. O sucesso alcançado no setor aeronáutico foi tão expressivo que o RM foi expandido para outros setores com características semelhantes, como hotelaria, restaurantes, varejo, comércio eletrônico e transporte \citep{HEO2009446}.
 
 A otimização de receitas no transporte ferroviário de passageiros tornou-se uma área de pesquisa essencial para aumentar a sustentabilidade e a competitividade do setor. Esse tipo de transporte enfrenta desafios específicos na gestão de sua capacidade devido à variabilidade da demanda, à rigidez tarifária e à necessidade crescente de adaptar suas estratégias às dinâmicas de mercado \citep{Guerriero2021}. Nesse contexto, o RM oferece uma estrutura robusta para abordar a alocação ideal de recursos, utilizando técnicas avançadas de modelagem matemática e análise de dados \citep{Ammirato2020}.
 
-O principal objetivo do RM no transporte ferroviário de passageiros pode ser exemplificado da seguinte forma: um operador de transporte define o itinerário de um trem específico, detalhando a origem, o destino e o horário de partida. Os clientes, ou seja, os potenciais passageiros, podem adquirir bilhetes antecipadamente para viajar nesse trem. Chamamos de classes tarifárias ou produtos tarifários os bilhetes disponíveis para venda. O horizonte de reserva é o período de tempo entre a disponibilização inicial dos bilhetes para compra e a partida do trem. Esse horizonte geralmente é dividido em dias, de forma que cada período representa um dia (ou conjunto de dias) antes da partida.
 
-A função do RM, nesse contexto, é controlar a disponibilidade dos produtos tarifários ao longo do horizonte de reserva para maximizar a receita total. Mais especificamente, o processo de otimização busca determinar a quantidade de bilhetes de cada produto que deve estar disponível para venda em cada período, com o objetivo de maximizar os lucros associados a cada partida de trem.
+O transporte ferroviário de passageiros apresenta um desafio típico de RM: a oferta de assentos é perecível e a demanda é heterogênea e variável. Aceitar uma reserva barata hoje pode impedir a venda de uma tarifa mais alta amanhã, mas rejeitá-la pode deixar assentos ociosos em outros trechos da rede.
 
-Um elemento fundamental para maximizar as receitas é um modelo preciso da demanda. Alinhar oferta e demanda para otimizar os lucros requer uma compreensão aprofundada do comportamento dos clientes e uma previsão confiável de suas decisões diante de diferentes ofertas de produtos \citep{ZHAO2019776}.
+Esta dissertação aborda esse problema de forma unificada, formulando como decidir quantos assentos proteger (reservas) e quantos colocar à venda (autorização) ao longo de todo o horizonte de reservas – ou em cada período –, considerando duas visões da demanda (independente e comportamental) e duas políticas de disponibilidade (estática e dinâmica), além de incorporar práticas operacionais reais, como as restrições \textit{fulfillment-over-periods} e \textit{skip-lagging}.
 
-Uma simplificação comum na modelagem da demanda para gestão de receitas é assumir que os clientes têm um comportamento de compra independente. Isso significa que cada cliente compra um produto específico, desconsiderando a oferta disponível no momento. Na prática, por exemplo, um cliente que desejasse comprar um bilhete de trem por R\$10 não pagaria R\$10,50 se essa fosse a única oferta disponível. Em vez disso, ele optaria por não viajar. Da mesma forma, em um modelo de demanda independente, assumimos que um cliente disposto a pagar R\$100 por um bilhete nunca compraria um bilhete mais barato (por exemplo, R\$50), mesmo que estivesse disponível.
+O objetivo geral é maximizar a receita esperada, determinando para cada itinerário, tipo de assento, classe tarifária e período, a combinação ótima de reservas e autorizações, fornecendo à empresa ferroviária critérios quantitativos que equilibram a geração de receita com a qualidade do serviço.
 
-Por outro lado, uma abordagem mais robusta considera o comportamento de compra baseado em faixas ou listas de preferência. Esse modelo assume que os clientes escolhem entre um conjunto de ofertas com base em suas preferências. Se a opção mais desejada não estiver disponível, eles passam para a próxima opção viável, desde que esta seja mais atrativa do que não realizar a compra.
+A pesquisa se justifica, pois, ao contrário dos setores de aviação e hotelaria, o RM ferroviário ainda carece de modelos que integrem simultaneamente a lógica de problemas de transporte de veículos com a de fluxos em rede, considerando, ao mesmo tempo, a substituição de tarifas, regras operacionais e decisões dinâmicas. A literatura revisada não apresenta um modelo que combine todas essas perspectivas de forma integrada, o que configura a lacuna de conhecimento que esta pesquisa busca preencher.
 
-Para abordar essa problemática, foram desenvolvidos três modelos de Programação Inteira Mista (MIP): O primeiro baseado em demanda independente. O segundo em demandas comportamentais ajustadas por proporções. Y o terceiro em demandas comportamentais ajustadas por hierarquia.
+Com base nessa motivação, a pesquisa se propôs a desenvolver e comparar uma família de modelos de programação linear inteira mista que combinam duas visões da demanda — independente e comportamental — com duas políticas de disponibilidade de vendas — estáticas e dinâmicas. Cada combinação gera um modelo básico ao qual, de forma incremental, são adicionadas as restrições \textit{fulfillment} e \textit{skip-lagging}, até formar um modelo completo, resultando em um total de dezesseis formulações.
 
-Esses modelos respeitam as restrições operacionais do sistema ferroviário, como capacidade dos trens, estrutura hierárquica dos produtos tarifários, reservas de bilhetes, disponibilidade de vendas dentro do horizonte de reserva e coerência dos preços dos bilhetes ao longo do tempo, entre outras.
+O enfoque é quantitativo-aplicado: os modelos foram codificados em python utilizando o solver Gurobi e testados em dez instâncias reais fornecidas por um operador canadense, que representam situações práticas com diferentes tamanhos e complexidade de rede. Foram registrados os tempos de construção e solução dos modelos, número de nós explorados, percentual de demanda atendida e valores da função objetivo; além disso, analisou-se a estrutura unimodular das matrizes de restrições para explicar o desempenho computacional.
 
-O uso de instâncias reais fornecidas por uma empresa especializada permitiu validar a aplicabilidade dos modelos desenvolvidos, destacando tanto sua capacidade de capturar a complexidade do mercado quanto sua eficiência computacional. Os resultados preliminares indicam que os modelos baseados em demandas comportamentais geraram soluções de melhor qualidade em comparação com o modelo de demanda independente. No entanto, em termos do valor da função objetivo, os modelos comportamentais apresentaram os mesmos resultados entre si, que foram ligeiramente diferentes dos obtidos pelo modelo independente.
+Os resultados mostram que os modelos básicos oferecem as maiores receitas brutas, mas à custa de desconsiderar práticas corporativas; a incorporação das restrições fulfillment e skip-lagging reduz entre 20\% e 85\% da receita, enquanto a transição de autorizações estáticas para dinâmicas recupera mais de 10\% dessa margem e melhora o aproveitamento da demanda. A maioria dos modelos apresenta como matriz de coeficientes uma matriz totalmente unimodular, o que permite obter soluções inteiras em menos de 0,15 segundos, mesmo em instâncias grandes; quando a matriz não é unimodular, seu caráter $\Delta$-modular mantém baixos os tempos computacionais e a quantidade de nós explorados.
 
-Essa pesquisa contribui para o corpo de conhecimento em Revenue Management ao combinar técnicas de modelagem baseadas em demandas comportamentais, utilizando listas de preferência, e programação matemática para resolver problemas complexos de alocação de assentos no transporte ferroviário de passageiros.
+Em consequência, conclui-se que a combinação de demanda comportamental com autorizações dinâmicas oferece o melhor equilíbrio entre realismo operacional e rentabilidade, que as restrições fulfillment e skip-lagging são essenciais para evitar políticas tarifárias incoerentes e que a eficiência computacional das formulações as torna aplicáveis à tomada de decisões táticas em ambientes reais.
+
+
+
+
+
+
+
+
+
+% O principal objetivo do RM no transporte ferroviário de passageiros pode ser exemplificado da seguinte forma: um operador de transporte define o itinerário de um trem específico, detalhando a origem, o destino e o horário de partida. Os clientes, ou seja, os potenciais passageiros, podem adquirir bilhetes antecipadamente para viajar nesse trem. Chamamos de classes tarifárias ou produtos tarifários os bilhetes disponíveis para venda. O horizonte de reserva é o período de tempo entre a disponibilização inicial dos bilhetes para compra e a partida do trem. Esse horizonte geralmente é dividido em dias, de forma que cada período representa um dia (ou conjunto de dias) antes da partida.
+
+% A função do RM, nesse contexto, é controlar a disponibilidade dos produtos tarifários ao longo do horizonte de reserva para maximizar a receita total. Mais especificamente, o processo de otimização busca determinar a quantidade de bilhetes de cada produto que deve estar disponível para venda em cada período, com o objetivo de maximizar os lucros associados a cada partida de trem.
+
+% Um elemento fundamental para maximizar as receitas é um modelo preciso da demanda. Alinhar oferta e demanda para otimizar os lucros requer uma compreensão aprofundada do comportamento dos clientes e uma previsão confiável de suas decisões diante de diferentes ofertas de produtos \citep{ZHAO2019776}.
+
+% Uma simplificação comum na modelagem da demanda para gestão de receitas é assumir que os clientes têm um comportamento de compra independente. Isso significa que cada cliente compra um produto específico, desconsiderando a oferta disponível no momento. Na prática, por exemplo, um cliente que desejasse comprar um bilhete de trem por R\$10 não pagaria R\$10,50 se essa fosse a única oferta disponível. Em vez disso, ele optaria por não viajar. Da mesma forma, em um modelo de demanda independente, assumimos que um cliente disposto a pagar R\$100 por um bilhete nunca compraria um bilhete mais barato (por exemplo, R\$50), mesmo que estivesse disponível.
+
+% Por outro lado, uma abordagem mais robusta considera o comportamento de compra baseado em faixas ou listas de preferência. Esse modelo assume que os clientes escolhem entre um conjunto de ofertas com base em suas preferências. Se a opção mais desejada não estiver disponível, eles passam para a próxima opção viável, desde que esta seja mais atrativa do que não realizar a compra.
+
+% Para abordar essa problemática, foram desenvolvidos três modelos de Programação Inteira Mista (MIP): O primeiro baseado em demanda independente. O segundo em demandas comportamentais ajustadas por proporções. Y o terceiro em demandas comportamentais ajustadas por hierarquia.
+
+% Esses modelos respeitam as restrições operacionais do sistema ferroviário, como capacidade dos trens, estrutura hierárquica dos produtos tarifários, reservas de bilhetes, disponibilidade de vendas dentro do horizonte de reserva e coerência dos preços dos bilhetes ao longo do tempo, entre outras.
+
+% O uso de instâncias reais fornecidas por uma empresa especializada permitiu validar a aplicabilidade dos modelos desenvolvidos, destacando tanto sua capacidade de capturar a complexidade do mercado quanto sua eficiência computacional. Os resultados preliminares indicam que os modelos baseados em demandas comportamentais geraram soluções de melhor qualidade em comparação com o modelo de demanda independente. No entanto, em termos do valor da função objetivo, os modelos comportamentais apresentaram os mesmos resultados entre si, que foram ligeiramente diferentes dos obtidos pelo modelo independente.
+
+% Essa pesquisa contribui para o corpo de conhecimento em Revenue Management ao combinar técnicas de modelagem baseadas em demandas comportamentais, utilizando listas de preferência, e programação matemática para resolver problemas complexos de alocação de assentos no transporte ferroviário de passageiros.
 % \end{quotation}

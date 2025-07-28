@@ -6,45 +6,45 @@ Database file #1: sections/referencias.bib
 Warning--empty journal in Cizaire2011
 Warning--empty booktitle in Cross1995ANIT
 Warning--empty booktitle in Williamson1992AirlineNS
-You've used 84 entries,
+You've used 86 entries,
             2773 wiz_defined-function locations,
-            1312 strings with 26285 characters,
-and the built_in function-call counts, 41882 in all, are:
-= -- 4024
-> -- 2281
-< -- 50
-+ -- 771
-- -- 687
-* -- 3659
-:= -- 6634
-add.period$ -- 439
-call.type$ -- 84
-change.case$ -- 481
-chr.to.int$ -- 84
-cite$ -- 171
-duplicate$ -- 1728
-empty$ -- 3256
-format.name$ -- 835
-if$ -- 8786
+            1322 strings with 26749 characters,
+and the built_in function-call counts, 42871 in all, are:
+= -- 4105
+> -- 2368
+< -- 51
++ -- 800
+- -- 714
+* -- 3742
+:= -- 6794
+add.period$ -- 446
+call.type$ -- 86
+change.case$ -- 496
+chr.to.int$ -- 86
+cite$ -- 175
+duplicate$ -- 1763
+empty$ -- 3319
+format.name$ -- 866
+if$ -- 8987
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 84
-newline$ -- 615
-num.names$ -- 336
-pop$ -- 656
+missing$ -- 85
+newline$ -- 626
+num.names$ -- 344
+pop$ -- 688
 preamble$ -- 1
-purify$ -- 397
+purify$ -- 410
 quote$ -- 0
-skip$ -- 1320
+skip$ -- 1356
 stack$ -- 0
-substring$ -- 1658
-swap$ -- 109
+substring$ -- 1662
+swap$ -- 111
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 919
+type$ -- 941
 warning$ -- 3
-while$ -- 344
+while$ -- 350
 width$ -- 0
-write$ -- 1466
+write$ -- 1492
 (There were 3 warnings)

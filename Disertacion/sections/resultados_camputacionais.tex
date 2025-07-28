@@ -1,466 +1,865 @@
-% type:ignore
+\chapter{Análise e resultados computacionais}
 
-\chapter{Resultados Computacionais}
+Após a realização dos experimentos, todas as informações foram consolidadas para permitir as devidas análises, compreender os resultados e avaliar o desempenho de cada modelo na busca pela solução. Foram avaliados aspectos como a demanda atendida, o tempo de execução e criação dos modelos, a quantidade de nós explorados e a unimodalidade da matriz de coeficientes das restrições.
 
-% \section{Modelos Matemáticos}
-% Embora três modelos matemáticos tenham sido propostos — a formulação independente e as formulações comportamentais —, ao resolver as instâncias decidiu-se inicialmente testar os modelos sem as restrições de fulfillment nem as restrições de skiplagging. Em seguida, cada modelo foi testado separadamente com cada grupo de restrições. Por fim, ambos os modelos foram avaliados considerando os dois conjuntos de restrições simultaneamente. Essa abordagem foi adotada para observar como a solução evoluía ou se comportava ao incluir cada tipo de restrição no modelo. Dito isso, a seguir são apresentados os modelos com suas respectivas descrições.
-% \vspace{0.5cm}
+\section{Análise por abordagem} \label{sec: Analise_por_abordagem}
+Nesta seção, analisam-se os diferentes enfoques descritos na metodologia (ver Tabela \ref{descrip_modelos_mat}). Parte-se do modelo básico e, em seguida, acresce-se isoladamente o conjunto de restrições de \textit{fulfillment} e o de \textit{skip-lagging}; finalmente, consolida-se a versão completa com ambos os conjuntos de restrições. Esse mesmo procedimento é aplicado a todas as instâncias consideradas, permitindo analisar o impacto de cada componente sobre o desempenho de cada abordagem.
 
-% \begin{small}
-% 	\begin{longtable}{p{5.4cm} p{10.4cm}}
-% 		\hline
-% 		\textbf{Tipo de Modelo}            & \textbf{Descrição}                                                                                                                       \\ \hline
-% 		BaseModel                          & Modelo base independente sem as restrições de Fulfillments nem as restrições de Skiplagging.                                             \\ \hline
-% 		BaseModelFulfillments              & Modelo base independente com as restrições de Fulfillments.                                                                              \\ \hline
-% 		BaseModelSkiplagging               & Modelo base independente com as restrições de Skiplagging.                                                                               \\ \hline
-% 		BaseModelFull                      & Modelo independente completo com os dois conjuntos de restrições.                                                                        \\ \hline
-% 		HierarBehavioralModel              & Modelo base comportamental com ajuste de demanda do tipo hierarquia, sem as restrições de Fulfillments nem as restrições de Skiplagging. \\ \hline
-% 		HierarBehavioralModelFulfillments  & Modelo base comportamental com ajuste de demanda do tipo hierarquia, com as restrições de Fulfillments.                                  \\ \hline
-% 		HierarBehavioralModelSkiplagging   & Modelo base comportamental com ajuste de demanda do tipo hierarquia, com as restrições de Skiplagging.                                   \\ \hline
-% 		HierarBehavioralModelFull          & Modelo comportamental completo com ajuste de demanda do tipo hierarquia, com os dois conjuntos de restrições.                            \\ \hline
-% 		PercentBehavioralModel             & Modelo base comportamental com ajuste de demanda do tipo proporção, sem as restrições de Fulfillments nem as restrições de Skiplagging.  \\ \hline
-% 		PercentBehavioralModelFulfillments & Modelo base comportamental com ajuste de demanda do tipo proporção, com as restrições de Fulfillments.                                   \\ \hline
-% 		PercentBehavioralModelSkiplagging  & Modelo base comportamental com ajuste de demanda do tipo proporção, com as restrições de Skiplagging.                                    \\ \hline
-% 		PercentBehavioralModelFull         & Modelo comportamental completo com ajuste de demanda do tipo proporção, com os dois conjuntos de restrições.                             \\ \hline
-% 		\caption{Descrição dos modelos matemáticos propostos}
-% 		\label{tab:modelos}
-% 	\end{longtable}
-% \end{small}
+Nas Tabelas \ref{tab: tab_Basic_Independ_Est} a \ref{tab: tab_Basic_Comporta_Din}, são apresentados os resultados ótimos encontrados e suas respectivas variações relativas em relação aos modelos básicos, para cada modelo, em cada instância e em cada abordagem. Em cada tabela, as linhas representam as instâncias analisadas, enquanto as colunas correspondem aos modelos considerados.
+
+\begin{table}[H]
+	\centering
+	\setlength{\tabcolsep}{4pt}
+	\scriptsize
+	% Tabela de Instâncias
+	\begin{subtable}[t]{0.10\textwidth}
+		\centering
+		\begin{tabular}{@{}l@{}}
+			\toprule
+			\makecell[l]{\textbf{ } \\\textbf{Instância}}  \\
+			\midrule
+			Inst1                   \\
+			Inst2                   \\
+			Inst3                   \\
+			Inst4                   \\
+			Inst5                   \\
+			Inst6                   \\
+			Inst7                   \\
+			Inst8                   \\
+			Inst9                   \\
+			Inst10                  \\
+			\bottomrule
+		\end{tabular}
+	\end{subtable}
+	\hfill
+	% Tabela de Valores Absolutos
+	\begin{subtable}[t]{0.43\textwidth}
+		\centering
+		\begin{tabular}{@{}cccc@{}}
+			\toprule
+			\makecell[c]{\textbf{Basic\_}                                          \\\textbf{Independ\_Est}}
+			           & \makecell[c]{\textbf{Fulfill\_}                           \\\textbf{Independ\_Est}}
+			           & \makecell[c]{\textbf{Skipla\_}                            \\\textbf{Independ\_Est}}
+			           & \makecell[c]{\textbf{Comp\_}                              \\\textbf{Independ\_Est}} \\
+			\midrule
+			170.484,85 & 69.615,76                       & 133.236,75 & 45.618,26  \\
+			314.883,03 & 276.888,38                      & 303.634,13 & 192.405,53 \\
+			141.121,96 & 102.020,87                      & 95.625,49  & 36.501,03  \\
+			166.118,29 & 64.075,21                       & 130.810,41 & 38.573,12  \\
+			127.847,39 & 93.042,29                       & 95.981,84  & 19.226,71  \\
+			67.715,07  & 35.491,02                       & 51.708,29  & 23.458,32  \\
+			48.719,71  & 41.178,51                       & 20.996,45  & 8.649,95   \\
+			53.844,31  & 34.476,59                       & 28.675,46  & 13.788,90  \\
+			55.282,08  & 32.170,53                       & 32.609,11  & 9.715,04   \\
+			21.548,62  & 12.188,66                       & 13.102,66  & 3.372,46   \\
+			\bottomrule
+		\end{tabular}
+		\caption{Z* (\$)}
+	\end{subtable}
+	\hfill
+	% Tabela de Variações Percentuais
+	\begin{subtable}[t]{0.43\textwidth}
+		\centering
+		\begin{tabular}{@{}ccc@{}}
+			\toprule
+			\makecell[c]{\textbf{Fulfill\_}                  \\\textbf{Independ\_Est}}
+			       & \makecell[c]{\textbf{Skipla\_}          \\\textbf{Independ\_Est}}
+			       & \makecell[c]{\textbf{Comp\_}            \\\textbf{Independ\_Est}} \\
+			\midrule
+			-59,17 & -21,85                         & -73,24 \\
+			-12,07 & -3,57                          & -38,90 \\
+			-27,71 & -32,24                         & -74,14 \\
+			-61,43 & -21,25                         & -76,78 \\
+			-27,22 & -24,92                         & -84,96 \\
+			-47,59 & -23,64                         & -65,36 \\
+			-15,48 & -56,90                         & -82,25 \\
+			-35,97 & -46,74                         & -74,39 \\
+			-41,81 & -41,01                         & -82,43 \\
+			-43,44 & -39,19                         & -84,35 \\
+			\bottomrule
+		\end{tabular}
+		\caption{Variação das diferenças no Z* (\%)}
+	\end{subtable}
+	\caption{Valores ótimos e variações em função do modelo \texttt{Basic\_Independ\_Est} para a abordagem de demanda independente com autorizações estáticas.}
+	\label{tab: tab_Basic_Independ_Est}
+\end{table}
 
 
-% \section{Instâncias}
+\begin{table}[H]
+	\centering
+	\setlength{\tabcolsep}{4pt}
+	\scriptsize
+	% Tabela de Instâncias
+	\begin{subtable}[t]{0.10\textwidth}
+		\centering
+		\begin{tabular}{@{}l@{}}
+			\toprule
+			\makecell[l]{\textbf{ } \\\textbf{Instância}}  \\
+			\midrule
+			Inst1                   \\
+			Inst2                   \\
+			Inst3                   \\
+			Inst4                   \\
+			Inst5                   \\
+			Inst6                   \\
+			Inst7                   \\
+			Inst8                   \\
+			Inst9                   \\
+			Inst10                  \\
+			\bottomrule
+		\end{tabular}
+	\end{subtable}
+	\hfill
+	% Tabela de Valores Absolutos
+	\begin{subtable}[t]{0.45\textwidth}
+		\centering
+		\begin{tabular}{@{}cccc@{}}
+			\toprule
+			\makecell[c]{\textbf{Basic\_}                                          \\\textbf{Comporta\_Est}}
+			           & \makecell[c]{\textbf{Fulfill\_}                           \\\textbf{Comporta\_Est}}
+			           & \makecell[c]{\textbf{Skipla\_}                            \\\textbf{Comporta\_Est}}
+			           & \makecell[c]{\textbf{Comp\_}                              \\\textbf{Comporta\_Est}} \\
+			\midrule
+			163.637,24 & 67.532,93                       & 128.443,06 & 44.465,64  \\
+			312.447,53 & 276.844,01                      & 301.850,34 & 192.405,53 \\
+			131.614,02 & 96.218,30                       & 90.845,81  & 36.256,94  \\
+			160.861,43 & 62.459,36                       & 128.070,49 & 38.457,17  \\
+			122.649,11 & 90.931,22                       & 90.881,30  & 18.941,03  \\
+			63.377,13  & 33.571,18                       & 48.572,76  & 22.277,14  \\
+			30.821,07  & 24.320,03                       & 17.566,06  & 7.931,20   \\
+			42.419,24  & 27.136,96                       & 23.968,13  & 11.575,36  \\
+			43.797,50  & 26.161,10                       & 27.254,76  & 9.566,60   \\
+			17.003,54  & 6.193,52                        & 11.323,39  & 3.038,82   \\
+			\bottomrule
+		\end{tabular}
+		\caption{Z* (\$)}
+	\end{subtable}
+	\hfill
+	% Tabela de Variações Percentuais
+	\begin{subtable}[t]{0.44\textwidth}
+		\centering
+		\begin{tabular}{@{}ccc@{}}
+			\toprule
+			\makecell[c]{\textbf{Fulfill\_}                  \\\textbf{Comporta\_Est}}
+			       & \makecell[c]{\textbf{Skipla\_}          \\\textbf{Comporta\_Est}}
+			       & \makecell[c]{\textbf{Comp\_}            \\\textbf{Comporta\_Est}} \\
+			\midrule
+			-58,73 & -21,51                         & -72,83 \\
+			-11,40 & -3,39                          & -38,42 \\
+			-26,89 & -30,98                         & -72,45 \\
+			-61,17 & -20,38                         & -76,09 \\
+			-25,86 & -25,90                         & -84,56 \\
+			-47,03 & -23,36                         & -64,85 \\
+			-21,09 & -43,01                         & -74,27 \\
+			-36,03 & -43,50                         & -72,71 \\
+			-40,27 & -37,77                         & -78,16 \\
+			-63,58 & -33,41                         & -82,13 \\
+			\bottomrule
+		\end{tabular}
+		\caption{Variação das diferenças no Z* (\%)}
+	\end{subtable}
 
-% Para verificar as características dos modelos propostos, foram utilizadas 10 instâncias reais fornecidas pela empresa canadense Expetrio. As características de cada uma dessas instâncias estão apresentadas na Tabela \ref{tab:instancias}.
+	\caption{Valores ótimos e variações em função do modelo \texttt{Basic\_Comporta\_Est} para a abordagem de demanda comportamental com autorizações estáticas.}
+	\label{tab: tab_Basic_Comporta_Est}
+\end{table}
 
-% \begin{table}[H]
+
+\begin{table}[H]
+	\centering
+	\setlength{\tabcolsep}{4pt}
+	\scriptsize
+	% Tabela de Instâncias
+	\begin{subtable}[t]{0.10\textwidth}
+		\centering
+		\begin{tabular}{@{}l@{}}
+			\toprule
+			\makecell[l]{\textbf{ } \\\textbf{Instância}}  \\
+			\midrule
+			Inst1                   \\
+			Inst2                   \\
+			Inst3                   \\
+			Inst4                   \\
+			Inst5                   \\
+			Inst6                   \\
+			Inst7                   \\
+			Inst8                   \\
+			Inst9                   \\
+			Inst10                  \\
+			\bottomrule
+		\end{tabular}
+	\end{subtable}
+	\hfill
+	% Tabela de Valores Absolutos
+	\begin{subtable}[t]{0.44\textwidth}
+		\centering
+		\begin{tabular}{@{}cccc@{}}
+			\toprule
+			\makecell[c]{\textbf{Basic\_}                                          \\\textbf{Independ\_Din}}
+			           & \makecell[c]{\textbf{Fulfill\_}                           \\\textbf{Independ\_Din}}
+			           & \makecell[c]{\textbf{Skipla\_}                            \\\textbf{Independ\_Din}}
+			           & \makecell[c]{\textbf{Comp\_}                              \\\textbf{Independ\_Din}} \\
+			\midrule
+			170.484,85 & 82.536,11                       & 133.236,75 & 51.409,96  \\
+			314.883,03 & 285.695,28                      & 303.634,13 & 203.208,98 \\
+			140.788,61 & 103.947,42                      & 95.625,49  & 37.214,03  \\
+			166.118,29 & 79.065,35                       & 130.810,41 & 40.602,31  \\
+			127.371,39 & 93.343,29                       & 95.981,84  & 28.628,14  \\
+			67.715,07  & 42.175,87                       & 51.708,29  & 24.722,37  \\
+			48.719,71  & 41.481,51                       & 20.996,45  & 9.382,95   \\
+			53.844,31  & 34.753,59                       & 28.675,46  & 13.985,90  \\
+			55.282,08  & 33.942,53                       & 32.609,11  & 10.029,04  \\
+			21.548,62  & 12.525,66                       & 13.102,66  & 3.637,46   \\
+			\bottomrule
+		\end{tabular}
+		\caption{Z* (\$)}
+	\end{subtable}
+	\hfill
+	% Tabela de Variações Percentuais
+	\begin{subtable}[t]{0.43\textwidth}
+		\centering
+		\begin{tabular}{@{}ccc@{}}
+			\toprule
+			\makecell[c]{\textbf{Fulfill\_}                  \\\textbf{Independ\_Din}}
+			       & \makecell[c]{\textbf{Skipla\_}          \\\textbf{Independ\_Din}}
+			       & \makecell[c]{\textbf{Comp\_}            \\\textbf{Independ\_Din}} \\
+			\midrule
+			-51,59 & -21,85                         & -69,84 \\
+			-9,27  & -3,57                          & -35,47 \\
+			-26,17 & -32,08                         & -73,57 \\
+			-52,40 & -21,25                         & -75,56 \\
+			-26,72 & -24,64                         & -77,52 \\
+			-37,72 & -23,64                         & -63,49 \\
+			-14,86 & -56,90                         & -80,74 \\
+			-35,46 & -46,74                         & -74,03 \\
+			-38,60 & -41,01                         & -81,86 \\
+			-41,87 & -39,19                         & -83,12 \\
+			\bottomrule
+		\end{tabular}
+		\caption{Variação das diferenças no Z* (\%)}
+	\end{subtable}
+
+	\caption{Valores ótimos e variações em função do modelo \texttt{Basic\_Independ\_Din} para a abordagem de demanda independente com autorizações dinâmicas.}
+	\label{tab: tab_Basic_Independ_Din}
+\end{table}
+
+
+\begin{table}[H]
+	\centering
+	\setlength{\tabcolsep}{4pt}
+	\scriptsize
+	% Tabela de Instâncias
+	\begin{subtable}[t]{0.10\textwidth}
+		\centering
+		\begin{tabular}{@{}l@{}}
+			\toprule
+			\makecell[l]{\textbf{ } \\\textbf{Instância}}  \\
+			\midrule
+			Inst1                   \\
+			Inst2                   \\
+			Inst3                   \\
+			Inst4                   \\
+			Inst5                   \\
+			Inst6                   \\
+			Inst7                   \\
+			Inst8                   \\
+			Inst9                   \\
+			Inst10                  \\
+			\bottomrule
+		\end{tabular}
+	\end{subtable}
+	\hfill
+	% Tabela de Valores Absolutos
+	\begin{subtable}[t]{0.48\textwidth}
+		\centering
+		\begin{tabular}{@{}cccc@{}}
+			\toprule
+			\makecell[c]{\textbf{Basic\_}                                          \\\textbf{Comporta\_Din}}
+			           & \makecell[c]{\textbf{Fulfill\_}                           \\\textbf{Comporta\_Din}}
+			           & \makecell[c]{\textbf{Skipla\_}                            \\\textbf{Comporta\_Din}}
+			           & \makecell[c]{\textbf{Comp\_}                              \\\textbf{Comporta\_Din}} \\
+			\midrule
+			165.332,34 & 80.277,72                       & 129.134,69 & 50.663,62  \\
+			312.732,50 & 285.015,08                      & 302.035,08 & 203.203,98 \\
+			133.920,75 & 100.268,44                      & 92.563,81  & 36.667,08  \\
+			161.735,16 & 76.761,93                       & 128.407,28 & 40.369,31  \\
+			123.192,31 & 91.680,66                       & 91.942,90  & 28.330,63  \\
+			64.931,92  & 40.357,31                       & 49.864,36  & 23.795,87  \\
+			37.505,28  & 29.827,51                       & 18.610,10  & 8.476,24   \\
+			45.361,71  & 28.610,68                       & 24.961,78  & 11.810,19  \\
+			47.866,14  & 28.484,56                       & 29.927,12  & 9.842,10   \\
+			18.796,91  & 9.884,40                        & 11.517,05  & 3.148,96   \\
+			\bottomrule
+		\end{tabular}
+		\caption{Z* (\$)}
+	\end{subtable}
+	\hfill
+	% Tabela de Variações Percentuais
+	\begin{subtable}[t]{0.41\textwidth}
+		\centering
+		\begin{tabular}{@{}ccc@{}}
+			\toprule
+			\makecell[c]{\textbf{Fulfill\_}                  \\\textbf{Comporta\_Din}}
+			       & \makecell[c]{\textbf{Skipla\_}          \\\textbf{Comporta\_Din}}
+			       & \makecell[c]{\textbf{Comp\_}            \\\textbf{Comporta\_Din}} \\
+			\midrule
+			-51,44 & -21,89                         & -69,36 \\
+			-8,86  & -3,42                          & -35,02 \\
+			-25,13 & -30,88                         & -72,62 \\
+			-52,54 & -20,61                         & -75,04 \\
+			-25,58 & -25,37                         & -77,00 \\
+			-37,85 & -23,21                         & -63,35 \\
+			-20,47 & -50,38                         & -77,40 \\
+			-36,93 & -44,97                         & -73,96 \\
+			-40,49 & -37,48                         & -79,44 \\
+			-47,41 & -38,73                         & -83,25 \\
+			\bottomrule
+		\end{tabular}
+		\caption{Variação das diferenças no Z* (\%)}
+	\end{subtable}
+
+	\caption{Valores ótimos e variações em função do modelo \texttt{Basic\_Comporta\_Din} para a abordagem de demanda comportamental com autorizações dinâmicas.}
+	\label{tab: tab_Basic_Comporta_Din}
+\end{table}
+
+
+Cabe ressaltar que cada um dos modelos apresentados nas tabelas anteriores resulta das combinações dos abordagens baseadas em tipos de demanda e tipos de autorizações. Em cada tabela, podem ser observados tanto os valores ótimos encontrados — parte (a), quanto as variações porcentuais das diferenças entre cada modelo — parte (b), tendo como ponto de referência o modelo básico correspondente, para cada uma das instâncias. É importante observar que todas as variações percentuais das Tabelas parte (b) possuem sinal negativo, indicando que, em relação à versão básica, houve uma redução no valor do revenue.
+
+Assim, a partir dos resultados apresentados nas tabelas anteriores, foi possível perceber que os modelos básicos de todas as abordagens apresentaram a maior receita em comparação com os modelos que incluem os conjuntos de restrições de \textit{skip lagging} e \textit{fulfillment over periods}. A diferença é ainda mais evidente quando comparados com o modelo completo. Essa situação era esperada, uma vez que os modelos básicos têm mais liberdade no espaço de busca, permitindo a obtenção de soluções mais globais, ao não considerar os outros conjuntos mencionados. Além disso, de todos os abordagens, também se observa que, em média, o conjunto de \textit{fulfillment} tem maior impacto na solução em comparação com o conjunto de \textit{skip lagging}, mostrando, de fato, que suas restrições são mais sensíveis ao problema. Ao final, o modelo completo obteve resultados significativamente inferiores aos do modelo básico; no entanto, esse é o custo de se considerar ambos os conjuntos de restrições simultaneamente.
+
+
+
+\section{Comparação entre modelos} \label{sec: Comparacao_entre_modelos}
+
+Nesta seção, realiza-se uma análise comparativa entre todas as abordagens propostas, classificadas segundo suas respectivas categorias — básicas, \textit{fulfillment}, \textit{skip lagging} e completas — com o objetivo de avaliar o desempenho dos modelos em diferentes contextos operacionais. Por exemplo, realiza-se uma comparação entre todos os modelos básicos, entre todos os modelos completos, e assim por diante para todas as categorias. Isso foi feito dessa forma, pois não é equivalente comparar um modelo de uma categoria com outro de categoria diferente. Por exemplo, não seria apropriado comparar um modelo básico com um modelo completo, já que eles estão resolvendo situações relativamente distintas.
+
+Na Tabela \ref{tab: compara_result_otimos}, as abordagens são organizadas por grupos de linhas conforme suas categorias, enquanto as colunas representam as diferentes instâncias analisadas. São apresentados os valores ótimos obtidos para cada combinação.
+
+
+\begin{table}[ht]
+	\centering
+	\resizebox{\textwidth}{!}{
+		\begin{tabular}{l|c|c|c|c|c|c|c|c|c|c}
+			\hline
+			\textbf{Nome Modelo}   & \textbf{Inst1} & \textbf{Inst2} & \textbf{Inst3} & \textbf{Inst4} & \textbf{Inst5} & \textbf{Inst6} & \textbf{Inst7} & \textbf{Inst8} & \textbf{Inst9} & \textbf{Inst10} \\
+			\hline
+			Basic\_Independ\_Est   & 170.484,85     & 314.883,03     & 141.121,96     & 166.118,29     & 127.847,39     & 67.715,07      & 48.719,71      & 53.844,31      & 55.282,08      & 21.548,62       \\
+			Basic\_Comporta\_Est   & 163.637,24     & 312.447,53     & 131.614,02     & 160.861,43     & 122.649,11     & 63.377,13      & 30.821,07      & 42.419,24      & 43.797,50      & 17.003,54       \\
+			Basic\_Independ\_Din   & 170.484,85     & 314.883,03     & 140.788,61     & 166.118,29     & 127.371,39     & 67.715,07      & 48.719,71      & 53.844,31      & 55.282,08      & 21.548,62       \\
+			Basic\_Comporta\_Din   & 165.332,34     & 312.732,50     & 133.920,75     & 161.735,16     & 123.192,31     & 64.931,92      & 37.505,28      & 45.361,71      & 47.866,14      & 18.796,91       \\ \hline
+			Fulfill\_Independ\_Est & 69.615,76      & 276.888,38     & 102.020,87     & 64.075,21      & 93.042,29      & 35.491,02      & 41.178,51      & 34.476,59      & 32.170,53      & 12.188,66       \\
+			Fulfill\_Comporta\_Est & 67.532,93      & 276.844,01     & 96.218,30      & 62.459,36      & 90.931,22      & 33.571,18      & 24.320,03      & 27.136,96      & 26.161,10      & 6.193,52        \\
+			Fulfill\_Independ\_Din & 82.536,11      & 285.695,28     & 103.947,42     & 79.065,35      & 93.343,29      & 42.175,87      & 41.481,51      & 34.753,59      & 33.942,53      & 12.525,66       \\
+			Fulfill\_Comporta\_Din & 80.277,72      & 285.015,08     & 100.268,44     & 76.761,93      & 91.680,66      & 40.357,31      & 29.827,51      & 28.610,68      & 28.484,56      & 9.884,40        \\ \hline
+			Skipla\_Independ\_Est  & 133.236,75     & 303.634,13     & 95.625,49      & 130.810,41     & 95.981,84      & 51.708,29      & 20.996,45      & 28.675,46      & 32.609,11      & 13.102,66       \\
+			Skipla\_Comporta\_Est  & 128.443,06     & 301.850,34     & 90.845,81      & 128.070,49     & 90.881,30      & 48.572,76      & 17.566,06      & 23.968,13      & 27.254,76      & 11.323,39       \\
+			Skipla\_Independ\_Din  & 133.236,75     & 303.634,13     & 95.625,49      & 130.810,41     & 95.981,84      & 51.708,29      & 20.996,45      & 28.675,46      & 32.609,11      & 13.102,66       \\
+			Skipla\_Comporta\_Din  & 129.134,69     & 302.035,08     & 92.563,81      & 128.407,28     & 91.942,90      & 49.864,36      & 18.610,10      & 24.961,78      & 29.927,12      & 11.517,05       \\ \hline
+			Comp\_Independ\_Est    & 45.618,26      & 192.405,53     & 36.501,03      & 38.573,12      & 19.226,71      & 23.458,32      & 8.649,95       & 13.788,90      & 9.715,04       & 3.372,46        \\
+			Comp\_Comporta\_Est    & 44.465,64      & 192.405,53     & 36.256,94      & 38.457,17      & 18.941,03      & 22.277,14      & 7.931,20       & 11.575,36      & 9.566,60       & 3.038,82        \\
+			Comp\_Independ\_Din    & 51.409,96      & 203.208,98     & 37.214,03      & 40.602,31      & 28.628,14      & 24.722,37      & 9.382,95       & 13.985,90      & 10.029,04      & 3.637,46        \\
+			Comp\_Comporta\_Din    & 50.663,62      & 203.203,98     & 36.667,08      & 40.369,31      & 28.330,63      & 23.795,87      & 8.476,24       & 11.810,19      & 9.842,10       & 3.148,96        \\
+			\hline
+		\end{tabular}
+	}
+	\caption{Resultados ótimos de cada modelo para cada instância}
+	\label{tab: compara_result_otimos}
+\end{table}
+
+
+
+
+
+% \begin{table}[ht]
 % 	\centering
-% 	\begin{tabular}{ccccccc}
-% 		\toprule
-% 		\textbf{Instância}                                                  &
-% 		\textbf{\begin{tabular}[c]{@{}c@{}}Nome \\ Trem\end{tabular}}       &
-% 		\textbf{\begin{tabular}[c]{@{}c@{}}Capacidade \\ Trem\end{tabular}} &
-% 		\textbf{Data Partida}                                               &
-% 		\textbf{\# Trechos}                                                 &
-% 		\textbf{\# Períodos}                                                &
-% 		\textbf{\# Classes}                                                                                          \\
-% 		\midrule
-% 		Inst1                                                          & 68 & 561 & 2023-11-21 & 256 & 120 & 15 \\
-% 		Inst2                                                          & 13 & 637 & 2023-11-26 & 252 & 146 & 15 \\
-% 		Inst3                                                          & 71 & 563 & 2023-10-13 & 250 & 105 & 16 \\
-% 		Inst4                                                          & 71 & 561 & 2023-11-21 & 241 & 124 & 15 \\\midrule
-% 		Inst5                                                          & 8  & 561 & 2022-12-04 & 152 & 116 & 17 \\
-% 		Inst6                                                          & 40 & 565 & 2023-11-21 & 149 & 68  & 16 \\
-% 		Inst7                                                          & 74 & 491 & 2023-07-25 & 136 & 70  & 16 \\\midrule
-% 		Inst8                                                          & 72 & 493 & 2023-10-25 & 100 & 85  & 16 \\
-% 		Inst9                                                          & 45 & 563 & 2023-03-16 & 90  & 73  & 16 \\
-% 		Inst10                                                         & 15 & 493 & 2023-08-07 & 50  & 60  & 12 \\
-% 		\bottomrule
-% 	\end{tabular}
-% 	\caption{Resumo das instâncias utilizadas no experimento}
-% 	\label{tab:instancias}
+% 	\resizebox{\textwidth}{!}{
+% 		\begin{tabular}{l|c|c|c|c|c|c|c|c|c|c}
+% 			\hline
+% 			\textbf{Nome Modelo}   & \textbf{Inst1} & \textbf{Inst2} & \textbf{Inst3} & \textbf{Inst4} & \textbf{Inst5} & \textbf{Inst6} & \textbf{Inst7} & \textbf{Inst8} & \textbf{Inst9} & \textbf{Inst10} \\
+% 			\hline
+% 			Basic\_Independ\_Est   & 170.484,85     & 314.883,03     & 141.121,96     & 166.118,29     & 127.847,39     & 67.715,07      & 48.719,71      & 53.844,31      & 55.282,08      & 21.548,62       \\
+% 			Basic\_Comporta\_Est   & 170.484,85     & 314.883,03     & 140.323,18     & 166.118,29     & 127.486,14     & 67.715,07      & 48.719,71      & 53.844,31      & 55.282,08      & 21.548,62       \\
+% 			Basic\_Independ\_Din   & 170.484,85     & 314.883,03     & 140.788,61     & 166.118,29     & 127.371,39     & 67.715,07      & 48.719,71      & 53.844,31      & 55.282,08      & 21.548,62       \\
+% 			Basic\_Comporta\_Din   & 170.484,85     & 314.883,03     & 139.944,03     & 166.118,29     & 126.863,14     & 67.715,07      & 48.719,71      & 53.844,31      & 55.282,08      & 21.548,62       \\ \hline
+% 			Fulfill\_Independ\_Est & 69.615,76      & 276.888,38     & 102.020,87     & 64.075,21      & 93.042,29      & 35.491,02      & 41.178,51      & 34.476,59      & 32.170,53      & 12.188,66       \\
+% 			Fulfill\_Comporta\_Est & 67.970,17      & 276.888,38     & 97.304,87      & 63.304,21      & 91.699,24      & 34.235,52      & 27.763,40      & 30.266,09      & 28.304,56      & 6.765,16        \\
+% 			Fulfill\_Independ\_Din & 82.536,11      & 285.695,28     & 103.947,42     & 79.065,35      & 93.343,29      & 42.175,87      & 41.481,51      & 34.753,59      & 33.942,53      & 12.525,66       \\
+% 			Fulfill\_Comporta\_Din & 81.521,37      & 285.407,28     & 102.149,42     & 78.373,35      & 92.544,24      & 41.280,37      & 36.436,80      & 31.972,59      & 31.503,23      & 11.438,80       \\ \hline
+% 			Skipla\_Independ\_Est  & 133.236,75     & 303.634,13     & 95.625,49      & 130.810,41     & 95.981,84      & 51.708,29      & 20.996,45      & 28.675,46      & 32.609,11      & 13.102,66       \\
+% 			Skipla\_Comporta\_Est  & 130.099,06     & 302.493,63     & 91.906,57      & 129.340,41     & 92.403,79      & 49.309,79      & 18.580,45      & 25.645,46      & 28.031,51      & 11.929,16       \\
+% 			Skipla\_Independ\_Din  & 133.236,75     & 303.634,13     & 95.625,49      & 130.810,41     & 95.981,84      & 51.708,29      & 20.996,45      & 28.675,46      & 32.609,11      & 13.102,66       \\
+% 			Skipla\_Comporta\_Din  & 130.922,06     & 302.795,63     & 94.198,21      & 129.892,41     & 93.732,79      & 50.695,94      & 19.845,45      & 26.658,46      & 31.710,05      & 12.245,30       \\ \hline
+% 			Comp\_Independ\_Est    & 45.618,26      & 192.405,53     & 36.501,03      & 38.573,12      & 19.226,71      & 23.458,32      & 8.649,95       & 13.788,90      & 9.715,04       & 3.372,46        \\
+% 			Comp\_Comporta\_Est    & 44.574,36      & 192.405,53     & 36.343,03      & 38.506,12      & 19.078,66      & 22.742,82      & 8.297,95       & 12.853,90      & 9.621,04       & 3.184,46        \\
+% 			Comp\_Independ\_Din    & 51.409,96      & 203.208,98     & 37.214,03      & 40.602,31      & 28.628,14      & 24.722,37      & 9.382,95       & 13.985,90      & 10.029,04      & 3.637,46        \\
+% 			Comp\_Comporta\_Din    & 51.152,21      & 203.203,98     & 37.017,03      & 40.503,31      & 28.506,09      & 24.258,87      & 9.086,95       & 13.148,90      & 10.014,04      & 3.344,60        \\
+% 			\hline
+% 		\end{tabular}
+% 	}
+% 	\caption{Resultados ótimos de cada modelo para cada instância}
+% 	\label{tab: compara_result_otimos}
 % \end{table}
 
-% A coluna "\# Trechos" \, representa a quantidade de trechos que a viagem do trem possui em cada instância. A coluna "\# Períodos" \, indica a quantidade de períodos considerados na programação desse trajeto dentro do seu horizonte de reserva. Por fim, a coluna "\# Classes" \, mostra o número máximo de classes disponíveis para cada viagem de cada trem; Observe que, para cada trecho, podem estar disponíveis todas as classes indicadas na coluna correspondente ou uma quantidade menor.
-
-% Por outro lado, afirmamos que as instâncias compreendidas entre a Instância1 e a Instância4 são classificadas como grandes, as instâncias entre a Instância5 e a Instância7 como médias, e as demais como pequenas.
-
-\section{Experimentos Computacionais}
-Para resolver as instâncias utilizando os modelos matemáticos propostos, foi empregado um computador da marca Dell, modelo Precision 3660, equipado com o sistema operacional Windows 11 Pro de 64 bits, processador 13th Gen Intel(R) Core(TM) i7-13700 2.10 GHz baseado em arquitetura x64, e memória RAM de 16GB. Além disso, utilizou-se o Python como linguagem de programação na versão 3.10.14, e o solver Gurobi na versão 11.0.3.
-
-Em primeiro lugar, apresentam-se os resultados de cada instância após serem resolvidas por meio de cada um dos modelos propostos. Essa organização busca evidenciar de forma clara e comparativa o desempenho dos modelos em diferentes cenários, destacando as principais diferenças e similaridades nas soluções obtidas para cada instância.
-
-Observe que a primeira coluna indica o nome do modelo utilizado. A segunda coluna, "\textit{T. Criação Modelo (seg.)}", exibe o tempo, em segundos, que o solver levou para construir o modelo. A terceira coluna, "\textit{T. Solução (seg.)}", mostra o tempo necessário para que o solver resolvesse o modelo. A sétima coluna, "\textit{Z Relaxado}", apresenta a relaxação linear do problema no nó raiz. Já a oitava coluna, "\textit{Z\*}", indica o valor ótimo da função objetivo (máximo lucro encontrado). Por fim, a nona coluna, "\textit{$ \Delta Z (\%)$}", mostra a diferença percentual entre a solução relaxada e a solução ótima.
-
-\begin{table}[H]
-    \centering
-    \resizebox{\textwidth}{!}{%
-        \begin{tabular}{lccccccccc}
-            \hline
-            \textbf{Modelo} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}T. Criação \\ Modelo (seg.)\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}T. Solução \\ (seg.)\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° Nós \\ Explorados\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° \\ Iterações\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° \\ Soluções\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}Z \\ Relaxado\end{tabular}} &
-            \textbf{Z*} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}$\Delta$ Z \\ (\%)\end{tabular}} \\ \hline
-            BaseModel & 2,30 & 0,07 & 1 & 0 & 1 & 170.485 & 170.485 & 0,00 \\ 
-            BaseModelFulfillments & 3,97 & 0,07 & 1 & 0 & 1 & 170.485 & 170.485 & 0,00 \\ 
-            BaseModelSkiplagging & 6,06 & 0,06 & 1 & 0 & 1 & 133.237 & 133.237 & 0,00 \\ 
-            BaseModelFull & 6,43 & 0,05 & 1 & 0 & 1 & 51.410 & 51.410 & 0,00 \\ 
-            HierarBehavioralModel & 3,17 & 0,07 & 1 & 0 & 1 & 170.455 & 170.455 & 0,00 \\ 
-            HierarBehavioralModelFulfillments & 4,87 & 0,08 & 1 & 0 & 1 & 170.455 & 170.455 & 0,00 \\ 
-            HierarBehavioralModelSkiplagging & 7,09 & 0,08 & 1 & 2 & 2 & 132.928 & 132.928 & 0,00 \\ 
-            HierarBehavioralModelFull & 7,48 & 0,05 & 1 & 0 & 1 & 51.336 & 51.336 & 0,00 \\ 
-            PercentBehavioralModel & 3,14 & 0,07 & 1 & 0 & 1 & 166.345 & 166.345 & 0,00 \\ 
-            PercentBehavioralModelFulfillments & 4,90 & 0,08 & 1 & 0 & 1 & 170.455 & 170.455 & 0,00 \\ 
-            PercentBehavioralModelSkiplagging & 7,07 & 0,06 & 1 & 2 & 2 & 132.928 & 132.928 & 0,00 \\ 
-            PercentBehavioralModelFull & 7,47 & 0,05 & 1 & 0 & 1 & 51.336 & 51.336 & 0,00 \\ \hline
-        \end{tabular}%
-    }
-    \caption{Resultados para a Instância1}
-    \label{tab:resultado_instancia1}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \resizebox{\textwidth}{!}{%
-        \begin{tabular}{lccccccccc}
-            \hline
-            \textbf{Modelo} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}T. Criação \\ Modelo (seg.)\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}T. Solução \\(seg.)\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° Nós \\Explorado\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° \\Iterações\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° \\Soluções\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}Z \\Relaxado\end{tabular}} &
-            \textbf{Z*} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}$\Delta$ Z \\(\%)\end{tabular}} \\ \hline
-            BaseModel & 2,90 & 0,08 & 1 & 0 & 1 & 314.883,03 & 314.883,03 & 0,00 \\ 
-            BaseModelFulfillments & 5,22 & 0,08 & 1 & 0 & 1 & 314.883,03 & 314.883,03 & 0,00 \\ 
-            BaseModelSkiplagging & 7,47 & 0,07 & 1 & 0 & 1 & 303.634,13 & 303.634,13 & 0,00 \\ 
-            BaseModelFull & 8,00 & 0,07 & 1 & 0 & 1 & 203.208,98 & 203.208,98 & 0,00 \\ 
-            HierarBehavioralModel & 3,98 & 0,07 & 1 & 0 & 1 & 314.599,53 & 314.599,53 & 0,00 \\ 
-            HierarBehavioralModelFulfillments & 6,38 & 0,10 & 1 & 0 & 3 & 314.599,53 & 314.599,53 & 0,00 \\ 
-            HierarBehavioralModelSkiplagging & 8,58 & 0,06 & 1 & 0 & 1 & 303.375,63 & 303.375,63 & 0,00 \\ 
-            HierarBehavioralModelFull & 9,11 & 0,07 & 1 & 0 & 1 & 203.276,98 & 203.276,98 & 0,00 \\ 
-            PercentBehavioralModel & 3,98 & 0,07 & 1 & 0 & 1 & 313.547,03 & 313.547,03 & 0,00 \\ 
-            PercentBehavioralModelFulfillments & 6,35 & 0,10 & 1 & 0 & 3 & 314.599,53 & 314.599,53 & 0,00 \\ 
-            PercentBehavioralModelSkiplagging & 8,62 & 0,06 & 1 & 0 & 1 & 303.375,63 & 303.375,63 & 0,00 \\ 
-            PercentBehavioralModelFull & 9,20 & 0,08 & 1 & 0 & 1 & 203.276,98 & 203.276,98 & 0,00 \\ \hline
-        \end{tabular}%
-    }
-    \caption{Resultados para a Instância2}
-    \label{tab:resultado_instancia2}
-\end{table}
-
-
-\begin{table}[H]
-    \centering
-    \resizebox{\textwidth}{!}{%
-        \begin{tabular}{lccccccccc}
-            \hline
-            \textbf{Modelo} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}T. Criação \\ Modelo (seg.)\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}T. Solução \\(seg.)\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° Nós \\Explorado\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° \\Iterações\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° \\Soluções\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}Z \\Relaxado\end{tabular}} &
-            \textbf{Z*} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}$\Delta$ Z \\(\%)\end{tabular}} \\ \hline
-            BaseModel & 2,25 & 0,05 & 1 & 33 & 2 & 140.788,61 & 140.788,61 & 0,00 \\ 
-            BaseModelFulfillments & 3,75 & 0,08 & 1 & 377 & 2 & 140.788,61 & 140.788,61 & 0,00 \\ 
-            BaseModelSkiplagging & 18,62 & 0,07 & 1 & 25 & 2 & 95.625,49 & 95.625,49 & 0,00 \\ 
-            BaseModelFull & 19,15 & 0,05 & 1 & 0 & 1 & 37.214,03 & 37.214,03 & 0,00 \\ 
-            \textbf{HierarBehavioralModel} &\textbf{3,01}&\textbf{0,08}& \textbf{1} & \textbf{97}&\textbf{6} & \textbf{140.179,10} & \textbf{140.167,27}& \textbf{0,01} \\ 
-            \textbf{HierarBehavioralModelFulfillments} & \textbf{4,67} &\textbf{0,12} &\textbf{1} & \textbf{571}& \textbf{10} & \textbf{140.086,16}& \textbf{140.077,33} &\textbf{0,01} \\ 
-            HierarBehavioralModelSkiplagging & 19,87 & 0,06 & 1 & 55 & 3 & 95.101,49 & 95.101,49 & 0,00 \\ 
-            HierarBehavioralModelFull & 20,08 & 0,05 & 1 & 4 & 4 & 37.183,03 & 37.183,03 & 0,00 \\ 
-            PercentBehavioralModel & 3,02 & 0,05 & 1 & 35 & 2 & 136.487,26 & 136.487,26 & 0,00 \\ 
-            \textbf{PercentBehavioralModelFulfillments} & \textbf{4,67} & \textbf{0,12} & \textbf{1} &\textbf{571} &\textbf{10} & \textbf{140.086,16} &\textbf{140.077,33 }&\textbf{0,01} \\ 
-            PercentBehavioralModelSkiplagging & 20,09 & 0,05 & 1 & 55 & 3 & 95.101,49 & 95.101,49 & 0,00 \\ 
-            PercentBehavioralModelFull & 20,43 & 0,05 & 1 & 4 & 4 & 37.183,03 & 37.183,03 & 0,00 \\ \hline
-        \end{tabular}%
-    }
-    \caption{Resultados para a Instância3}
-    \label{tab:resultado_instancia3}
-\end{table}
-
-
-\begin{table}[H]
-    \centering
-    \resizebox{\textwidth}{!}{%
-        \begin{tabular}{lccccccccc}
-            \hline
-            \textbf{Modelo} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}T. Criação \\ Modelo (seg.)\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}T. Solução \\(seg.)\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° Nós \\Explorado\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° \\Iterações\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° \\Soluções\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}Z \\Relaxado\end{tabular}} &
-            \textbf{Z*} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}$\Delta$ Z \\(\%)\end{tabular}} \\ \hline
-            BaseModel & 2,20 & 0,05 & 1 & 0 & 1 & 166.118,29 & 166.118,29 & 0,00 \\
-            BaseModelFulfillments & 3,70 & 0,08 & 1 & 0 & 1 & 166.118,29 & 166.118,29 & 0,00 \\
-            BaseModelSkiplagging & 4,65 & 0,07 & 1 & 0 & 1 & 130.810,41 & 130.810,41 & 0,00 \\
-            BaseModelFull & 4,95 & 0,04 & 1 & 0 & 1 & 40.602,31 & 40.602,31 & 0,00 \\
-            HierarBehavioralModel & 3,02 & 0,05 & 1 & 0 & 1 & 165.869,29 & 165.869,29 & 0,00 \\
-            HierarBehavioralModelFulfillments & 4,48 & 0,07 & 1 & 0 & 1 & 165.869,29 & 165.869,29 & 0,00 \\
-            HierarBehavioralModelSkiplagging & 5,50 & 0,05 & 1 & 0 & 2 & 129.740,41 & 129.740,41 & 0,00 \\
-            HierarBehavioralModelFull & 5,84 & 0,04 & 1 & 0 & 1 & 40.718,31 & 40.718,31 & 0,00 \\
-            PercentBehavioralModel & 3,07 & 0,05 & 1 & 0 & 1 & 162.681,09 & 162.681,09 & 0,00 \\
-            PercentBehavioralModelFulfillments & 4,52 & 0,08 & 1 & 0 & 1 & 165.869,29 & 165.869,29 & 0,00 \\
-            PercentBehavioralModelSkiplagging & 5,47 & 0,07 & 1 & 0 & 2 & 129.740,41 & 129.740,41 & 0,00 \\
-            PercentBehavioralModelFull & 5,73 & 0,05 & 1 & 0 & 1 & 40.718,31 & 40.718,31 & 0,00 \\ \hline
-        \end{tabular}%
-    }
-    \caption{Resultados para a Instância4}
-    \label{tab:resultado_instancia4}
-\end{table}
-
-
-\begin{table}[H]
-    \centering
-    \resizebox{\textwidth}{!}{%
-        \begin{tabular}{lccccccccc}
-            \hline
-            \textbf{Modelo} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}T. Criação \\ Modelo (seg.)\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}T. Solução \\(seg.)\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° Nós \\Explorado\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° \\Iterações\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° \\Soluções\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}Z \\Relaxado\end{tabular}} &
-            \textbf{Z*} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}$\Delta$ Z \\(\%)\end{tabular}} \\ \hline
-            BaseModel & 2,20 & 0,05 & 1 & 29  & 3 & 127.371,39 & 127.371,39 & 0,00 \\
-            BaseModelFulfillments & 3,07 & 0,07 & 1 & 143 & 4 & 127.371,39 & 127.371,39 & 0,00 \\
-            BaseModelSkiplagging & 3,05 & 0,07 & 1 & 0   & 1 & 95.816,84  & 95.816,84  & 0,00 \\
-            BaseModelFull & 3,24 & 0,05 & 1 & 0   & 1 & 28.647,69 & 28.647,69 & 0,00 \\
-            \textbf{HierarBehavioralModel} & \textbf{2,72} & \textbf{0,05} & \textbf{1} & \textbf{53}  & \textbf{4} & \textbf{127.020,39} & \textbf{127.010,39} & \textbf{0,01} \\
-            \textbf{HierarBehavioralModelFulfillments} & \textbf{3,58} & \textbf{0,07} & \textbf{1} & \textbf{170} & \textbf{4} & \textbf{127.020,39} & \textbf{127.010,39} & \textbf{0,01} \\
-            HierarBehavioralModelSkiplagging & 3,58 & 0,07 & 1 & 0   & 1 & 95.403,84  & 95.403,84  & 0,00 \\
-            HierarBehavioralModelFull & 3,87 & 0,06 & 1 & 0   & 1 & 28.460,69 & 28.460,69 & 0,00 \\
-            PercentBehavioralModel & 2,68 & 0,07 & 1 & 34  & 3 & 124.593,69 & 124.593,69 & 0,00 \\
-            \textbf{PercentBehavioralModelFulfillments} & \textbf{3,67} & \textbf{0,08} & \textbf{1} & \textbf{170} & \textbf{4} & \textbf{127.020,39} & \textbf{127.010,39} & \textbf{0,01} \\
-            PercentBehavioralModelSkiplagging & 3,62 & 0,05 & 1 & 0   & 1 & 95.403,84  & 95.403,84  & 0,00 \\
-            PercentBehavioralModelFull & 3,85 & 0,05 & 1 & 0   & 1 & 28.460,69 & 28.460,69 & 0,00 \\ \hline
-        \end{tabular}%
-    }
-    \caption{Resultados para a Instância5}
-    \label{tab:resultado_instancia5}
-\end{table}
-
-
-\begin{table}[H]
-    \centering
-    \resizebox{\textwidth}{!}{%
-        \begin{tabular}{lccccccccc}
-            \hline
-            \textbf{Modelo} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}T. Criação \\ Modelo (seg.)\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}T. Solução \\(seg.)\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° Nós \\Explorado\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° \\Iterações\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° \\Soluções\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}Z \\Relaxado\end{tabular}} &
-            \textbf{Z*} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}$\Delta$ Z \\(\%)\end{tabular}} \\ \hline
-            BaseModel & 1,18 & 0,03 & 0 & 0 & 1 & 67.715,07 & 67.715,07 & 0,00 \\
-            BaseModelFulfillments & 1,75 & 0,03 & 0 & 0 & 1 & 67.715,07 & 67.715,07 & 0,00 \\
-            BaseModelSkiplagging & 1,72 & 0,04 & 0 & 0 & 1 & 51.708,29 & 51.708,29 & 0,00 \\
-            BaseModelFull & 1,83 & 0,03 & 0 & 0 & 1 & 24.722,37 & 24.722,37 & 0,00 \\
-            HierarBehavioralModel & 1,48 & 0,03 & 0 & 0 & 1 & 67.593,22 & 67.593,22 & 0,00 \\
-            HierarBehavioralModelFulfillments & 2,15 & 0,07 & 0 & 0 & 1 & 67.587,22 & 67.587,22 & 0,00 \\
-            HierarBehavioralModelSkiplagging & 2,07 & 0,05 & 1 & 0 & 1 & 51.589,44 & 51.589,44 & 0,00 \\
-            HierarBehavioralModelFull & 2,27 & 0,03 & 0 & 0 & 1 & 24.714,52 & 24.714,52 & 0,00 \\
-            PercentBehavioralModel & 1,48 & 0,03 & 0 & 0 & 1 & 65.256,64 & 65.256,64 & 0,00 \\
-            PercentBehavioralModelFulfillments & 2,10 & 0,05 & 0 & 0 & 1 & 67.587,22 & 67.587,22 & 0,00 \\
-            PercentBehavioralModelSkiplagging & 2,08 & 0,03 & 1 & 0 & 1 & 51.589,44 & 51.589,44 & 0,00 \\
-            PercentBehavioralModelFull & 2,22 & 0,03 & 0 & 0 & 1 & 24.714,52 & 24.714,52 & 0,00 \\ \hline
-        \end{tabular}%
-    }
-    \caption{Resultados para a Instância6}
-    \label{tab:resultado_instancia6}
-\end{table}
-
-
-\begin{table}[H]
-    \centering
-    \resizebox{\textwidth}{!}{%
-        \begin{tabular}{lccccccccc}
-            \hline
-            \textbf{Modelo} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}T. Criação \\ Modelo (seg.)\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}T. Solução \\(seg.)\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° Nós \\Explorado\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° \\Iterações\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° \\Soluções\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}Z \\Relaxado\end{tabular}} &
-            \textbf{Z*} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}$\Delta$ Z \\(\%)\end{tabular}} \\ \hline
-            BaseModel & 1,07 & 0,03 & 0 & 0 & 1 & 48.719,71 & 48.719,71 & 0,00 \\
-            BaseModelFulfillments & 1,72 & 0,03 & 0 & 0 & 1 & 48.719,71 & 48.719,71 & 0,00 \\
-            BaseModelSkiplagging & 1,81 & 0,03 & 0 & 0 & 1 & 20.996,45 & 20.996,45 & 0,00 \\
-            BaseModelFull & 1,98 & 0,03 & 0 & 0 & 1 & 9.382,95 & 9.382,95 & 0,00 \\
-            HierarBehavioralModel & 1,43 & 0,05 & 1 & 60 & 5 & 47.990,71 & 47.990,71 & 0,00 \\
-            HierarBehavioralModelFulfillments & 2,17 & 0,05 & 1 & 227 & 6 & 47.990,71 & 47.990,71 & 0,00 \\
-            HierarBehavioralModelSkiplagging & 2,25 & 0,03 & 0 & 0 & 3 & 20.694,45 & 20.694,45 & 0,00 \\
-            HierarBehavioralModelFull & 2,37 & 0,05 & 0 & 0 & 1 & 8.663,95 & 8.663,95 & 0,00 \\
-            \textbf{PercentBehavioralModel} & \textbf{1,45} & \textbf{0,02} & \textbf{-} & \textbf{-} & \textbf{-} & \textbf{- }& \textbf{Infactível} & \textbf{- }\\
-            PercentBehavioralModelFulfillments & 2,17 & 0,05 & 1 & 227 & 6 & 47.990,71 & 47.990,71 & 0,00 \\
-            PercentBehavioralModelSkiplagging & 2,25 & 0,03 & 0 & 0 & 3 & 20.694,45 & 20.694,45 & 0,00 \\
-            PercentBehavioralModelFull & 2,38 & 0,03 & 0 & 0 & 1 & 8.663,95 & 8.663,95 & 0,00 \\ \hline
-        \end{tabular}%
-    }
-    \caption{Resultados para a Instância7}
-    \label{tab:resultado_instancia7}
-\end{table}
-
-
-\begin{table}[H]
-    \centering
-    \resizebox{\textwidth}{!}{%
-        \begin{tabular}{lccccccccc}
-            \hline
-            \textbf{Modelo} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}T. Criação \\ Modelo (seg.)\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}T. Solução \\(seg.)\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° Nós \\Explorado\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° \\Iterações\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° \\Soluções\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}Z \\Relaxado\end{tabular}} &
-            \textbf{Z*} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}$\Delta$ Z \\(\%)\end{tabular}} \\ \hline
-            BaseModel & 0,94 & 0,03 & 0 & 0 & 1 & 53.844,31 & 53.844,31 & 0,00 \\
-            BaseModelFulfillments & 1,58 & 0,05 & 0 & 0 & 1 & 53.844,31 & 53.844,31 & 0,00 \\
-            BaseModelSkiplagging & 1,57 & 0,04 & 0 & 0 & 1 & 28.675,46 & 28.675,46 & 0,00 \\
-            BaseModelFull & 1,70 & 0,03 & 0 & 0 & 1 & 13.985,90 & 13.985,90 & 0,00 \\
-            HierarBehavioralModel & 1,32 & 0,03 & 1 & 54 & 5 & 52.091,71 & 52.091,71 & 0,00 \\
-            HierarBehavioralModelFulfillments & 1,98 & 0,07 & 1 & 205 & 6 & 52.091,71 & 52.091,71 & 0,00 \\
-            HierarBehavioralModelSkiplagging & 1,98 & 0,03 & 0 & 0 & 2 & 28.506,46 & 28.506,46 & 0,00 \\
-            HierarBehavioralModelFull & 2,12 & 0,03 & 0 & 0 & 2 & 11.599,90 & 11.599,90 & 0,00 \\
-            \textbf{PercentBehavioralModel} & \textbf{1,30} & \textbf{0,02} & \textbf{-} & \textbf{-} & \textbf{-} & \textbf{- }& \textbf{Infactível} & \textbf{- }\\
-            PercentBehavioralModelFulfillments & 1,99 & 0,05 & 1 & 205 & 6 & 52.091,71 & 52.091,71 & 0,00 \\
-            PercentBehavioralModelSkiplagging & 1,97 & 0,03 & 0 & 0 & 2 & 28.506,46 & 28.506,46 & 0,00 \\
-            PercentBehavioralModelFull & 2,12 & 0,03 & 0 & 0 & 2 & 11.599,90 & 11.599,90 & 0,00 \\ \hline
-        \end{tabular}%
-    }
-    \caption{Resultados para a Instância8}
-    \label{tab:resultado_instancia8}
-\end{table}
-
-
-\begin{table}[H]
-    \centering
-    \resizebox{\textwidth}{!}{%
-        \begin{tabular}{lccccccccc}
-            \hline
-            \textbf{Modelo} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}T. Criação \\ Model (seg.)\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}T. Solução \\(seg.)\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° Nós \\Explorado\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° \\Iterações\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° \\Soluções\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}Z \\Relaxado\end{tabular}} &
-            \textbf{Z*} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}$\Delta$ Z \\(\%)\end{tabular}} \\ \hline
-            BaseModel & 0,82 & 0,03 & 0 & 0 & 1 & 55.282,08 & 55.282,08 & 0,00 \\
-            BaseModelFulfillments & 1,33 & 0,03 & 0 & 0 & 1 & 55.282,08 & 55.282,08 & 0,00 \\
-            BaseModelSkiplagging & 1,37 & 0,03 & 0 & 0 & 1 & 33.524,11 & 33.524,11 & 0,00 \\
-            BaseModelFull & 1,48 & 0,03 & 0 & 0 & 1 & 9.902,35 & 9.902,35 & 0,00 \\
-            HierarBehavioralModel & 1,12 & 0,03 & 0 & 0 & 1 & 55.230,08 & 55.230,08 & 0,00 \\
-            HierarBehavioralModelFulfillments & 1,66 & 0,05 & 1 & 13 & 5 & 55.230,08 & 55.230,08 & 0,00 \\
-            HierarBehavioralModelSkiplagging & 1,71 & 0,03 & 1 & 3 & 3 & 33.249,11 & 33.249,11 & 0,00 \\
-            HierarBehavioralModelFull & 1,85 & 0,03 & 0 & 0 & 1 & 9.726,35 & 9.726,35 & 0,00 \\
-            PercentBehavioralModel & 1,12 & 0,03 & 0 & 0 & 1 & 50.834,74 & 50.834,74 & 0,00 \\
-            PercentBehavioralModelFulfillments & 1,68 & 0,05 & 1 & 13 & 5 & 55.230,08 & 55.230,08 & 0,00 \\
-            PercentBehavioralModelSkiplagging & 1,70 & 0,03 & 1 & 3 & 3 & 33.249,11 & 33.249,11 & 0,00 \\
-            PercentBehavioralModelFull & 1,82 & 0,04 & 0 & 0 & 1 & 9.726,35 & 9.726,35 & 0,00 \\ \hline
-        \end{tabular}%
-    }
-    \caption{Resultados para a Instância9}
-    \label{tab:resultado_instancia9}
-\end{table}
-
-
-\begin{table}[H]
-    \centering
-    \resizebox{\textwidth}{!}{%
-        \begin{tabular}{lccccccccc}
-            \hline
-            \textbf{Modelo} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}T. Criação \\ Model (seg.)\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}T. Solução \\(seg.)\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° Nós \\Explorado\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° \\Iterações\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}N° \\Soluções\end{tabular}} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}Z \\Relaxado\end{tabular}} &
-            \textbf{Z*} &
-            \textbf{\begin{tabular}[c]{@{}c@{}}$\Delta$ Z \\(\%)\end{tabular}} \\ \hline
-            BaseModel & 0,39 & 0,02 & 0 & 0 & 1 & 21.548,62 & 21.548,62 & 0,00 \\
-            BaseModelFulfillments & 0,65 & 0,02 & 0 & 0 & 1 & 21.548,62 & 21.548,62 & 0,00 \\
-            BaseModelSkiplagging & 0,64 & 0,00 & 0 & 0 & 1 & 13.102,66 & 13.102,66 & 0,00 \\
-            BaseModelFull & 0,70 & 0,01 & 0 & 0 & 1 & 3.637,46 & 3.637,46 & 0,00 \\
-            HierarBehavioralModel & 0,56 & 0,02 & 1 & 5 & 3 & 22.112,12 & 22.112,12 & 0,00 \\
-            HierarBehavioralModelFulfillments & 0,90 & 0,03 & 1 & 0 & 1 & 22.112,12 & 22.112,12 & 0,00 \\
-            HierarBehavioralModelSkiplagging & 0,85 & 0,01 & 1 & 19 & 2 & 13.015,16 & 13.015,16 & 0,00 \\
-            HierarBehavioralModelFull & 0,94 & 0,01 & 0 & 0 & 1 & 3.362,96 & 3.362,96 & 0,00 \\
-            \textbf{PercentBehavioralModel} & \textbf{0,58} & \textbf{0,00} & \textbf{-} & \textbf{-} & \textbf{-} & \textbf{- }& \textbf{Infactível} & \textbf{- }\\
-            PercentBehavioralModelFulfillments & 0,87 & 0,02 & 1 & 0 & 1 & 22.112,12 & 22.112,12 & 0,00 \\
-            PercentBehavioralModelSkiplagging & 0,88 & 0,00 & 1 & 19 & 2 & 13.015,16 & 13.015,16 & 0,00 \\
-            PercentBehavioralModelFull & 0,95 & 0,02 & 0 & 0 & 1 & 3.362,96 & 3.362,96 & 0,00 \\ \hline
-        \end{tabular}%
-    }
-    \caption{Resultados para a Instância10}
-    \label{tab:resultado_instancia10}
-\end{table}
-
-
-\begin{figure}[!ht]
-	\begin{center}
-		\includegraphics[scale=0.28]{img/compFull1.png}
-		\caption{Comparação Modelos Full primeira parte}
-		% Fonte:~\cite{khaksar2013genetic}}
-		\label{fig: compfull1}
-	\end{center}
-\end{figure}
-
-\begin{figure}[!ht]
-	\begin{center}
-		\includegraphics[scale=0.28]{img/compFull2.png}
-		\caption{Comparação Modelos Full segunda parte}
-		% Fonte:~\cite{khaksar2013genetic}}
-		\label{fig: compfull2}
-	\end{center}
-\end{figure}
-
-
-Dentro dos resultados observados, diversos comportamentos interessantes foram identificados:
+De acordo com a Tabela \ref{tab: compara_result_otimos}, pode-se observar o seguinte:
 
 \begin{enumerate}
-    \item Tempo de solução:
-    O tempo necessário para resolver cada modelo em todas as instâncias foi relativamente baixo. Por exemplo:
-    \begin{itemize}
-    \item Para as instâncias grandes, os tempos variaram entre 0,04 e 0,12 segundos;
-    \item Para as instâncias médias, entre 0,02 e 0,08 segundos;
-    \item Para as instâncias pequenas, entre 0,00 e 0,07 segundos.
-    \end{itemize}
+	\item Os modelos básicos, tanto para a abordagem de demanda independente quanto para a abordagem de demanda comportamental, apresentaram os melhores resultados em todas as instâncias analisadas. Isso se deve ao fato de que esses modelos não consideram as restrições de \textit{skip lagging} e \textit{fulfillment over periods}, o que lhes confere maior liberdade na busca por soluções.
 
-    \item Exploração de nós:
-    Os modelos sempre alcançaram a solução ou soluções ótimas explorando, no máximo, um único nó. Isso demonstra que, na maioria dos casos, a solução ótima coincide com a relaxação linear. Quando isso não ocorre, a diferença máxima relativa é de apenas 0,01\%.
-    
-    \item Modelos com demanda independente:
-    \begin{itemize}
-        \item Os modelos BaseModel e BaseModelFulfillments produziram exatamente os mesmos resultados em todas as instâncias analisadas;
-        \item O modelo BaseModelSkiplagging, em comparação com o BaseModelFulfillments, apresentou uma redução relativa entre 21,25\% e 56,90\% em todas as instâncias, exceto na instância instância2, onde a redução foi de apenas 3,57\%;
-        \item O modelo BaseModelFull mostrou uma redução ainda maior, variando entre 21,25\% e 72,24\%, em comparação com o BaseModelSkiplagging, novamente com exceção da instância instância2, onde a redução foi de 3,57\%.
-    \end{itemize}
+	\item Observa-se que os modelos \texttt{Basic\_Independ\_Est} e \texttt{Basic\_Independ\_Din} apresentaram receitas idênticas na maior parte das instâncias analisadas, com exceção das instâncias Inst3 e Inst5, nas quais foram observados valores distintos, embora com variação reduzida. De forma inesperada, comportamento análogo foi identificado nos modelos \texttt{Skipla\_Independ\_Est} e \texttt{Skipla\_Independ\_Din}; neste caso, ambos os modelos obtiveram exatamente os mesmos valores em todas as instâncias.
 
-    \item Modelos com demanda comportamental ajustada por proporções:
-    \begin{itemize}
-        \item Não foram observadas diferenças entre os modelos BaseModel e BaseModelFulfillments;
-        \item Ao contrário do comportamento no modelo independente, o modelo PercentBehavioralModelFulfillments apresentou um aumento relativo entre 0,33\% e 8,6\% nas soluções obtidas, em comparação com o modelo HierarBehavioralModel, exceto nas instâncias instância7, instância8 e instância10, onde o HierarBehavioralModel foi inviável. Acredita-se que essa inviabilidade se deva a alguma inconsistência gerada durante o ajuste da demanda, mas a causa exata ainda não foi determinada;
-        \item O modelo PercentBehavioralModelFull mostrou uma redução relativa entre 33\% e 70\%, em comparação com o modelo PercentBehavioralModelSkiplagging.
-    \end{itemize}
 
-    \item Modelos com demanda comportamental ajustada por hierarquia:
-    \begin{itemize}
-        \item Os modelos HierarBehavioralModel e HierarBehavioralModelFulfillments apresentaram os mesmos resultados em todas as instâncias, exceto nas instâncias instância3 e instância6, onde ocorreram reduções de 0,06\% e 0,01\%, respectivamente;
-        \item O modelo HierarBehavioralModelSkiplagging apresentou reduções entre 21,8\% e 56,9\%, exceto na instância instância1, onde a redução foi de apenas 3,57\%;
-        \item O modelo HierarBehavioralModelFull registrou reduções consideráveis em relação ao modelo HierarBehavioralModelSkiplagging, variando entre 33\% e 74\%.
-    \end{itemize}
+	\item De maneira geral, os modelos dinâmicos apresentaram valores iguais ou superiores na receita em comparação com os modelos estáticos, isso para cada categoria e instância.
 
-    \item Análise dos modelos Full (BaseModelFull, HierarBehavioralModelFull, PercentBehavioralModelFull):
-    \begin{itemize}
-        \item Considerando apenas os modelos Full, ou seja, aqueles que incluem todos os conjuntos de restrições, os modelos comportamentais obtiveram exatamente os mesmos resultados para a função objetivo em cada instância. No entanto, como algumas instâncias possuem múltiplas soluções ótimas, os valores das variáveis de decisão podem diferir, mesmo que os valores da função objetivo sejam iguais;
-        \item Além disso, a diferença entre os modelos comportamentais e o modelo independente foi de, no máximo, 2\%, exceto nas instâncias instância7 e instância8, onde as variações foram de 7,7\% e 16,1\%, respectivamente.
-    \end{itemize}
-
+	\item Pode-se perceber que as variações entre os modelos do mesmo tipo de autorizações apresentam variações relativamente baixas.
 \end{enumerate}
 
+Para ilustrar os dois últimos itens, foi selecionada a instância Inst1, utilizando os modelos da categoria completa. A Tabela \ref{tab: variaciones_Inst1} apresenta as variações percentuais entre cada par de modelos, sendo os valores dos modelos indicados na primeira coluna utilizados como base de comparação. Observa-se que, ao comparar os modelos com autorizações estáticas aos modelos com autorizações dinâmicas, estes últimos registram um aumento de receita entre 11,06\% e 15,62\%. Essa diferença está diretamente relacionada ao tipo de política de autorização adotada, indicando que a flexibilidade das autorizações dinâmicas tende a melhorar o desempenho econômico do modelo.
 
-Esse detalhamento evidencia o comportamento dos modelos e suas respectivas eficiências em diferentes cenários e ajustes.
+
+\begin{table}[H]
+	\centering
+	\footnotesize
+	\renewcommand{\arraystretch}{1.1}
+	\begin{tabular}{@{}lcccc@{}}
+		\toprule
+		                             & \makecell[c]{\textbf{Comp\_}                                                                 \\\textbf{Independ\_Est}}
+		                             & \makecell[c]{\textbf{Comp\_}                                                                 \\\textbf{Comporta\_Est}}
+		                             & \makecell[c]{\textbf{Comp\_}                                                                 \\\textbf{Independ\_Din}}
+		                             & \makecell[c]{\textbf{Comp\_}                                                                 \\\textbf{Comporta\_Din}} \\
+		\midrule
+		\textbf{Comp\_Independ\_Est} & 0,00\,\%                     & -2,53\,\%           & \textbf{12,70\,\%} & \textbf{11,06\,\%} \\
+		\textbf{Comp\_Comporta\_Est} & 2,59\,\%                     & 0,00\,\%            & \textbf{15,62\,\%} & \textbf{13,94\,\%} \\
+		\textbf{Comp\_Independ\_Din} & \textbf{-11,27\,\%}          & \textbf{-13,51\,\%} & 0,00\,\%           & -1,45\,\%          \\
+		\textbf{Comp\_Comporta\_Din} & \textbf{-9,96\,\%}           & \textbf{-12,23\,\%} & 1,47\,\%           & 0,00\,\%           \\
+		\bottomrule
+	\end{tabular}
+	\caption{Comparação das variações das diferenças dos modelos completos para a instância Inst1}
+	\label{tab: variaciones_Inst1}
+\end{table}
+
+No entanto, ao comparar modelos que compartilham o mesmo tipo de política de autorização — ou seja, ao confrontar os modelos com demanda independente com aqueles baseados em demanda comportamental, dentro do mesmo tipo de autorização —, observam-se variações em torno de 2,5\% para os modelos com autorizações estáticas e aproximadamente 1,4\% para os modelos com autorizações dinâmicas. Esses resultados indicam que as diferenças entre os modelos com diferentes abordagens de demanda são relativamente pequenas quando a política de autorização é mantida constante.
+
+Para compreender a situação anteriormente descrita, é necessário considerar as combinações específicas geradas em cada instância no momento da composição dos trechos, tipos de assento e períodos de reserva, bem como a quantidade total de classes resultantes dessas combinações. A Tabela \ref{tab: combinacoes} apresenta três combinações distintas e o respectivo número de classes em cada uma delas.
+
+
+\begin{table}[]
+	\centering
+	\resizebox{0.4\textwidth}{!}{%
+		\begin{tabular}{@{}cccc@{}}
+			\toprule
+			\textbf{Trecho} & \textbf{\begin{tabular}[c]{@{}c@{}}Tipo de \\ assento\end{tabular}} & \textbf{Periodo} & \textbf{\begin{tabular}[c]{@{}c@{}}Quant. classes \\ de controle\end{tabular}} \\ \midrule
+			$E_1 - E_2$     & Z                                                                   & 0                & 1                                                                              \\
+			$E_1 - E_3$     & Z                                                                   & 0                & 3                                                                              \\
+			$E_2 - E_3$     & P                                                                   & 1                & 5                                                                              \\ \bottomrule
+		\end{tabular}%
+	}
+	\caption{Exemplo de combinações}
+	\label{tab: combinacoes}
+\end{table}
+
+Note que, na Tabela \ref{tab: combinacoes} a primeira combinação apresenta apenas uma classe, enquanto a segunda e a terceira possuem três e cinco classes, respectivamente. 
+Isso significa que, para a primeira combinação, não há diferença entre os modelos de demanda independente e comportamental, pois ambos têm apenas uma opção de classe. Por outro lado, nas combinações com mais de uma classe, as diferenças entre os modelos se tornam mais evidentes, pois se criam listas de preferência com mais de um possível valor de compra, no caso dos modelos comportamentais.
+
+Dito isso, a Tabela \ref{tab: porcent_combinacoes} apresenta, para cada instância, a quantidade de combinações que possuem mais de uma classe de controle, o total de combinações e a respectiva proporção percentual entre elas.
+
+
+\begin{table}[H]
+	\centering
+	\footnotesize  % fonte reduzida
+	\resizebox{0.7\textwidth}{!}{% ajusta a 80% da largura do texto
+		\begin{tabular}{@{}cccc@{}}  % todas as colunas centralizadas
+			\toprule
+			\textbf{Instância}
+				   & \textbf{\begin{tabular}[c]{@{}c@{}}Quant.\\ Combinações > 1\end{tabular}}
+				   & \textbf{\begin{tabular}[c]{@{}c@{}}Total \\ Combinações\end{tabular}}
+				   & \textbf{\begin{tabular}[c]{@{}c@{}}\% \\ Combinações > 1\end{tabular}} \\
+			\midrule
+			Inst1  & 82                          & 1.106 & 7,41\,\%  \\
+			Inst2  & 31                          & 1.368 & 2,27\,\%  \\
+			Inst3  & 119                         & 1.065 & 11,17\,\% \\
+			Inst4  & 69                          & 990   & 6,97 \,\% \\
+			Inst5  & 76                          & 679   & 11,19\,\% \\
+			Inst6  & 44                          & 488   & 9,02\,\%  \\
+			Inst7  & 121                         & 554   & 21,84\,\% \\
+			Inst8  & 107                         & 526   & 20,34\,\% \\
+			Inst9  & 80                          & 452   & 17,70\,\% \\
+			Inst10 & 70                          & 290   & 24,14\,\% \\
+			\bottomrule
+		\end{tabular}%
+	}
+	\caption{Quantidade de combinações, por instância, que possuem mais de 1 classe de controle}
+	\label{tab: porcent_combinacoes}
+\end{table}
+
+Dessa forma, com base nos dados apresentados na Tabela \ref{tab: porcent_combinacoes}, é possível explicar as variações reduzidas observadas na comparação entre os modelos comportamentais e os modelos independentes, dentro de cada tipo de política de autorização. Os valores da tabela indicam que a maioria das combinações geradas possui apenas uma única classe de controle, o que resulta na formação de listas de preferência com uma única opção nos modelos comportamentais. Nesses casos, o comportamento do cliente é forçado a uma única opção de compra, o que torna os resultados equivalentes aos obtidos com os modelos independentes. Assim, as variações observadas decorrem apenas daquelas poucas combinações que apresentam múltiplas classes.
+
+
+
+\section{Quantidade de soluções}
+Uma característica interessante observada nos resultados da função objetivo foi a quantidade de soluções ótimas encontradas por cada modelo em cada uma das instâncias. Esse resultado indica que o problema em estudo é do tipo que admite múltiplas soluções ótimas. A Tabela \ref{tab: num_solucoes} apresenta a quantidade de soluções ótimas obtidas por cada modelo para cada instância analisada.
+
+\begin{table}[H]
+	\centering
+	\footnotesize
+	\renewcommand{\arraystretch}{1.1}
+	\begin{tabular}{@{} lcccccccccc @{}}
+		\toprule
+		\multicolumn{1}{c}{\textbf{Nome Modelo}} &
+		\multicolumn{1}{c}{\textbf{Inst1}}       &
+		\multicolumn{1}{c}{\textbf{Inst2}}       &
+		\multicolumn{1}{c}{\textbf{Inst3}}       &
+		\multicolumn{1}{c}{\textbf{Inst4}}       &
+		\multicolumn{1}{c}{\textbf{Inst5}}       &
+		\multicolumn{1}{c}{\textbf{Inst6}}       &
+		\multicolumn{1}{c}{\textbf{Inst7}}       &
+		\multicolumn{1}{c}{\textbf{Inst8}}       &
+		\multicolumn{1}{c}{\textbf{Inst9}}       &
+		\multicolumn{1}{c}{\textbf{Inst10}}                                                \\
+		\midrule
+		Basic\_Independ\_Est                     & 2 & 2 & 5 & 3 & 5 & 1 & 1 & 1  & 1  & 1 \\
+		Basic\_Comporta\_Est                     & 3 & 4 & 5 & 3 & 5 & 1 & 1 & 1  & 1  & 1 \\
+		Basic\_Independ\_Din                     & 2 & 2 & 5 & 2 & 3 & 1 & 1 & 1  & 1  & 1 \\
+		Basic\_Comporta\_Din                     & 3 & 3 & 3 & 3 & 8 & 3 & 4 & 10 & 10 & 4 \\ \hline
+		Fulfill\_Independ\_Est                   & 3 & 4 & 2 & 4 & 3 & 1 & 1 & 1  & 1  & 1 \\
+		Fulfill\_Comporta\_Est                   & 3 & 4 & 3 & 4 & 4 & 1 & 1 & 1  & 1  & 1 \\
+		Fulfill\_Independ\_Din                   & 2 & 2 & 3 & 2 & 2 & 1 & 1 & 1  & 1  & 1 \\
+		Fulfill\_Comporta\_Din                   & 2 & 2 & 3 & 2 & 3 & 1 & 3 & 1  & 2  & 1 \\ \hline
+		Skipla\_Independ\_Est                    & 3 & 3 & 3 & 3 & 3 & 1 & 1 & 1  & 1  & 1 \\
+		Skipla\_Comporta\_Est                    & 1 & 2 & 3 & 3 & 2 & 1 & 1 & 1  & 1  & 1 \\
+		Skipla\_Independ\_Din                    & 2 & 2 & 2 & 2 & 4 & 1 & 1 & 1  & 1  & 1 \\
+		Skipla\_Comporta\_Din                    & 2 & 3 & 3 & 2 & 5 & 1 & 1 & 1  & 2  & 3 \\ \hline
+		Comp\_Independ\_Est                      & 3 & 3 & 4 & 3 & 4 & 1 & 1 & 1  & 1  & 1 \\
+		Comp\_Comporta\_Est                      & 3 & 4 & 4 & 3 & 4 & 1 & 1 & 1  & 1  & 1 \\
+		Comp\_Independ\_Din                      & 4 & 2 & 3 & 3 & 3 & 1 & 1 & 1  & 1  & 1 \\
+		Comp\_Comporta\_Din                      & 5 & 2 & 3 & 4 & 4 & 1 & 1 & 1  & 1  & 1 \\
+		\bottomrule
+	\end{tabular}
+
+	\caption{Quantidade de soluções ótimas para cada modelo e instância}
+	\label{tab: num_solucoes}
+
+\end{table}
+
+
+De acordo com os resultados obtidos na Tabela \ref{tab: num_solucoes}, as múltiplas soluções não dependem do modelo em si, mas sim da instância. Observe que as instâncias de Inst1 a Inst5, ou seja, as instâncias de grande e médio porte, geram múltiplas soluções para todos os modelos, com uma média de 3 soluções por modelo e instância, embora as instâncias Inst5, Inst8 e Inst9 para o modelo \texttt{Basic\_Comporta\_Din} se afastem da média, apresentando valores de 8, 10 e 10, respectivamente. Por outro lado, as instâncias de Inst6 a Inst10 apresentam, em sua maioria, soluções únicas.
+
+A existência de múltiplas soluções ótimas tratado neste estudo, não apenas evidencia a flexibilidade estrutural dos modelos, mas também oferece vantagens práticas significativas no contexto operacional.
+
+Em primeiro lugar, ter diferentes soluções com o mesmo valor da função objetivo permite ao tomador de decisão selecionar, entre as alternativas ótimas, aquela que melhor se adapta a restrições não modeladas diretamente — como preferências comerciais, limitações operacionais específicas, políticas de atendimento ao cliente ou equilíbrio entre classes de assentos.
+
+Além disso, em cenários reais de planejamento de receitas, onde pequenas variações na demanda, nos custos ou nas preferências dos passageiros podem ocorrer com frequência, dispor de múltiplas soluções ótimas proporciona maior robustez. Isso significa que o sistema pode se ajustar com mais facilidade a mudanças contextuais sem comprometer o desempenho econômico.
+
+Por fim, do ponto de vista da simulação e da análise de sensibilidade, as múltiplas soluções ótimas permitem explorar diferentes cenários de alocação de classes ou de aproveitamento da demanda, contribuindo para o desenvolvimento de políticas mais resilientes e alinhadas às incertezas do ambiente de transporte ferrevoiário.
+
+
+\section{Métricas}
+
+\subsection{Demanda atendida}
+Nesta seção, apresenta-se o percentual de demanda atendida por cada modelo ao resolver as diferentes instâncias do problema. Esse indicador foi obtido a partir da razão entre o número total de assentos efetivamente reservados ao longo de todo o horizonte de planejamento — considerando todos os trechos, tipos de assento e classes de controle — e a demanda potencial total associada a cada instância.
+
+A demanda potencial total corresponde à quantidade máxima de passageiros que poderiam ser atendidos, sendo calculada com base na demanda independente, sem considerar o tipo de modelo utilizado. Essa definição está formalizada na Equação \eqref{eq: dem_aproveitada}.
+
+A Figura \ref{fig: demanda_aprovechada} apresenta, de forma consolidada, as proporções de demanda atendida para cada modelo e para cada instância, com base nos valores calculados segundo a equação mencionada.
+% Nesta seção, são apresentados os percentuais de demanda que foram aproveitados por cada modelo ao resolver cada uma das instâncias. Para isso, foi realizada a divisão da soma de todos os assentos reservados ao longo de todo o horizonte de reserva, considerando todos os tipos de assento e classes de controle, pela demanda potencial total de cada instância. A demanda potencial total foi calculada com base na demanda independente, sem levar em conta o tipo modelo, conforme mostrado na Equação \eqref{eq: dem_aproveitada}. A Figura \ref{fig: demanda_aprovechada} apresenta, para cada modelo e para cada instância, as respectivas proporções calculadas com base na Equação \eqref{eq: dem_aproveitada}.
+
+\begin{equation}
+	\% \, Dem.\, Atendida = \dfrac{\sum_{(i,j) \in OD}\sum_{v \in V} \sum_{k \in K_v} \sum_{i \in T} X_{ijvkt}}{\sum_{(i,j) \in OD}\sum_{v \in V} \sum_{k \in K_v} \sum_{i \in T} d_{ijvkt}}*100 \label{eq: dem_aproveitada}
+\end{equation}
+
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.4]{img/demanda_aprovechada.png}
+		\caption{ Porcentagem de demanda atendida (\%)}
+		\label{fig: demanda_aprovechada}
+	\end{center}
+\end{figure}
+
+Observe que os modelos que melhor aproveitam a demanda são os modelos básicos, enquanto os modelos completos são os que menos a aproveitam. Isso está em consonância com os resultados apresentados nas seções \nameref{sec: Analise_por_abordagem} e \nameref{sec: Comparacao_entre_modelos}. De fato, essa é a explicação de por que os modelos básicos obtêm uma receita melhor em comparação com os demais modelos.
+
+Além disso, pode-se observar que os modelos com restrições de \textit{skiplagging} aproveitam melhor a demanda em comparação com os modelos de \textit{fulfillment over periods}, devido à mesma situação já mencionada.
+
+Adicionalmente, observa-se que, mesmo quando há modelos que apresentam o mesmo valor da função objetivo — como é o caso dos modelos \texttt{Skipla\_Independ\_Est} e \texttt{Skipla\_Independ\_Din} —, o percentual de aproveitamento da demanda não é necessariamente igual. Isso é coerente com o fato de que a maioria dos modelos admite múltiplas soluções ótimas, o que implica que, ainda que o valor da função objetivo seja idêntico, podem ocorrer variações nos valores assumidos pelas variáveis de decisão.
+
+
+% Outra observação interessante é que, embora os resultados para os modelos básicos, para a maioria das instâncias, sejam iguais (ver Tabela \ref{tab: compara_result_otimos}), os percentuais de aproveitamento da demanda não são. Por exemplo, observe os modelos básicos para a instância Inst1. Os dois primeiros valores de 99,25 são diferentes dos seguintes, que são de 99,32. Isso ocorre porque, embora os valores da função objetivo sejam iguais, os valores das variáveis de decisão não são, ou podem ser diferentes, já que a instância Inst1, assim como outras instâncias, possui múltiplas soluções, conforme mostrado na Tabela \ref{tab: num_solucoes}.
+
+
+\subsection{Tempos de construção e de resolução}
+Nesta seção são apresentados: i) o tempo de construção do modelo, que corresponde ao período necessário para que o solver realize a leitura e o pré-processamento dos dados, defina as variáveis de decisão, formule as restrições, estabeleça a função objetivo e gere a estrutura interna do modelo; e ii) o tempo de resolução, que corresponde ao tempo utilizado pelo solver para inicializar o processo de solução, executar o pré-solver, identificar o tipo de problema, selecionar os algoritmos apropriados, explorar o espaço de soluções e verificar a otimalidade da solução encontrada.
+
+Assim, a Figura \ref{fig: tempo_criacao} apresenta os tempos de construção utilizados por cada modelo em cada uma das instâncias analisadas. Nela, pode-se observar que os tempos de construção dependem de cada instância e não dos modelos propostos, isso pode ser verificado pela pouca variação que existe para cada instância. Para a instância Inst10, os tempos são mais curtos, em torno de 1 segundo, enquanto os tempos mais longos são observados para a instância Inst3, com uma média de 18,8 segundos. O restante das instâncias oscila entre esses dois limites.
+
+\begin{figure}[ht]
+	\begin{center}
+		\includegraphics[scale=0.4]{img/tempo_criacao.png}
+		\caption{Tempos de construção, em segundos, de cada modelo para cada instância}
+		\label{fig: tempo_criacao}
+	\end{center}
+\end{figure}
+
+Por outro lado, a Figura \ref{fig: tempo_solucao} apresenta os tempos de resolução de cada modelo para cada uma das instâncias analisadas. Pode-se observar que os tempos são semelhantes, independentemente da instância e do modelo, sendo o tempo mais alto de 0,15 segundos e o mais baixo de 0 segundos. Ou seja, neste último caso, o modelo encontrou a solução ótima de forma instantânea, o que ocorreu para a instância mais pequena (Inst10).
+
+Com base nos dois tipos de tempos anteriores, pode-se afirmar que todos os modelos são eficientes na hora de resolver qualquer tipo de instância, seja de pequeno ou grande porte. Esse aspecto assume importância fundamental no contexto industrial, considerando que, na prática, é necessário resolver centenas de viagens associadas a múltiplos trens. Diante disso, a utilização eficiente do tempo computacional torna-se um requisito crucial para a viabilidade operacional do sistema. Na Seção \ref{sec: unimodularidade} será apresentada, de forma mais detalhada, a justificativa para a eficiência observada nos modelos. Serão discutidos os principais fatores que contribuíram para os resultados obtidos.
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.4]{img/tempo_solucao.png}
+		\caption{Tempos de resolução, em segundos, de cada modelo para cada instância}
+		\label{fig: tempo_solucao}
+	\end{center}
+\end{figure}
+
+
+\subsection{Nós explorados}
+Com o objetivo de aprofundar a análise do desempenho computacional dos modelos propostos, esta seção apresenta a quantidade de nós explorados durante o processo de resolução de cada instância. Esse indicador, comumente utilizado na avaliação de métodos baseados em branch-and-bound, fornece uma medida do esforço computacional requerido pelo solver para atingir a solução ótima. Na Tabela \ref{tab:nodos_explorados}, são apresentados os nós explorados pelo solver para encontrar a solução ótima de cada modelo em cada instância. Os valores indicam a quantidade de nós explorados, sendo que o valor 0 indica que o solver não precisou explorar nenhum nó para encontrar a solução ótima.
+
+\begin{table}[H]
+	\centering
+	\footnotesize
+	\begin{tabular}{@{}lcccccccccc@{}}
+		\toprule
+		\textbf{Nome Modelo}   & \textbf{Inst1} & \textbf{Inst2} & \textbf{Inst3} & \textbf{Inst4} & \textbf{Inst5} & \textbf{Inst6} & \textbf{Inst7} & \textbf{Inst8} & \textbf{Inst9} & \textbf{Inst10} \\
+		\midrule
+		Basic\_Independ\_Est   & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 0              & 0               \\
+		Basic\_Comporta\_Est   & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 0              & 0               \\
+		Basic\_Independ\_Din   & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 0              & 0               \\
+		Basic\_Comporta\_Din   & 1              & 1              & 1              & 1              & 1              & 1              & 1              & 1              & 1              & 1               \\  \hline
+		Fulfill\_Independ\_Est & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 0              & 0               \\
+		Fulfill\_Comporta\_Est & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 0              & 0               \\
+		Fulfill\_Independ\_Din & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 0              & 0               \\
+		Fulfill\_Comporta\_Din & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 0              & 1               \\  \hline
+		Skipla\_Independ\_Est  & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 0              & 0               \\
+		Skipla\_Comporta\_Est  & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 0              & 0               \\
+		Skipla\_Independ\_Din  & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 0              & 0               \\
+		Skipla\_Comporta\_Din  & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 1              & 0               \\ \hline
+		Comp\_Independ\_Est    & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 0              & 0               \\
+		Comp\_Comporta\_Est    & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 0              & 0               \\
+		Comp\_Independ\_Din    & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 0              & 0               \\
+		Comp\_Comporta\_Din    & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 0              & 0               \\
+		\bottomrule
+	\end{tabular}
+	\caption{Nós explorados pelo solver para encontrar a solução ótima}
+	\label{tab:nodos_explorados}
+\end{table}
+
+Da Tabela \ref{tab:nodos_explorados}, pode-se observar que, desde as instâncias Inst1 até Inst5, ao solver levou no máximo 1 nó para encontrar a solução ótima inteira, isso para cada um dos modelos propostos. Por outro lado, das instâncias Inst6 até Inst10, não foi explorado nenhum nó, com exceção dos modelos \texttt{Basic\_Comporta\_Din}, \texttt{Fulfill\_Comporta\_Din} e \texttt{Skipla\_Comporta\_Din}, que levaram a explorar 1 nó. O fato de a solução ter sido encontrada sem explorar nenhum nó significa que o solver obteve a solução no processo de pré-processamento, realizado antes de começar as ramificações. Essa informação está diretamente relacionada aos tempos de solução apresentados na seção anterior.
+
+
+
+\subsection{Unimodularidade} \label{sec: unimodularidade}
+As matrizes unimodulares são essenciais na programação inteira e na solução de sistemas lineares. Caracterizam-se por ter coeficientes pertencentes ao conjunto \{ -1,0,+1\} e garantem soluções inteiras quando o vetor $b$ contém somente valores inteiros. Essa propriedade é fundamental, pois assegura que as soluções dos sistemas sejam inteiras, sendo amplamente utilizada em algoritmos de otimização e em problemas de programação linear com restrições inteiras \citep{Samsul2018}. O procedimento descrito auxilia o solver no processo de resolução, pois, a solução relaxada do problema se torna a solução inteira. Isso contribui para uma maior eficiência tanto nos tempos de solução quanto na exploração de nós durante o processo de ramificação.
+
+Com base na definição anterior, afirma-se que o vetor $b$ de todas as instâncias escolhidas contém valores inteiros que representam, seja a capacidade do trem, as demandas de passageiros ou a quantidade de assentos vagos. Portanto, toda a atenção foi voltada para garantir que as matrizes de coeficientes fossem compostas apenas por valores dentro do conjunto $\{-1,0,+1\}$. Para realizar essa tarefa, a verificação foi feita após a etapa de pré-processamento do solver, pois, durante essa fase, o solver consegue eliminar restrições ou variáveis, seja por dominância, fixação de variáveis ou outros conceitos. Assim, existia a possibilidade de uma matriz inicialmente não ser unimodular, mas se tornar unimodular após o pré-processamento, quando o solver realizasse as eliminações.
+
+Os resultados das verificações estão apresentados na Tabela \ref{tab: modelos_no_unimodulares}, onde, se um modelo para uma instância for unimodular, é exibida uma linha `` - '' na célula correspondente. Caso contrário, são mostrados três dados na mesma célula: o primeiro valor representa a quantidade de restrições que não são compostas apenas por valores no conjunto $\{-1,0,+1\}$; o segundo valor indica o total de restrições desse modelo para essa instância; e o último valor mostra a relação percentual entre os dois primeiros valores.
+
+\begin{table}[H]
+	\centering
+	\resizebox{0.9\textwidth}{!}{
+		\begin{tabular}{lcccccccccc}
+			\midrule
+			\textbf{Nome Modelo} & \textbf{Inst1}  & \textbf{Inst2} & \textbf{Inst3} & \textbf{Inst4} & \textbf{Inst5} & \textbf{Inst6} & \textbf{Inst7} & \textbf{Inst8} & \textbf{Inst9} & \textbf{Inst10} \\
+			\midrule
+			\shortstack{Basic\_Independ\_Est}
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -                                                                                                                                                                         \\
+			\cmidrule(lr){2-11}
+			\shortstack{Fulfill\_Independ\_Est}
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -                                                                                                                                                                         \\
+			\cmidrule(lr){2-11}
+			\shortstack{Skipla\_Independ\_Est                                                                                                                                                                \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{291                                                                                                                                                           \\ 57.106 \\ 0,510\,\%}
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, } \\
+			\cmidrule(lr){2-11}
+			\shortstack{Comp\_Independ\_Est}
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -                                                                                                                                                                         \\
+			\midrule
+			\shortstack{Basic\_Comporta\_Est}
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -                                                                                                                                                                         \\
+			\cmidrule(lr){2-11}
+			\shortstack{Fulfill\_Comporta\_Est}
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -                                                                                                                                                                         \\
+			\cmidrule(lr){2-11}
+			\shortstack{Skipla\_Comporta\_Est}
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -                                                                                                                                                                         \\
+			\cmidrule(lr){2-11}
+			\shortstack{Comp\_Comporta\_Est}
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -                                                                                                                                                                         \\
+			\midrule
+			\shortstack{Basic\_Independ\_Din}
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -                                                                                                                                                                         \\
+			\cmidrule(lr){2-11}
+			\shortstack{Fulfill\_Independ\_Din}
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -                                                                                                                                                                         \\
+			\cmidrule(lr){2-11}
+			\shortstack{Skipla\_Independ\_Din}
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -
+			                     & -                                                                                                                                                                         \\
+			\cmidrule(lr){2-11}
+			\shortstack{Comp\_Independ\_Din                                                                                                                                                                  \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{ 3                                                                                                                                                            \\10.944\\0.027\,\% } \\
+			\midrule
+			\shortstack{Basic\_Comporta\_Din                                                                                                                                                                 \\  \, \\ \, }
+			                     & \shortstack{135                                                                                                                                                           \\ 63.984 \\ 0,211\,\%}
+			                     & \shortstack{5                                                                                                                                                             \\ 80.284 \\ 0,006\,\%}
+			                     & \shortstack{232                                                                                                                                                           \\ 61.649 \\ 0,376\,\%}
+			                     & \shortstack{5                                                                                                                                                             \\ 66.612 \\ 0,008\,\%}
+			                     & \shortstack{76                                                                                                                                                            \\ 71.235 \\ 0,107\,\%}
+			                     & \shortstack{4                                                                                                                                                             \\ 36.014 \\ 0,011\,\%}
+			                     & \shortstack{180                                                                                                                                                           \\ 32.940 \\ 0,546\,\%}
+			                     & \shortstack{135                                                                                                                                                           \\ 33.248 \\ 0,406\,\%}
+			                     & \shortstack{130                                                                                                                                                           \\ 32.074 \\ 0,405\,\%}
+			                     & \shortstack{7                                                                                                                                                             \\ 11.936 \\ 0,059\,\%} \\
+			\cmidrule(lr){2-11}
+			\shortstack{Fulfill\_Comporta\_Din                                                                                                                                                               \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{3                                                                                                                                                             \\ 62.784 \\ 0,005\,\%}
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{3                                                                                                                                                             \\ 72.016\\ 0,004\,\% }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{4                                                                                                                                                             \\ 33.488\\ 0,012\,\% }
+			                     & \shortstack{8                                                                                                                                                             \\ 33.836\\ 0,024\,\% }
+			                     & \shortstack{3                                                                                                                                                             \\ 32.533\\ 0,009\,\% }
+			                     & \shortstack{8                                                                                                                                                             \\ 12.262\\ 0,065\,\% } \\
+			\cmidrule(lr){2-11}
+			\shortstack{Skipla\_Comporta\_Din                                                                                                                                                                \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{4                                                                                                                                                             \\ 62.743 \\ 0,006\,\%}
+			                     & \shortstack{3                                                                                                                                                             \\ 67.455 \\ 0,004\,\%}
+			                     & \shortstack{3                                                                                                                                                             \\ 71.702 \\ 0,004\,\%}
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{3                                                                                                                                                             \\ 33.812 \\ 0,009\,\%}
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{7                                                                                                                                                             \\ 32.498 \\ 0,022\,\%}
+			                     & \shortstack{6                                                                                                                                                             \\ 12.130 \\ 0,049\,\%} \\
+			\cmidrule(lr){2-11}
+			\shortstack{Comp\_Comporta\_Din                                                                                                                                                                  \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{3                                                                                                                                                             \\ 72.483\\ 0,004\,\%}
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
+			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }\\
+			\midrule
+		\end{tabular}
+	}
+	\caption{Modelos não unimodulares para cada instância}
+	\label{tab: modelos_no_unimodulares}
+\end{table}
+
+É assim que, para cada modelo e instância da Tabela \ref{tab: modelos_no_unimodulares} que possui apenas uma linha, se explica por que os tempos de solução correspondentes são tão baixos, assim como a quantidade de nós explorados para a obtenção da solução ótima inteira.
+
+No entanto, observa-se que os tempos e nós explorados continuam baixos, mesmo para os modelos e instâncias que não são unimodulares. Para explicar essa situação, é necessário considerar o trabalho de \citep{aprile2024}, que introduz o conceito de \textit{\textbf{$\Delta$-modular}}. Segundo os autores, existem matrizes quase unimodulares, onde, se um conjunto de linhas (restrições) for eliminado, a matriz se tornaria totalmente unimodular. O tamanho desse conjunto é representado por $\Delta$, ou seja, $\Delta$ é a quantidade de restrições que impede que a matriz seja totalmente unimodular. No final, os autores demonstram que as matrizes quase unimodulares ou \textit{$\Delta$-modular} ajudam a tornar o processo de resolução do problema muito mais eficiente, à medida que $\Delta$ se torna menor.
+
+Agora, observe novamente a Tabela \ref{tab: modelos_no_unimodulares}. Perceba que a maioria dos modelos e instâncias não unimodulares apresenta um valor de $\Delta$ — ou seja, o primeiro valor de cada célula — abaixo de 8, o que, quando comparado com o número total de restrições, é extremamente baixo. Existem 7 exceções com valores de $\Delta$ entre 76 e 291; no entanto, novamente, em função do número total de restrições, essa relação não ultrapassa 0,5\% do total. Assim, para as matrizes não unimodulares, pode-se afirmar, com base na definição de $\Delta$-modular, que também obtêm resultados em tempo competitivo e com uma quantidade baixa de nós explorados.

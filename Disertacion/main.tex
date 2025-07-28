@@ -44,6 +44,7 @@
 }
 
 \usepackage{booktabs}
+\usepackage{makecell} % no preâmbulo
 \usepackage{longtable}
 \usepackage{multirow}
 \usepackage{setspace}
@@ -66,6 +67,7 @@
 
 \setlength{\headheight}{15pt}
 \usepackage[title,titletoc,toc]{appendix}
+
 
 %\usepackage{proof}
 %\newtheorem{lemma}{Lemma}
@@ -100,27 +102,26 @@
 \pagestyle{plain}
 
 %=============================== Capa, Resumo e Sumário ==============================
-% \input{capa}
-% \newpage
-% \input{sections/capa2}
+\input{sections/capa}
+\newpage
+\input{sections/capa2}
 % \newpage
 % \includepdf[pages=-]{Ficha-Catalografica-Protocolo-975642308}
-% \newpage
-% \input{Folha-aprovacao}
-% \newpage
-
-% \input{Agradecimentos} \thispagestyle{empty}
-% \input{sections/resumo}\thispagestyle{empty}
-% \input{sections/abstrac}\thispagestyle{empty}
+\newpage
+\input{sections/Folha-aprovacao}
+\newpage
+\input{sections/Agradecimentos} \thispagestyle{empty}
+\input{sections/resumo}\thispagestyle{empty}
+\input{sections/abstrac}\thispagestyle{empty}
 
 
 % %=============================== Lista de Tabelas e Figuras ==========================
-% \listoffigures
-% \addtocontents{lof}{\protect\thispagestyle{plain}}\thispagestyle{empty}
+\listoffigures
+\addtocontents{lof}{\protect\thispagestyle{plain}}\thispagestyle{empty}
 
-% \listoftables
-% \addtocontents{lot}{\protect\thispagestyle{plain}}\thispagestyle{empty}
-% \baselineskip 1.1 \baselineskip
+\listoftables
+\addtocontents{lot}{\protect\thispagestyle{plain}}\thispagestyle{empty}
+\baselineskip 1.1 \baselineskip
 
 
 % %=============================== Sumário =============================================

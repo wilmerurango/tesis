@@ -1,0 +1,23 @@
+\babel@toc {portuguese}{}\relax 
+\thispagestyle {plain}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {2.1}{\ignorespaces Resumo dos trabalhos revisados}}{37}{table.2.1}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {3.1}{\ignorespaces Resumo das instâncias utilizadas no experimento}}{39}{table.caption.8}%
+\contentsline {table}{\numberline {3.2}{\ignorespaces Descrição dos modelos matemáticos propostos}}{41}{table.caption.9}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces Probabilidade baseada na simulação de Monte Carlo}}{59}{table.caption.141}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {5.1}{\ignorespaces Valores ótimos e variações em função do modelo \texttt {Basic\_Independ\_Est} para a abordagem de demanda independente com autorizações estáticas.}}{77}{table.caption.560}%
+\contentsline {table}{\numberline {5.2}{\ignorespaces Valores ótimos e variações em função do modelo \texttt {Basic\_Comporta\_Est} para a abordagem de demanda comportamental com autorizações estáticas.}}{77}{table.caption.561}%
+\contentsline {table}{\numberline {5.3}{\ignorespaces Valores ótimos e variações em função do modelo \texttt {Basic\_Independ\_Din} para a abordagem de demanda independente com autorizações dinâmicas.}}{77}{table.caption.562}%
+\contentsline {table}{\numberline {5.4}{\ignorespaces Valores ótimos e variações em função do modelo \texttt {Basic\_Comporta\_Din} para a abordagem de demanda comportamental com autorizações dinâmicas.}}{78}{table.caption.563}%
+\contentsline {table}{\numberline {5.5}{\ignorespaces Resultados ótimos de cada modelo para cada instância}}{79}{table.caption.564}%
+\contentsline {table}{\numberline {5.6}{\ignorespaces Comparação das variações das diferenças dos modelos completos para a instância Inst1}}{80}{table.caption.565}%
+\contentsline {table}{\numberline {5.7}{\ignorespaces Exemplo de combinações}}{81}{table.caption.566}%
+\contentsline {table}{\numberline {5.8}{\ignorespaces Quantidade de combinações, por instância, que possuem mais de 1 classe de controle}}{81}{table.caption.567}%
+\contentsline {table}{\numberline {5.9}{\ignorespaces Quantidade de soluções ótimas para cada modelo e instância}}{82}{table.caption.568}%
+\contentsline {table}{\numberline {5.10}{\ignorespaces Nós explorados pelo solver para encontrar a solução ótima}}{87}{table.caption.572}%
+\contentsline {table}{\numberline {5.11}{\ignorespaces Modelos não unimodulares para cada instância}}{88}{table.caption.573}%
+\addvspace {10\p@ }

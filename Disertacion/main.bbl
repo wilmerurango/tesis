@@ -1,4 +1,4 @@
-\begin{thebibliography}{84}
+\begin{thebibliography}{86}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -20,6 +20,17 @@ Salvatore Ammirato, Alberto~Michele Felicetti, Roberto Linzalone, Antonio~Palmir
 \newblock ISSN 1368-3047.
 \newblock \doi{10.1108/MBE-09-2019-0096}.
 \newblock URL \url{https://doi.org/10.1108/MBE-09-2019-0096}.
+
+\bibitem[Aprile et~al.(2024)Aprile, Fiorini, Joret, Kober, Seweryn, Weltge, and Yuditsky]{aprile2024}
+Manuel Aprile, Samuel Fiorini, Gwenaël Joret, Stefan Kober, Michał~T. Seweryn, Stefan Weltge, and Yelena Yuditsky.
+\newblock Integer programs with nearly totally unimodular matrices: the cographic case, 2024.
+\newblock URL \url{https://arxiv.org/abs/2407.09477}.
+
+\bibitem[Arifin and Muktyas(2018)]{Samsul2018}
+Samsul Arifin and Indra~Bayu Muktyas.
+\newblock Membangkitkan suatu matriks unimodular dengan python.
+\newblock \emph{Jurnal Derivat: Jurnal Matematika dan Pendidikan Matematika}, 2018.
+\newblock URL \url{https://api.semanticscholar.org/CorpusID:216848700}.
 
 \bibitem[Aslani et~al.(2014)Aslani, Modarres, and Sibdari]{ASLANI201456}
 Shirin Aslani, Mohammad Modarres, and Soheil Sibdari.

@@ -1,22 +1,48 @@
 \chapter{Conclusões e trabalhos futuro}
 
-O presente estudo abordou a problemática de otimizar o Transporte Ferroviário de Passageiros por meio do desenvolvimento de modelos matemáticos de programação inteira mista, explorando dois enfoques principais: demanda independente e demanda comportamental. A aplicação desses modelos em cenários reais possibilitou uma avaliação comparativa detalhada, destacando as diferenças e os benefícios inerentes a cada abordagem.
+Esta pesquisa abordou o problema do transporte ferroviário de passageiros do ponto de vista do RM, desenvolvendo diferentes modelos matemáticos inteiros mistos com base em dois enfoques principais: o tipo de demanda e os tipos de autorizações. No primeiro caso, foram consideradas a demanda independente e a demanda comportamental, enquanto no segundo, foram tratadas as autorizações estáticas e dinâmicas. Como resultado, foram desenvolvidos quatro modelos matemáticos, sendo cada um dividido em quatro partes distintas: i) Uma versão básica do modelo com as restrições fundamentais do problema; ii) A adição das restrições de \textit{fulfillment over periods} ao modelo base; iii) A inclusão das restrições de \textit{skiplagging} no modelo base; iv) A integração simultânea das três primeiras partes em um único modelo completo.
 
-Em primeiro lugar, do ponto de vista computacional, todos os modelos demonstraram ser robustos e capazes de alcançar soluções ótimas dentro de tempos razoáveis, validando assim sua viabilidade para aplicações práticas na indústria ferroviária.
+Com base nos resultados obtidos, pode-se concluir que:
 
-Em segundo lugar, os modelos mostraram alta eficiência em encontrar a solução ou soluções ótimas dentro do espaço de busca, explorando no máximo um único nó. Até o momento, não foi possível explicar com precisão esse comportamento. No entanto, pode-se afirmar que isso não está relacionado à simplicidade das instâncias utilizadas, pois foram testadas instâncias consideradas de grande porte na indústria, representando até 30 estações e envolvendo até 74.788 variáveis de decisão inteiras.
+Do ponto de vista computacional, todos os modelos desenvolvidos são altamente eficientes, encontrando soluções em frações de segundo, independentemente do tamanho da instância escolhida. Vale ressaltar que, para a validação, foram selecionadas instâncias de diferentes tamanhos (grande, médio e pequeno). No caso das instâncias pequenas, todos os modelos conseguiram encontrar as soluções ótimas inteiras quase que instantaneamente. Para a instância maior (Inst2), os resultados foram obtidos em, no máximo, 0,15 segundos.
 
-Em terceiro lugar, observou-se que, embora os modelos comportamentais apresentem um valor da função objetivo ligeiramente inferior ao do modelo independente, a qualidade da solução é superior. Isso reforça que, nesse tipo de problema, além de buscar a maximização do lucro, também se valoriza que a solução seja baseada em características mais próximas da realidade. Destaca-se como um resultado inesperado a semelhança dos valores da função objetivo entre os dois enfoques.
+Do ponto de vista empresarial, como efeito do ponto anterior, cada modelo se mostrou atraente e aplicável a ambientes reais. Considerando que os tempos apresentados referem-se apenas a um único trajeto de trem, os modelos continuam sendo altamente vantajosos, principalmente devido à rapidez de resolução. É importante notar que qualquer abordagem escolhida tem suas vantagens e desvantagens. Por exemplo, um modelo básico garantiria um aproveitamento da demanda superior a 90\%, mas não levaria em conta condições importantes no desenvolvimento real do negócio. Por outro lado, um modelo completo consideraria todas essas condições para garantir um serviço excelente, mas o aproveitamento da demanda poderia ser reduzido em até 50\%, ou mais, em comparação com os modelos básicos.
 
-Em quarto lugar, a infactibilidade do modelo PercentBehavioralModel ocorreu devido às características específicas das instâncias instância7, instância8 e instância10, que durante o ajuste da demanda comportamental em função da demanda independente, criou-se uma situação inviável. Isso demonstra que é necessário cuidado ao aplicar esse enfoque, para evitar situações semelhantes.
+Os modelos de demanda do tipo independente apresentaram resultados ligeiramente superiores aos dos modelos comportamentais para as instâncias estudadas. Essa variação, embora pequena, deve-se às características das instâncias, já que existe um alto percentual de combinações de trecho, tipo de assento e período que têm apenas uma classe. Isso gera uma lista de preferências com uma única opção ao aplicar os modelos comportamentais, o que torna ambas as abordagens muito semelhantes. As pequenas variações observadas ocorrem em casos onde há mais de uma classe por combinação.
 
-Trabalhos futuros a serem incluídos na versão final desta proposta incluem:
+Um resultado interessante foi que o modelo com autorizações dinâmicas obteve resultados significativamente melhores que o modelo com autorizações estáticas, apresentando uma diferença da receita superior a 10\%. Este é um valor representativo em um ambiente real.
 
-\begin{itemize}
-    \item Aprofundar a revisão bibliográfica: Fortalecer as bases teóricas da pesquisa, explorando ainda mais a literatura relacionada;
-    \item Explicar com maior clareza o comportamento dos modelos: Investigar detalhadamente o motivo pelo qual os modelos encontram a solução ótima explorando apenas um nó, além de explicar com mais precisão as causas da inviabilidade do modelo PercentBehavioralModel em certas instâncias;
-    \item Explorar outros enfoques para ajustar a demanda: neste caso, optou-se por adicionar restrições que melhorassem seu comportamento. No entanto, também seria possível abordar essa questão alterando a formulação da função objetivo.
-\end{itemize}
+Os modelos propostos possuem uma característica importante, a unimodularidade, onde 10 dos 16 modelos são totalmente unimodulares para as 10 instâncias, o que contribui para os baixos tempos de execução mencionados. Para os modelos que não são totalmente unimodulares, o valor de delta é pequeno em comparação ao total de restrições do problema, o que também contribui para uma resolução eficiente usando a definição de delta-modular. Esse aspecto explica de forma concisa os baixos tempos de solução e o número reduzido de nós explorados durante o processo de resolução.
+
+
+
+Como trabalho futuro, recomenda-se modelar adicionalmente a estimativa da demanda, uma vez que esta pesquisa utilizou a demanda como um parâmetro e confiou nos métodos de tratamento com os quais foi estimada pela empresa fornecedora dos dados. A inclusão dessa abordagem poderia melhorar ainda mais as projeções, assim como as quantidades de reservas e autorizações, lembrando que a demanda é um ponto crucial para resolver problemas como o transporte ferroviário de passageiros.
+
+Com base nisso, recomenda-se a abordagem da modelagem estocástica, que é adequada para problemas onde há grande incerteza. A modelagem estocástica permitiria incorporar variáveis dinâmicas de maneira mais flexível, refletindo melhor as flutuações e incertezas da demanda e as escolhas nas listas de preferença, ao longo do horizonte de reserva.
+
+Adicionalmente, seria interessante explorar o problema sob a ótica da inteligência artificial, utilizando, por exemplo, aprendizado profundo (deep learning), seja para gerenciar a demanda ou para resolver o problema em si. Nos últimos anos, diversas propostas surgiram, mas esse é um campo ainda pouco explorado, o que o torna uma área promissora a ser investigada.
+
+
+
+
+
+% O presente estudo abordou a problemática de otimizar o Transporte Ferroviário de Passageiros por meio do desenvolvimento de modelos matemáticos de programação inteira mista, explorando dois enfoques principais: demanda independente e demanda comportamental. A aplicação desses modelos em cenários reais possibilitou uma avaliação comparativa detalhada, destacando as diferenças e os benefícios inerentes a cada abordagem.
+
+% Em primeiro lugar, do ponto de vista computacional, todos os modelos demonstraram ser robustos e capazes de alcançar soluções ótimas dentro de tempos razoáveis, validando assim sua viabilidade para aplicações práticas na indústria ferroviária.
+
+% Em segundo lugar, os modelos mostraram alta eficiência em encontrar a solução ou soluções ótimas dentro do espaço de busca, explorando no máximo um único nó. Até o momento, não foi possível explicar com precisão esse comportamento. No entanto, pode-se afirmar que isso não está relacionado à simplicidade das instâncias utilizadas, pois foram testadas instâncias consideradas de grande porte na indústria, representando até 30 estações e envolvendo até 74.788 variáveis de decisão inteiras.
+
+% Em terceiro lugar, observou-se que, embora os modelos comportamentais apresentem um valor da função objetivo ligeiramente inferior ao do modelo independente, a qualidade da solução é superior. Isso reforça que, nesse tipo de problema, além de buscar a maximização do lucro, também se valoriza que a solução seja baseada em características mais próximas da realidade. Destaca-se como um resultado inesperado a semelhança dos valores da função objetivo entre os dois enfoques.
+
+% Em quarto lugar, a infactibilidade do modelo PercentBehavioralModel ocorreu devido às características específicas das instâncias instância7, instância8 e instância10, que durante o ajuste da demanda comportamental em função da demanda independente, criou-se uma situação inviável. Isso demonstra que é necessário cuidado ao aplicar esse enfoque, para evitar situações semelhantes.
+
+% Trabalhos futuros a serem incluídos na versão final desta proposta incluem:
+
+% \begin{itemize}
+%     \item Aprofundar a revisão bibliográfica: Fortalecer as bases teóricas da pesquisa, explorando ainda mais a literatura relacionada;
+%     \item Explicar com maior clareza o comportamento dos modelos: Investigar detalhadamente o motivo pelo qual os modelos encontram a solução ótima explorando apenas um nó, além de explicar com mais precisão as causas da inviabilidade do modelo PercentBehavioralModel em certas instâncias;
+%     \item Explorar outros enfoques para ajustar a demanda: neste caso, optou-se por adicionar restrições que melhorassem seu comportamento. No entanto, também seria possível abordar essa questão alterando a formulação da função objetivo.
+% \end{itemize}
 
 
 

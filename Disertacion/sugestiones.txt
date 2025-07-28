@@ -250,25 +250,243 @@ este tipo de abordajes podemos observarlo en trabajos como los de 15 y 16 , los 
 un tipo de demando comunmente usado en la literatura es el logit multinomial, donde trabajos como los de 
 
 
+las tablas de 1 a 5 representan los resultados obtenidos para cada modelo definido en la tabla x, recordando que esos modelos fueron los productos de las combinaciones de los abordajes basados en tipos de demando y tipos de autorizaciones. En cada una de las tablas, puede observarse tanto los valores optimos encontrados, como las variaciones de las disferencias que existen, entre cada modelo, tomando como punto de referencia el modelo básico correspondiente, esto para cada una de las instancias.
+
+
+en esta seccion se hace una comparacion entre todos los abordages segun su categoria, por ejemplo, se hace una comparacion entre todos los modelos basicos, se realiza otra comparacion entre todos los modelos completos, y asi para todos. eso se realizo de esa manera puesto que no es equivalente comparar un modelo con otro de diferente categoria, por ejemplo, no es honesto comparar un modelo base contra un modelo completo, ya que, estan resolviendo situaciones completamente diferentes.
+
+segun la tabla 2 puedo observarse lo siguiente:
+1) logra observarse que todos los modelos basicos obtienen los mismos resultados en los valores para la funcion objetivo, a excepcion de la instancia inst3 y la isntancia inst5 donde se obtuvieron valors diferentes variaciones pequeñas.
+
+2) En general los modelos dinamicos obtuvieron valores iguales o mayores de revenue, en comparacion con los modelos estatiocs, esto para cada categoria e instancia.
+
+3) puede observarse que las variaciones entre los medelos del misto tipo de autorizaciones tienen variaciones relativamnete bajas, esto sera explicado a detalle en secciones posteriores.
+
+4) para ejemplicar los ultimos dos itens, observe la tabla x, note que cuando se compara los modelos estaticos contra ellos mismos las variaciones son entorno del 2.3%, en cambio cuando se comparan los modelos estaticos contra los modelos dinamicos, estos ultimos se encuentran entre un 12.13% y un 15.34% por encima del revenue.
+
+
+en este apartado se muestran las cantidades de solcuiones encontradas por cada modelo para cada instancia.
+
+de los resultados obtenidos en la tabla x, las multiples soluciones no dependen del modelo en si, sino de la instancia, note que las instancias desde inst1 hasta inst5, osea las instancias de grande y mediano porte, obtienes multiples solucioens para todos los modelos, en promedio r soluciones por modelo e instancia, en cambio, par las instancias inst6 hasta inst10 representan casi en su totralidad soluciones unicas.
 
 
 
 
 
+en esete aprtado se muestran los procentajes de demanda que fueron aprovechados por cada modelo a la hora de resolver cada una de las instancias. pra tal fin se, de dividio la suma de todos los asientos reservados de todo el horizonte de reserva, de todos los tipos de asiento y clases de controle entre la demanda potencial total de cada instancia. la demanda potencial total fue realizada en base a la independiente indistintamente del modelo. tal como se muestra en la ecuacion x.
+
+
+note que los modelos que mejor aprovechan la demanda son los modelos basicos mientras que los modelos completos son los que menos la aprovechan. esto concuerda con los resultados presentados en la seccion de analisis por abordagen. de hecho es la explicacion de porque los modelos basicos obtienen mejor revenue en comparacion con los demas modelos.
+
+ademas se puede observar que los modelos ccon restricciones de Ship lagging aprovechas mejor la demanda en compararacion con los modelos de fulfillment over periods, por la misma situacion ya mencionada.
+
+otro observacion interesante es que aun cuando los resultados para los modelos basicos, para la mayoria de las instancias, son  iguales (ver tabla x), lso porcentajes de aprovechamiento de la demanda no lo son. por ejemplo, observe los modelos basicos para la instancia inst1, los primeros dos valores de 99.25 son diferentes a los sigueintes, de 99.32, esto ocurre porque aun cuando los valores de la funcion objetivo sean iguales, los valores de las variables de desicion no lo son o pueden ser diferentes, tal como se explica en la siguiente seccion.
+
+esta situacion ocurre ya que gran parte de las combinacions de trecho, tipo de asiento, y periodo solo continen una clase de control, enla tabla x, pueden observarse, los procentajes de comobinaciones que contienen mas de una clase. lo anterio provoca que las listas de preferencia usadas en los modelos de demanda comportamental tengan una sola opcion, en otras palabras, para cuando las combinacion mensionas tienen una sola clase, no existe diferencia entre los abordajes de demanda comportamental e independiente.
+
+
+en este apartado se presenta el numero de nodos explorados por cada modelo para encontrar la solucion entero optima de cada  una de las instancias.
+
+de la tabla x, puede observarse que las instancias grandes y medianas 
+
+
+
+
+en este apartado son presentados: i) los tiempos que creacion, que son aquellos que fueron necesarios para que el solver creara el modelo de cada una de las instancias y 2)los tiempos de exceucion: que son los tiempos que demoro el solver para encontrar la solucion de cada instancia usando cada uno de los modelos  propuestos.
+
+
+de la tabla x puede observarse que los tiempos de creacion depende de cada instancia y no de los modelos propuestos, eso observando la poca variacion que existe por instancia. Siendo para la instancia inst1 lso tiempos mas cortos en torno de 1 segundo, y siendo, por otro lado los tiempos mas largos para la instancia inst3 con un promedio de 18.8 segundos. el resto de las instancias oscilas entre esos dos limites.
+
+por otro lado, de la figura x, puede observarse que los tiempos son bastante parecidos independientemente de la instancia y el modelo, siendo el tiempo mas alto de 0.15 segundos y el mas bajo de 0 segundos, es decir en este ultimo caso el modelo resolvio la instancia de forma instantanea, eso ocurrio para la instancia mas pequeña (inst10).
+
+de los dos tipos de tiempos anteriores puede afirmarse que todos los modelos son eficientes a la hora de rsolver cualquir tipo de instancia sea de pequeño o grande porte.
+
+
+de la tabla 5.9 puede observarse que desde las isntancias ins1 hasta las instancias inst5 al solver le tomo maximo 1 uno para encontrar la solucion optima entera, esto para cada uno de los modelos propuestos. por otro lado de las instancias inst6 hasta la isntancia inst10 no se exploro ningun nodo a excepcion del modelo Basic_Comporta_Din, Fulfill_Comporta_Din, Skipla_Comporta_Din, que les tomo explorar 1 nodo. que se halla encontrado la solucion sin explorar ningun nodo, significa que el solver halo la solucion en el proceso de preprosesamiento que realiza antes de comenzar a realizar las ramificaciones. esat infromacion esta directamnete relacionada a los tiempos de solucion presentados en la seccion anterior.
+
+Las matrices unimodulares desempeñan un papel crucial en la programación entera y los sistemas lineales. Estas matrices tienen coeficientes exclusivos que pertenecen al conjunto {-1,0,+1} y garantizan soluciones enteras para sistemas de ecuaciones lineales siempre que el vector b sean valores enteros( Arimin y Muktyas, 2018 ).
+
+basados en la definciion anterior, fueron analizadas las matrices de coeficiente para cada modelo e instancia, esto se hizo, luego de que el solver realizara el preprocesamiento. Se realizó de esta manera ya que en dicho procesco el solver consigue eliminar ciertas restriccions o variables que el nota que son dominadas por otras restricciones. en ese caso aquellas matrices que tal ves tenian restricciones que inicialmente incumplian la unimodularidad, existia una posibilidad que el solver la eliminara en el proceso de preprosesamiento sin afectar al modelo en si.
+
+Basic_Independ_Est
+Fulfill_Independ_Est
+-
+Comp_Independ_Est
+
+Basic_Comporta_Est
+Fulfill_Comporta_Est
+Skipla_Comporta_Est
+Comp_Comporta_Est
+
+Basic_Independ_Din
+Fulfill_Independ_Din
+Skipla_Independ_Din
+-
+
+-
+-
+-
+*
+
+con base en la definicion anterior, se afirma que el vector b de todas las instancias escogidas, son valores enteros que representan ya sea la capacidad del tren, las demandas de pasajeros o la cantidad de asientos vacios. por lo que toda la atencion estuvo en comprobar que las matrices de coeficientes solo estuvieran compuestas por valores dentro del conjunto {-1.0.+1}. para llevar a cabo esa tarea, se realizo la comprobacion luego de que el solver realizara su etapa de pre-procesamiento, esto ya que en dicha etapa el solver consigue eliminar restricciones o variables ya sea por dominancia, fijacion de variables u otros conceptos. entonces existia la probabilidad de que una matriz incialmente no fuera unimodular y luego de la etapa de preprosesamiento lo fuera, cuando el solver realizara las eliminaciones.
+
+los resultados de las comprobaciones constan en la matriz 5.10, donde si un modelo para una instancia es unimodular este muestra una lina (-) en la celda correspondiente, en caso contrario se muetran tres datos en la misma celda, el primero representa la cantidad de restriciones que no estan cmpuestas solo por los valores en {-1.0.+1}, el segundo valor, muestra todas las restricciones de ese modelo para esa instancia y el ultimo valor muestra la relacion porcentual entre los dos primeros valores.
+
+es asi, como cada modleo e instancia de la tabla 5.10 que tiene solo una linea, explica el porque los tiempos de solucion correspondinetes son tan bajos, al igual que la cantidad de nodos explorados para la obtencion de la solucion optima entera.
+
+
+lo anterior ayuda al solver en el proceso de resolucion puesto que la solucion relajada del problema sera la solucion entera. lo que permite una eficiencia tanto en los tiempos de solcuion como en la exploracion de nodos en el proceso de ramificacion.
+
+
+son embargo, se nota que los tiempos y nodos explorados siguen siendo bajos aun para los modelos e instancias que no son unimodulares, para explicar esta situacion es necesario observar el trabajo realizado por fulanito. en el cual instroduce el concepto de delta-modular. Segun los autores existen matrices casi unimodulares donde si se elimina un conjunto de lineas (restricciones) la matriz se transformaria en totalmente unimodular. el tamaño de ese conjunto esta representado por delta, es decir delta es la cantidad de restriccione que provoca que la matriz no sea totalmente unimodular. Al final los autores consiguen demostrar que las matrices casi unimodulares o delta-modulares aydan a que el proceso de resolcucion del probelma sea mucho mas eficiente a medida que delta es mas pequeño.
+
+ahora, observe de nuevo la tabla 5.10, note que la mayoria de los modelos e instancias no unimodulares, su valor de delta, osea el primer valro de cada celda, posee un valor por debajo de 8, un valor que comparado con los nuemros de retsricciones es supremamente bajo. existen 7 exepciones con valor de delta entre 76 y 291, sin embargo, nuevamente en funcion de sus restricciones totales, esa relacion no excede el 0.5% del total. es asi que para las matrices no unimodulares se afirma, en funcion de la deficinion de delta-modular, que tambien consiguen rsultados en tiempo competitivos y baja cantidad de nodos explorados.
+
+
+
+note que ahora el valor de betha es calculado en funcion de gamma y no de alpha, esto indica que betha hara referncia a la clase mas barata disponibilizada para la venta y no la clase mas barata reservada.
 
 
 
 
 
+para este modelo se toamra como referencia el modelo basico del abordaje estatico y tipo de demanda independiente. ademas de eso se necesitaran ajustar y crear las sigueitents variables de desicion:
+
+
+
+para este modelo se toamra como referencia el modelo fulfillment over periods del abordaje estatico y tipo de demanda independiente. y se adiciona la siguiente variable de desicion:
 
 
 
 
 
+sin embargo, como se muestra en la tabla 5,10, no todos los modelos e instancias son unimodulares, mas sin embargo fueron eresultos en timepos cortos y el maximo un solo nodo. esta situacion ocurre devido a que si bien los modelos no son totalmente unimodualres es posible identificar que restriccion violan esos supuestos. basandose en la investigacion de fulanito, los cuales introducen el termino de delta-modular, donde delta representa la cantidad de restricciones o variables que no satidfacen los supuestos de unimodularidad, ellos logran demostrar que las matrices de tipo delta-modular representan una ayuda siginificativa en el proceso de resolucion para los solver, reduciendo tanto las ramificaciones como los tiempos de ejecucion. ademas indican que entre menor sea el valor de delta, mas eficiente sera el proceso.
+
+
+
+es asi como se puede afirmar que los modelos, Basic_Independ_Est, Fulfill_Independ_Est, Comp_Independ_Est, cumplieron con la definicion para cada una de las instancias y son considerados unimodulares. no te que en la tabla 5,10 dichos modelos no tienen informacion.
+
+ahora, 
+
+
+
+en la tabla 5,10 puede observarso aquellos modelos que no cumplieron las condiciones de unimodularidad para cada instancia. 
+
+
+conclusion
+esta investigacion abodo el problema de trasnporte feroroviario de pasajeros desde el punto de vista del revenue management, en donde se desembolvieron distintos modelos matematicos enteros mixtos basados en dos abordajes, el primero, el tipo de demanda , donde uso la demanda independiente y la demanda comportamental, y el segundo, los tipos de autorizaciones, en las que se trato las autorizaciones estaticas y las autorizaciones dinamicas. Como resultados se deselbolvieorn 4 modelos matematicos, ademas, cada modelo fue desembolvido de forma secuacial en 4 partes dieferentes, la primera, una version basica del modelo donde se tenian las restricciones fundamentales para el problema, la segunda,la adicion al modelo base del conjunto de restriccciones de fullfillment over periods, la tercera la adicion al modelo base del conjunto de restriciones de skiplaggin y por ultimo, la integracion simultanea de las tres primeras partes en un solo modelo completo.
+como resultado de lo anterio pudo conluirse que:
+
+1) desde el punto de vista computacional, todos los modelos desarrollados son altamente competentes y eficientes encontrando soluciones en fracciones de segundo indistintantemnte del tamanho de la instancia escogida, recordando que para la validacion fueron escogidas instancias de tamnho grande, medio y pequeño, en donde, en el ultimo caso, todos los modelos consiguieron las respuestas optimas enteras casi que instantaneamente y para la instancia mas grande (inst2) se obtuvieron resulatdos en maximo 0.15 segundos.
+
+2) desde el punto de vista empresarial, como efecto del punto anterior, cada modelo es atractivo y aplicable a entornos reales. tomando en cuenta que los tiempos encontrados son para solamneta un viaje de un tren, por lo que siendo asi, los modelos siguen siendo atractivos con sus tiempos de resolucion. cabe resaltar que cualqueir abordaje escojido para aplicar tiene ventajes y desventajas , por ejemplo si es escogido un modelo basico, e garantizaria un aprovecahmiento de la demanda por encima del 90%, pero no se tendria en encuentra ciertas condiciones utilies en el desarrolo real del negocio. por otro lado si se escoge un modelo completo, se estaria tomando en cuneta todas esas posibles condiciones para garantizar un excleente servici, sin embargo , el aprovechamiento de la demanda se reduciria hasta en un 50%, inclusive mas en ciertos casos, enc omparacion con los modelos base.
+
+3) los modelos de demando tipo independiente obtienen, para las instancias objetos de estudios, valores un poco por encima que los valores comportamentales, esa variacion es relativamente pequeña devido a las caracteristicas de las instancias, pesto que existe un porcentaje alto donde las combianciones de trecho, tipo de asiento y periodo, tienen solamente una clase. lo que genera una lista de preferencia de una sola opcion al momento de aplicar los modelos comportamentales.esa situacion hace que ambos abordajes sean muy parecidos de hechos esas variaciones pequeñas se deben a los casos donde se tiene mas de una clase por combinacion.
+
+4) un resulatdo interesante fue , que le abordaje tipo de autorizaciones dianmicas, obtuevo resultados mucho mejores que los resultados con tipo de autorizacion estatico mostrando una diferencia del revenue por encima del 10%. lo que es una cifra representatica en un ambiente real.
+
+5) los modelos poropuestos poseen una caracteristica importante, como es el tema de la unimodularidad, donde 10 de los 16 modelos son totlamente unimodulares para las 10 instancias, logrando los tiempos bajos ya mencionados, y aquellos modelos que no son totalmnete unimodulares poseen un delta pequeño en comparacion al toral de restricciones del problema loq ue tambien ayuda a rsolver de forma eficiente usanod la deficion de delta-modular. de hecho lo anterior consigue explicar de forma consisa lso tiempos bajos y los pocos nodos explorados enel porcso de solucion.
+
+
+como trabajo futuro se recomienda modelar adicionalmente la estimacion de la demanda, notando que esta pesquisa la uso como un parametro y confio en los metodos de tratamiento con las cuales fue estimasa por parte de la empresa que fornecio los datos.  lo anterior podria mejorar aun mas las proyecciones y asi mismo las cantidad de reservas y autoirzaciones , recordando que la demanda es un punto clave para resolver problemas como el de trasnporte de pasajeros.
+
+basados en lo anterior se reocmida abordar la modelacion estocastica, la cual es propicia para esos problemas donde esxiste tana incerteza.
+
+Adciionamente, serie interesante abordar el rpoblema desde el punto de vista de la inteligencia aritfical, usando por ejmplo aprendizaje profunco, ya sea para manejar la demanda o resolver el problema en si. en los utlimos años han habido varias propuestas, sin embargo es un ambito poco explora hasta la fecha que vale la pena explorar.
 
 
 
 
+Esta tesis aborda el problema de gestión de ingresos en el transporte ferroviario de pasajeros, donde la capacidad de asientos es perecedera y la demanda presenta sustitución entre tarifas y variación temporal. El problema central consiste en decidir, para cada origen-destino, tipo de asiento y periodo de reserva, cuántos asientos de cada clase deben protegerse y cuántos liberarse a la venta en un tren de pasajeros, considerando que los clientes pueden sustituir tarifas, que los asientos no vendidos caducan y que la empresa puede impone restricciones operativas como fulfillments over periods o de skip-lagging.
+
+El vacío encontrado en la literatura, es la ausencia al aplicar simueltaneamente, modelgam basada en transporte de vehiculos y flujo en redes al problema objeto de estudio. para cerrar este vacio se formulan dieciséis modelos de programación lineal entera mixta, que ademas del abordage matematico mencionado, combinan dos enfoques de demanda (independiente y comportamental) con políticas de disponibilidad de ventas de asientos estáticas y dinámicas, incorporando además las restricciones corporativas de fulfillment y skip-lagging. Los modelos se implementan en Gurobi y se evalúan con diez instancias reales de un operador canadiense, analizando tiempos de cómputo, ingresos totales, cobertura de demanda y estructura unimodular de las matrices.
+
+Los resultados muestran que las autorizaciones dinámicas recuperan buena parte del ingreso perdido al imponer restricciones operativas, mientras que la demanda comportamental refleja mejor el comportamiento real de compra sin penalizar el desempeño computacional. Se concluye que la integración de elección del pasajero, control dinámico de inventario y reglas empresariales ofrece una herramienta rigurosa y aplicable para la toma de decisiones tácticas y estratégicas en revenue management ferroviario.
+
+
+sentando las bases para futuras extensiones con técnicas de aprendizaje adaptativo en tiempo real.
+
+
+El problema central consiste en decidir, para cada origen-destino y periodo de reserva, cuántos asientos de cada clase deben protegerse y cuántos liberarse a la venta en un tren de pasajeros, considerando que los clientes pueden sustituir tarifas, que los asientos no vendidos caducan y que la empresa puede impone restricciones operativas como fulfillments over periods y de skip-lagging. 
+
+
+Resolverlo es crucial porque aplicar sin adaptación los modelos aéreos o hoteleros conduce a políticas inviables: o bien violan normas corporativas, o bien subestiman la reacción del pasajero, con pérdida de ingresos y riesgo reputacional. 
+
+El vacío abordado es la ausencia, en la literatura ferroviaria, de un marco que integre simultáneamente elección de tarifas, control dinámico de inventario y dichas restricciones; la tesis lo cubre al proponer dieciséis formulaciones MILP que unen esos tres componentes y demuestran, con instancias reales, que las políticas dinámicas con demanda comportamental maximizan la recaudación sin sacrificar viabilidad operativa.
+
+
+
+a mi madre saudith narvaez, por cada consejo, con cofiar en mi en cada desicion que he tomado hasta este punto y por su ayuda incondicional, a mi padre walter urango, por su fuerza y ejemplo, que me enseñaron a ser um hombre de bien y de buenos prinipios, a mis hermanos yeiner y steven urango, por su apoyo y motivacion que me dieron en cada momento.
+
+a mi esposa edith Gonzalez, por estar junto a mi en cada paso, por ayudarme en cada momento y por ser uno de mis motores para seguir adelante en esos tiempos dificiles.
+
+a mi hijo johan Urango, que aunque recien nacido ya es la mayor motivacion para continuar luchando en esta vida.
+
+a mi orientador Diego Jacinto Fiorotto, por todo su tiempo, ayuda y dedicacion para llevar a cabo este objetivo, no solo en la parte academica sino tambien en la parte personal.
+
+a karim Martines quien confio en mi y me hizo parte de este mundo del revenue management.
+
+a la CAPES por patrocinas financieramente tanto mi investigacion como mi sostenimiento aqui en brasil.
+
+e en general a todos mis amigos que en cierto punto fueron una ayuda en cada uno de los pasos de este proceso.
+
+
+
+
+La figura 1.2 representa un ejemplo de viaje, donde se tiene un tren con nombre #12365 y fecha de partida 12 de junio del 2024.
+
+
+por ejemplo, la figura 2.3 presneta varios trechos, donde el trecho ac es no adjacente y los trechos AB y BC son adjacentes
+
+
+
+tal como se muestra en la figura 1.3
+
+
+para ejemplificar esta situacion observe el grafico 1.7, en el cual representa un modelo de demanda independiente, donde se asume que un cliente 
+
+
+en las tablas de la tabla 1 hasta la tabla 5, se presentan los resultados optimos enontrados y sus respectivas varuacions en funcion de los modelos basicos, por cada modelo para cada instancia y para cada abordagem, en cada tabla las lineas representan las instancias analizar mientras que las columnas muestran el modelo.
+
+
+observe que los modelos basic_independ_est y basic_independ_din obtinen el mismo revenue para la mayoria de las instancias, con excepcion de las instancias inst3 y inst5, las cuales obtuvieron valores diferentes con una variacion pequeña.  inesperadamente, esa esa misma situacion ocurre con los modelos skipla_independ_est y skipla_independ_din, solo que en este caso los dos modleos si tuvieron los mismos valores para todas las instancias.
+
+
+
+
+para ilustrar los dos ultimos itens, se toma como ejemplo la instancia inst10 usando los modelos de la categoria completa y se calculan las variacion entre cada par de modelos, tal como se muestra en la tabla 5.6, donde la base de comparacin de las variaciones fueron los valores de los modelos de cada linea de la primera columna. Note que al comparar os modelos estáticos com os modelos dinâmicos, estes últimos
+apresentam um aumento entre 11,06% e 15,62% na receita, tomando como base aos modelos
+estáticos. Essa diferença se deve ao tipo de autorizacion adotado em cada tipo de modelo.
+
+no entanto, cuando se comparan los modelos pertenenientes al mismo tipo de autorizaciones, las variaciones se encuentran en torno de 2.5%  para los modelos estaticos y 1.4% para los modelos dinamicos, lo que indica variaciones relativamente bajas.
+
+para explicar la situacion anterior, es necesario tener en cuenta las combinaciones de las instancias al momento de combinar cada uno de los trechos, tipos de asiento y periodos y contabilizar el numero de clases que existe en cada una de ellas. la tabla x.x muestra tres combinaciones diferentes y la cantidad de clases para cada una.
+
+
+es precico observar la tabla 5.6, en donde se muestra las variaciones de la funcion objetivo encontradas para la instancia inst10 usando la categoria completa. simepre tomando como base los resulatdso de los modelos que estan en las filas
+
+
+dicho eso, en la tabla 5.8 se muestra la cantidad de combinaciones que tienen mas de una clase de control ,el total de combincaiones y la relacion porcentual de eso, para cada una de las instancias.
+
+
+de este modo, basandose en los procnetajes mostrados en la tabla 5.8, se puede explicar la situacion de las variacion bajas al comparar los modelos comportamentales y dinamicos de cada tipo de politica d eautorizacion. los valores de la tabla indican que son muchas las combinaciones que tienen solamente una clase, lo que probica la creacion de listas de preferencia de una sola opcion para los modelos comportamental, lo cual no tendria diferencia con los modelos independientes, de hecho la variacion baja se genera por las aquellas pocas combinaciones quq tienen mas de una clase de una clase.
+
+
+una caracteristica insteresante observada en los resultados objetivos fue la cantidad de soluciones optimas que pudo obtener cada uno de los modelos para cada una de las instancias. lo anterior indica que el problema objeto de estudio es de tipo de multipls soluciones optimas. en la tabla 5.9, se muestran las cantidades de soluciones optimas obtenidas por cada modelo para cada una de las instancias.
+
+
+en esta seccion son presentados: 1) el tiempo de construcion del modelo: que es aquel timepo que el solver necesita para hacer la lectura y preprosesamiento de los datos, definir las variables de desicion, formular las restricciones, definir la funcion objetivo y generar la estructura interna del modelo. ii) el tiempo de resolucion: que es el timepo que el solver usa para inicializar el solucionador, realizar el presolver, detectar el tipo de problema y seleccion de algoritmos, explorar el espacio de soluciones y verificar la optimalidad.
+
+
+observe que aun cuando existen modeos que ofrecen el mismo valor de funcion objetivo, como el caso de los modelos Skipla_Independ_Est y Skipla_Independ_Din, el porcentaje de aprovechamiento de la demanda demanda no lo es. esto tiene sentido ya que la mayoria de los modelos tiene multiples soluciones entonces aun cunado la objetivo sea la misma, puede existir una variacion en los valores que tomen las variables de desicion.
+
+esa probabiloidad es calculada usanod la somulaion de montecarlo y es realizada previamnete a la resolucion del modelo. para calcular dicha probabilidad tome en cuneta la tabla x.x donde se muestra una combinacion de un trecho un tipo de assiento un periodo y 3 clases de control.
+
+
+para calcular sigma, lo primero es calcular la probablidad teorica, que es cada demanda de cada clase dividad entre el total, posteriormenten es calcula la probabilida acumulada en funcion de la porbabilida teorica, posteriormente se crean los intervalos iniciando en cero y termianndo en el valor de la probabilidad acumulada correspondiente. luego se generan 10000 simulaciones osea, se generar 10000 numeros aleatorios onde cad uno representa la llegada de una persona, es asi como se contabilidad cuantas nuemros aleatorios (personas) cayeron en cada intervalo. una vez con esos valores se calcula la probabilida de montecarlo con esa frecuencia dividad entre las 10000 simualciones. y asi esa nueva probabilidad es la probabilida de que una persona llegue a comprar un boleto de cierta clase de controle.
+
+
+tenga claro que, la canidad de simulasiones fue escogida por los autores suppniendo que esa cantidad era suficiente para realizar la simulacion. ademas tenga en cnuenta que si una combiancion de treho , tipo de asseinto y cierto perido solo consta de una sola clase, el valor de sigma en ese caso sera del 100%
 
 
 
