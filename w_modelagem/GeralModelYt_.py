@@ -90,7 +90,7 @@ class GeralModelYt:
         self.result_vars = None
 
         # Variaves quantidade de restricoes no unimodulares
-        self.NamenoUnimodNodelet = None
+        self.NamenoUnimodNodelet = []
 
 
     def executed(self, nome_):
@@ -130,7 +130,7 @@ class GeralModelYt:
         result_vars = pd.DataFrame(lista, columns=['o-d',"Origen","Destino",'Vagon','Classe','Periodo','Preco','Demanda', 'AssenVazios[A]', 'Assignments[X]','Authorizations[Y]', 'ProbMontecarlo', '\u03B3', '\u03B1', '\u03B2', '\u03B4'])
         result_vars = result_vars.sort_values(by=["Origen","Destino",'Vagon','Periodo','Classe'])
         self.result_vars = result_vars
-        result_vars.to_excel(str(self.path_dem)[:-11] + self.abordagem + '_' + model + '_' + self.nome + "_s" + str(self.simulacao) +'.xlsx', index=False)
+        result_vars.to_excel(str(self.path_dem)[:-11] + "resultados/" + self.abordagem + '_' + model + '_' + self.nome + "_s" + str(self.simulacao) +'.xlsx', index=False)
 
     def graph_solution(self) -> None:
     
@@ -794,9 +794,9 @@ class GeralModelYt:
         self.initial_var_restric()
 
     def run_solver(self, name_model:str):
-        preSolM = self.model.presolve()
-        preSolM.write(str(self.path_dem)[:-11] + self.abordagem + '_' + name_model + '_' + self.nome + '_pre.lp')
-        self.model.write(str(self.path_dem)[:-11] + self.abordagem + '_' + name_model + '_' + self.nome + '.lp')
+        # preSolM = self.model.presolve()
+        # preSolM.write(str(self.path_dem)[:-11] + self.abordagem + '_' + name_model + '_' + self.nome + '_pre.lp')
+        # self.model.write(str(self.path_dem)[:-11] + self.abordagem + '_' + name_model + '_' + self.nome + '.lp')
 
         start_time_run_model = time.time()
         self.model.optimize()
