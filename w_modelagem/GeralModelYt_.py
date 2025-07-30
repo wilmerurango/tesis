@@ -33,7 +33,7 @@ def method_execut_log(func):
 
 class GeralModelYt:
     
-    def __init__(self, path_dem, path_preco, path_rota1, Q, perio:int, nome:str, abordagem:str, g_param:dict) -> None:
+    def __init__(self, path_dem, path_preco, path_rota1, Q, perio:int, nome:str, abordagem:str, g_param:dict, simulacao:int) -> None:
         
         self.path_dem = Path(path_dem)
         self.path_preco = Path(path_preco)
@@ -41,6 +41,7 @@ class GeralModelYt:
         self.Q = Q
         self.perio = perio
         self.nome = nome
+        self.simulacao = simulacao
         self.abordagem = abordagem
         self.g_param = g_param
 
@@ -129,7 +130,7 @@ class GeralModelYt:
         result_vars = pd.DataFrame(lista, columns=['o-d',"Origen","Destino",'Vagon','Classe','Periodo','Preco','Demanda', 'AssenVazios[A]', 'Assignments[X]','Authorizations[Y]', 'ProbMontecarlo', '\u03B3', '\u03B1', '\u03B2', '\u03B4'])
         result_vars = result_vars.sort_values(by=["Origen","Destino",'Vagon','Periodo','Classe'])
         self.result_vars = result_vars
-        result_vars.to_excel(str(self.path_dem)[:-11] + self.abordagem + '_' + model + '_' + self.nome + '.xlsx', index=False)
+        result_vars.to_excel(str(self.path_dem)[:-11] + self.abordagem + '_' + model + '_' + self.nome + "_s" + str(self.simulacao) +'.xlsx', index=False)
 
     def graph_solution(self) -> None:
     
@@ -339,33 +340,38 @@ class GeralModelYt:
         
         return rutas
 
-    @staticmethod
-    def montecarlo(fila, merged_df, ns):
+    # @staticmethod
+    # def montecarlo(fila, merged_df, ns):
         
-        class_dem = merged_df.loc[
-            (merged_df['Origin']==fila.Origin) & 
-            (merged_df['Destination']==fila.Destination) &
-            (merged_df['Vagon']==fila.Vagon) &
-            (merged_df['DBD']==fila.DBD)]
+    #     class_dem = merged_df.loc[
+    #         (merged_df['Origin']==fila.Origin) & 
+    #         (merged_df['Destination']==fila.Destination) &
+    #         (merged_df['Vagon']==fila.Vagon) &
+    #         (merged_df['DBD']==fila.DBD)]
         
-        if class_dem['Class'].shape[0] == 1:
-            return 1
-        else:
-            # Definir os dados da demanda e precos
-            precos = class_dem.Revenue.values # precos das classes
-            demandas = class_dem.Bookings1.values # demanda independente
+    #     if class_dem['Class'].shape[0] == 1:
+    #         return 1
+    #     else:
+    #         # Definir os dados da demanda e precos
+    #         precos = class_dem.Revenue.values # precos das classes
+    #         demandas = class_dem.Bookings1.values # demanda independente
             
-            # Calcular probabilidades teoricas
-            prob_teoricas = [d / demandas.sum() for d in demandas]
+    #         # Calcular probabilidades teoricas
+    #         prob_teoricas = [d / demandas.sum() for d in demandas]
 
-            # Gerar a simulacao com escolha aleatoria ponderada
-            simulaciones = np.random.choice(precos, size=ns, p=prob_teoricas)
+    #         # Gerar a simulacao com escolha aleatoria ponderada
+    #         simulaciones = np.random.choice(precos, size=ns, p=prob_teoricas)
 
-            resultado = np.sum(simulaciones == class_dem.loc[class_dem['Class']==fila.Class].Revenue.values)/ns
+    #         resultado = np.sum(simulaciones == class_dem.loc[class_dem['Class']==fila.Class].Revenue.values)/ns
 
-            return resultado
+    #         return resultado
 
-
+    @staticmethod
+    def montecarlo_cor(grupo):
+        n = len(grupo)
+        valores = np.random.rand(n)
+        grupo['Mtr'] = valores / valores.sum()
+        return grupo
 
     # Preparacoes para o modelo
     def load_raw_data(self) -> None:
@@ -429,9 +435,10 @@ class GeralModelYt:
         self.demanda.columns = ['Origin', 'Destination', 'Vagon', 'Class', 'DBD', "Bookings1", 'PL', 'Bookings']
 
         # Probalidade de Montecarlo
-        merged = self.demanda.merge(preco, on=['Origin', 'Destination', 'Vagon', 'Class'], how='left')
+        # merged = self.demanda.merge(preco, on=['Origin', 'Destination', 'Vagon', 'Class'], how='left')
         montecarlo = self.demanda.copy()
-        montecarlo['Mtr']= montecarlo.apply(self.montecarlo, axis=1, merged_df=merged, ns=10000)
+        # montecarlo['Mtr']= montecarlo.apply(self.montecarlo, axis=1, merged_df=merged, ns=10000)
+        montecarlo = montecarlo.groupby(['Origin', 'Destination', 'Vagon', 'DBD'], group_keys=False).apply(self.montecarlo_cor)
 
 
         # Diccionarios
@@ -799,8 +806,8 @@ class GeralModelYt:
 
         self.save_solution(name_model)
 
-        if self.model.status == GRB.OPTIMAL:
-            self.find_non_unimod_non_deleted(name_model)
+        # if self.model.status == GRB.OPTIMAL:
+        #     self.find_non_unimod_non_deleted(name_model)
         # else:
         #     print("Infactivel")
 
