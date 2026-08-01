@@ -29,33 +29,56 @@
 %================================================================================================
 \thispagestyle{empty}
 
-\begin{minipage}{.2\textwidth}
-\includegraphics[width=1.5cm]{img/unicamp.pdf}
-\end{minipage}
-\hspace*{\fill}
-\begin{minipage}{.7\textwidth}
-	{\large Universidade Estadual de Campinas\\
-	Faculdade de Ciências Aplicadas}
-\end{minipage}	
+% --- en el lugar de la portada ---
+\begin{tikzpicture}[remember picture,overlay]
+  % Ajusta estos márgenes desde el borde superior/izquierdo de la página:
+  \def\xmargin{15mm}
+  \def\ymargin{-30mm} % negativo porque medimos hacia abajo
+
+  % Logo: esquina sup. izquierda
+  \node[anchor=north west] at ($(current page.north west)+(\xmargin,\ymargin)$) {%
+    \includegraphics[width=40mm]{img/Logo_Unicamp1.jpg}
+  };
+
+  % Bloque centrado: misma altura vertical que el logo\vspace*{2cm}
+
+% \begin{center}
+% 	\large OPTIMIZATION OF REVENUE IN PASSENGER RAIL TRANSPORTATION: A STUDY BASED ON INDEPENDENT AND BEHAVIORAL DEMAND MODELS
+% \end{center}
+  \node[anchor=north] at ($(current page.north)+(0,\ymargin)$) {%
+    \begin{minipage}{0.75\textwidth}
+      \centering
+      \large UNIVERSIDADE ESTADUAL DE CAMPINAS\\
+      Faculdade de Ciências Aplicadas
+    \end{minipage}
+  };
+\end{tikzpicture}
+
 
 \vspace*{5cm}
-\begin{center}
-	\large Wilmer Darío Urango Narváez
-\end{center}
-\vspace*{5.0cm}
+
 
 \begin{center}
-{\sc \Large OTIMIZAÇÃO DA RECEITA NO TRANSPORTE FERROVIÁRIO DE PASSAGEIROS: UM ESTUDO BASEADO EM MODELOS DE DEMANDA INDEPENDENTE E COMPORTAMENTAL
-\vspace{1cm}
-
-}
+	\large WILMER DARIO URANGO NARVAEZ
 \end{center}
-
-
-
 
 
 \vspace*{5cm}
+
+\begin{center}
+\large OTIMIZAÇÃO DA RECEITA NO TRANSPORTE FERROVIÁRIO DE PASSAGEIROS: UM ESTUDO BASEADO EM MODELOS DE DEMANDA INDEPENDENTE E COMPORTAMENTAL
+\end{center}
+
+% \vspace*{2cm}
+
+% \begin{center}
+% 	\large OPTIMIZATION OF REVENUE IN PASSENGER RAIL TRANSPORTATION: A STUDY BASED ON INDEPENDENT AND BEHAVIORAL DEMAND MODELS
+% \end{center}
+
+
+\vspace*{5cm}
+
+
 \begin{center}
 	Limeira\\2025
 \end{center}

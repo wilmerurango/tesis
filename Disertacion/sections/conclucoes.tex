@@ -12,7 +12,7 @@ Os modelos de demanda do tipo independente apresentaram resultados ligeiramente 
 
 Um resultado interessante foi que o modelo com autorizações dinâmicas obteve resultados significativamente melhores que o modelo com autorizações estáticas, apresentando uma diferença da receita superior a 10\%. Este é um valor representativo em um ambiente real.
 
-Os modelos propostos possuem uma característica importante, a unimodularidade, onde 10 dos 16 modelos são totalmente unimodulares para as 10 instâncias, o que contribui para os baixos tempos de execução mencionados. Para os modelos que não são totalmente unimodulares, o valor de delta é pequeno em comparação ao total de restrições do problema, o que também contribui para uma resolução eficiente usando a definição de delta-modular. Esse aspecto explica de forma concisa os baixos tempos de solução e o número reduzido de nós explorados durante o processo de resolução.
+Os modelos propostos possuem uma característica importante, a unimodularidade, onde 10 dos 16 modelos são TU para as 10 instâncias, o que contribui para os baixos tempos de execução mencionados. Para os modelos que não são TU, o valor de $\Delta$ é pequeno em comparação ao total de restrições do problema, o que também contribui para uma resolução eficiente usando a definição de $\Delta$-modular. Esse aspecto explica de forma concisa os baixos tempos de solução e o número reduzido de nós explorados durante o processo de resolução.
 
 
 
@@ -20,7 +20,7 @@ Como trabalho futuro, recomenda-se modelar adicionalmente a estimativa da demand
 
 Com base nisso, recomenda-se a abordagem da modelagem estocástica, que é adequada para problemas onde há grande incerteza. A modelagem estocástica permitiria incorporar variáveis dinâmicas de maneira mais flexível, refletindo melhor as flutuações e incertezas da demanda e as escolhas nas listas de preferença, ao longo do horizonte de reserva.
 
-Adicionalmente, seria interessante explorar o problema sob a ótica da inteligência artificial, utilizando, por exemplo, aprendizado profundo (deep learning), seja para gerenciar a demanda ou para resolver o problema em si. Nos últimos anos, diversas propostas surgiram, mas esse é um campo ainda pouco explorado, o que o torna uma área promissora a ser investigada.
+Adicionalmente, seria interessante explorar o problema sob a ótica da inteligência artificial, utilizando, por exemplo, aprendizagem por reforço (\textit{reinforcement learning}), seja para gerenciar a demanda ou para resolver o problema em si. Nos últimos anos, diversas propostas surgiram, mas esse é um campo ainda pouco explorado, o que o torna uma área promissora a ser investigada.
 
 
 

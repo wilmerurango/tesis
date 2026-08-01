@@ -2,13 +2,17 @@
 \chapter*{Resumo}
 
 \vspace{-1.0cm}
-\begin{quotation}
-	Esta dissertação aborda o problema da gestão de receitas no transporte ferroviário de passageiros, onde a capacidade de assentos é perecível e a demanda apresenta substituição entre tarifas e variação temporal. O problema central consiste em decidir, para cada origem-destino, o tipo de assento e período de reserva, quantos assentos de cada classe devem ser protegidos (reservas) e quantos devem ser liberados para venda (autorizações) em um trem de passageiros, considerando que os clientes podem escolher dentro de um conjunto de tarifas, que os assentos não vendidos se perdem e que a empresa pode impor restrições operacionais, como \textit{fulfillment over periods} ou \textit{skip-lagging}.
+% \begin{quotation}
 
-	O gap identificado na literatura é a ausência de modelos que apliquem simultaneamente a modelagem baseada em transporte de veículos e fluxo em redes ao problema em questão. Para preencher essa lacuna, foram formulados dezesseis modelos de programação linear inteira mista, que, além da abordagem matemática mencionada, combinam dois enfoques de demanda (independente e comportamental) com políticas de autorizações de vendas de assentos estáticas e dinâmicas, incorporando também as restrições operacionais de \textit{fulfillment over periods} e \textit{skip-lagging}. Os modelos foram implementados no python usando o solver Gurobi e foram avaliados com dez instâncias reais de uma empresa canadense, analisando tempos de computação, receitas totais, cobertura da demanda e a estrutura unimodular das matrizes.
+	Esta dissertação aborda o problema da gestão de receitas no transporte ferroviário de passageiros, no qual a capacidade de assentos é perecível e a demanda apresenta substituição entre tarifas e variação temporal. Esse cenário configura um desafio típico dessa área: aceitar uma reserva a um preço mais baixo no presente pode impedir a venda futura de uma tarifa mais elevada, mas rejeitá-la pode resultar em assentos ociosos em outros trechos da rede.
+	
+	O problema central consiste em decidir, para cada origem-destino, o tipo de assento e o período de reserva, estabelecendo quantos assentos de cada classe devem ser protegidos (reservas) e quantos devem ser disponibilizados para venda (autorizações) em um trem de passageiros.
+
+	Esse processo deve levar em conta que os clientes podem escolher dentro de um conjunto de tarifas, que os assentos não vendidos representam perda definitiva de capacidade e que a empresa pode impor restrições operacionais, como \textit{fulfillment over periods} ou \textit{skip-lagging}.
+
+	O gap identificado na literatura é a ausência de modelos que apliquem simultaneamente a modelagem baseada em transporte de veículos e fluxo em redes ao problema em questão. Para preencher essa lacuna, foram formulados dezesseis modelos de programação linear inteira mista, que, além da abordagem matemática mencionada, combinam dois enfoques de demanda (independente e comportamental) com políticas de autorizações de vendas de assentos estáticas e dinâmicas, incorporando também as restrições operacionais de \textit{fulfillment over periods} e \textit{skip-lagging}. Os modelos foram implementados no Python usando o solver Gurobi e foram avaliados com dez instâncias reais de uma empresa canadense, analisando tempos de computação, receitas totais, cobertura da demanda e a estrutura unimodular das matrizes.
 
 	Os resultados mostram que as autorizações dinâmicas recuperam grande parte da receita perdida devido à imposição de restrições operacionais, enquanto a demanda comportamental reflete melhor o comportamento real de compra sem penalizar o desempenho computacional. Conclui-se que a integração da escolha do passageiro, o controle dinâmico de inventário e as regras empresariais oferece uma ferramenta rigorosa e aplicável para a tomada de decisões táticas e estratégicas na gestão de receitas ferroviárias.
-
 
 
 
@@ -23,5 +27,5 @@
 	\vspace{0.5cm}
 
 	\noindent {\bf Palavras-chaves:} Gestão da Receita, Demanda Comportamental, Transporte Ferroviário de Passageiros, Programação Inteira Mista.
-\end{quotation}
+% \end{quotation}
 

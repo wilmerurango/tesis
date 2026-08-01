@@ -9,29 +9,32 @@
 \usepackage[T1]{fontenc}
 \usepackage[portuguese]{babel}
 % \usepackage[latin1]{inputenc}		% Inclusão de gráficos
-\usepackage[table, xcdraw]{xcolor}% http://ctan.org/pkg/xcolor
+\usepackage[table, xcdraw, dvipsnames]{xcolor}% http://ctan.org/pkg/xcolor
 \usepackage{indentfirst}
 % \usepackage{subfigure}
 \usepackage{amssymb,fancyhdr,fancybox,epsfig,psfrag,tabularx}
-\usepackage{array}  
+\usepackage{array}
 \usepackage{comment}
 \usepackage{amsthm}
 \usepackage{graphicx}
 \usepackage{footnote}
 \usepackage{float}
 \usepackage{hyperref}
+\usepackage{nameref}
 \usepackage{amsmath}
 \usepackage{pslatex}
 \usepackage{algpseudocode}
 % \usepackage[ruled,vlined]{algorithm2e}
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
 \usepackage{colortbl}
 \definecolor{firebrick}{rgb}{.7, .13, .13}
 \definecolor{lightcopper}{rgb}{.93, .76, .58}
 \definecolor{blueice}{rgb}{.85, .96, .94}
-% \usepackage{pdfpages}
+\usepackage{pdfpages}
 \usepackage{subcaption}
 \usepackage{caption}
 \usepackage{enumitem} % Paquete para personalizar listas
+\usepackage[most]{tcolorbox} % para los recuadros bonitos
 
 \usepackage[round]{natbib}%usepackage{harvard}
 
@@ -43,6 +46,105 @@
     urlcolor=cyan,
 }
 
+
+% % --- Entorno personalizable para tus restricciones
+% \newtcolorbox{bloque1}[1][]{
+%   enhanced,
+%   breakable,            % <<< permite partir el recuadro entre páginas
+%   colback=white,
+%   colframe=RoyalBlue,
+%   boxrule=0.4pt,
+%   arc=3mm,              % esquinas redondeadas
+%   left=-2mm,right=1mm,top=-9mm,bottom=2mm,
+%   title=#1              % opcional: título arriba si pasas [Título]
+% }
+
+\tcbset{
+  recuadro1/.style={
+    enhanced, breakable,
+    colback=white, colframe=RoyalBlue,
+    boxrule=0.5pt, arc=3mm,
+    left=-2mm, right=1mm, top=-9mm, bottom=2mm,
+    % muesca unida al borde superior derecho
+    attach boxed title to top left={yshift=-3.3mm, xshift=0mm},
+    boxed title style={
+      sharp corners,
+      arc=2mm,
+      colback=RoyalBlue,   % color de la muesca
+      colframe=RoyalBlue,
+      boxrule=0.5pt,
+      top=1mm, bottom=1mm, left=2mm, right=2mm,
+    },
+  }
+}
+
+
+% --- Caja con muesca lateral (pestaña) y bordes redondeados
+\tcbset{
+  recuadro2/.style={
+    enhanced, breakable,
+    colback=white, colframe=Bittersweet,
+    boxrule=0.5pt, arc=3mm,
+    left=-2mm, right=1mm, top=-9mm, bottom=2mm,
+    % muesca unida al borde superior derecho
+    attach boxed title to top left={yshift=-3.3mm, xshift=0mm},
+    boxed title style={
+      sharp corners,
+      arc=2mm,
+      colback=Bittersweet,   % color de la muesca
+      colframe=Bittersweet,
+      boxrule=0.5pt,
+      top=1mm, bottom=1mm, left=2mm, right=2mm,
+    },
+  }
+}
+
+\tcbset{
+  recuadro3/.style={
+    enhanced, breakable,
+    colback=white, colframe=OliveGreen,
+    boxrule=0.5pt, arc=3mm,
+    left=-2mm, right=1mm, top=-9mm, bottom=2mm,
+    % muesca unida al borde superior derecho
+    attach boxed title to top left={yshift=-3.3mm, xshift=0mm},
+    boxed title style={
+      sharp corners,
+      arc=2mm,
+      colback=OliveGreen,   % color de la muesca
+      colframe=OliveGreen,
+      boxrule=0.5pt,
+      top=1mm, bottom=1mm, left=2mm, right=2mm,
+    },
+  }
+}
+
+\tcbset{
+  recuadro4/.style={
+    enhanced, breakable,
+    colback=white, colframe=Plum,
+    boxrule=0.5pt, arc=3mm,
+    left=-2mm, right=1mm, top=-9mm, bottom=2mm,
+    % muesca unida al borde superior derecho
+    attach boxed title to top left={yshift=-3.3mm, xshift=0mm},
+    boxed title style={
+      sharp corners,
+      arc=2mm,
+      colback=Plum,   % color de la muesca
+      colframe=Plum,
+      boxrule=0.5pt,
+      top=1mm, bottom=1mm, left=2mm, right=2mm,
+    },
+  }
+}
+
+% Entorno: \begin{bloque}{Texto de la pestaña} ... \end{bloque}
+\newtcolorbox{bloque1}[1]{recuadro1, title=\rotatebox{0}{#1}}
+\newtcolorbox{bloque2}[1]{recuadro2, title=\rotatebox{0}{#1}}
+\newtcolorbox{bloque3}[1]{recuadro3, title=\rotatebox{0}{#1}}
+\newtcolorbox{bloque4}[1]{recuadro4, title=\rotatebox{0}{#1}}
+
+\definecolor{lightgray}{gray}{0.9}
+
 \usepackage{booktabs}
 \usepackage{makecell} % no preâmbulo
 \usepackage{longtable}
@@ -53,12 +155,12 @@
 \usepackage{rotating}
 % \usetikzlibrary{patterns}
 % \usetikzlibrary{plotmarks}
-\usetikzlibrary{positioning, arrows.meta, shapes.geometric}
+\usetikzlibrary{positioning, arrows.meta, shapes.geometric, calc}
 
 \urlstyle{same}
 \renewcommand\qedsymbol{$\blacksquare$}
 %\usepackage[paperwidth=8.5in,paperheight=11in,hmargin={25mm,20mm},vmargin={20mm,20mm}]{geometry} %Papel Carta
-\usepackage[a4paper,hmargin={25mm,20mm},vmargin={20mm,20mm}]{geometry} %Papel A4
+\usepackage[a4paper,hmargin={30mm,20mm},vmargin={30mm,20mm}]{geometry} %Papel A4
 
 
 \usepackage[Sonny]{fncychap} %Options: Sonny, Lenny, Glenn, Conny, Rejne, Bjarne, Bjornstrup
@@ -105,8 +207,8 @@
 \input{sections/capa}
 \newpage
 \input{sections/capa2}
-% \newpage
-% \includepdf[pages=-]{Ficha-Catalografica-Protocolo-975642308}
+\newpage
+\includepdf[pages=1]{ficha_Catalografica}
 \newpage
 \input{sections/Folha-aprovacao}
 \newpage
@@ -135,7 +237,7 @@
 \input{sections/introducao}
 % \input{Fundamentacao-teorica}
 \input{sections/revisao_literatura}
-\input{sections/metodologia}
+% \input{sections/metodologia}
 \input{sections/modelo_matematico}
 % \input{Contribuicoes}
 % %\input{Metodos-de-resolucao-propostos}

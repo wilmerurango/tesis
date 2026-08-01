@@ -1,57 +1,40 @@
 \babel@toc {portuguese}{}\relax 
 \thispagestyle {empty}
-\contentsline {chapter}{\numberline {1}Introdução}{11}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Conceitos básicos}{11}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Visão geral da pesquisa}{15}{section.1.2}%
-\contentsline {chapter}{\numberline {2}Revisão da literatura}{18}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Fundamentos da gestão de receitas (RM)}{18}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Definição e importância}{18}{subsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.1.2}Histórico e evolução}{19}{subsection.2.1.2}%
-\contentsline {section}{\numberline {2.2}Transporte Ferroviário de Passageiros}{22}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Áreas de pesquisa}{23}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Controle de inventário}{24}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}Modelagem da demanda}{26}{subsection.2.2.3}%
-\contentsline {section}{\numberline {2.3}Aplicação de RM ao transporte ferroviário de passageiros}{27}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Outras aplicações industriais de RM}{30}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Aviação}{31}{subsection.2.4.1}%
-\contentsline {subsection}{\numberline {2.4.2}Hotelaria}{34}{subsection.2.4.2}%
-\contentsline {section}{\numberline {2.5}Contextualização desta pesquisa}{37}{section.2.5}%
-\contentsline {chapter}{\numberline {3}Metodologia}{39}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Instâncias}{39}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Modelos Matemáticos}{40}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Ferramentas e ambiente computacional}{40}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Métricas de Avaliação}{41}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Modelagem matemática }{42}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Descrição do problema}{42}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Formulação matemática}{44}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Primeira abordagem: modelos com demanda independente e autorizações estáticas}{46}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Modelo básico independente-estático}{46}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Modelo \textit {fulfillments over periods} independente-estático}{49}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}Modelo \textit {skip lagging} independente-estático}{52}{subsection.4.3.3}%
-\contentsline {subsection}{\numberline {4.3.4}Modelo completo independente-estático}{54}{subsection.4.3.4}%
-\contentsline {section}{\numberline {4.4}Segunda abordagem: modelos com demanda comportamental e autorizações estáticas}{55}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Modelo básico comportamental-estático}{58}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}Modelo \textit {fulfillments over periods} comportamental-estático}{62}{subsection.4.4.2}%
-\contentsline {subsection}{\numberline {4.4.3}Modelo \textit {skip lagging} comportamental-estático}{63}{subsection.4.4.3}%
-\contentsline {subsection}{\numberline {4.4.4}Modelo completo comportamental-estático}{64}{subsection.4.4.4}%
-\contentsline {section}{\numberline {4.5}Terceira abordagem: modelos com demanda independente e autorizações dinâmicas}{66}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}Modelo básico independente-dinâmico}{66}{subsection.4.5.1}%
-\contentsline {subsection}{\numberline {4.5.2}Modelo \textit {fulfillments over periods} independente-dinâmico}{67}{subsection.4.5.2}%
-\contentsline {subsection}{\numberline {4.5.3}Modelo \textit {skiplagging} independente-dinâmico}{68}{subsection.4.5.3}%
-\contentsline {subsection}{\numberline {4.5.4}Modelo completo independente-dinâmico}{69}{subsection.4.5.4}%
-\contentsline {section}{\numberline {4.6}Quarta abordagem: modelos com demanda comportamental e autorizações dinâmicas}{71}{section.4.6}%
-\contentsline {subsection}{\numberline {4.6.1}Modelo básico comportamental-dinâmico}{71}{subsection.4.6.1}%
-\contentsline {subsection}{\numberline {4.6.2}Modelo \textit {fulfillments over periods} comportamental-dinâmico}{72}{subsection.4.6.2}%
-\contentsline {subsection}{\numberline {4.6.3}Modelo \textit {skiplagging} comportamental-dinâmico}{73}{subsection.4.6.3}%
-\contentsline {subsection}{\numberline {4.6.4}Modelo completo comportamental-dinâmico}{74}{subsection.4.6.4}%
-\contentsline {chapter}{\numberline {5}Análise e resultados computacionais}{76}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Análise por abordagem}{76}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Comparação entre modelos}{79}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Quantidade de soluções}{82}{section.5.3}%
-\contentsline {section}{\numberline {5.4}Métricas}{83}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}Demanda atendida}{83}{subsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.4.2}Tempos de construção e de resolução}{85}{subsection.5.4.2}%
-\contentsline {subsection}{\numberline {5.4.3}Nós explorados}{86}{subsection.5.4.3}%
-\contentsline {subsection}{\numberline {5.4.4}Unimodularidade}{87}{subsection.5.4.4}%
-\contentsline {chapter}{\numberline {6}Conclusões e trabalhos futuro}{90}{chapter.6}%
-\contentsline {chapter}{7\ \hspace {0.234cm} Referências}{93}{chapter.7}%
+\contentsline {chapter}{\numberline {1}Introdução}{12}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Apresentação do tema}{12}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Justificativa}{13}{section.1.2}%
+\contentsline {chapter}{\numberline {2}Revisão da literatura}{15}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Fundamentos da gestão de receitas (RM)}{15}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Definição e importância}{15}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Histórico e evolução}{16}{subsection.2.1.2}%
+\contentsline {section}{\numberline {2.2}Transporte Ferroviário de Passageiros}{19}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Áreas de pesquisa}{20}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Controle de inventário}{21}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Modelagem da demanda}{23}{subsection.2.2.3}%
+\contentsline {section}{\numberline {2.3}Aplicação de RM ao transporte ferroviário de passageiros}{25}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Outras aplicações industriais de RM}{28}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Aviação}{28}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Hotelaria}{32}{subsection.2.4.2}%
+\contentsline {section}{\numberline {2.5}Contextualização desta pesquisa}{35}{section.2.5}%
+\contentsline {chapter}{\numberline {3}Modelagem matemática }{37}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Conceitos importantes}{37}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Descrição do problema}{41}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Formulação matemática}{43}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Abordagem dos modelos propostos}{45}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Primeira abordagem: modelos com autorizações estáticas e demanda independente}{47}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Segunda abordagem: modelos com autorizações estáticas e demanda comportamental}{52}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Terceira abordagem: modelos com autorizações dinâmicas e demanda independente}{60}{subsection.3.4.3}%
+\contentsline {subsection}{\numberline {3.4.4}Quarta abordagem: modelos com autorizações dinâmicas e demanda comportamental}{62}{subsection.3.4.4}%
+\contentsline {chapter}{\numberline {4}Análise e resultados computacionais}{65}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Instâncias}{65}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Ferramentas e ambiente computacional}{66}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Análise por abordagem}{66}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Comparação entre modelos}{69}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Quantidade de soluções}{72}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Métricas de Avaliação}{74}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}Demanda atendida}{74}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}Tempos de construção e de resolução}{76}{subsection.4.6.2}%
+\contentsline {subsection}{\numberline {4.6.3}Nós explorados}{77}{subsection.4.6.3}%
+\contentsline {subsection}{\numberline {4.6.4}Matrizes totalmente unimodulares}{78}{subsection.4.6.4}%
+\contentsline {chapter}{\numberline {5}Conclusões e trabalhos futuro}{82}{chapter.5}%
+\contentsline {chapter}{6\ \hspace {0.234cm} Referências}{85}{chapter.6}%

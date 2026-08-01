@@ -2,15 +2,27 @@
 \chapter*{Abstract}
 
 \vspace{-1.0cm}
-\begin{quotation}
+% \begin{quotation}
 
-    This dissertation addresses the problem of revenue management in passenger rail transportation, where seat capacity is perishable and demand exhibits both fare substitution and temporal variation. The central problem consists in deciding, for each origin-destination pair, seat type, and reservation period, how many seats of each fare class should be protected (reservations) and how many should be released for sale (authorizations) on a passenger train, considering that customers may choose from a set of fare options, that unsold seats are lost, and that the company may impose operational constraints such as fulfillment over periods or skip-lagging.
+    This dissertation addresses the problem of revenue management in passenger rail transport, in which seat capacity is perishable and demand exhibits substitution among fares and temporal variation. This scenario represents a typical challenge in this field: accepting a reservation at a lower price in the present may prevent the future sale of a higher fare, but rejecting it may result in idle seats on other segments of the network.
 
-    The gap identified in the literature is the absence of models that simultaneously apply vehicle routing-based modeling and network flow modeling to the problem at hand. To fill this gap, sixteen mixed-integer linear programming models were formulated, which, in addition to the aforementioned mathematical approach, combine two demand perspectives (independent and behavioral) with both static and dynamic seat sale authorization policies, also incorporating the operational constraints of fulfillment over periods and skip-lagging. The models were implemented in Python using the Gurobi solver and were evaluated using ten real-world instances from a canadian company, analyzing computation times, total revenue, demand coverage, and the unimodular structure of the matrices.
+    The central problem consists in deciding, for each origin-destination pair, the type of seat and the reservation period, establishing how many seats of each class should be protected (reservations) and how many should be made available for sale (authorizations) on a passenger train.
 
-    The results show that dynamic authorizations recover a large portion of the revenue lost due to the imposition of operational constraints, while behavioral demand better reflects actual purchasing behavior without penalizing computational performance. It is concluded that the integration of passenger choice, dynamic inventory control, and business rules offers a rigorous and applicable tool for tactical and strategic decision-making in rail revenue management.
+    This process must take into account that customers may choose within a set of fares, that unsold seats represent a definitive loss of capacity, and that the company may impose operational restrictions, such as fulfillment over periods or skip-lagging.
+
+    The gap identified in the literature is the absence of models that simultaneously apply vehicle-transport and network-flow-based modeling to the problem at hand. To fill this gap, sixteen mixed-integer linear programming models were formulated, which, in addition to the aforementioned mathematical approach, combine two demand perspectives (independent and behavioral) with static and dynamic seat sale authorization policies, also incorporating the operational constraints of fulfillment over periods and skip-lagging. The models were implemented in Python using the Gurobi solver and evaluated with ten real instances from a Canadian company, analyzing computation times, total revenues, demand coverage, and the unimodular structure of the matrices.
+
+    The results show that dynamic authorizations recover a large share of the revenue lost due to the imposition of operational constraints, while behavioral demand better reflects actual purchasing behavior without penalizing computational performance. It is concluded that the integration of passenger choice, dynamic inventory control, and business rules provides a rigorous and applicable tool for tactical and strategic decision-making in railway revenue management.
+
+
+
+    % This dissertation addresses the problem of revenue management in passenger rail transportation, where seat capacity is perishable and demand exhibits both fare substitution and temporal variation. The central problem consists in deciding, for each origin-destination pair, seat type, and reservation period, how many seats of each fare class should be protected (reservations) and how many should be released for sale (authorizations) on a passenger train, considering that customers may choose from a set of fare options, that unsold seats are lost, and that the company may impose operational constraints such as fulfillment over periods or skip-lagging.
+
+    % The gap identified in the literature is the absence of models that simultaneously apply vehicle routing-based modeling and network flow modeling to the problem at hand. To fill this gap, sixteen mixed-integer linear programming models were formulated, which, in addition to the aforementioned mathematical approach, combine two demand perspectives (independent and behavioral) with both static and dynamic seat sale authorization policies, also incorporating the operational constraints of fulfillment over periods and skip-lagging. The models were implemented in Python using the Gurobi solver and were evaluated using ten real-world instances from a canadian company, analyzing computation times, total revenue, demand coverage, and the unimodular structure of the matrices.
+
+    % The results show that dynamic authorizations recover a large portion of the revenue lost due to the imposition of operational constraints, while behavioral demand better reflects actual purchasing behavior without penalizing computational performance. It is concluded that the integration of passenger choice, dynamic inventory control, and business rules offers a rigorous and applicable tool for tactical and strategic decision-making in rail revenue management.
 \vspace{0.5cm}
 
 \noindent {\bf Keywords:} Revenue Management, Behavioral Demand, Passenger Rail Transportation, Mixed Integer Programming.
 
-\end{quotation}
+% \end{quotation}

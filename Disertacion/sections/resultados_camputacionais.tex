@@ -2,6 +2,54 @@
 
 Após a realização dos experimentos, todas as informações foram consolidadas para permitir as devidas análises, compreender os resultados e avaliar o desempenho de cada modelo na busca pela solução. Foram avaliados aspectos como a demanda atendida, o tempo de execução e criação dos modelos, a quantidade de nós explorados e a unimodalidade da matriz de coeficientes das restrições.
 
+
+\section{Instâncias}
+
+Para verificar as características dos modelos propostos, foram utilizadas 10 instâncias reais fornecidas por uma empresa canadense parceira. As características de cada uma dessas instâncias estão apresentadas na Tabela \ref{tab: instancias}.
+
+\begin{table}[ht]
+	\centering
+  \footnotesize
+	\begin{tabular}{ccccccc}
+		\toprule
+		\textbf{Instância}                                                  &
+		\textbf{\begin{tabular}[c]{@{}c@{}}Nome \\ Trem\end{tabular}}       &
+		\textbf{\begin{tabular}[c]{@{}c@{}}Capacidade \\ Trem\end{tabular}} &
+		\textbf{Data Partida}                                               &
+		\textbf{\# Trechos}                                                 &
+		\textbf{\# Períodos}                                                &
+		\textbf{\# Classes}                                                                                          \\
+		\midrule
+		Inst1                                                               & 68 & 561 & 2023-11-21 & 256 & 120 & 15 \\
+		Inst2                                                               & 13 & 637 & 2023-11-26 & 252 & 146 & 15 \\
+		Inst3                                                               & 71 & 563 & 2023-10-13 & 250 & 105 & 16 \\
+		Inst4                                                               & 71 & 561 & 2023-11-21 & 241 & 124 & 15 \\\hline
+		Inst5                                                               & 8  & 561 & 2022-12-04 & 152 & 116 & 17 \\
+		Inst6                                                               & 40 & 565 & 2023-11-21 & 149 & 68  & 16 \\
+		Inst7                                                               & 74 & 491 & 2023-07-25 & 136 & 70  & 16 \\\hline
+		Inst8                                                               & 72 & 493 & 2023-10-25 & 100 & 85  & 16 \\
+		Inst9                                                               & 45 & 563 & 2023-03-16 & 90  & 73  & 16 \\
+		Inst10                                                              & 15 & 493 & 2023-08-07 & 50  & 60  & 12 \\
+		\bottomrule
+	\end{tabular}
+	\caption{Resumo das instâncias utilizadas no experimento}
+	\label{tab: instancias}
+\end{table}
+
+A coluna "\# Trechos" \, representa a quantidade de trechos que a viagem do trem possui em cada instância. A coluna "\# Períodos" \, indica a quantidade de períodos considerados na programação desse trajeto dentro do seu horizonte de reserva. Por fim, a coluna "\# Classes" \, mostra o número máximo de classes disponíveis para cada viagem de cada trem; Observe que, para cada trecho, podem estar disponíveis todas as classes indicadas na coluna correspondente ou uma quantidade menor.
+
+Por outro lado, estabeleceu-se que as instâncias compreendidas entre a instância Inst1 e a instância Inst4 foram classificadas como grandes, as instâncias entre a instância Inst5 e a instância Inst7 como médias, e as demais foram classificadas como pequenas.
+
+
+\section{Ferramentas e ambiente computacional}
+O experimento foi conduzido em um computador ASUS, com sistema operacional Windows 11 Pro de 64 bits. O equipamento conta com um processador Intel(R) Core(TM) i9-13900KF (32 CPUs) de 13ª geração, com frequência de ~3.0 GHz e arquitetura x64 e 128 GB de memória RAM.
+% e tarjeta grafica  NVIDIA GeForce RTX 4070 Ti de 16GB de ram.
+
+Para o desenvolvimento e execução do experimento, foi utilizada a linguagem de programação Python na versão 3.12.7, juntamente com o solver Gurobi, versão 12.0.2.
+
+
+
+
 \section{Análise por abordagem} \label{sec: Analise_por_abordagem}
 Nesta seção, analisam-se os diferentes enfoques descritos na metodologia (ver Tabela \ref{descrip_modelos_mat}). Parte-se do modelo básico e, em seguida, acresce-se isoladamente o conjunto de restrições de \textit{fulfillment} e o de \textit{skip-lagging}; finalmente, consolida-se a versão completa com ambos os conjuntos de restrições. Esse mesmo procedimento é aplicado a todas as instâncias consideradas, permitindo analisar o impacto de cada componente sobre o desempenho de cada abordagem.
 
@@ -120,16 +168,16 @@ Nas Tabelas \ref{tab: tab_Basic_Independ_Est} a \ref{tab: tab_Basic_Comporta_Din
 			           & \makecell[c]{\textbf{Skipla\_}                            \\\textbf{Comporta\_Est}}
 			           & \makecell[c]{\textbf{Comp\_}                              \\\textbf{Comporta\_Est}} \\
 			\midrule
-			163.637,24 & 67.532,93                       & 128.443,06 & 44.465,64  \\
-			312.447,53 & 276.844,01                      & 301.850,34 & 192.405,53 \\
-			131.614,02 & 96.218,30                       & 90.845,81  & 36.256,94  \\
-			160.861,43 & 62.459,36                       & 128.070,49 & 38.457,17  \\
-			122.649,11 & 90.931,22                       & 90.881,30  & 18.941,03  \\
-			63.377,13  & 33.571,18                       & 48.572,76  & 22.277,14  \\
-			30.821,07  & 24.320,03                       & 17.566,06  & 7.931,20   \\
-			42.419,24  & 27.136,96                       & 23.968,13  & 11.575,36  \\
-			43.797,50  & 26.161,10                       & 27.254,76  & 9.566,60   \\
-			17.003,54  & 6.193,52                        & 11.323,39  & 3.038,82   \\
+			166.210,42 & 67.437,39  & 128.329,40 & 44.421,86  \\
+			312.778,79 & 276.854,70 & 301.334,80 & 192.405,53 \\
+			134.046,41 & 96.171,04  & 90.800,12  & 36.278,57  \\
+			162.415,46 & 62.373,53  & 127.795,15 & 38.457,27  \\
+			123.795,24 & 90.664,68  & 90.262,21  & 18.959,99  \\
+			64.816,45  & 33.670,68  & 48.627,58  & 22.362,62  \\
+			36.643,80  & 24.149,73  & 17.668,88  & 7.962,69   \\
+			43.172,74  & 23.992,24  & 23.207,98  & 10.888,16  \\
+			47.796,57  & 25.866,57  & 27.209,34  & 9.569,26   \\
+			18.945,34  & 6.174,09   & 11.248,64  & 3.042,05   \\
 			\bottomrule
 		\end{tabular}
 		\caption{Z* (\$)}
@@ -144,16 +192,16 @@ Nas Tabelas \ref{tab: tab_Basic_Independ_Est} a \ref{tab: tab_Basic_Comporta_Din
 			       & \makecell[c]{\textbf{Skipla\_}          \\\textbf{Comporta\_Est}}
 			       & \makecell[c]{\textbf{Comp\_}            \\\textbf{Comporta\_Est}} \\
 			\midrule
-			-58,73 & -21,51                         & -72,83 \\
-			-11,40 & -3,39                          & -38,42 \\
-			-26,89 & -30,98                         & -72,45 \\
-			-61,17 & -20,38                         & -76,09 \\
-			-25,86 & -25,90                         & -84,56 \\
-			-47,03 & -23,36                         & -64,85 \\
-			-21,09 & -43,01                         & -74,27 \\
-			-36,03 & -43,50                         & -72,71 \\
-			-40,27 & -37,77                         & -78,16 \\
-			-63,58 & -33,41                         & -82,13 \\
+			-59,43 & -22,79 & -73,27 \\
+			-11,49 & -3,66  & -38,49 \\
+			-28,26 & -32,26 & -72,94 \\
+			-61,60 & -21,32 & -76,32 \\
+			-26,76 & -27,09 & -84,68 \\
+			-48,05 & -24,98 & -65,50 \\
+			-34,10 & -51,78 & -78,27 \\
+			-44,43 & -46,24 & -74,78 \\
+			-45,88 & -43,07 & -79,98 \\
+			-67,41 & -40,63 & -83,94 \\
 			\bottomrule
 		\end{tabular}
 		\caption{Variação das diferenças no Z* (\%)}
@@ -242,7 +290,6 @@ Nas Tabelas \ref{tab: tab_Basic_Independ_Est} a \ref{tab: tab_Basic_Comporta_Din
 	\label{tab: tab_Basic_Independ_Din}
 \end{table}
 
-
 \begin{table}[H]
 	\centering
 	\setlength{\tabcolsep}{4pt}
@@ -269,7 +316,7 @@ Nas Tabelas \ref{tab: tab_Basic_Independ_Est} a \ref{tab: tab_Basic_Comporta_Din
 	\end{subtable}
 	\hfill
 	% Tabela de Valores Absolutos
-	\begin{subtable}[t]{0.48\textwidth}
+	\begin{subtable}[t]{0.49\textwidth}
 		\centering
 		\begin{tabular}{@{}cccc@{}}
 			\toprule
@@ -278,23 +325,23 @@ Nas Tabelas \ref{tab: tab_Basic_Independ_Est} a \ref{tab: tab_Basic_Comporta_Din
 			           & \makecell[c]{\textbf{Skipla\_}                            \\\textbf{Comporta\_Din}}
 			           & \makecell[c]{\textbf{Comp\_}                              \\\textbf{Comporta\_Din}} \\
 			\midrule
-			165.332,34 & 80.277,72                       & 129.134,69 & 50.663,62  \\
-			312.732,50 & 285.015,08                      & 302.035,08 & 203.203,98 \\
-			133.920,75 & 100.268,44                      & 92.563,81  & 36.667,08  \\
-			161.735,16 & 76.761,93                       & 128.407,28 & 40.369,31  \\
-			123.192,31 & 91.680,66                       & 91.942,90  & 28.330,63  \\
-			64.931,92  & 40.357,31                       & 49.864,36  & 23.795,87  \\
-			37.505,28  & 29.827,51                       & 18.610,10  & 8.476,24   \\
-			45.361,71  & 28.610,68                       & 24.961,78  & 11.810,19  \\
-			47.866,14  & 28.484,56                       & 29.927,12  & 9.842,10   \\
-			18.796,91  & 9.884,40                        & 11.517,05  & 3.148,96   \\
+			166.209,42 & 80.966,16  & 129.950,27 & 50.857,49  \\
+			312.770,91 & 284.781,34 & 302.064,54 & 203.219,44 \\
+			133.706,86 & 100.397,12 & 92.614,95  & 36.763,69  \\
+			162.402,95 & 76.947,77  & 128.595,17 & 40.465,13  \\
+			123.370,78 & 91.665,19  & 92.362,85  & 28.413,68  \\
+			64.808,07  & 40.486,69  & 50.055,05  & 23.970,25  \\
+			36.647,28  & 30.655,67  & 18.991,14  & 8.672,76   \\
+			43.116,46  & 26.348,72  & 25.052,38  & 11.543,90  \\
+			47.779,63  & 28.708,04  & 29.558,14  & 9.857,24   \\
+			18.932,83  & 10.307,76  & 11.897,58  & 3.245,57   \\
 			\bottomrule
 		\end{tabular}
 		\caption{Z* (\$)}
 	\end{subtable}
 	\hfill
 	% Tabela de Variações Percentuais
-	\begin{subtable}[t]{0.41\textwidth}
+	\begin{subtable}[t]{0.40\textwidth}
 		\centering
 		\begin{tabular}{@{}ccc@{}}
 			\toprule
@@ -302,27 +349,26 @@ Nas Tabelas \ref{tab: tab_Basic_Independ_Est} a \ref{tab: tab_Basic_Comporta_Din
 			       & \makecell[c]{\textbf{Skipla\_}          \\\textbf{Comporta\_Din}}
 			       & \makecell[c]{\textbf{Comp\_}            \\\textbf{Comporta\_Din}} \\
 			\midrule
-			-51,44 & -21,89                         & -69,36 \\
-			-8,86  & -3,42                          & -35,02 \\
-			-25,13 & -30,88                         & -72,62 \\
-			-52,54 & -20,61                         & -75,04 \\
-			-25,58 & -25,37                         & -77,00 \\
-			-37,85 & -23,21                         & -63,35 \\
-			-20,47 & -50,38                         & -77,40 \\
-			-36,93 & -44,97                         & -73,96 \\
-			-40,49 & -37,48                         & -79,44 \\
-			-47,41 & -38,73                         & -83,25 \\
+			-51,29 & -21,82 & -69,40 \\
+			-8,95  & -3,42  & -35,03 \\
+			-24,91 & -30,73 & -72,50 \\
+			-52,62 & -20,82 & -75,08 \\
+			-25,70 & -25,13 & -76,97 \\
+			-37,53 & -22,76 & -63,01 \\
+			-16,35 & -48,18 & -76,33 \\
+			-38,89 & -41,90 & -73,23 \\
+			-39,92 & -38,14 & -79,37 \\
+			-45,56 & -37,16 & -82,86 \\
 			\bottomrule
 		\end{tabular}
 		\caption{Variação das diferenças no Z* (\%)}
 	\end{subtable}
 
-	\caption{Valores ótimos e variações em função do modelo \texttt{Basic\_Comporta\_Din} para a abordagem de demanda comportamental com autorizações dinâmicas.}
+	\caption{Valores ótimos e variações em função do modelo \texttt{Basic\_Comporta\_Din} para a abordagem de demanda comportamental com autorizações estáticas.}
 	\label{tab: tab_Basic_Comporta_Din}
 \end{table}
 
-
-Cabe ressaltar que cada um dos modelos apresentados nas tabelas anteriores resulta das combinações dos abordagens baseadas em tipos de demanda e tipos de autorizações. Em cada tabela, podem ser observados tanto os valores ótimos encontrados — parte (a), quanto as variações porcentuais das diferenças entre cada modelo — parte (b), tendo como ponto de referência o modelo básico correspondente, para cada uma das instâncias. É importante observar que todas as variações percentuais das Tabelas parte (b) possuem sinal negativo, indicando que, em relação à versão básica, houve uma redução no valor do revenue.
+Cumpre destacar que cada um dos modelos apresentados nas tabelas anteriores resulta da combinação entre as abordagens baseadas em tipos de demanda e tipos de autorizações. Em cada tabela são reportados, na parte (a), os valores ótimos obtidos para os modelos estáticos, bem como as médias dos 1000 valores ótimos provenientes das simulações do enfoque com demanda comportamental. Na parte (b), apresentam-se as variações percentuais em relação ao modelo básico correspondente a cada instância. Observa-se que todas as variações percentuais na parte (b) assumem valores negativos, indicando que, em comparação à versão básica, houve uma redução no valor do \textit{revenue}.
 
 Assim, a partir dos resultados apresentados nas tabelas anteriores, foi possível perceber que os modelos básicos de todas as abordagens apresentaram a maior receita em comparação com os modelos que incluem os conjuntos de restrições de \textit{skip lagging} e \textit{fulfillment over periods}. A diferença é ainda mais evidente quando comparados com o modelo completo. Essa situação era esperada, uma vez que os modelos básicos têm mais liberdade no espaço de busca, permitindo a obtenção de soluções mais globais, ao não considerar os outros conjuntos mencionados. Além disso, de todos os abordagens, também se observa que, em média, o conjunto de \textit{fulfillment} tem maior impacto na solução em comparação com o conjunto de \textit{skip lagging}, mostrando, de fato, que suas restrições são mais sensíveis ao problema. Ao final, o modelo completo obteve resultados significativamente inferiores aos do modelo básico; no entanto, esse é o custo de se considerar ambos os conjuntos de restrições simultaneamente.
 
@@ -343,21 +389,21 @@ Na Tabela \ref{tab: compara_result_otimos}, as abordagens são organizadas por g
 			\textbf{Nome Modelo}   & \textbf{Inst1} & \textbf{Inst2} & \textbf{Inst3} & \textbf{Inst4} & \textbf{Inst5} & \textbf{Inst6} & \textbf{Inst7} & \textbf{Inst8} & \textbf{Inst9} & \textbf{Inst10} \\
 			\hline
 			Basic\_Independ\_Est   & 170.484,85     & 314.883,03     & 141.121,96     & 166.118,29     & 127.847,39     & 67.715,07      & 48.719,71      & 53.844,31      & 55.282,08      & 21.548,62       \\
-			Basic\_Comporta\_Est   & 163.637,24     & 312.447,53     & 131.614,02     & 160.861,43     & 122.649,11     & 63.377,13      & 30.821,07      & 42.419,24      & 43.797,50      & 17.003,54       \\
+			Basic\_Comporta\_Est   & 166.210,42     & 312.778,79     & 134.046,41     & 162.415,46     & 123.795,24     & 64.816,45      & 36.643,80      & 43.172,74      & 47.796,57      & 18.945,34       \\
 			Basic\_Independ\_Din   & 170.484,85     & 314.883,03     & 140.788,61     & 166.118,29     & 127.371,39     & 67.715,07      & 48.719,71      & 53.844,31      & 55.282,08      & 21.548,62       \\
-			Basic\_Comporta\_Din   & 165.332,34     & 312.732,50     & 133.920,75     & 161.735,16     & 123.192,31     & 64.931,92      & 37.505,28      & 45.361,71      & 47.866,14      & 18.796,91       \\ \hline
+			Basic\_Comporta\_Din   & 166.209,42     & 312.770,91     & 133.706,86     & 162.402,95     & 123.370,78     & 64.808,07      & 36.647,28      & 43.116,46      & 47.779,63      & 18.932,83       \\ \hline
 			Fulfill\_Independ\_Est & 69.615,76      & 276.888,38     & 102.020,87     & 64.075,21      & 93.042,29      & 35.491,02      & 41.178,51      & 34.476,59      & 32.170,53      & 12.188,66       \\
-			Fulfill\_Comporta\_Est & 67.532,93      & 276.844,01     & 96.218,30      & 62.459,36      & 90.931,22      & 33.571,18      & 24.320,03      & 27.136,96      & 26.161,10      & 6.193,52        \\
+			Fulfill\_Comporta\_Est & 67.437,39      & 276.854,70     & 96.171,04      & 62.373,53      & 90.664,68      & 33.670,68      & 24.149,73      & 23.992,24      & 25.866,57      & 6.174,09        \\
 			Fulfill\_Independ\_Din & 82.536,11      & 285.695,28     & 103.947,42     & 79.065,35      & 93.343,29      & 42.175,87      & 41.481,51      & 34.753,59      & 33.942,53      & 12.525,66       \\
-			Fulfill\_Comporta\_Din & 80.277,72      & 285.015,08     & 100.268,44     & 76.761,93      & 91.680,66      & 40.357,31      & 29.827,51      & 28.610,68      & 28.484,56      & 9.884,40        \\ \hline
+			Fulfill\_Comporta\_Din & 80.966,16      & 284.781,34     & 100.397,12     & 76.947,77      & 91.665,19      & 40.486,69      & 30.655,67      & 26.348,72      & 28.708,04      & 10.307,76       \\ \hline
 			Skipla\_Independ\_Est  & 133.236,75     & 303.634,13     & 95.625,49      & 130.810,41     & 95.981,84      & 51.708,29      & 20.996,45      & 28.675,46      & 32.609,11      & 13.102,66       \\
-			Skipla\_Comporta\_Est  & 128.443,06     & 301.850,34     & 90.845,81      & 128.070,49     & 90.881,30      & 48.572,76      & 17.566,06      & 23.968,13      & 27.254,76      & 11.323,39       \\
+			Skipla\_Comporta\_Est  & 128.329,40     & 301.334,80     & 90.800,12      & 127.795,15     & 90.262,21      & 48.627,58      & 17.668,88      & 23.207,98      & 27.209,34      & 11.248,64       \\
 			Skipla\_Independ\_Din  & 133.236,75     & 303.634,13     & 95.625,49      & 130.810,41     & 95.981,84      & 51.708,29      & 20.996,45      & 28.675,46      & 32.609,11      & 13.102,66       \\
-			Skipla\_Comporta\_Din  & 129.134,69     & 302.035,08     & 92.563,81      & 128.407,28     & 91.942,90      & 49.864,36      & 18.610,10      & 24.961,78      & 29.927,12      & 11.517,05       \\ \hline
+			Skipla\_Comporta\_Din  & 129.950,27     & 302.064,54     & 92.614,95      & 128.595,17     & 92.362,85      & 50.055,05      & 18.991,14      & 25.052,38      & 29.558,14      & 11.897,58       \\ \hline
 			Comp\_Independ\_Est    & 45.618,26      & 192.405,53     & 36.501,03      & 38.573,12      & 19.226,71      & 23.458,32      & 8.649,95       & 13.788,90      & 9.715,04       & 3.372,46        \\
-			Comp\_Comporta\_Est    & 44.465,64      & 192.405,53     & 36.256,94      & 38.457,17      & 18.941,03      & 22.277,14      & 7.931,20       & 11.575,36      & 9.566,60       & 3.038,82        \\
+			Comp\_Comporta\_Est    & 44.421,86      & 192.405,53     & 36.278,57      & 38.457,27      & 18.959,99      & 22.362,62      & 7.962,69       & 10.888,16      & 9.569,26       & 3.042,05        \\
 			Comp\_Independ\_Din    & 51.409,96      & 203.208,98     & 37.214,03      & 40.602,31      & 28.628,14      & 24.722,37      & 9.382,95       & 13.985,90      & 10.029,04      & 3.637,46        \\
-			Comp\_Comporta\_Din    & 50.663,62      & 203.203,98     & 36.667,08      & 40.369,31      & 28.330,63      & 23.795,87      & 8.476,24       & 11.810,19      & 9.842,10       & 3.148,96        \\
+			Comp\_Comporta\_Din    & 50.857,49      & 203.219,44     & 36.763,69      & 40.465,13      & 28.413,68      & 23.970,25      & 8.672,76       & 11.543,90      & 9.857,24       & 3.245,57        \\
 			\hline
 		\end{tabular}
 	}
@@ -412,7 +458,7 @@ De acordo com a Tabela \ref{tab: compara_result_otimos}, pode-se observar o segu
 	\item Pode-se perceber que as variações entre os modelos do mesmo tipo de autorizações apresentam variações relativamente baixas.
 \end{enumerate}
 
-Para ilustrar os dois últimos itens, foi selecionada a instância Inst1, utilizando os modelos da categoria completa. A Tabela \ref{tab: variaciones_Inst1} apresenta as variações percentuais entre cada par de modelos, sendo os valores dos modelos indicados na primeira coluna utilizados como base de comparação. Observa-se que, ao comparar os modelos com autorizações estáticas aos modelos com autorizações dinâmicas, estes últimos registram um aumento de receita entre 11,06\% e 15,62\%. Essa diferença está diretamente relacionada ao tipo de política de autorização adotada, indicando que a flexibilidade das autorizações dinâmicas tende a melhorar o desempenho econômico do modelo.
+Para ilustrar os itens 3 e 4, foi selecionada a instância Inst1, utilizando os modelos da categoria completa. A Tabela \ref{tab: variaciones_Inst1} apresenta as variações percentuais entre cada par de modelos, sendo os valores dos modelos indicados na primeira coluna utilizados como base de comparação. Observa-se que, ao comparar os modelos com autorizações estáticas aos modelos com autorizações dinâmicas, estes últimos registram um aumento de receita entre 11,48\% e 15,73\%. Essa diferença está diretamente relacionada ao tipo de política de autorização adotada, indicando que a flexibilidade das autorizações dinâmicas tende a melhorar o desempenho econômico do modelo.
 
 
 \begin{table}[H]
@@ -426,17 +472,17 @@ Para ilustrar os dois últimos itens, foi selecionada a instância Inst1, utiliz
 		                             & \makecell[c]{\textbf{Comp\_}                                                                 \\\textbf{Independ\_Din}}
 		                             & \makecell[c]{\textbf{Comp\_}                                                                 \\\textbf{Comporta\_Din}} \\
 		\midrule
-		\textbf{Comp\_Independ\_Est} & 0,00\,\%                     & -2,53\,\%           & \textbf{12,70\,\%} & \textbf{11,06\,\%} \\
-		\textbf{Comp\_Comporta\_Est} & 2,59\,\%                     & 0,00\,\%            & \textbf{15,62\,\%} & \textbf{13,94\,\%} \\
-		\textbf{Comp\_Independ\_Din} & \textbf{-11,27\,\%}          & \textbf{-13,51\,\%} & 0,00\,\%           & -1,45\,\%          \\
-		\textbf{Comp\_Comporta\_Din} & \textbf{-9,96\,\%}           & \textbf{-12,23\,\%} & 1,47\,\%           & 0,00\,\%           \\
+		\textbf{Comp\_Independ\_Est} & 0,00\,\%                     & -2,62\,\%           & \textbf{12,70\,\%} & \textbf{11,48\,\%} \\
+		\textbf{Comp\_Comporta\_Est} & 2,69\,\%                     & 0,00\,\%            & \textbf{15,73\,\%} & \textbf{14,49\,\%} \\
+		\textbf{Comp\_Independ\_Din} & \textbf{-11,27\,\%}          & \textbf{-13,59\,\%} & 0,00\,\%           & -1,07\,\%          \\
+		\textbf{Comp\_Comporta\_Din} & \textbf{-10,30\,\%}           & \textbf{-12,65\,\%} & 1,09\,\%           & 0,00\,\%           \\
 		\bottomrule
 	\end{tabular}
 	\caption{Comparação das variações das diferenças dos modelos completos para a instância Inst1}
 	\label{tab: variaciones_Inst1}
 \end{table}
 
-No entanto, ao comparar modelos que compartilham o mesmo tipo de política de autorização — ou seja, ao confrontar os modelos com demanda independente com aqueles baseados em demanda comportamental, dentro do mesmo tipo de autorização —, observam-se variações em torno de 2,5\% para os modelos com autorizações estáticas e aproximadamente 1,4\% para os modelos com autorizações dinâmicas. Esses resultados indicam que as diferenças entre os modelos com diferentes abordagens de demanda são relativamente pequenas quando a política de autorização é mantida constante.
+No entanto, ao comparar modelos que compartilham o mesmo tipo de política de autorização — ou seja, ao confrontar os modelos com demanda independente com aqueles baseados em demanda comportamental, dentro do mesmo tipo de autorização —, observam-se variações em torno de 2,6\% para os modelos com autorizações estáticas e aproximadamente 1,1\% para os modelos com autorizações dinâmicas. Esses resultados indicam que as diferenças entre os modelos com diferentes abordagens de demanda são relativamente pequenas quando a política de autorização é mantida constante.
 
 Para compreender a situação anteriormente descrita, é necessário considerar as combinações específicas geradas em cada instância no momento da composição dos trechos, tipos de assento e períodos de reserva, bem como a quantidade total de classes resultantes dessas combinações. A Tabela \ref{tab: combinacoes} apresenta três combinações distintas e o respectivo número de classes em cada uma delas.
 
@@ -495,7 +541,7 @@ Dessa forma, com base nos dados apresentados na Tabela \ref{tab: porcent_combina
 
 
 \section{Quantidade de soluções}
-Uma característica interessante observada nos resultados da função objetivo foi a quantidade de soluções ótimas encontradas por cada modelo em cada uma das instâncias. Esse resultado indica que o problema em estudo é do tipo que admite múltiplas soluções ótimas. A Tabela \ref{tab: num_solucoes} apresenta a quantidade de soluções ótimas obtidas por cada modelo para cada instância analisada.
+Uma característica interessante observada nos resultados da função objetivo foi a quantidade de soluções ótimas encontradas por cada modelo em cada uma das instâncias. Esse resultado indica que o problema em estudo admite múltiplas soluções ótimas, o que significa que existem diferentes formas de aproveitar a demanda, gerando combinações distintas de autorizações e reservas que, embora apresentem valores diferentes, conduzem ao mesmo valor da função objetivo. A Tabela \ref{tab: num_solucoes} apresenta a quantidade de soluções ótimas obtidas por cada modelo em cada instância analisada. Tenha em conta que, naqueles modelos em que a demanda é comportamental, os valores apresentados correspondem à aproximação inteira da média das 1000 simulações.
 
 \begin{table}[H]
 	\centering
@@ -515,28 +561,27 @@ Uma característica interessante observada nos resultados da função objetivo f
 		\multicolumn{1}{c}{\textbf{Inst9}}       &
 		\multicolumn{1}{c}{\textbf{Inst10}}                                                \\
 		\midrule
-		Basic\_Independ\_Est                     & 2 & 2 & 5 & 3 & 5 & 1 & 1 & 1  & 1  & 1 \\
-		Basic\_Comporta\_Est                     & 3 & 4 & 5 & 3 & 5 & 1 & 1 & 1  & 1  & 1 \\
-		Basic\_Independ\_Din                     & 2 & 2 & 5 & 2 & 3 & 1 & 1 & 1  & 1  & 1 \\
-		Basic\_Comporta\_Din                     & 3 & 3 & 3 & 3 & 8 & 3 & 4 & 10 & 10 & 4 \\ \hline
-		Fulfill\_Independ\_Est                   & 3 & 4 & 2 & 4 & 3 & 1 & 1 & 1  & 1  & 1 \\
-		Fulfill\_Comporta\_Est                   & 3 & 4 & 3 & 4 & 4 & 1 & 1 & 1  & 1  & 1 \\
-		Fulfill\_Independ\_Din                   & 2 & 2 & 3 & 2 & 2 & 1 & 1 & 1  & 1  & 1 \\
-		Fulfill\_Comporta\_Din                   & 2 & 2 & 3 & 2 & 3 & 1 & 3 & 1  & 2  & 1 \\ \hline
-		Skipla\_Independ\_Est                    & 3 & 3 & 3 & 3 & 3 & 1 & 1 & 1  & 1  & 1 \\
-		Skipla\_Comporta\_Est                    & 1 & 2 & 3 & 3 & 2 & 1 & 1 & 1  & 1  & 1 \\
-		Skipla\_Independ\_Din                    & 2 & 2 & 2 & 2 & 4 & 1 & 1 & 1  & 1  & 1 \\
-		Skipla\_Comporta\_Din                    & 2 & 3 & 3 & 2 & 5 & 1 & 1 & 1  & 2  & 3 \\ \hline
-		Comp\_Independ\_Est                      & 3 & 3 & 4 & 3 & 4 & 1 & 1 & 1  & 1  & 1 \\
-		Comp\_Comporta\_Est                      & 3 & 4 & 4 & 3 & 4 & 1 & 1 & 1  & 1  & 1 \\
-		Comp\_Independ\_Din                      & 4 & 2 & 3 & 3 & 3 & 1 & 1 & 1  & 1  & 1 \\
-		Comp\_Comporta\_Din                      & 5 & 2 & 3 & 4 & 4 & 1 & 1 & 1  & 1  & 1 \\
+		Basic\_Independ\_Est   & 2 & 2 & 5 & 3 & 5 & 1 & 1 & 1  & 1  & 1 \\
+		Basic\_Comporta\_Est   & 2 & 2 & 5 & 3 & 4 & 1 & 3 & 2 & 1 & 1 \\
+		Basic\_Independ\_Din   & 2 & 2 & 5 & 2 & 3 & 1 & 1 & 1  & 1  & 1 \\
+		Basic\_Comporta\_Din   & 2 & 2 & 5 & 2 & 3 & 1 & 3 & 2 & 1 & 1 \\ \hline
+		Fulfill\_Independ\_Est & 3 & 4 & 2 & 4 & 3 & 1 & 1 & 1  & 1  & 1 \\
+		Fulfill\_Comporta\_Est & 4 & 4 & 3 & 4 & 4 & 1 & 1 & 1 & 1 & 1 \\
+		Fulfill\_Independ\_Din & 2 & 2 & 3 & 2 & 2 & 1 & 1 & 1  & 1  & 1 \\
+		Fulfill\_Comporta\_Din & 3 & 3 & 7 & 3 & 3 & 1 & 5 & 1 & 5 & 5 \\ \hline
+		Skipla\_Independ\_Est  & 3 & 3 & 3 & 3 & 3 & 1 & 1 & 1  & 1  & 1 \\
+		Skipla\_Comporta\_Est  & 3 & 2 & 3 & 3 & 2 & 1 & 1 & 1 & 1 & 1 \\
+		Skipla\_Independ\_Din  & 2 & 2 & 2 & 2 & 4 & 1 & 1 & 1  & 1  & 1 \\
+		Skipla\_Comporta\_Din  & 3 & 3 & 4 & 3 & 4 & 4 & 2 & 5 & 3 & 6 \\ \hline
+		Comp\_Independ\_Est    & 3 & 3 & 4 & 3 & 4 & 1 & 1 & 1  & 1  & 1 \\
+		Comp\_Comporta\_Est    & 4 & 4 & 4 & 3 & 4 & 1 & 1 & 1 & 1 & 1 \\
+		Comp\_Independ\_Din    & 4 & 2 & 3 & 3 & 3 & 1 & 1 & 1  & 1  & 1 \\
+		Comp\_Comporta\_Din    & 5 & 2 & 3 & 4 & 4 & 1 & 2 & 3 & 1 & 4 \\
 		\bottomrule
 	\end{tabular}
 
 	\caption{Quantidade de soluções ótimas para cada modelo e instância}
 	\label{tab: num_solucoes}
-
 \end{table}
 
 
@@ -544,19 +589,18 @@ De acordo com os resultados obtidos na Tabela \ref{tab: num_solucoes}, as múlti
 
 A existência de múltiplas soluções ótimas tratado neste estudo, não apenas evidencia a flexibilidade estrutural dos modelos, mas também oferece vantagens práticas significativas no contexto operacional.
 
-Em primeiro lugar, ter diferentes soluções com o mesmo valor da função objetivo permite ao tomador de decisão selecionar, entre as alternativas ótimas, aquela que melhor se adapta a restrições não modeladas diretamente — como preferências comerciais, limitações operacionais específicas, políticas de atendimento ao cliente ou equilíbrio entre classes de assentos.
-
-Além disso, em cenários reais de planejamento de receitas, onde pequenas variações na demanda, nos custos ou nas preferências dos passageiros podem ocorrer com frequência, dispor de múltiplas soluções ótimas proporciona maior robustez. Isso significa que o sistema pode se ajustar com mais facilidade a mudanças contextuais sem comprometer o desempenho econômico.
+Em primeiro lugar, ter diferentes soluções com o mesmo valor da função objetivo permite ao tomador de decisão selecionar, entre as alternativas ótimas, aquela que melhor se adapta a restrições não modeladas diretamente — como preferências comerciais, limitações operacionais específicas, políticas de atendimento ao cliente ou equilíbrio entre classes de assentos. Além disso, em cenários reais de planejamento de receitas, onde pequenas variações na demanda, nos custos ou nas preferências dos passageiros podem ocorrer com frequência, dispor de múltiplas soluções ótimas proporciona maior robustez. Isso significa que o sistema pode se ajustar com mais facilidade a mudanças contextuais sem comprometer o desempenho econômico.
 
 Por fim, do ponto de vista da simulação e da análise de sensibilidade, as múltiplas soluções ótimas permitem explorar diferentes cenários de alocação de classes ou de aproveitamento da demanda, contribuindo para o desenvolvimento de políticas mais resilientes e alinhadas às incertezas do ambiente de transporte ferrevoiário.
 
 
-\section{Métricas}
+\section{Métricas de Avaliação}
+As métricas utilizadas para avaliar a eficácia da metodologia incluem diversos aspectos essenciais para garantir a qualidade e a precisão dos modelos. Primeiramente, a demanda atendida foi analisada, verificando a capacidade dos modelos em atender à maior quantidade possível de necessidades dentro das restrições definidas. O tempo de execução e a criação dos modelos também foram considerados, a fim de avaliar a eficiência computacional e a complexidade na geração das soluções. Além disso, a quantidade de nós explorados foi mensurada para entender a profundidade da busca realizada pelos modelos. Por fim, a unimodalidade foi verificada como um critério para garantir que as soluções obtidas fossem obtidas em tempos relaticvamente curtos. Esses parâmetros permitiram uma avaliação abrangente da metodologia, garantindo a robustez dos resultados.
+
 
 \subsection{Demanda atendida}
-Nesta seção, apresenta-se o percentual de demanda atendida por cada modelo ao resolver as diferentes instâncias do problema. Esse indicador foi obtido a partir da razão entre o número total de assentos efetivamente reservados ao longo de todo o horizonte de planejamento — considerando todos os trechos, tipos de assento e classes de controle — e a demanda potencial total associada a cada instância.
-
-A demanda potencial total corresponde à quantidade máxima de passageiros que poderiam ser atendidos, sendo calculada com base na demanda independente, sem considerar o tipo de modelo utilizado. Essa definição está formalizada na Equação \eqref{eq: dem_aproveitada}.
+Nesta seção, apresenta-se o percentual de demanda atendida por cada modelo na resolução das diferentes instâncias do problema. Esse indicador foi calculado pela razão entre o número total de assentos efetivamente reservados ao longo de todo o horizonte de planejamento — considerando todos os trechos, tipos de assento e classes de controle — e a demanda potencial total associada a cada instância. É importante destacar que, nos modelos baseados em demanda comportamental, o número total de assentos efetivamente reservados corresponde à média das 1000 simulações realizadas.
+A demanda potencial total representa a quantidade máxima de passageiros que poderiam ser atendidos, sendo estimada com base na demanda independente, sem levar em conta o tipo de modelo adotado. Essa definição está formalizada na Equação \eqref{eq: dem_aproveitada}.
 
 A Figura \ref{fig: demanda_aprovechada} apresenta, de forma consolidada, as proporções de demanda atendida para cada modelo e para cada instância, com base nos valores calculados segundo a equação mencionada.
 % Nesta seção, são apresentados os percentuais de demanda que foram aproveitados por cada modelo ao resolver cada uma das instâncias. Para isso, foi realizada a divisão da soma de todos os assentos reservados ao longo de todo o horizonte de reserva, considerando todos os tipos de assento e classes de controle, pela demanda potencial total de cada instância. A demanda potencial total foi calculada com base na demanda independente, sem levar em conta o tipo modelo, conforme mostrado na Equação \eqref{eq: dem_aproveitada}. A Figura \ref{fig: demanda_aprovechada} apresenta, para cada modelo e para cada instância, as respectivas proporções calculadas com base na Equação \eqref{eq: dem_aproveitada}.
@@ -568,42 +612,38 @@ A Figura \ref{fig: demanda_aprovechada} apresenta, de forma consolidada, as prop
 
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[scale=0.4]{img/demanda_aprovechada.png}
+		\includegraphics[scale=0.33]{img/demanda_aprovechada.png}
 		\caption{ Porcentagem de demanda atendida (\%)}
 		\label{fig: demanda_aprovechada}
 	\end{center}
 \end{figure}
 
-Observe que os modelos que melhor aproveitam a demanda são os modelos básicos, enquanto os modelos completos são os que menos a aproveitam. Isso está em consonância com os resultados apresentados nas seções \nameref{sec: Analise_por_abordagem} e \nameref{sec: Comparacao_entre_modelos}. De fato, essa é a explicação de por que os modelos básicos obtêm uma receita melhor em comparação com os demais modelos.
-
-Além disso, pode-se observar que os modelos com restrições de \textit{skiplagging} aproveitam melhor a demanda em comparação com os modelos de \textit{fulfillment over periods}, devido à mesma situação já mencionada.
-
-Adicionalmente, observa-se que, mesmo quando há modelos que apresentam o mesmo valor da função objetivo — como é o caso dos modelos \texttt{Skipla\_Independ\_Est} e \texttt{Skipla\_Independ\_Din} —, o percentual de aproveitamento da demanda não é necessariamente igual. Isso é coerente com o fato de que a maioria dos modelos admite múltiplas soluções ótimas, o que implica que, ainda que o valor da função objetivo seja idêntico, podem ocorrer variações nos valores assumidos pelas variáveis de decisão.
+Observe que os modelos que melhor aproveitam a demanda são os modelos básicos, enquanto os modelos completos são os que menos a aproveitam. Isso está em consonância com os resultados apresentados nas seções \ref{sec: Analise_por_abordagem} e \ref{sec: Comparacao_entre_modelos}. De fato, essa é a explicação de por que os modelos básicos obtêm uma receita melhor em comparação com os demais modelos. Além disso, pode-se observar que os modelos com restrições de \textit{skiplagging} aproveitam melhor a demanda em comparação com os modelos de \textit{fulfillment over periods}, devido à mesma situação já mencionada. Adicionalmente, observa-se que, mesmo quando há modelos que apresentam o mesmo valor da função objetivo — como é o caso dos modelos \texttt{Skipla\_Independ\_Est} e \texttt{Skipla\_Independ\_Din} —, o percentual de aproveitamento da demanda não é necessariamente igual. Isso é coerente com o fato de que a maioria dos modelos admite múltiplas soluções ótimas, o que implica que, ainda que o valor da função objetivo seja idêntico, podem ocorrer variações nos valores assumidos pelas variáveis de decisão.
 
 
 % Outra observação interessante é que, embora os resultados para os modelos básicos, para a maioria das instâncias, sejam iguais (ver Tabela \ref{tab: compara_result_otimos}), os percentuais de aproveitamento da demanda não são. Por exemplo, observe os modelos básicos para a instância Inst1. Os dois primeiros valores de 99,25 são diferentes dos seguintes, que são de 99,32. Isso ocorre porque, embora os valores da função objetivo sejam iguais, os valores das variáveis de decisão não são, ou podem ser diferentes, já que a instância Inst1, assim como outras instâncias, possui múltiplas soluções, conforme mostrado na Tabela \ref{tab: num_solucoes}.
 
 
 \subsection{Tempos de construção e de resolução}
-Nesta seção são apresentados: i) o tempo de construção do modelo, que corresponde ao período necessário para que o solver realize a leitura e o pré-processamento dos dados, defina as variáveis de decisão, formule as restrições, estabeleça a função objetivo e gere a estrutura interna do modelo; e ii) o tempo de resolução, que corresponde ao tempo utilizado pelo solver para inicializar o processo de solução, executar o pré-solver, identificar o tipo de problema, selecionar os algoritmos apropriados, explorar o espaço de soluções e verificar a otimalidade da solução encontrada.
+Nesta seção são apresentados: i) o tempo de construção do modelo, que corresponde ao tempo necessário para que o solver realize a leitura e o pré-processamento dos dados, defina as variáveis de decisão, formule as restrições, estabeleça a função objetivo e gere a estrutura interna do modelo; e ii) o tempo de resolução, que corresponde ao tempo utilizado pelo solver para inicializar o processo de solução, executar o pré-solver, identificar o tipo de problema, selecionar os algoritmos apropriados, explorar o espaço de soluções e verificar a otimalidade da solução encontrada.
 
-Assim, a Figura \ref{fig: tempo_criacao} apresenta os tempos de construção utilizados por cada modelo em cada uma das instâncias analisadas. Nela, pode-se observar que os tempos de construção dependem de cada instância e não dos modelos propostos, isso pode ser verificado pela pouca variação que existe para cada instância. Para a instância Inst10, os tempos são mais curtos, em torno de 1 segundo, enquanto os tempos mais longos são observados para a instância Inst3, com uma média de 18,8 segundos. O restante das instâncias oscila entre esses dois limites.
+Assim, a Figura \ref{fig: tempo_criacao} apresenta os tempos de construção utilizados por cada modelo em cada uma das instâncias analisadas, no caso dos modelos comportamentais, reporta-se a média dos tempos ao longo de 1.000 simulações. Nela, pode-se observar que os tempos de construção dependem de cada instância e não dos modelos propostos, isso pode ser verificado pela pouca variação que existe para cada instância. Para a instância Inst10, os tempos são mais curtos, em torno de 0,9 segundos, enquanto os tempos mais longos são observados para a instância Inst3, com uma média de 19,67 segundos.
 
 \begin{figure}[ht]
 	\begin{center}
-		\includegraphics[scale=0.4]{img/tempo_criacao.png}
+		\includegraphics[scale=0.33]{img/tempo_criacao.png}
 		\caption{Tempos de construção, em segundos, de cada modelo para cada instância}
 		\label{fig: tempo_criacao}
 	\end{center}
 \end{figure}
 
-Por outro lado, a Figura \ref{fig: tempo_solucao} apresenta os tempos de resolução de cada modelo para cada uma das instâncias analisadas. Pode-se observar que os tempos são semelhantes, independentemente da instância e do modelo, sendo o tempo mais alto de 0,15 segundos e o mais baixo de 0 segundos. Ou seja, neste último caso, o modelo encontrou a solução ótima de forma instantânea, o que ocorreu para a instância mais pequena (Inst10).
+Por outro lado, a Figura \ref{fig: tempo_solucao} apresenta os tempos de resolução de cada modelo para cada uma das instâncias analisadas. Pode-se observar que os tempos são semelhantes, independentemente da instância e do modelo, sendo o tempo mais alto de 0,15 segundos e o mais baixo de 0,00 segundos. Ou seja, neste último caso, o modelo encontrou a solução ótima de forma instantânea, o que ocorreu para a instância mais pequena (Inst10).
 
 Com base nos dois tipos de tempos anteriores, pode-se afirmar que todos os modelos são eficientes na hora de resolver qualquer tipo de instância, seja de pequeno ou grande porte. Esse aspecto assume importância fundamental no contexto industrial, considerando que, na prática, é necessário resolver centenas de viagens associadas a múltiplos trens. Diante disso, a utilização eficiente do tempo computacional torna-se um requisito crucial para a viabilidade operacional do sistema. Na Seção \ref{sec: unimodularidade} será apresentada, de forma mais detalhada, a justificativa para a eficiência observada nos modelos. Serão discutidos os principais fatores que contribuíram para os resultados obtidos.
 
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[scale=0.4]{img/tempo_solucao.png}
+		\includegraphics[scale=0.33]{img/tempo_solucao.png}
 		\caption{Tempos de resolução, em segundos, de cada modelo para cada instância}
 		\label{fig: tempo_solucao}
 	\end{center}
@@ -611,7 +651,7 @@ Com base nos dois tipos de tempos anteriores, pode-se afirmar que todos os model
 
 
 \subsection{Nós explorados}
-Com o objetivo de aprofundar a análise do desempenho computacional dos modelos propostos, esta seção apresenta a quantidade de nós explorados durante o processo de resolução de cada instância. Esse indicador, comumente utilizado na avaliação de métodos baseados em branch-and-bound, fornece uma medida do esforço computacional requerido pelo solver para atingir a solução ótima. Na Tabela \ref{tab:nodos_explorados}, são apresentados os nós explorados pelo solver para encontrar a solução ótima de cada modelo em cada instância. Os valores indicam a quantidade de nós explorados, sendo que o valor 0 indica que o solver não precisou explorar nenhum nó para encontrar a solução ótima.
+Com o objetivo de aprofundar a análise do desempenho computacional dos modelos propostos, esta seção apresenta a quantidade de nós explorados durante o processo de resolução de cada instância. Esse indicador, comumente utilizado na avaliação de métodos baseados em \textit{branch-and-bound}, fornece uma medida do esforço computacional requerido pelo solver para atingir a solução ótima. Na Tabela \ref{tab:nodos_explorados}, são apresentados os nós explorados pelo solver para encontrar a solução ótima (ou a média das soluções ótimas, no caso comportamental) de cada modelo em cada instância. Os valores indicam a quantidade de nós explorados, sendo que o valor 0 indica que o solver não precisou explorar nenhum nó para encontrar a solução ótima.
 
 \begin{table}[H]
 	\centering
@@ -621,21 +661,21 @@ Com o objetivo de aprofundar a análise do desempenho computacional dos modelos 
 		\textbf{Nome Modelo}   & \textbf{Inst1} & \textbf{Inst2} & \textbf{Inst3} & \textbf{Inst4} & \textbf{Inst5} & \textbf{Inst6} & \textbf{Inst7} & \textbf{Inst8} & \textbf{Inst9} & \textbf{Inst10} \\
 		\midrule
 		Basic\_Independ\_Est   & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 0              & 0               \\
-		Basic\_Comporta\_Est   & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 0              & 0               \\
+		Basic\_Comporta\_Est   & 1              & 1              & 1              & 1              & 1              & 0              & 1              & 0              & 0              & 0               \\
 		Basic\_Independ\_Din   & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 0              & 0               \\
-		Basic\_Comporta\_Din   & 1              & 1              & 1              & 1              & 1              & 1              & 1              & 1              & 1              & 1               \\  \hline
+		Basic\_Comporta\_Din   & 1              & 1              & 1              & 1              & 1              & 0              & 1              & 0              & 0              & 0               \\  \hline
 		Fulfill\_Independ\_Est & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 0              & 0               \\
 		Fulfill\_Comporta\_Est & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 0              & 0               \\
 		Fulfill\_Independ\_Din & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 0              & 0               \\
-		Fulfill\_Comporta\_Din & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 0              & 1               \\  \hline
+		Fulfill\_Comporta\_Din & 1              & 1              & 1              & 1              & 1              & 0              & 1              & 0              & 1              & 1               \\  \hline
 		Skipla\_Independ\_Est  & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 0              & 0               \\
 		Skipla\_Comporta\_Est  & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 0              & 0               \\
 		Skipla\_Independ\_Din  & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 0              & 0               \\
-		Skipla\_Comporta\_Din  & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 1              & 0               \\ \hline
+		Skipla\_Comporta\_Din  & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 1              & 1              & 1               \\ \hline
 		Comp\_Independ\_Est    & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 0              & 0               \\
 		Comp\_Comporta\_Est    & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 0              & 0               \\
 		Comp\_Independ\_Din    & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 0              & 0               \\
-		Comp\_Comporta\_Din    & 1              & 1              & 1              & 1              & 1              & 0              & 0              & 0              & 0              & 0               \\
+		Comp\_Comporta\_Din    & 1              & 1              & 1              & 1              & 1              & 0              & 1              & 0              & 0              & 0               \\
 		\bottomrule
 	\end{tabular}
 	\caption{Nós explorados pelo solver para encontrar a solução ótima}
@@ -646,12 +686,19 @@ Da Tabela \ref{tab:nodos_explorados}, pode-se observar que, desde as instâncias
 
 
 
-\subsection{Unimodularidade} \label{sec: unimodularidade}
-As matrizes unimodulares são essenciais na programação inteira e na solução de sistemas lineares. Caracterizam-se por ter coeficientes pertencentes ao conjunto \{ -1,0,+1\} e garantem soluções inteiras quando o vetor $b$ contém somente valores inteiros. Essa propriedade é fundamental, pois assegura que as soluções dos sistemas sejam inteiras, sendo amplamente utilizada em algoritmos de otimização e em problemas de programação linear com restrições inteiras \citep{Samsul2018}. O procedimento descrito auxilia o solver no processo de resolução, pois, a solução relaxada do problema se torna a solução inteira. Isso contribui para uma maior eficiência tanto nos tempos de solução quanto na exploração de nós durante o processo de ramificação.
+\subsection{Matrizes totalmente unimodulares} \label{sec: unimodularidade}
 
-Com base na definição anterior, afirma-se que o vetor $b$ de todas as instâncias escolhidas contém valores inteiros que representam, seja a capacidade do trem, as demandas de passageiros ou a quantidade de assentos vagos. Portanto, toda a atenção foi voltada para garantir que as matrizes de coeficientes fossem compostas apenas por valores dentro do conjunto $\{-1,0,+1\}$. Para realizar essa tarefa, a verificação foi feita após a etapa de pré-processamento do solver, pois, durante essa fase, o solver consegue eliminar restrições ou variáveis, seja por dominância, fixação de variáveis ou outros conceitos. Assim, existia a possibilidade de uma matriz inicialmente não ser unimodular, mas se tornar unimodular após o pré-processamento, quando o solver realizasse as eliminações.
+Uma matriz $ A \in \mathbb{R}^{mxn}$ é totalmente unimodular (TU) se todo subdeterminante (determinante de qualquer submatriz quadrada) é igual a -1, 0 ou 1. Isso implica, em particular, que cada entrada de $A$ pertence a $\{-1,0,1\}$. 
 
-Os resultados das verificações estão apresentados na Tabela \ref{tab: modelos_no_unimodulares}, onde, se um modelo para uma instância for unimodular, é exibida uma linha `` - '' na célula correspondente. Caso contrário, são mostrados três dados na mesma célula: o primeiro valor representa a quantidade de restrições que não são compostas apenas por valores no conjunto $\{-1,0,+1\}$; o segundo valor indica o total de restrições desse modelo para essa instância; e o último valor mostra a relação percentual entre os dois primeiros valores.
+Como consequência, em otimização inteira, se $A$ é TU e $b$ é inteiro, então o politopo $P=\{x\in \mathbb{R}^n: Ax \leq  b\}$  tem todas as soluções básicas (vértices) inteiras. Assim, a relaxação linear do problema já produz soluções inteiras sem impor a restrição de integralidade $x \in \mathbb{Z}^n$. Essa propriedade é fundamental e amplamente utilizada em algoritmos de otimização e em problemas de programação linear com restrições inteiras \citep{Samsul2018}. O procedimento descrito auxilia o solver no processo de resolução, pois, a solução relaxada do problema se torna a solução inteira. Isso contribui para uma maior eficiência tanto nos tempos de solução quanto na exploração de nós durante o processo de ramificação.
+
+Com base na definição anterior, observa-se que o vetor $b$ é inteiro em todas as instâncias analisadas — representando, conforme o caso, a capacidade do trem, as demandas de passageiros ou a quantidade de assentos vagos. Desse modo, a atenção concentrou-se na matriz de coeficientes $A$. Embora a verificação teórica exija confirmar que todos os subdeterminantes de submatrizes quadradas pertençam a $\{-1,0,1\}$, tal procedimento torna-se impraticável mesmo na menor instância (Inst10), dado o número explosivo de submatrizes. Em alternativa, adotou-se uma checagem empírica: executar cada modelo e instância com variáveis relaxadas e comparar os resultados com a formulação inteira. Sempre que os valores coincidiram, concluiu-se que a relaxação já produzia soluções inteiras — exatamente o comportamento observado nas instâncias e modelos sinalizados com `` - '' na Tabela \ref{tab: modelos_no_unimodulares}.
+
+Para complementar essa evidência, verificou-se ainda se a matriz $A$ efetivamente utilizada na resolução continha somente coeficientes em $\{-1,0,1\}$. Essa conferência foi realizada após o pré-processamento (\textit{presolve}), fase em que o solver pode eliminar restrições ou variáveis por dominância, fixações ou outras simplificações. Assim, mesmo que a formulação inicial pudesse apresentar coeficientes fora do conjunto desejado, o que importa para a prova computacional é a matriz resultante \textit{pós-presolve}, que de fato fundamenta a solução do problema.
+
+% Com base na definição anterior, afirma-se que o vetor $b$ de todas as instâncias escolhidas contém valores inteiros que representam, seja a capacidade do trem, as demandas de passageiros ou a quantidade de assentos vagos. Portanto, toda a atenção foi voltada para garantir que as matrizes de coeficientes fossem compostas apenas por valores dentro do conjunto $\{-1,0,+1\}$. Para realizar essa tarefa, a verificação foi feita após a etapa de pré-processamento do solver, pois, durante essa fase, o solver consegue eliminar restrições ou variáveis, seja por dominância, fixação de variáveis ou outros conceitos. Assim, existia a possibilidade de uma matriz inicialmente não ser TU, mas se tornar TU após o pré-processamento, quando o solver realizasse as eliminações.
+
+Os resultados das verificações estão apresentados na Tabela \ref{tab: modelos_no_unimodulares}, onde, se um modelo para uma instância for TU, é exibida uma linha `` - '' na célula correspondente. Caso contrário, são mostrados três dados na mesma célula: o primeiro valor representa a quantidade de restrições que não são compostas apenas por valores no conjunto $\{-1,0,+1\}$; o segundo valor indica o total de restrições desse modelo para essa instância; e o último valor mostra a relação percentual entre os dois primeiros valores.
 
 \begin{table}[H]
 	\centering
@@ -802,7 +849,7 @@ Os resultados das verificações estão apresentados na Tabela \ref{tab: modelos
 			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
 			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
 			                     & \shortstack{-                                                                                                                                                             \\ \,\\ \, }
-			                     & \shortstack{ 3                                                                                                                                                            \\10.944\\0.027\,\% } \\
+			                     & \shortstack{ 3                                                                                                                                                            \\10.944\\0,027\,\% } \\
 			\midrule
 			\shortstack{Basic\_Comporta\_Din                                                                                                                                                                 \\  \, \\ \, }
 			                     & \shortstack{135                                                                                                                                                           \\ 63.984 \\ 0,211\,\%}
@@ -858,8 +905,6 @@ Os resultados das verificações estão apresentados na Tabela \ref{tab: modelos
 	\label{tab: modelos_no_unimodulares}
 \end{table}
 
-É assim que, para cada modelo e instância da Tabela \ref{tab: modelos_no_unimodulares} que possui apenas uma linha, se explica por que os tempos de solução correspondentes são tão baixos, assim como a quantidade de nós explorados para a obtenção da solução ótima inteira.
+É assim que, para cada modelo e instância da Tabela \ref{tab: modelos_no_unimodulares} que possui apenas uma linha, se explica por que os tempos de solução correspondentes são tão baixos, assim como a quantidade de nós explorados para a obtenção da solução ótima inteira. No entanto, observa-se que os tempos e nós explorados continuam baixos, mesmo para os modelos e instâncias que não são TU. Para explicar essa situação, é necessário considerar o trabalho de \citep{aprile2024}, que introduz o conceito de \textit{\textbf{$\Delta$-modular}}. Segundo os autores, existem matrizes quase unimodulares, onde, se um conjunto de linhas (restrições) for eliminado, a matriz se tornaria TU. O tamanho desse conjunto é representado por $\Delta$, ou seja, $\Delta$ é a quantidade de restrições que impede que a matriz seja TU. No final, os autores demonstram que as matrizes quase unimodulares ou \textit{$\Delta$-modular} ajudam a tornar o processo de resolução do problema muito mais eficiente, à medida que $\Delta$ se torna menor.
 
-No entanto, observa-se que os tempos e nós explorados continuam baixos, mesmo para os modelos e instâncias que não são unimodulares. Para explicar essa situação, é necessário considerar o trabalho de \citep{aprile2024}, que introduz o conceito de \textit{\textbf{$\Delta$-modular}}. Segundo os autores, existem matrizes quase unimodulares, onde, se um conjunto de linhas (restrições) for eliminado, a matriz se tornaria totalmente unimodular. O tamanho desse conjunto é representado por $\Delta$, ou seja, $\Delta$ é a quantidade de restrições que impede que a matriz seja totalmente unimodular. No final, os autores demonstram que as matrizes quase unimodulares ou \textit{$\Delta$-modular} ajudam a tornar o processo de resolução do problema muito mais eficiente, à medida que $\Delta$ se torna menor.
-
-Agora, observe novamente a Tabela \ref{tab: modelos_no_unimodulares}. Perceba que a maioria dos modelos e instâncias não unimodulares apresenta um valor de $\Delta$ — ou seja, o primeiro valor de cada célula — abaixo de 8, o que, quando comparado com o número total de restrições, é extremamente baixo. Existem 7 exceções com valores de $\Delta$ entre 76 e 291; no entanto, novamente, em função do número total de restrições, essa relação não ultrapassa 0,5\% do total. Assim, para as matrizes não unimodulares, pode-se afirmar, com base na definição de $\Delta$-modular, que também obtêm resultados em tempo competitivo e com uma quantidade baixa de nós explorados.
+Observando a \ref{tab: modelos_no_unimodulares}, nota-se que a maior parte dos modelos e instâncias que não são TU apresenta um valor de $\Delta$ — ou seja, o primeiro valor de cada célula — abaixo de 8, o que, quando comparado com o número total de restrições, é extremamente baixo. Existem 7 exceções com valores de $\Delta$ entre 76 e 291; no entanto, novamente, em função do número total de restrições, essa relação não ultrapassa 0,5\% do total. Assim, para as matrizes não TU, pode-se afirmar, com base na definição de $\Delta$-modular, que também obtêm resultados em tempo competitivo e com uma quantidade baixa de nós explorados.

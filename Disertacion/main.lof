@@ -1,27 +1,26 @@
 \babel@toc {portuguese}{}\relax 
 \thispagestyle {plain}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces Representação de viagem}}{11}{figure.caption.1}%
-\contentsline {figure}{\numberline {1.2}{\ignorespaces Representação de trechos}}{12}{figure.caption.2}%
-\contentsline {figure}{\numberline {1.3}{\ignorespaces Representação de itinerários}}{12}{figure.caption.3}%
-\contentsline {figure}{\numberline {1.4}{\ignorespaces Representação do horizonte de reserva}}{13}{figure.caption.4}%
-\contentsline {figure}{\numberline {1.5}{\ignorespaces Classes de autorização}}{13}{figure.caption.5}%
-\contentsline {figure}{\numberline {1.6}{\ignorespaces Representação de demanda comportamental}}{14}{figure.caption.6}%
-\contentsline {figure}{\numberline {1.7}{\ignorespaces Representação de demanda independente}}{14}{figure.caption.7}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Representação de viagem}}{37}{figure.caption.1}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Representação de trechos}}{38}{figure.caption.2}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Representação de itinerários}}{38}{figure.caption.3}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Representação do horizonte de reserva}}{39}{figure.caption.4}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Classes de autorização}}{39}{figure.caption.5}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Representação de demanda comportamental}}{40}{figure.caption.6}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Representação de demanda independente}}{40}{figure.caption.7}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Versão gráfica simples do Problema de Transporte Ferroviário de Passageiros}}{44}{figure.caption.8}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Solução factível para o problema simplificado}}{45}{figure.caption.9}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Exemplo de \textit {nesting} para o trecho $E_1 - E_2$ e tipo de assento $P$}}{50}{figure.caption.11}%
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Exemplo cálculo da variável $\beta $ para o trecho $E_1 - E_2$, um período e um tipo de assento}}{51}{figure.caption.12}%
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Exemplo: Tipos de Demanda}}{53}{figure.caption.13}%
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Exemplo: demanda comportamental para a classe $c_1$}}{54}{figure.caption.14}%
+\contentsline {figure}{\numberline {3.14}{\ignorespaces Exemplo: demanda comportamental para a classe $c_2$}}{54}{figure.caption.15}%
+\contentsline {figure}{\numberline {3.15}{\ignorespaces Exemplo: demanda comportamental para a classe $c_3$}}{54}{figure.caption.16}%
+\contentsline {figure}{\numberline {3.16}{\ignorespaces Exemplo: demanda comportamental total potencial}}{55}{figure.caption.17}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Versão gráfica simples do Problema de Transporte Ferroviário de Passageiros}}{44}{figure.caption.10}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Solução factível para o problema simplificado}}{45}{figure.caption.11}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Exemplo de nesting para o trecho $E_1 - E_2$ e tipo de assento $P$}}{48}{figure.caption.12}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Exemplo cálculo da variável $\beta $ para o trecho $E_1 - E_2$, um período e um tipo de assento}}{50}{figure.caption.35}%
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Exemplo: Tipos de Demanda}}{55}{figure.caption.136}%
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Exemplo: demanda comportamental para a classe $c_1$}}{56}{figure.caption.137}%
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Exemplo: demanda comportamental para a classe $c_2$}}{57}{figure.caption.138}%
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Exemplo: demanda comportamental para a classe $c_3$}}{57}{figure.caption.139}%
-\contentsline {figure}{\numberline {4.9}{\ignorespaces Exemplo: demanda comportamental total potencial}}{57}{figure.caption.140}%
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Porcentagem de demanda atendida (\%)}}{84}{figure.caption.569}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Tempos de construção, em segundos, de cada modelo para cada instância}}{85}{figure.caption.570}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Tempos de resolução, em segundos, de cada modelo para cada instância}}{86}{figure.caption.571}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Porcentagem de demanda atendida (\%)}}{75}{figure.caption.128}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Tempos de construção, em segundos, de cada modelo para cada instância}}{76}{figure.caption.129}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Tempos de resolução, em segundos, de cada modelo para cada instância}}{77}{figure.caption.130}%
 \addvspace {10\p@ }
